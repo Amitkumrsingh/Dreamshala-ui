@@ -10,7 +10,7 @@ const JWT_EXPIRES_IN = "3 days";
 const users = [
   {
     id: "a8553063-7bd5-45ed-adbe-db6f069a3802",
-    displayName: "Adit",
+    displayName: "Lucy Lavender",
     email: "youdotcreate@gmail.com",
     password: "Daydreamers#2023",
     avatar: "/static/img/avatars/avatar-1.jpg",
