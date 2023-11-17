@@ -25,6 +25,7 @@ import useAppDispatch from "../../../hooks/useAppDispatch";
 
 import Code from "../../Code";
 
+<<<<<<< HEAD
 import {
   decrement,
   increment,
@@ -33,6 +34,16 @@ import {
   incrementIfOdd,
   selectCount,
 } from "../../../redux/slices/counter";
+=======
+// import {
+//   decrement,
+//   increment,
+//   incrementByAmount,
+//   incrementAsync,
+//   incrementIfOdd,
+//   selectCount,
+// } from "../../../redux/slices/counter";
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
 
 const Divider = styled(MuiDivider)(spacing);
 
@@ -196,13 +207,22 @@ function ProductList() {
 }
 
 function Counter() {
+<<<<<<< HEAD
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
+=======
+  // const count = useAppSelector(selectCount);
+  // const dispatch = useAppDispatch();
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
 
   return (
     <Card>
       <CardHeader title="Example" />
+<<<<<<< HEAD
       <CardContent>
+=======
+      {/* <CardContent>
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
         <Box my={3}>
           <Button
             variant="outlined"
@@ -248,7 +268,11 @@ function Counter() {
             Add If Odd
           </Button>
         </Box>
+<<<<<<< HEAD
       </CardContent>
+=======
+      </CardContent> */}
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
     </Card>
   );
 }

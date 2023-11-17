@@ -42,6 +42,10 @@ function SignIn() {
         try {
           await signIn(values.email, values.password);
 
+<<<<<<< HEAD
+=======
+          // router.push("/private");
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
           router.push("/dashboard/analytics");
         } catch (error) {
           const message = error.message || "Something went wrong";
@@ -62,6 +66,13 @@ function SignIn() {
         values,
       }) => (
         <form noValidate onSubmit={handleSubmit}>
+<<<<<<< HEAD
+=======
+          {/* <Alert mt={3} mb={3} severity="info">
+            Use <strong>youdotcreate@gmail.com</strong> and{" "}
+            <strong>Daydreamers#2023</strong> to sign in
+          </Alert> */}
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
           {errors.submit && (
             <Alert mt={2} mb={3} severity="warning">
               {errors.submit}

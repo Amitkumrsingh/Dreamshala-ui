@@ -1,4 +1,9 @@
 import {
+<<<<<<< HEAD
+=======
+  Home,
+  Edit3,
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
   BookOpen,
   Briefcase,
   Calendar,
@@ -126,6 +131,107 @@ const pagesSection = [
       },
     ],
   },
+<<<<<<< HEAD
+=======
+  {
+    href: "/college",
+    title: "College",
+    icon: Home,
+    children: [
+      {
+        href: "/college/add-new-college",
+        title: "Add new college",
+        // children: [
+        //   {
+        //     href: "",
+        //     title: "About",
+        //     step: 0,
+        //   },
+        //   {
+        //     href: "",
+        //     title: "Contact Details",
+        //     step: 1,
+        //   },
+        //   {
+        //     href: "",
+        //     title: "Management Contact",
+        //     step: 2,
+        //   },
+        //   { href: "/college/add-new-college/exams", title: "Exams" },
+        //   {
+        //     href: "/college/add-new-college/courses-and-fees",
+        //     title: "Courses and Fees",
+        //   },
+        //   { href: "/college/add-new-college/photos", title: "Photos" },
+        //   { href: "/college/add-new-college/results", title: "Results" },
+        //   { href: "/college/add-new-college/faculties", title: "Faculties" },
+        //   { href: "/college/add-new-college/reviews", title: "Reviews" },
+        //   { href: "/college/add-new-college/videos", title: "Videos" },
+        //   {
+        //     href: "/college/add-new-college/study-material",
+        //     title: "Study Material",
+        //   },
+        //   { href: "/college/add-new-college/location", title: "Location" },
+        //   {
+        //     href: "/college/add-new-college/company-details",
+        //     title: "Company Details",
+        //   },
+        //   { href: "/college/add-new-college/checklist", title: "Checklist" },
+        //   {
+        //     href: "/college/add-new-college/frequently-asked-questions",
+        //     title: "Frequently Asked Questions",
+        //   },
+        // ],
+      },
+      {
+        href: "/college/update-college",
+        title: "Update college",
+      },
+      {
+        href: "/college/delete-college",
+        title: "Delete college",
+      },
+    ],
+  },
+  {
+    href: "/coaching",
+    title: "Coaching",
+    icon: BookOpen,
+    children: [
+      {
+        href: "/coaching/add-new-coaching",
+        title: "Add new Coaching",
+      },
+      {
+        href: "/coaching/update-coaching",
+        title: "Update Coaching",
+      },
+      {
+        href: "/coaching/delete-coaching",
+        title: "Delete Coaching",
+      },
+    ],
+  },
+  {
+    href: "/exam",
+    title: "Exam",
+    icon: Edit3,
+    children: [
+      {
+        href: "/exam/add-new-exam",
+        title: "Add new exam",
+      },
+      {
+        href: "/exam/update-exam",
+        title: "Update exam",
+      },
+      {
+        href: "/exam/delete-exam",
+        title: "Delete exam",
+      },
+    ],
+  },
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
 ];
 
 const elementsSection = [

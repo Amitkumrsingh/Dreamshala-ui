@@ -3,9 +3,16 @@ import styled from "@emotion/styled";
 import { rgba, darken } from "polished";
 import Link from "next/link";
 import { useRouter } from "next/router";
+<<<<<<< HEAD
 
 import { Chip, Collapse, ListItemButton, ListItemText } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+=======
+import { Chip, Collapse, ListItemButton, ListItemText } from "@mui/material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { toStep } from "../../redux/slices/add-new-college-step-form";
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
 
 const Item = styled(ListItemButton)`
   padding-top: ${(props) =>
@@ -77,6 +84,11 @@ const ExpandMoreIcon = styled(ExpandMore)`
 `;
 
 const SidebarNavListItem = (props) => {
+<<<<<<< HEAD
+=======
+  const dispatch = useDispatch();
+
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
   const {
     title,
     href,

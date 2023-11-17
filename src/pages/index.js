@@ -1,7 +1,11 @@
 // import React from "react";
+<<<<<<< HEAD
 
 // import PresentationLayout from "../layouts/Presentation";
 
+=======
+// import PresentationLayout from "../layouts/Presentation";
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
 // import AppBar from "../components/pages/landing/AppBar";
 // import Introduction from "../components/pages/landing/Introduction";
 // import Demos from "../components/pages/landing/Demos";
@@ -25,7 +29,11 @@
 //     </React.Fragment>
 //   );
 // }
+<<<<<<< HEAD
 
+=======
+// kddk
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
 // Presentation.getLayout = function getLayout(page) {
 //   return <PresentationLayout>{page}</PresentationLayout>;
 // };
