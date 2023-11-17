@@ -1,6 +1,9 @@
 import {
+<<<<<<< HEAD
+=======
   Home,
   Edit3,
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
   BookOpen,
   Briefcase,
   Calendar,
@@ -128,6 +131,8 @@ const pagesSection = [
       },
     ],
   },
+<<<<<<< HEAD
+=======
   {
     href: "/college",
     title: "College",
@@ -226,6 +231,7 @@ const pagesSection = [
       },
     ],
   },
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
 ];
 
 const elementsSection = [

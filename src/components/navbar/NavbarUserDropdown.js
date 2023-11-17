@@ -34,8 +34,12 @@ function NavbarUserDropdown() {
 
   const handleSignOut = async () => {
     await signOut();
+<<<<<<< HEAD
+    router.push("/auth/sign-in");
+=======
     // router.push("/auth/sign-in");
     router.push("/");
+>>>>>>> b201923b6a0c347cbe273b82877dfdedffca4ba2
   };
 
   return (
