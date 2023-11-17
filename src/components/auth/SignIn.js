@@ -27,8 +27,8 @@ function SignIn() {
   return (
     <Formik
       initialValues={{
-        email: "demo@bootlab.io",
-        password: "unsafepassword",
+        email: "youdotcreate@gmail.com",
+        password: "Daydreamers#2023",
         submit: false,
       }}
       validationSchema={Yup.object().shape({
@@ -42,7 +42,7 @@ function SignIn() {
         try {
           await signIn(values.email, values.password);
 
-          router.push("/private");
+          router.push("/dashboard/analytics");
         } catch (error) {
           const message = error.message || "Something went wrong";
 
@@ -62,10 +62,6 @@ function SignIn() {
         values,
       }) => (
         <form noValidate onSubmit={handleSubmit}>
-          <Alert mt={3} mb={3} severity="info">
-            Use <strong>demo@bootlab.io</strong> and{" "}
-            <strong>unsafepassword</strong> to sign in
-          </Alert>
           {errors.submit && (
             <Alert mt={2} mb={3} severity="warning">
               {errors.submit}
