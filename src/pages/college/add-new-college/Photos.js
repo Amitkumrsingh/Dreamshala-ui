@@ -51,7 +51,7 @@ const MyForm = () => {
                   accept="image/*"
                   onChange={handleImageChange}
                   style={{ display: "none" }}
-                  id="image-input"
+                  // id="image-input"
                 />
 
                 <IconButton component="span">

@@ -39,7 +39,7 @@ const Results = () => {
                 accept="file/*"
                 //   onChange={handleImageChange}
                 style={{ display: "none" }}
-                id="image-input"
+                // id="image-input"
               />
               <IconButton component="span">
                 <UploadFileIcon fontSize="small" color="primary" />
@@ -79,7 +79,7 @@ const Results = () => {
                   <input
                     accept="image/*"
                     style={{ display: "none" }}
-                    id="image"
+                    // id="image"
                     type="file"
                     //   onChange={handleFileChange}
                   />
