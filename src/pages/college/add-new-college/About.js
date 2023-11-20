@@ -22,37 +22,30 @@ const daysOfWeek = [
 ];
 
 const ButtonStyling = {
-  color: "#8C8C8C",
   textAlign: "center",
-  fontFamily: "Inter",
-  fontSize: "11px",
-  fontStyle: "normal",
-  fontWeight: 400,
-  lineHeight: "20px",
-  letterSpacing: "-0.22px",
   margin: "5px",
   border: "1px solid",
   borderRadius: 0,
 };
 
-const InpubLabelTextStyling = {
-  color: "#000",
-  fontFamily: "Inter",
-  fontSize: "14px",
-  fontStyle: "normal",
-  fontWeight: 400,
-  lineHeight: "18px",
-};
+// const InpubLabelTextStyling = {
+//   color: "#000",
+//   fontFamily: "Inter",
+//   fontSize: "14px",
+//   fontStyle: "normal",
+//   fontWeight: 400,
+//   lineHeight: "18px",
+// };
 
-const AboutHeadingTextStyle = {
-  color: "#263238",
-  fontFamily: "Inter",
-  fontSize: "16px",
-  fontStyle: "italic",
-  fontWeight: 900,
-  lineHeight: "45px",
-  letterSpacing: "-0.32px",
-};
+// const AboutHeadingTextStyle = {
+//   color: "#263238",
+//   fontFamily: "Inter",
+//   fontSize: "16px",
+//   fontStyle: "italic",
+//   fontWeight: 900,
+//   lineHeight: "45px",
+//   letterSpacing: "-0.32px",
+// };
 
 const About = () => {
   const [selectedDays, setSelectedDays] = useState([]);
@@ -92,7 +85,7 @@ const About = () => {
 
   return (
     <Container>
-      <Typography variant="h5" gutterBottom style={AboutHeadingTextStyle}>
+      <Typography variant="h5" gutterBottom>
         About
       </Typography>
       <Grid container spacing={2}>
@@ -135,7 +128,7 @@ const About = () => {
         </Grid>
 
         <Grid item xs={12} sm={10}>
-          <Typography style={InpubLabelTextStyling}>
+          <Typography>
             Add short 2 line description about your coaching class
           </Typography>
           <TextField
@@ -147,7 +140,7 @@ const About = () => {
         </Grid>
         {/* Row 2 */}
         <Grid item xs={12}>
-          <Typography style={InpubLabelTextStyling}>
+          <Typography>
             Add detailed description about your coaching class
           </Typography>
           <TextField
