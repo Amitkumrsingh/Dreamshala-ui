@@ -123,7 +123,7 @@ const About = () => {
               <input
                 accept="image/*"
                 style={{ display: "none" }}
-                // id="image"
+                id="image"
                 type="file"
                 onChange={handleFileChange}
               />

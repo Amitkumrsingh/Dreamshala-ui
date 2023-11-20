@@ -130,7 +130,7 @@ const Reviews = () => {
                         accept="file/*"
                         //   onChange={handleImageChange}
                         style={{ display: "none" }}
-                        // id="image-input"
+                        id="image-input"
                       />
                       <IconButton component="span">
                         <FileUploadIcon fontSize="small" color="primary" />
