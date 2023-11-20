@@ -13,44 +13,19 @@ import {
   Select,
 } from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import UploadFileIcon from "@mui/icons-material/UploadFile";
 
-const Results = () => {
-  const [addMoreResults, setAddMoreResults] = React.useState([""]);
+const Faculties = () => {
+  const [addMoreFaculties, setAddMoreFaculties] = React.useState([""]);
   return (
     <>
       <Container>
         <Grid container justifyContent={"space-between"}>
           <Typography variant="h5" gutterBottom>
-            RESULTS
+            FACULTIES
           </Typography>
-          <label htmlFor="image-input">
-            <Box
-              border={1}
-              borderColor="grey.500"
-              borderRadius="4px"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              paddingRight={"10px"}
-            >
-              <input
-                type="file"
-                accept="file/*"
-                //   onChange={handleImageChange}
-                style={{ display: "none" }}
-                id="image-input"
-              />
-              <IconButton component="span">
-                <UploadFileIcon fontSize="small" color="primary" />
-              </IconButton>
-              Upload Excel
-              {/* You can display the selected image here if needed */}
-            </Box>
-          </label>
         </Grid>
 
-        {addMoreResults.map((d, index) => (
+        {addMoreFaculties.map((d, index) => (
           <Grid container spacing={2} key={index}>
             <Grid item xs={3}>
               Add Photo
@@ -101,7 +76,7 @@ const Results = () => {
                 />
               </Grid>
               <Grid>
-                <Typography>All India Rank</Typography>
+                <Typography>Experience</Typography>
                 <FormControl fullWidth>
                   <InputLabel>Select/ Type Here</InputLabel>
                   <Select defaultValue={""}>
@@ -119,7 +94,7 @@ const Results = () => {
 
             <Grid item xs={3}>
               <Grid>
-                <Typography>College secured</Typography>
+                <Typography>Specialisation</Typography>
                 <FormControl fullWidth>
                   <InputLabel>Select/ Type Here</InputLabel>
                   <Select defaultValue={""}>
@@ -151,7 +126,7 @@ const Results = () => {
             </Grid>
             <Grid item xs={3}>
               <Grid>
-                <Typography>Exam Cracked</Typography>
+                <Typography>Background</Typography>
                 <FormControl fullWidth>
                   <InputLabel>Select/ Type Here</InputLabel>
                   <Select defaultValue={""}>
@@ -165,7 +140,7 @@ const Results = () => {
                   </Select>
                 </FormControl>
               </Grid>
-              <Typography>Testimonial by Student (if any)</Typography>
+              <Typography>Links (if any)</Typography>
               <TextField
                 fullWidth
                 // label="Description"
@@ -180,13 +155,13 @@ const Results = () => {
           m={2}
           variant="contained"
           color="primary"
-          onClick={() => setAddMoreResults([...addMoreResults, ""])}
+          onClick={() => setAddMoreFaculties([...addMoreFaculties, ""])}
         >
-          + Add More Results
+          + Add More Faculty
         </Button>
       </Container>
     </>
   );
 };
 
-export default Results;
+export default Faculties;

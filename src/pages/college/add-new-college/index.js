@@ -3,6 +3,8 @@ import ContactDetails from "./ContactDetails";
 import ManagementContact from "./ManagementContact";
 import CoursesAndFees from "./CoursesAndFees";
 import EntranceExams from "./EntranceExams";
+import Faculties from "./Faculties";
+
 import Results from "./Results";
 import Photos from "./Photos";
 import DashboardLayout from "../../../layouts/Dashboard";
@@ -103,7 +105,7 @@ const AddNewCollege = () => {
 
 // const Photos = () => <div>Photos Content</div>;
 // const Results = () => <div>Results Content</div>;
-const Faculties = () => <div>Faculties Content</div>;
+// const Faculties = () => <div>Faculties Content</div>;
 const Reviews = () => <div>Reviews Content</div>;
 const Videos = () => <div>Videos Content</div>;
 const StudyMaterial = () => <div>Study Material Content</div>;
