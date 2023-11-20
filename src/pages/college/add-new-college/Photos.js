@@ -23,6 +23,10 @@ const MyForm = () => {
     setDescription(e.target.value);
   };
 
+  const handleButtonToggle = () => {
+    console.log("hello");
+  };
+
   return (
     <>
       <Typography variant="h5">PHOTOS</Typography>
