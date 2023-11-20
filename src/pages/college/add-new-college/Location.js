@@ -166,7 +166,7 @@ const Location = () => {
           color="primary"
           onClick={() => setAddMoreLocation([...addMoreLocation, ""])}
         >
-          + Add More Material
+          + Add More Location
         </Button>
       </Container>
     </>
