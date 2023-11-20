@@ -6,10 +6,6 @@ import {
   TextField,
   Container,
   Typography,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   Button,
 } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
@@ -22,7 +18,7 @@ const Videos = () => {
       <Container>
         <Grid>
           <Typography variant="h5" gutterBottom>
-            REVIEWS
+            VIDEOS
           </Typography>
           <Typography>
             This section is to add videos about your coaching class

@@ -6,6 +6,7 @@ import EntranceExams from "./EntranceExams";
 import Faculties from "./Faculties";
 import Reviews from "./Reviews";
 import Videos from "./Videos";
+import StudyMaterial from "./StudyMaterial";
 
 import Results from "./Results";
 import Photos from "./Photos";
@@ -110,7 +111,7 @@ const AddNewCollege = () => {
 // const Faculties = () => <div>Faculties Content</div>;
 // const Reviews = () => <div>Reviews Content</div>;
 // const Videos = () => <div>Videos Content</div>;
-const StudyMaterial = () => <div>Study Material Content</div>;
+// const StudyMaterial = () => <div>Study Material Content</div>;
 const Location = () => <div>Location Content</div>;
 const CompanyDetails = () => <div>Company Details Content</div>;
 const Checklist = () => <div>Checklist Content</div>;
