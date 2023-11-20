@@ -190,7 +190,7 @@ const About = () => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Typography>Hours of Operation</Typography>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} mt={2}>
             {/* <Typography>Open</Typography> */}
             <Grid item xs={6}>
               <TextField
