@@ -3,6 +3,8 @@ import ContactDetails from "./ContactDetails";
 import ManagementContact from "./ManagementContact";
 import CoursesAndFees from "./CoursesAndFees";
 import EntranceExams from "./EntranceExams";
+import Results from "./Results";
+import Photos from "./Photos";
 import DashboardLayout from "../../../layouts/Dashboard";
 import React from "react";
 import { Button, Container, Stepper, Step, StepLabel } from "@mui/material";
@@ -49,7 +51,11 @@ const AddNewCollege = () => {
 
   return (
     <Container>
-      <Stepper activeStep={activeStep} alternativeLabel>
+      <Stepper
+        activeStep={activeStep}
+        alternativeLabel
+        style={{ marginBottom: "20px" }}
+      >
         {steps.map((label, index) => (
           <Step key={index} onClick={() => handleToStep(index)}>
             <StepLabel>{label}</StepLabel>
@@ -80,7 +86,7 @@ const AddNewCollege = () => {
             {activeStep === 13 && <Checklist />}
             {activeStep === 14 && <FAQ />}
             {/* Add more steps as needed */}
-            <div>
+            <div style={{ marginTop: "10px" }}>
               <Button disabled={activeStep === 0} onClick={handleBack}>
                 Back
               </Button>
@@ -95,8 +101,8 @@ const AddNewCollege = () => {
   );
 };
 
-const Photos = () => <div>Photos Content</div>;
-const Results = () => <div>Results Content</div>;
+// const Photos = () => <div>Photos Content</div>;
+// const Results = () => <div>Results Content</div>;
 const Faculties = () => <div>Faculties Content</div>;
 const Reviews = () => <div>Reviews Content</div>;
 const Videos = () => <div>Videos Content</div>;
