@@ -9,6 +9,7 @@ import Videos from "./Videos";
 import StudyMaterial from "./StudyMaterial";
 import Location from "./Location";
 import CompanyDetails from "./CompanyDetails";
+import CheckList from "./CheckList";
 
 import Results from "./Results";
 import Photos from "./Photos";
@@ -90,7 +91,7 @@ const AddNewCollege = () => {
             {activeStep === 10 && <StudyMaterial />}
             {activeStep === 11 && <Location />}
             {activeStep === 12 && <CompanyDetails />}
-            {activeStep === 13 && <Checklist />}
+            {activeStep === 13 && <CheckList />}
             {activeStep === 14 && <FAQ />}
             {/* Add more steps as needed */}
             <div style={{ marginTop: "10px" }}>
@@ -116,7 +117,7 @@ const AddNewCollege = () => {
 // const StudyMaterial = () => <div>Study Material Content</div>;
 // const Location = () => <div>Location Content</div>;
 // const CompanyDetails = () => <div>Company Details Content</div>;
-const Checklist = () => <div>Checklist Content</div>;
+// const Checklist = () => <div>Checklist Content</div>;
 const FAQ = () => <div>Frequently Asked Questions Content</div>;
 
 AddNewCollege.getLayout = function getLayout(page) {
