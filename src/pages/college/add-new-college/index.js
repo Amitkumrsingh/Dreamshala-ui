@@ -10,6 +10,7 @@ import StudyMaterial from "./StudyMaterial";
 import Location from "./Location";
 import CompanyDetails from "./CompanyDetails";
 import CheckList from "./CheckList";
+import FAQ from "./FAQ";
 
 import Results from "./Results";
 import Photos from "./Photos";
@@ -118,7 +119,7 @@ const AddNewCollege = () => {
 // const Location = () => <div>Location Content</div>;
 // const CompanyDetails = () => <div>Company Details Content</div>;
 // const Checklist = () => <div>Checklist Content</div>;
-const FAQ = () => <div>Frequently Asked Questions Content</div>;
+// const FAQ = () => <div>Frequently Asked Questions Content</div>;
 
 AddNewCollege.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
