@@ -12,8 +12,8 @@ import {
   Select,
   Button,
 } from "@mui/material";
-import StarRating from "../../../components/College/StarRating";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+import StarRating from "../StarRating";
 
 const Reviews = () => {
   const [addMoreReviews, setAddMoreReviews] = useState([""]);

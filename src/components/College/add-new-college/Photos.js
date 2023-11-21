@@ -63,7 +63,7 @@ const MyForm = () => {
           </Grid>
           <Grid item xs={8}>
             <Grid container>
-              <Grid xs={6}>
+              <Grid xs={6} item>
                 {/* 2nd Column - Text Input for Description */}
 
                 <Typography variant="h6">
@@ -81,7 +81,7 @@ const MyForm = () => {
                   maxRows={5}
                 />
               </Grid>
-              <Grid xs={6}>
+              <Grid xs={6} item>
                 {/* 3rd Column - Checkboxes as Buttons */}
 
                 <Typography variant="h6">Photo Category</Typography>

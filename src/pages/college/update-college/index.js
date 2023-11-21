@@ -17,14 +17,8 @@ import {
 } from "../../../components/College/add-new-college";
 
 import DashboardLayout from "../../../layouts/Dashboard";
-import React from "react";
+import React, { useState } from "react";
 import { Button, Container, Stepper, Step, StepLabel } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  nextStep,
-  preStep,
-  toStep,
-} from "../../../redux/slices/add-new-college-step-form";
 
 const steps = [
   "About",
@@ -45,19 +39,18 @@ const steps = [
 ]; // Add more steps as needed
 
 const AddNewCollege = () => {
-  const dispatch = useDispatch();
-  const activeStep = useSelector((state) => state.activeStep);
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
-    dispatch(nextStep());
+    setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
-    dispatch(preStep());
+    setActiveStep(activeStep - 1);
   };
 
   const handleToStep = (step) => {
-    dispatch(toStep(step));
+    setActiveStep(step);
   };
 
   return (
@@ -111,17 +104,6 @@ const AddNewCollege = () => {
     </Container>
   );
 };
-
-// const Photos = () => <div>Photos Content</div>;
-// const Results = () => <div>Results Content</div>;
-// const Faculties = () => <div>Faculties Content</div>;
-// const Reviews = () => <div>Reviews Content</div>;
-// const Videos = () => <div>Videos Content</div>;
-// const StudyMaterial = () => <div>Study Material Content</div>;
-// const Location = () => <div>Location Content</div>;
-// const CompanyDetails = () => <div>Company Details Content</div>;
-// const Checklist = () => <div>Checklist Content</div>;
-// const FAQ = () => <div>Frequently Asked Questions Content</div>;
 
 AddNewCollege.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
