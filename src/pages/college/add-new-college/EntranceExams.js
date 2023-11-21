@@ -62,13 +62,17 @@ const EntranceExams = () => {
 
   return (
     <>
-      <Typography variant="h5" mb={2}>
-        ENTRANCE EXAMS
-      </Typography>
-      <Typography variant="p">
-        Select all the exams through which students can get admission in your
-        college/ institute
-      </Typography>
+      <Grid>
+        <Typography variant="h5" mb={2}>
+          ENTRANCE EXAMS
+        </Typography>
+      </Grid>
+      <Grid mt={4}>
+        <Typography variant="p">
+          Select all the exams through which students can get admission in your
+          college/ institute
+        </Typography>
+      </Grid>
       <form>
         {/* First Row */}
         <Grid container mb={2} mt={2}>
@@ -125,7 +129,7 @@ const EntranceExams = () => {
         </Grid>
 
         {/* Second Row */}
-        <Grid container mb={2}>
+        <Grid container mt={2}>
           <Grid item xs={4}>
             <Typography>Law</Typography>
             <Grid style={{ display: "flex" }}>
@@ -179,7 +183,7 @@ const EntranceExams = () => {
         </Grid>
 
         {/* Third Row */}
-        <Grid container mb={2}>
+        <Grid container mt={4}>
           <Grid item xs={4}>
             <Typography>
               Other (If any entrance/criteria is not in the list)
@@ -187,6 +191,7 @@ const EntranceExams = () => {
             <TextField
               placeholder="Type Here"
               fullWidth
+              size="small"
               value={textInput}
               onChange={handleTextInputChange}
             />

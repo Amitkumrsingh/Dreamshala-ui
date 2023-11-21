@@ -88,7 +88,7 @@ const About = () => {
       <Typography variant="h5" gutterBottom>
         About
       </Typography>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} mt={4}>
         {/* Row 1 */}
         <Grid item xs={12} sm={2}>
           <label
@@ -139,7 +139,7 @@ const About = () => {
           />
         </Grid>
         {/* Row 2 */}
-        <Grid item xs={12}>
+        <Grid item xs={12} mt={2}>
           <Typography>
             Add detailed description about your coaching class
           </Typography>
@@ -148,12 +148,14 @@ const About = () => {
             placeholder="Decribe here"
             value={formData.textField2}
             onChange={handleInputChange("textField2")}
+            multiline
+            minRows={4}
           />
         </Grid>
 
         {/* Row 3 */}
 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} mt={2}>
           <ButtonGroup
             style={{
               display: "flex",
@@ -188,7 +190,7 @@ const About = () => {
             ))}
           </ButtonGroup>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} mt={2}>
           <Typography>Hours of Operation</Typography>
           <Grid container spacing={2} mt={2}>
             {/* <Typography>Open</Typography> */}

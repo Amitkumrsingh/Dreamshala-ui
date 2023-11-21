@@ -28,7 +28,7 @@ const ManagementContact = () => {
         MANAGEMENT CONTACT (For Office Use Only)
       </Typography>
       {/* First Row */}
-      <Grid container spacing={2}>
+      <Grid container spacing={2} mt={4}>
         <Grid item xs={4}>
           <Typography>Name</Typography>
           <TextField
@@ -62,7 +62,7 @@ const ManagementContact = () => {
       </Grid>
 
       {/* Second Row */}
-      <Grid container spacing={2}>
+      <Grid container spacing={2} mt={2}>
         <Grid item xs={4}>
           <Typography>Contact</Typography>
           <TextField
@@ -80,7 +80,7 @@ const ManagementContact = () => {
       {/* Additional Contact Fields */}
       {contacts.slice(2).map((contact, index) => (
         <>
-          <Grid container spacing={2} key={index}>
+          <Grid container spacing={2} key={index} mt={4}>
             <Grid item xs={4}>
               <Typography>Name</Typography>
               <TextField
@@ -118,7 +118,7 @@ const ManagementContact = () => {
               />
             </Grid>
           </Grid>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} mt={2}>
             <Grid item xs={4}>
               <Typography>Contact</Typography>
               <TextField
@@ -137,9 +137,11 @@ const ManagementContact = () => {
       ))}
 
       {/* Button to add more contacts */}
-      <Button variant="contained" color="primary" onClick={addContact}>
-        Add More Contacts
-      </Button>
+      <Grid mt={4}>
+        <Button variant="contained" color="primary" onClick={addContact}>
+          Add More Contacts
+        </Button>
+      </Grid>
     </form>
   );
 };
