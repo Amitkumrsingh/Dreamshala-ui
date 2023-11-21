@@ -103,7 +103,7 @@ const Results = () => {
               <Grid>
                 <Typography>All India Rank</Typography>
                 <FormControl fullWidth>
-                  <InputLabel>Select/ Type Here</InputLabel>
+                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
@@ -121,7 +121,7 @@ const Results = () => {
               <Grid>
                 <Typography>College secured</Typography>
                 <FormControl fullWidth>
-                  <InputLabel>Select/ Type Here</InputLabel>
+                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
@@ -136,7 +136,7 @@ const Results = () => {
               <Grid>
                 <Typography>Base City</Typography>
                 <FormControl fullWidth>
-                  <InputLabel>Select/ Type Here</InputLabel>
+                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
@@ -153,7 +153,7 @@ const Results = () => {
               <Grid>
                 <Typography>Exam Cracked</Typography>
                 <FormControl fullWidth>
-                  <InputLabel>Select/ Type Here</InputLabel>
+                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>

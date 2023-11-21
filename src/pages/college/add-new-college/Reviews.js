@@ -41,7 +41,7 @@ const Reviews = () => {
               <Grid item xs={4}>
                 <Typography>Year of Your Study</Typography>
                 <FormControl fullWidth>
-                  <InputLabel>Select/ Type Here</InputLabel>
+                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
@@ -56,7 +56,7 @@ const Reviews = () => {
               <Grid item xs={4}>
                 <Typography>Course Taken</Typography>
                 <FormControl fullWidth>
-                  <InputLabel>Select/ Type Here</InputLabel>
+                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>

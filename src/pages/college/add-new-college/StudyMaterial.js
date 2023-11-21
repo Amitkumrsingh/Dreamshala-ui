@@ -105,7 +105,7 @@ const StudyMaterial = () => {
                 <Grid item xs={6}>
                   <Typography>Enter Exams who can refer</Typography>
                   <FormControl fullWidth size="small">
-                    <InputLabel>Select/ Type Here</InputLabel>
+                    {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select defaultValue={""}>
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="2">2</MenuItem>

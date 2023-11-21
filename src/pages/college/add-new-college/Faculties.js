@@ -78,7 +78,7 @@ const Faculties = () => {
               <Grid>
                 <Typography>Experience</Typography>
                 <FormControl fullWidth>
-                  <InputLabel>Select/ Type Here</InputLabel>
+                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
@@ -96,7 +96,7 @@ const Faculties = () => {
               <Grid>
                 <Typography>Specialisation</Typography>
                 <FormControl fullWidth>
-                  <InputLabel>Select/ Type Here</InputLabel>
+                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
@@ -111,7 +111,7 @@ const Faculties = () => {
               <Grid>
                 <Typography>Base City</Typography>
                 <FormControl fullWidth>
-                  <InputLabel>Select/ Type Here</InputLabel>
+                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
@@ -128,7 +128,7 @@ const Faculties = () => {
               <Grid>
                 <Typography>Background</Typography>
                 <FormControl fullWidth>
-                  <InputLabel>Select/ Type Here</InputLabel>
+                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>

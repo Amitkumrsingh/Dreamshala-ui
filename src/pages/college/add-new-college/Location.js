@@ -73,7 +73,7 @@ const Location = () => {
                 <Grid xs={6} pr={2}>
                   <Typography>Select State</Typography>
                   <FormControl fullWidth size="small">
-                    <InputLabel>Select/ Type Here</InputLabel>
+                    {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select defaultValue={""}>
                       {indianStatesAndUTs.map((data, index) => (
                         <MenuItem value={data} key={index}>
@@ -88,7 +88,7 @@ const Location = () => {
                 <Grid xs={6}>
                   <Typography>Select City</Typography>
                   <FormControl fullWidth size="small">
-                    <InputLabel>Select/ Type Here</InputLabel>
+                    {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select defaultValue={""}>
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="2">2</MenuItem>
