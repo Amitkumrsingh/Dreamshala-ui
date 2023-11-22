@@ -8,7 +8,6 @@ import {
   Container,
   Typography,
   FormControl,
-  InputLabel,
   MenuItem,
   Select,
 } from "@mui/material";
@@ -51,7 +50,7 @@ const Results = () => {
         </Grid>
 
         {addMoreResults.map((d, index) => (
-          <Grid container spacing={2} key={index}>
+          <Grid container spacing={2} key={index} mb={4}>
             <Grid item xs={3}>
               Add Photo
               <label
@@ -98,11 +97,12 @@ const Results = () => {
                   // label="Description"
                   placeholder="Type here"
                   variant="outlined"
+                  size="small"
                 />
               </Grid>
-              <Grid>
+              <Grid mt={2}>
                 <Typography>All India Rank</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
@@ -120,7 +120,7 @@ const Results = () => {
             <Grid item xs={3}>
               <Grid>
                 <Typography>College secured</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
@@ -133,9 +133,9 @@ const Results = () => {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid>
+              <Grid mt={2}>
                 <Typography>Base City</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
@@ -152,7 +152,7 @@ const Results = () => {
             <Grid item xs={3}>
               <Grid>
                 <Typography>Exam Cracked</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
                     <MenuItem value="1">1</MenuItem>
@@ -165,13 +165,16 @@ const Results = () => {
                   </Select>
                 </FormControl>
               </Grid>
-              <Typography>Testimonial by Student (if any)</Typography>
-              <TextField
-                fullWidth
-                // label="Description"
-                placeholder="Type here"
-                variant="outlined"
-              />
+              <Grid mt={2}>
+                <Typography>Testimonial by Student (if any)</Typography>
+                <TextField
+                  fullWidth
+                  // label="Description"
+                  placeholder="Type here"
+                  variant="outlined"
+                  size="small"
+                />
+              </Grid>
             </Grid>
           </Grid>
         ))}

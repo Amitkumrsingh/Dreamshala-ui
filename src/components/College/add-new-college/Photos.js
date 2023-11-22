@@ -29,8 +29,10 @@ const MyForm = () => {
 
   return (
     <>
-      <Typography variant="h5">PHOTOS</Typography>
-      <Typography>Photos to give a glimpse of your class</Typography>
+      <Typography variant="h5" mb={4}>
+        PHOTOS
+      </Typography>
+      <Typography mb={2}>Photos to give a glimpse of your class</Typography>
       {addMorePhotos.map((d, index) => (
         <Grid key={index} container spacing={2} mb={2}>
           <Grid item xs={4}>

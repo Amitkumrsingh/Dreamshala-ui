@@ -8,7 +8,6 @@ import {
   Container,
   Typography,
   FormControl,
-  InputLabel,
   MenuItem,
   Select,
 } from "@mui/material";
@@ -19,14 +18,14 @@ const Faculties = () => {
   return (
     <>
       <Container>
-        <Grid container justifyContent={"space-between"}>
+        <Grid container justifyContent={"space-between"} mb={4}>
           <Typography variant="h5" gutterBottom>
             FACULTIES
           </Typography>
         </Grid>
 
         {addMoreFaculties.map((d, index) => (
-          <Grid container spacing={2} key={index}>
+          <Grid container spacing={2} key={index} mb={4}>
             <Grid item xs={3}>
               Add Photo
               <label
@@ -73,13 +72,14 @@ const Faculties = () => {
                   // label="Description"
                   placeholder="Type here"
                   variant="outlined"
+                  size="small"
                 />
               </Grid>
-              <Grid>
+              <Grid mt={2}>
                 <Typography>Experience</Typography>
                 <FormControl fullWidth>
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select defaultValue={""} size="small">
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -97,7 +97,7 @@ const Faculties = () => {
                 <Typography>Specialisation</Typography>
                 <FormControl fullWidth>
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select defaultValue={""} size="small">
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -108,11 +108,11 @@ const Faculties = () => {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid>
+              <Grid mt={2}>
                 <Typography>Base City</Typography>
                 <FormControl fullWidth>
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select defaultValue={""} size="small">
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -129,7 +129,7 @@ const Faculties = () => {
                 <Typography>Background</Typography>
                 <FormControl fullWidth>
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select defaultValue={""} size="small">
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -140,13 +140,16 @@ const Faculties = () => {
                   </Select>
                 </FormControl>
               </Grid>
-              <Typography>Links (if any)</Typography>
-              <TextField
-                fullWidth
-                // label="Description"
-                placeholder="Type here"
-                variant="outlined"
-              />
+              <Grid mt={2}>
+                <Typography>Links (if any)</Typography>
+                <TextField
+                  fullWidth
+                  // label="Description"
+                  placeholder="Type here"
+                  variant="outlined"
+                  size="small"
+                />
+              </Grid>
             </Grid>
           </Grid>
         ))}

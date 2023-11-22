@@ -20,15 +20,15 @@ const Reviews = () => {
   return (
     <>
       <Container>
-        <Grid container>
+        <Grid container mb={4}>
           <Typography variant="h5" gutterBottom>
             REVIEWS
           </Typography>
         </Grid>
 
         {addMoreReviews.map((data, index) => (
-          <div key={index}>
-            <Grid container spacing={2} mb={2}>
+          <Grid key={index} mb={4}>
+            <Grid container spacing={2} mb={4}>
               <Grid item xs={4}>
                 <Typography>Name</Typography>
                 <TextField
@@ -36,13 +36,14 @@ const Reviews = () => {
                   // label="Description"
                   placeholder="Type here"
                   variant="outlined"
+                  size="small"
                 />
               </Grid>
               <Grid item xs={4}>
                 <Typography>Year of Your Study</Typography>
                 <FormControl fullWidth>
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select defaultValue={""} size="small">
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -57,7 +58,7 @@ const Reviews = () => {
                 <Typography>Course Taken</Typography>
                 <FormControl fullWidth>
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select defaultValue={""} size="small">
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -70,8 +71,8 @@ const Reviews = () => {
               </Grid>
             </Grid>
 
-            <Grid container>
-              <Typography gutterBottom>
+            <Grid container mb={2}>
+              <Typography>
                 <b>Rate the coaching class on the following factors</b>
               </Typography>
             </Grid>
@@ -91,7 +92,7 @@ const Reviews = () => {
               </Grid>
             </Grid>
 
-            <Grid container spacing={2} mb={2}>
+            <Grid container spacing={2} mt={2}>
               <Grid item xs={8}>
                 <Typography variant="h6">Detailed Description</Typography>
                 <TextField
@@ -142,7 +143,7 @@ const Reviews = () => {
                 </Grid>
               </Grid>
             </Grid>
-          </div>
+          </Grid>
         ))}
 
         <Button

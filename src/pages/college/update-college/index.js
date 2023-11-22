@@ -38,7 +38,7 @@ const steps = [
   "Frequently Asked Questions",
 ]; // Add more steps as needed
 
-const AddNewCollege = () => {
+const UpdateCollege = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -105,8 +105,8 @@ const AddNewCollege = () => {
   );
 };
 
-AddNewCollege.getLayout = function getLayout(page) {
+UpdateCollege.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export default AddNewCollege;
+export default UpdateCollege;

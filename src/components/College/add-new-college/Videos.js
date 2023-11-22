@@ -142,7 +142,7 @@ const Videos = () => {
           color="primary"
           onClick={() => setAddMoreVideos([...addMoreVideos, ""])}
         >
-          + Add More Reviews
+          + Add More Videos
         </Button>
       </Container>
     </>

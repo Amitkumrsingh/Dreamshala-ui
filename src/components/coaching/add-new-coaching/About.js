@@ -129,7 +129,7 @@ const About = () => {
 
         <Grid item xs={12} sm={10}>
           <Typography>
-            Add short 2 line description about your college class
+            Add short 2 line description about your coaching class
           </Typography>
           <TextField
             fullWidth
@@ -141,7 +141,7 @@ const About = () => {
         {/* Row 2 */}
         <Grid item xs={12} mt={2}>
           <Typography>
-            Add detailed description about your college class
+            Add detailed description about your coaching class
           </Typography>
           <TextField
             fullWidth
