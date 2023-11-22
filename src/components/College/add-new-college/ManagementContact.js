@@ -34,6 +34,7 @@ const ManagementContact = () => {
           <TextField
             // label="Name"
             placeholder="Type Here"
+            size="small"
             fullWidth
             value={contacts[0].name}
             onChange={(e) => handleContactChange(0, "name", e.target.value)}
@@ -44,6 +45,7 @@ const ManagementContact = () => {
           <TextField
             // label="Role in the Institute"
             placeholder="Type Here"
+            size="small"
             fullWidth
             value={contacts[0].role}
             onChange={(e) => handleContactChange(0, "role", e.target.value)}
@@ -54,6 +56,7 @@ const ManagementContact = () => {
           <TextField
             // label="Email ID"
             placeholder="timesedu@gmail.com"
+            size="small"
             fullWidth
             value={contacts[0].email}
             onChange={(e) => handleContactChange(0, "email", e.target.value)}
@@ -67,6 +70,7 @@ const ManagementContact = () => {
           <Typography>Contact</Typography>
           <TextField
             // label="Mobile Number"
+            size="small"
             placeholder="+91 00000 00000"
             fullWidth
             value={contacts[1].mobile}
@@ -88,6 +92,7 @@ const ManagementContact = () => {
                 placeholder="Type Here"
                 fullWidth
                 value={contact.name}
+                size="small"
                 onChange={(e) =>
                   handleContactChange(index + 2, "name", e.target.value)
                 }
@@ -100,6 +105,7 @@ const ManagementContact = () => {
                 placeholder="Type Here"
                 fullWidth
                 value={contact.role}
+                size="small"
                 onChange={(e) =>
                   handleContactChange(index + 2, "role", e.target.value)
                 }
@@ -112,6 +118,7 @@ const ManagementContact = () => {
                 placeholder="timesedu@gmail.com"
                 fullWidth
                 value={contact.email}
+                size="small"
                 onChange={(e) =>
                   handleContactChange(index + 2, "email", e.target.value)
                 }
@@ -125,6 +132,7 @@ const ManagementContact = () => {
                 placeholder="+91 00000 00000"
                 fullWidth
                 value={contacts[1].mobile}
+                size="small"
                 onChange={(e) =>
                   handleContactChange(1, "mobile", e.target.value)
                 }

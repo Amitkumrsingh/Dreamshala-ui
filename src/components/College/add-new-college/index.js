@@ -9,7 +9,8 @@ export { default as FAQ } from "./FAQ";
 export { default as Location } from "./Location";
 export { default as ManagementContact } from "./ManagementContact";
 export { default as Photos } from "./Photos";
-export { default as Results } from "./Results";
+
 export { default as Reviews } from "./Reviews";
-export { default as StudyMaterial } from "./StudyMaterial";
+
 export { default as Videos } from "./Videos";
+export { default as ImportantNews } from "./ImportantNews";

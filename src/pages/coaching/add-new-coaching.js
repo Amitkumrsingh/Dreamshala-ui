@@ -3,17 +3,17 @@ import {
   Faculties,
   Reviews,
   Videos,
-  StudyMaterial,
   Location,
   CompanyDetails,
   CheckList,
   FAQ,
-  Results,
   Photos,
 } from "../../components/College/add-new-college";
 
 import {
   About,
+  StudyMaterial,
+  Results,
   ContactDetails,
   EntranceExams,
   CoursesAndFees,

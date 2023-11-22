@@ -6,7 +6,6 @@ import {
   Select,
   MenuItem,
   FormControl,
-  InputLabel,
   Typography,
   Button,
 } from "@mui/material";
@@ -98,23 +97,23 @@ const CoursesAndFees = () => {
 
             <Grid item xs={4} mt={2}>
               <Grid item>
-                <Typography>Total Fees</Typography>
+                <Typography>Course Mode</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
-                    <MenuItem value="fees1">Fees 1</MenuItem>
-                    <MenuItem value="fees2">Fees 2</MenuItem>
+                    <MenuItem value="onlin">Online</MenuItem>
+                    <MenuItem value="offline">Off-Line</MenuItem>
                     {/* Add more fees options as needed */}
                   </Select>
                 </FormControl>
               </Grid>
               <Grid item mt={4}>
-                <Typography>Eligibility Criteria</Typography>
+                <Typography>Batch Strength</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""}>
-                    <MenuItem value="criteria1">Criteria 1</MenuItem>
-                    <MenuItem value="criteria2">Criteria 2</MenuItem>
+                    <MenuItem value="criteria1"> 1</MenuItem>
+                    <MenuItem value="criteria2"> 2</MenuItem>
                     {/* Add more eligibility criteria options as needed */}
                   </Select>
                 </FormControl>

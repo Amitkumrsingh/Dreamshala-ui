@@ -7,12 +7,10 @@ import {
   Faculties,
   Reviews,
   Videos,
-  StudyMaterial,
   Location,
   CompanyDetails,
   CheckList,
   FAQ,
-  Results,
   Photos,
 } from "../../../components/College/add-new-college";
 
@@ -30,16 +28,20 @@ const steps = [
   "About",
   "Contact Details",
   "Management Contact",
-  "Exams",
+  "Entrance Exams",
   "Courses and Fees",
   "Photos",
-  "Results",
+  "Important News",
+  "Important Dates",
+  "Detailed application process and eligibility criteria",
   "Faculties",
   "Reviews",
   "Videos",
-  "Study Material",
+  "Alumni",
+  "Previous cutoffs",
+  "Placement Details",
   "Location",
-  "Company Details",
+  "College Details",
   "Checklist",
   "Frequently Asked Questions",
 ]; // Add more steps as needed
@@ -87,15 +89,21 @@ const AddNewCollege = () => {
             {activeStep === 3 && <EntranceExams />}
             {activeStep === 4 && <CoursesAndFees />}
             {activeStep === 5 && <Photos />}
-            {activeStep === 6 && <Results />}
-            {activeStep === 7 && <Faculties />}
-            {activeStep === 8 && <Reviews />}
-            {activeStep === 9 && <Videos />}
-            {activeStep === 10 && <StudyMaterial />}
-            {activeStep === 11 && <Location />}
-            {activeStep === 12 && <CompanyDetails />}
-            {activeStep === 13 && <CheckList />}
-            {activeStep === 14 && <FAQ />}
+            {activeStep === 6 && <ImportantNews />}
+            {activeStep === 7 && <ImportantDates />}
+            {activeStep === 8 && (
+              <DetailedApplicationProcessAndEligibilityCriteria />
+            )}
+            {activeStep === 9 && <Faculties />}
+            {activeStep === 10 && <Reviews />}
+            {activeStep === 11 && <Videos />}
+            {activeStep === 12 && <Alumni />}
+            {activeStep === 13 && <PreviousCutoffs />}
+            {activeStep === 14 && <PlacementDetails />}
+            {activeStep === 15 && <Location />}
+            {activeStep === 16 && <CompanyDetails />}
+            {activeStep === 17 && <CheckList />}
+            {activeStep === 18 && <FAQ />}
             {/* Add more steps as needed */}
             <div style={{ marginTop: "10px" }}>
               <Button disabled={activeStep === 0} onClick={handleBack}>
@@ -112,16 +120,14 @@ const AddNewCollege = () => {
   );
 };
 
-// const Photos = () => <div>Photos Content</div>;
-// const Results = () => <div>Results Content</div>;
-// const Faculties = () => <div>Faculties Content</div>;
-// const Reviews = () => <div>Reviews Content</div>;
-// const Videos = () => <div>Videos Content</div>;
-// const StudyMaterial = () => <div>Study Material Content</div>;
-// const Location = () => <div>Location Content</div>;
-// const CompanyDetails = () => <div>Company Details Content</div>;
-// const Checklist = () => <div>Checklist Content</div>;
-// const FAQ = () => <div>Frequently Asked Questions Content</div>;
+const ImportantNews = () => <div>ImportantNews Content</div>;
+const ImportantDates = () => <div>ImportantDates Content</div>;
+const DetailedApplicationProcessAndEligibilityCriteria = () => (
+  <div>DetailedApplicationProcessAndEligibilityCriteria Content</div>
+);
+const Alumni = () => <div>Alumni Content</div>;
+const PreviousCutoffs = () => <div>PreviousCutoffs Content</div>;
+const PlacementDetails = () => <div>PlacementDetails Content</div>;
 
 AddNewCollege.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
