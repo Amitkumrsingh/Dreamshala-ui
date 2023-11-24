@@ -1,48 +1,44 @@
 import {
+  About,
+  ContactDetails,
   ManagementContact,
   CoursesAndFees,
   EntranceExams,
   Faculties,
   Reviews,
   Videos,
+  StudyMaterial,
   Location,
   CompanyDetails,
   CheckList,
   FAQ,
   Results,
   Photos,
-  ImportantNews,
-} from "../../components/College/add-new-college";
+} from "../../../components/College/add-new-college";
 
-import {
-  ContactDetails,
-  About,
-  ImportantDates,
-  RegistrationDetails,
-  Brochure,
-  ExamPattern,
-  StudyMaterial,
-  PreviousYearQuestionPaper,
-} from "../../components/exam/add-new-exam";
-
-import DashboardLayout from "../../layouts/Dashboard";
+import DashboardLayout from "../../../layouts/Dashboard";
 import React, { useState } from "react";
 import { Button, Container, Stepper, Step, StepLabel } from "@mui/material";
 
 const steps = [
   "About",
   "Contact Details",
-  "Important News",
-  "Important Dates",
-  "Registration Details",
-  "Brochure",
-  "Exam Pattern",
+  "Management Contact",
+  "Exams",
+  "Courses and Fees",
+  "Photos",
+  "Results",
+  "Faculties",
+  "Reviews",
+  "Videos",
   "Study Material",
-  "Previous Year Question Papers",
+  "Location",
+  "Company Details",
+  "Checklist",
   "Frequently Asked Questions",
 ]; // Add more steps as needed
 
-const AddNewExam = () => {
+const UpdateCollege = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -80,14 +76,19 @@ const AddNewExam = () => {
             {/* Render the current step form */}
             {activeStep === 0 && <About />}
             {activeStep === 1 && <ContactDetails />}
-            {activeStep === 2 && <ImportantNews />}
-            {activeStep === 3 && <ImportantDates />}
-            {activeStep === 4 && <RegistrationDetails />}
-            {activeStep === 5 && <Brochure />}
-            {activeStep === 6 && <ExamPattern />}
-            {activeStep === 7 && <StudyMaterial />}
-            {activeStep === 8 && <PreviousYearQuestionPaper />}
-            {activeStep === 9 && <FAQ />}
+            {activeStep === 2 && <ManagementContact />}
+            {activeStep === 3 && <EntranceExams />}
+            {activeStep === 4 && <CoursesAndFees />}
+            {activeStep === 5 && <Photos />}
+            {activeStep === 6 && <Results />}
+            {activeStep === 7 && <Faculties />}
+            {activeStep === 8 && <Reviews />}
+            {activeStep === 9 && <Videos />}
+            {activeStep === 10 && <StudyMaterial />}
+            {activeStep === 11 && <Location />}
+            {activeStep === 12 && <CompanyDetails />}
+            {activeStep === 13 && <CheckList />}
+            {activeStep === 14 && <FAQ />}
             {/* Add more steps as needed */}
             <div style={{ marginTop: "10px" }}>
               <Button disabled={activeStep === 0} onClick={handleBack}>
@@ -104,10 +105,8 @@ const AddNewExam = () => {
   );
 };
 
-const Alumni = () => <div>Alumni Content</div>;
-
-AddNewExam.getLayout = function getLayout(page) {
+UpdateCollege.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export default AddNewExam;
+export default UpdateCollege;

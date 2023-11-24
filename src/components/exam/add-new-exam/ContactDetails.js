@@ -24,29 +24,29 @@ const ManagementContact = () => {
 
   return (
     <form>
-      <Typography variant="h5">
-        MANAGEMENT CONTACT (For Office Use Only)
-      </Typography>
+      <Typography variant="h5">CONTACT DETAILS</Typography>
       {/* First Row */}
-      <Grid container spacing={2}>
+      <Grid container spacing={2} mt={4}>
         <Grid item xs={4}>
-          <Typography>Name</Typography>
+          <Typography>Exam official website</Typography>
           <TextField
             // label="Name"
             placeholder="Type Here"
+            size="small"
             fullWidth
             value={contacts[0].name}
             onChange={(e) => handleContactChange(0, "name", e.target.value)}
           />
         </Grid>
         <Grid item xs={4}>
-          <Typography>Role in the Institute</Typography>
+          <Typography>Contact</Typography>
           <TextField
-            // label="Role in the Institute"
-            placeholder="Type Here"
+            // label="Mobile Number"
+            size="small"
+            placeholder="+91 00000 00000"
             fullWidth
-            value={contacts[0].role}
-            onChange={(e) => handleContactChange(0, "role", e.target.value)}
+            value={contacts[1].mobile}
+            onChange={(e) => handleContactChange(1, "mobile", e.target.value)}
           />
         </Grid>
         <Grid item xs={4}>
@@ -54,6 +54,7 @@ const ManagementContact = () => {
           <TextField
             // label="Email ID"
             placeholder="timesedu@gmail.com"
+            size="small"
             fullWidth
             value={contacts[0].email}
             onChange={(e) => handleContactChange(0, "email", e.target.value)}
@@ -62,16 +63,23 @@ const ManagementContact = () => {
       </Grid>
 
       {/* Second Row */}
-      <Grid container spacing={2}>
+      <Grid container spacing={2} mt={2}>
         <Grid item xs={4}>
-          <Typography>Contact</Typography>
-          <TextField
-            // label="Mobile Number"
-            placeholder="+91 00000 00000"
-            fullWidth
-            value={contacts[1].mobile}
-            onChange={(e) => handleContactChange(1, "mobile", e.target.value)}
-          />
+          <Typography>Other websites/impotant links</Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={10}>
+              <TextField
+                // label="Mobile Number"
+                size="small"
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <Button fullWidth variant="outlined">
+                +
+              </Button>
+            </Grid>
+          </Grid>
         </Grid>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}></Grid>
@@ -80,7 +88,7 @@ const ManagementContact = () => {
       {/* Additional Contact Fields */}
       {contacts.slice(2).map((contact, index) => (
         <>
-          <Grid container spacing={2} key={index}>
+          <Grid container spacing={2} key={index} mt={4}>
             <Grid item xs={4}>
               <Typography>Name</Typography>
               <TextField
@@ -88,6 +96,7 @@ const ManagementContact = () => {
                 placeholder="Type Here"
                 fullWidth
                 value={contact.name}
+                size="small"
                 onChange={(e) =>
                   handleContactChange(index + 2, "name", e.target.value)
                 }
@@ -100,6 +109,7 @@ const ManagementContact = () => {
                 placeholder="Type Here"
                 fullWidth
                 value={contact.role}
+                size="small"
                 onChange={(e) =>
                   handleContactChange(index + 2, "role", e.target.value)
                 }
@@ -112,19 +122,21 @@ const ManagementContact = () => {
                 placeholder="timesedu@gmail.com"
                 fullWidth
                 value={contact.email}
+                size="small"
                 onChange={(e) =>
                   handleContactChange(index + 2, "email", e.target.value)
                 }
               />
             </Grid>
           </Grid>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} mt={2}>
             <Grid item xs={4}>
               <Typography>Contact</Typography>
               <TextField
                 placeholder="+91 00000 00000"
                 fullWidth
                 value={contacts[1].mobile}
+                size="small"
                 onChange={(e) =>
                   handleContactChange(1, "mobile", e.target.value)
                 }
@@ -137,9 +149,11 @@ const ManagementContact = () => {
       ))}
 
       {/* Button to add more contacts */}
-      <Button variant="contained" color="primary" onClick={addContact}>
-        Add More Contacts
-      </Button>
+      <Grid mt={4}>
+        <Button variant="contained" color="primary" onClick={addContact}>
+          Add More Contacts
+        </Button>
+      </Grid>
     </form>
   );
 };

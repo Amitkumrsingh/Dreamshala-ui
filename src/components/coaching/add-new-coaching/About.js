@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DashboardLayout from "../../../layouts/Dashboard";
+// import DashboardLayout from "../../../layouts/Dashboard";
 import {
   Box,
   Button,
@@ -22,37 +22,30 @@ const daysOfWeek = [
 ];
 
 const ButtonStyling = {
-  color: "#8C8C8C",
   textAlign: "center",
-  fontFamily: "Inter",
-  fontSize: "11px",
-  fontStyle: "normal",
-  fontWeight: 400,
-  lineHeight: "20px",
-  letterSpacing: "-0.22px",
   margin: "5px",
   border: "1px solid",
   borderRadius: 0,
 };
 
-const InpubLabelTextStyling = {
-  color: "#000",
-  fontFamily: "Inter",
-  fontSize: "14px",
-  fontStyle: "normal",
-  fontWeight: 400,
-  lineHeight: "18px",
-};
+// const InpubLabelTextStyling = {
+//   color: "#000",
+//   fontFamily: "Inter",
+//   fontSize: "14px",
+//   fontStyle: "normal",
+//   fontWeight: 400,
+//   lineHeight: "18px",
+// };
 
-const AboutHeadingTextStyle = {
-  color: "#263238",
-  fontFamily: "Inter",
-  fontSize: "16px",
-  fontStyle: "italic",
-  fontWeight: 900,
-  lineHeight: "45px",
-  letterSpacing: "-0.32px",
-};
+// const AboutHeadingTextStyle = {
+//   color: "#263238",
+//   fontFamily: "Inter",
+//   fontSize: "16px",
+//   fontStyle: "italic",
+//   fontWeight: 900,
+//   lineHeight: "45px",
+//   letterSpacing: "-0.32px",
+// };
 
 const About = () => {
   const [selectedDays, setSelectedDays] = useState([]);
@@ -92,10 +85,10 @@ const About = () => {
 
   return (
     <Container>
-      <Typography variant="h5" gutterBottom style={AboutHeadingTextStyle}>
+      <Typography variant="h5" gutterBottom>
         About
       </Typography>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} mt={4}>
         {/* Row 1 */}
         <Grid item xs={12} sm={2}>
           <label
@@ -135,7 +128,7 @@ const About = () => {
         </Grid>
 
         <Grid item xs={12} sm={10}>
-          <Typography style={InpubLabelTextStyling}>
+          <Typography>
             Add short 2 line description about your coaching class
           </Typography>
           <TextField
@@ -146,8 +139,8 @@ const About = () => {
           />
         </Grid>
         {/* Row 2 */}
-        <Grid item xs={12}>
-          <Typography style={InpubLabelTextStyling}>
+        <Grid item xs={12} mt={2}>
+          <Typography>
             Add detailed description about your coaching class
           </Typography>
           <TextField
@@ -155,12 +148,14 @@ const About = () => {
             placeholder="Decribe here"
             value={formData.textField2}
             onChange={handleInputChange("textField2")}
+            multiline
+            minRows={4}
           />
         </Grid>
 
         {/* Row 3 */}
 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} mt={2}>
           <ButtonGroup
             style={{
               display: "flex",
@@ -195,9 +190,9 @@ const About = () => {
             ))}
           </ButtonGroup>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} mt={2}>
           <Typography>Hours of Operation</Typography>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} mt={2}>
             {/* <Typography>Open</Typography> */}
             <Grid item xs={6}>
               <TextField
@@ -231,8 +226,8 @@ const About = () => {
   );
 };
 
-About.getLayout = function getLayout(page) {
-  return <DashboardLayout>{page}</DashboardLayout>;
-};
+// About.getLayout = function getLayout(page) {
+//   return <DashboardLayout>{page}</DashboardLayout>;
+// };
 
 export default About;
