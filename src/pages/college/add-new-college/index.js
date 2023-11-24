@@ -12,6 +12,7 @@ import {
   CheckList,
   FAQ,
   Photos,
+  ImportantNews,
 } from "../../../components/College/add-new-college";
 
 import DashboardLayout from "../../../layouts/Dashboard";
@@ -35,6 +36,8 @@ const steps = [
   "Important Dates",
   "Detailed application process and eligibility criteria",
   "Faculties",
+];
+const steps1 = [
   "Reviews",
   "Videos",
   "Alumni",
@@ -65,18 +68,26 @@ const AddNewCollege = () => {
   return (
     <Container>
       <Stepper
-        activeStep={activeStep}
+        activeStep={activeStep < 10 ? activeStep : activeStep - 10}
         alternativeLabel
         style={{ marginBottom: "20px" }}
       >
-        {steps.map((label, index) => (
-          <Step key={index} onClick={() => handleToStep(index)}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
+        {activeStep < 10 &&
+          steps.map((label, index) => (
+            <Step key={index} onClick={() => handleToStep(index)}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+
+        {activeStep >= 10 &&
+          steps1.map((label, index) => (
+            <Step key={index + 10} onClick={() => handleToStep(index + 10)}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
       </Stepper>
       <div>
-        {activeStep === steps.length ? (
+        {activeStep === steps.length + steps1.length ? (
           <div>
             <p>All steps completed - you're finished</p>
           </div>
@@ -120,7 +131,7 @@ const AddNewCollege = () => {
   );
 };
 
-const ImportantNews = () => <div>ImportantNews Content</div>;
+// const ImportantNews = () => <div>ImportantNews Content</div>;
 const ImportantDates = () => <div>ImportantDates Content</div>;
 const DetailedApplicationProcessAndEligibilityCriteria = () => (
   <div>DetailedApplicationProcessAndEligibilityCriteria Content</div>

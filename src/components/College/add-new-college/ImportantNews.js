@@ -26,14 +26,30 @@ const ImportantNews = () => {
               type="text"
               multiline
               minRows={2}
+              fullWidth
             />
           </Grid>
 
           <Grid xs={4}>
-            <Button>Very Important</Button>
-            <Button>Important</Button>
-            <Button>Medium Important</Button>
-            <Button>Less Important</Button>
+            <Typography>News Category</Typography>
+            <Grid>
+              <Grid container>
+                <Grid item xs={12} sm={4} md={4}>
+                  <Button variant="contained">Very Important</Button>
+                </Grid>
+                <Grid item xs={12} sm={4} md={4}>
+                  <Button variant="contained">Important</Button>
+                </Grid>
+              </Grid>
+              <Grid container>
+                <Grid item xs={12} sm={4} md={4}>
+                  <Button variant="contained">Medium Important</Button>
+                </Grid>
+                <Grid item xs={12} sm={4} md={4}>
+                  <Button variant="contained">Less Important</Button>
+                </Grid>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Container>

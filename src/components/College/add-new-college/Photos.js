@@ -64,7 +64,7 @@ const MyForm = () => {
             </label>
           </Grid>
           <Grid item xs={8}>
-            <Grid container>
+            <Grid container spacing={2}>
               <Grid xs={6} item>
                 {/* 2nd Column - Text Input for Description */}
 
@@ -88,87 +88,112 @@ const MyForm = () => {
 
                 <Typography variant="h6">Photo Category</Typography>
 
-                <Grid container>
-                  <Grid item xs={12}>
-                    <Button
-                      xs={4}
-                      variant={false ? "contained" : "outlined"}
-                      color="primary"
-                      style={{ margin: "5px" }}
-                      onClick={() => handleButtonToggle(index)}
-                    >
-                      Classrom
-                    </Button>
-                    <Button
-                      xs={4}
-                      variant={false ? "contained" : "outlined"}
-                      color="primary"
-                      style={{ margin: "5px" }}
-                      onClick={() => handleButtonToggle(index)}
-                    >
-                      Infrastructure
-                    </Button>
-                    <Button
-                      xs={4}
-                      variant={false ? "contained" : "outlined"}
-                      color="primary"
-                      style={{ margin: "5px" }}
-                      onClick={() => handleButtonToggle(index)}
-                    >
-                      Study Material
-                    </Button>
+                <Grid>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={4} md={4} mb={2.5}>
+                      <Button
+                        variant={false ? "contained" : "outlined"}
+                        color="primary"
+                        // style={{ margin: "5px" }}
+                        onClick={() => handleButtonToggle(index)}
+                        fullWidth
+                      >
+                        Classrom
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12} sm={4} md={4}>
+                      <Button
+                        variant={false ? "contained" : "outlined"}
+                        color="primary"
+                        // style={{ margin: "5px" }}
+                        onClick={() => handleButtonToggle(index)}
+                        fullWidth
+                      >
+                        Infrastructure
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12} sm={4} md={4}>
+                      <Button
+                        variant={false ? "contained" : "outlined"}
+                        color="primary"
+                        // style={{ margin: "5px" }}
+                        onClick={() => handleButtonToggle(index)}
+                        fullWidth
+                      >
+                        Study Material
+                      </Button>
+                    </Grid>
                   </Grid>
 
-                  <Grid item xs={12}>
-                    <Button
-                      variant={false ? "contained" : "outlined"}
-                      color="primary"
-                      style={{ margin: "5px" }}
-                      onClick={() => handleButtonToggle(index)}
-                    >
-                      People
-                    </Button>
-                    <Button
-                      variant={false ? "contained" : "outlined"}
-                      color="primary"
-                      style={{ margin: "5px" }}
-                      onClick={() => handleButtonToggle(index)}
-                    >
-                      Events
-                    </Button>
-                    <Button
-                      variant={false ? "contained" : "outlined"}
-                      color="primary"
-                      style={{ margin: "5px" }}
-                      onClick={() => handleButtonToggle(index)}
-                    >
-                      Environment
-                    </Button>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={4} md={4} mb={2.5}>
+                      <Button
+                        variant={false ? "contained" : "outlined"}
+                        color="primary"
+                        // style={{ margin: "5px" }}
+                        onClick={() => handleButtonToggle(index)}
+                        fullWidth
+                      >
+                        People
+                      </Button>
+                    </Grid>
+
+                    <Grid item xs={12} sm={4} md={4}>
+                      <Button
+                        variant={false ? "contained" : "outlined"}
+                        color="primary"
+                        // style={{ margin: "5px" }}
+                        onClick={() => handleButtonToggle(index)}
+                        fullWidth
+                      >
+                        Events
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12} sm={4} md={4}>
+                      <Button
+                        fullWidth
+                        variant={false ? "contained" : "outlined"}
+                        color="primary"
+                        // style={{ margin: "5px" }}
+                        onClick={() => handleButtonToggle(index)}
+                      >
+                        Environment
+                      </Button>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12}>
-                    <Button
-                      xs={4}
-                      variant={false ? "contained" : "outlined"}
-                      color="primary"
-                      style={{ margin: "5px" }}
-                      onClick={() => handleButtonToggle(index)}
-                    >
-                      Peer Learning
-                    </Button>
-                    <Button
-                      xs={4}
-                      variant={false ? "contained" : "outlined"}
-                      color="primary"
-                      style={{ margin: "5px" }}
-                      onClick={() => handleButtonToggle(index)}
-                    >
-                      Other
-                    </Button>
-                    <TextField
-                      variant="outlined"
-                      placeholder="Type Your Own"
-                      size="small"
-                    />
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={4} md={4}>
+                      <Button
+                        xs={4}
+                        variant={false ? "contained" : "outlined"}
+                        color="primary"
+                        // style={{ margin: "5px" }}
+                        onClick={() => handleButtonToggle(index)}
+                        fullWidth
+                      >
+                        Peer Learning
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12} sm={4} md={4}>
+                      <Button
+                        xs={4}
+                        variant={false ? "contained" : "outlined"}
+                        color="primary"
+                        // style={{ margin: "5px" }}
+                        onClick={() => handleButtonToggle(index)}
+                        fullWidth
+                      >
+                        Other
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12} sm={4} md={4}>
+                      <TextField
+                        variant="outlined"
+                        placeholder="Type Your Own"
+                        size="small"
+                        fullWidth
+                      />
+                    </Grid>
                   </Grid>
                 </Grid>
               </Grid>

@@ -43,26 +43,39 @@ const ContactDetails = () => {
 
       {/* Second Row */}
       <Grid container spacing={2} mt={2}>
-        <Grid item xs={4} container alignItems={"center"}>
-          <Typography>Other websites/important links</Typography>
-          {linkInputs.map((link, index) => (
-            <TextField
-              key={index}
-              label={`Link ${index + 1}`}
-              size="small"
-              // fullWidth
-              value={link}
-              onChange={(e) => handleLinkInputChange(index, e.target.value)}
-            />
-          ))}
-          <Button variant="contained" color="primary" onClick={addLinkInput}>
-            +
-          </Button>
-        </Grid>
-        <Grid item xs={4} container alignItems={"center"}>
-          {/* <Button variant="contained" color="primary" onClick={addLinkInput}>
-            +
-          </Button> */}
+        <Grid item xs={4} alignItems={"center"}>
+          <Grid>
+            <Typography>Other websites/important links</Typography>
+          </Grid>
+          <Grid container alignItems={"end"}>
+            <Grid xs={10}>
+              {linkInputs.map((link, index) => (
+                <Grid key={index} mb={index + 1 !== linkInputs.length ? 2 : 0}>
+                  <TextField
+                    key={index}
+                    label={`Link ${index + 1}`}
+                    size="small"
+                    margin="none"
+                    fullWidth
+                    value={link}
+                    onChange={(e) =>
+                      handleLinkInputChange(index, e.target.value)
+                    }
+                  />
+                </Grid>
+              ))}
+            </Grid>
+
+            <Grid xs={2} mb={0}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={addLinkInput}
+              >
+                +
+              </Button>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
 
