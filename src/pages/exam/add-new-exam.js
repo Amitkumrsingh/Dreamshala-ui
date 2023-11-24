@@ -22,6 +22,7 @@ import {
   Brochure,
   ExamPattern,
   StudyMaterial,
+  PreviousYearQuestionPaper,
 } from "../../components/exam/add-new-exam";
 
 import DashboardLayout from "../../layouts/Dashboard";
@@ -85,7 +86,7 @@ const AddNewExam = () => {
             {activeStep === 5 && <Brochure />}
             {activeStep === 6 && <ExamPattern />}
             {activeStep === 7 && <StudyMaterial />}
-            {activeStep === 8 && <Reviews />}
+            {activeStep === 8 && <PreviousYearQuestionPaper />}
             {activeStep === 9 && <FAQ />}
             {/* Add more steps as needed */}
             <div style={{ marginTop: "10px" }}>
