@@ -18,3 +18,4 @@ export { default as ImportantDates } from "./ImportantDates";
 export { default as DetailedApplicationProcessAndEligibilityCriteria } from "./DetailedApplicationProcessAndEligibilityCriteria";
 export { default as Alumni } from "./Alumni";
 export { default as PreviousCutoffs } from "./PreviousCutoffs";
+export { default as PlacementDetails } from "./PlacementDetails";

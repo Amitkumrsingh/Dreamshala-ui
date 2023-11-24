@@ -17,6 +17,7 @@ import {
   DetailedApplicationProcessAndEligibilityCriteria,
   Alumni,
   PreviousCutoffs,
+  PlacementDetails,
 } from "../../../components/College/add-new-college";
 
 import DashboardLayout from "../../../layouts/Dashboard";
@@ -142,7 +143,7 @@ const AddNewCollege = () => {
 // );
 // const Alumni = () => <div>Alumni Content</div>;
 // const PreviousCutoffs = () => <div>PreviousCutoffs Content</div>;
-const PlacementDetails = () => <div>PlacementDetails Content</div>;
+// const PlacementDetails = () => <div>PlacementDetails Content</div>;
 
 AddNewCollege.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;

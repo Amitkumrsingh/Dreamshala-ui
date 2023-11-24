@@ -160,16 +160,16 @@ const CheckList = () => {
           </Typography>
         </Grid>
 
-        <Grid container justifyContent={"space-between"}>
+        <Grid container spacing={2}>
           {facilities.map((data, index) => (
-            <Button
-              key={index}
-              style={{ marginTop: "7px" }}
-              variant={data.selected ? "contained" : "outlined"}
-              onClick={() => handleFacilitiesUpdate(index)}
-            >
-              {data.text}
-            </Button>
+            <Grid item xs={12} sm={12 / 8} md={12 / 8} key={index}>
+              <Button
+                variant={data.selected ? "contained" : "outlined"}
+                onClick={() => handleFacilitiesUpdate(index)}
+              >
+                {data.text}
+              </Button>
+            </Grid>
           ))}
         </Grid>
 
@@ -177,18 +177,23 @@ const CheckList = () => {
           <Grid mb={2} mt={4}>
             <Typography>How many students do you have in a batch?</Typography>
           </Grid>
-          <Grid container>
-            <Grid xs={8} container justifyContent={"space-between"}>
-              {numberOfStudents.map((data, index) => (
-                <Button
-                  key={index}
-                  variant={data.selected ? "contained" : "outlined"}
-                >
-                  {data.text}
-                </Button>
-              ))}
+          <Grid container spacing={2}>
+            <Grid xs={8} item>
+              <Grid container spacing={2}>
+                {numberOfStudents.map((data, index) => (
+                  <Grid item xs={12} sm={12 / 5} md={12 / 5} key={index}>
+                    <Button
+                      key={index}
+                      variant={data.selected ? "contained" : "outlined"}
+                      fullWidth
+                    >
+                      {data.text}
+                    </Button>
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
-            <Grid xs={4}>
+            <Grid xs={4} item>
               <TextField
                 fullWidth
                 placeholder="Type Here"
@@ -203,18 +208,23 @@ const CheckList = () => {
           <Grid mb={2} mt={4}>
             <Typography>Total Number of students in your coaching</Typography>
           </Grid>
-          <Grid container>
-            <Grid xs={8} container justifyContent={"space-between"}>
-              {totalNumberOfStudents.map((data, index) => (
-                <Button
-                  key={index}
-                  variant={data.selected ? "contained" : "outlined"}
-                >
-                  {data.text}
-                </Button>
-              ))}
+          <Grid container spacing={2}>
+            <Grid xs={8} item>
+              <Grid container spacing={2}>
+                {totalNumberOfStudents.map((data, index) => (
+                  <Grid item xs={12} sm={12 / 5} md={12 / 5} key={index}>
+                    <Button
+                      key={index}
+                      variant={data.selected ? "contained" : "outlined"}
+                      fullWidth
+                    >
+                      {data.text}
+                    </Button>
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
-            <Grid xs={4}>
+            <Grid xs={4} item>
               <TextField
                 fullWidth
                 placeholder="Type Here"
@@ -231,18 +241,23 @@ const CheckList = () => {
               Total number of faculities associated with your coaching
             </Typography>
           </Grid>
-          <Grid container>
-            <Grid xs={8} container justifyContent={"space-between"}>
-              {numberOfFaculties.map((data, index) => (
-                <Button
-                  key={index}
-                  variant={data.selected ? "contained" : "outlined"}
-                >
-                  {data.text}
-                </Button>
-              ))}
+          <Grid container spacing={2}>
+            <Grid xs={8} item>
+              <Grid container spacing={2}>
+                {numberOfFaculties.map((data, index) => (
+                  <Grid item xs={12} sm={12 / 5} md={12 / 5} key={index}>
+                    <Button
+                      key={index}
+                      variant={data.selected ? "contained" : "outlined"}
+                      fullWidth
+                    >
+                      {data.text}
+                    </Button>
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
-            <Grid xs={4}>
+            <Grid xs={4} item>
               <TextField
                 fullWidth
                 placeholder="Type Here"
