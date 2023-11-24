@@ -1,6 +1,4 @@
 import {
-  About,
-  ContactDetails,
   ManagementContact,
   CoursesAndFees,
   EntranceExams,
@@ -14,7 +12,17 @@ import {
   FAQ,
   Results,
   Photos,
+  ImportantNews,
 } from "../../components/College/add-new-college";
+
+import {
+  ContactDetails,
+  About,
+  ImportantDates,
+  RegistrationDetails,
+  Brochure,
+  ExamPattern,
+} from "../../components/exam/add-new-exam";
 
 import DashboardLayout from "../../layouts/Dashboard";
 import React, { useState } from "react";
@@ -23,18 +31,13 @@ import { Button, Container, Stepper, Step, StepLabel } from "@mui/material";
 const steps = [
   "About",
   "Contact Details",
-  "Management Contact",
-  "Exams",
-  "Courses and Fees",
-  "Photos",
-  "Results",
-  "Faculties",
-  "Reviews",
-  "Videos",
+  "Important News",
+  "Important Dates",
+  "Registration Details",
+  "Brochure",
+  "Exam Pattern",
   "Study Material",
-  "Location",
-  "Company Details",
-  "Checklist",
+  "Previous Year Question Papers",
   "Frequently Asked Questions",
 ]; // Add more steps as needed
 
@@ -76,19 +79,14 @@ const AddNewExam = () => {
             {/* Render the current step form */}
             {activeStep === 0 && <About />}
             {activeStep === 1 && <ContactDetails />}
-            {activeStep === 2 && <ManagementContact />}
-            {activeStep === 3 && <EntranceExams />}
-            {activeStep === 4 && <CoursesAndFees />}
-            {activeStep === 5 && <Photos />}
-            {activeStep === 6 && <Results />}
+            {activeStep === 2 && <ImportantNews />}
+            {activeStep === 3 && <ImportantDates />}
+            {activeStep === 4 && <RegistrationDetails />}
+            {activeStep === 5 && <Brochure />}
+            {activeStep === 6 && <ExamPattern />}
             {activeStep === 7 && <Faculties />}
             {activeStep === 8 && <Reviews />}
-            {activeStep === 9 && <Videos />}
-            {activeStep === 10 && <StudyMaterial />}
-            {activeStep === 11 && <Location />}
-            {activeStep === 12 && <CompanyDetails />}
-            {activeStep === 13 && <CheckList />}
-            {activeStep === 14 && <FAQ />}
+            {activeStep === 9 && <FAQ />}
             {/* Add more steps as needed */}
             <div style={{ marginTop: "10px" }}>
               <Button disabled={activeStep === 0} onClick={handleBack}>
@@ -104,6 +102,8 @@ const AddNewExam = () => {
     </Container>
   );
 };
+
+const Alumni = () => <div>Alumni Content</div>;
 
 AddNewExam.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;

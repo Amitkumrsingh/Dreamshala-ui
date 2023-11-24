@@ -2,13 +2,13 @@ import React, { useState } from "react";
 // import DashboardLayout from "../../../layouts/Dashboard";
 import {
   Box,
-  Button,
-  ButtonGroup,
-  Checkbox,
   Grid,
   TextField,
   Container,
   Typography,
+  FormControl,
+  Select,
+  MenuItem,
 } from "@mui/material";
 
 const daysOfWeek = [
@@ -21,51 +21,7 @@ const daysOfWeek = [
   "Sunday",
 ];
 
-const ButtonStyling = {
-  textAlign: "center",
-  margin: "5px",
-  border: "1px solid",
-  borderRadius: 0,
-};
-
-// const InpubLabelTextStyling = {
-//   color: "#000",
-//   fontFamily: "Inter",
-//   fontSize: "14px",
-//   fontStyle: "normal",
-//   fontWeight: 400,
-//   lineHeight: "18px",
-// };
-
-// const AboutHeadingTextStyle = {
-//   color: "#263238",
-//   fontFamily: "Inter",
-//   fontSize: "16px",
-//   fontStyle: "italic",
-//   fontWeight: 900,
-//   lineHeight: "45px",
-//   letterSpacing: "-0.32px",
-// };
-
 const About = () => {
-  const [selectedDays, setSelectedDays] = useState([]);
-
-  const toggleDay = (day) => {
-    if (selectedDays.includes(day)) {
-      setSelectedDays(
-        selectedDays.filter((selectedDay) => selectedDay !== day)
-      );
-    } else {
-      setSelectedDays([...selectedDays, day]);
-    }
-  };
-
-  const selectAllDays = () => {
-    setSelectedDays(daysOfWeek);
-  };
-
-  const isAllSelected = selectedDays.length === daysOfWeek.length;
-
   const [formData, setFormData] = useState({
     image: null,
     textField1: "",
@@ -128,9 +84,7 @@ const About = () => {
         </Grid>
 
         <Grid item xs={12} sm={10}>
-          <Typography>
-            Add short 2 line description about your coaching class
-          </Typography>
+          <Typography>Add short 2 line description about the exam</Typography>
           <TextField
             fullWidth
             placeholder="Decribe here"
@@ -140,9 +94,7 @@ const About = () => {
         </Grid>
         {/* Row 2 */}
         <Grid item xs={12} mt={2}>
-          <Typography>
-            Add detailed description about your coaching class
-          </Typography>
+          <Typography>Add detailed description about the exam</Typography>
           <TextField
             fullWidth
             placeholder="Decribe here"
@@ -154,70 +106,34 @@ const About = () => {
         </Grid>
 
         {/* Row 3 */}
-
-        <Grid item xs={12} sm={6} mt={2}>
-          <ButtonGroup
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-            }}
-          >
-            <Button
-              onClick={selectAllDays}
-              disabled={isAllSelected}
-              style={ButtonStyling}
-            >
-              Select All
-            </Button>
-            {daysOfWeek.map((day) => (
-              <Checkbox
-                key={day}
-                checked={selectedDays.includes(day)}
-                onChange={() => toggleDay(day)}
-                inputProps={{ "aria-label": day }}
-                style={{ display: "none" }} // Hide the actual checkbox input
-              />
-            ))}
-            {daysOfWeek.map((day, index) => (
-              <Button
-                key={day}
-                variant={selectedDays.includes(day) ? "contained" : "outlined"}
-                onClick={() => toggleDay(day)}
-                style={ButtonStyling}
-              >
-                {day}
-              </Button>
-            ))}
-          </ButtonGroup>
-        </Grid>
-        <Grid item xs={12} sm={6} mt={2}>
-          <Typography>Hours of Operation</Typography>
+        <Grid item xs={12} mt={2}>
           <Grid container spacing={2} mt={2}>
-            {/* <Typography>Open</Typography> */}
-            <Grid item xs={6}>
-              <TextField
-                fullWidth
-                label="Open"
-                type="time"
-                value={formData.startTime}
-                onChange={handleInputChange("startTime")}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
+            <Grid item xs={4}>
+              <Typography>Exam Frequency</Typography>
+              <FormControl fullWidth size="small">
+                <Select defaultValue={""}>
+                  <MenuItem value="1"> 1</MenuItem>
+                  <MenuItem value="2"> 2</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
-            <Grid item xs={6}>
-              {/* <Typography>Close</Typography> */}
-              <TextField
-                fullWidth
-                label="Close"
-                type="time"
-                value={formData.endTime}
-                onChange={handleInputChange("endTime")}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
+            <Grid item xs={4}>
+              <Typography>Exam Mode</Typography>
+              <FormControl fullWidth size="small">
+                <Select defaultValue={""}>
+                  <MenuItem value="1"> 1</MenuItem>
+                  <MenuItem value="2"> 2</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={4}>
+              <Typography>States Applicable</Typography>
+              <FormControl fullWidth size="small">
+                <Select defaultValue={""}>
+                  <MenuItem value="1"> 1</MenuItem>
+                  <MenuItem value="2"> 2</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
           </Grid>
         </Grid>
