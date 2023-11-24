@@ -14,3 +14,7 @@ export { default as Reviews } from "./Reviews";
 
 export { default as Videos } from "./Videos";
 export { default as ImportantNews } from "./ImportantNews";
+export { default as ImportantDates } from "./ImportantDates";
+export { default as DetailedApplicationProcessAndEligibilityCriteria } from "./DetailedApplicationProcessAndEligibilityCriteria";
+export { default as Alumni } from "./Alumni";
+export { default as PreviousCutoffs } from "./PreviousCutoffs";

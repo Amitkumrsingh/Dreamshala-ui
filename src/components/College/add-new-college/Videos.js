@@ -11,7 +11,7 @@ import {
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 
-const Videos = () => {
+const Videos = ({ parentName }) => {
   const [addMoreVideos, setAddMoreVideos] = useState([" "]);
   return (
     <>
@@ -21,7 +21,7 @@ const Videos = () => {
             VIDEOS
           </Typography>
           <Typography>
-            This section is to add videos about your coaching class
+            This section is to add videos about your {parentName}
           </Typography>
         </Grid>
 

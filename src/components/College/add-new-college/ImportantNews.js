@@ -1,16 +1,8 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Grid,
-  TextField,
-  Select,
-  MenuItem,
-  FormControl,
-  Typography,
-  Button,
-} from "@mui/material";
+import { Container, Grid, TextField, Typography, Button } from "@mui/material";
 
 const ImportantNews = () => {
+  const [addMoreNews, setAddMoreNews] = useState([""]);
   return (
     <>
       <Container>
@@ -18,40 +10,63 @@ const ImportantNews = () => {
           <Typography variant="h5">IMPORTANT NEWS</Typography>
         </Grid>
 
-        <Grid container spacing={2} mb={4}>
-          <Grid item xs={8}>
-            <Typography>Post a news</Typography>
-            <TextField
-              placeholder="Describe Here"
-              type="text"
-              multiline
-              minRows={2}
-              fullWidth
-            />
-          </Grid>
+        {addMoreNews.map((data, index) => (
+          <Grid container spacing={2} mb={4} key={index}>
+            <Grid item xs={8}>
+              <Typography>Post a news</Typography>
+              <TextField
+                placeholder="Describe Here"
+                type="text"
+                multiline
+                minRows={2.5}
+                fullWidth
+              />
+            </Grid>
 
-          <Grid xs={4}>
-            <Typography>News Category</Typography>
-            <Grid>
-              <Grid container>
-                <Grid item xs={12} sm={4} md={4}>
-                  <Button variant="contained">Very Important</Button>
-                </Grid>
-                <Grid item xs={12} sm={4} md={4}>
-                  <Button variant="contained">Important</Button>
-                </Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={12} sm={4} md={4}>
-                  <Button variant="contained">Medium Important</Button>
-                </Grid>
-                <Grid item xs={12} sm={4} md={4}>
-                  <Button variant="contained">Less Important</Button>
+            <Grid xs={4} item>
+              <Typography>News Category</Typography>
+              <Grid>
+                <Grid container spacing={2}>
+                  <Grid xs={6} item>
+                    <Grid mb={2}>
+                      <Button variant="outlined" fullWidth>
+                        Very Important
+                      </Button>
+                    </Grid>
+                    <Grid>
+                      <Button variant="outlined" fullWidth>
+                        Medium Important
+                      </Button>
+                    </Grid>
+                  </Grid>
+
+                  <Grid xs={6} item>
+                    <Grid mb={2}>
+                      <Button variant="outlined" fullWidth>
+                        Impotant
+                      </Button>
+                    </Grid>
+
+                    <Grid>
+                      <Button variant="outlined" fullWidth>
+                        Less Impotant
+                      </Button>
+                    </Grid>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        ))}
+
+        <Button
+          m={2}
+          variant="contained"
+          color="primary"
+          onClick={() => setAddMoreNews([...addMoreNews, ""])}
+        >
+          + Add More News
+        </Button>
       </Container>
     </>
   );

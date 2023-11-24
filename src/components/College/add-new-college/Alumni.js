@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
-const Faculties = () => {
+const Alumni = () => {
   const [addMoreFaculties, setAddMoreFaculties] = React.useState([""]);
   return (
     <>
@@ -94,7 +94,7 @@ const Faculties = () => {
 
             <Grid item xs={10 / 3}>
               <Grid>
-                <Typography>Specialisation</Typography>
+                <Typography>Degree</Typography>
                 <FormControl fullWidth>
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""} size="small">
@@ -109,7 +109,7 @@ const Faculties = () => {
                 </FormControl>
               </Grid>
               <Grid mt={2}>
-                <Typography>Base City</Typography>
+                <Typography>Latest Position/ Achievement</Typography>
                 <FormControl fullWidth>
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""} size="small">
@@ -126,7 +126,7 @@ const Faculties = () => {
             </Grid>
             <Grid item xs={10 / 3}>
               <Grid>
-                <Typography>Background</Typography>
+                <Typography>Year of Graduation</Typography>
                 <FormControl fullWidth>
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select defaultValue={""} size="small">
@@ -160,11 +160,11 @@ const Faculties = () => {
           color="primary"
           onClick={() => setAddMoreFaculties([...addMoreFaculties, ""])}
         >
-          + Add More Faculty
+          + Add More Alumni
         </Button>
       </Container>
     </>
   );
 };
 
-export default Faculties;
+export default Alumni;

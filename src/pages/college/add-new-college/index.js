@@ -13,6 +13,10 @@ import {
   FAQ,
   Photos,
   ImportantNews,
+  ImportantDates,
+  DetailedApplicationProcessAndEligibilityCriteria,
+  Alumni,
+  PreviousCutoffs,
 } from "../../../components/College/add-new-college";
 
 import DashboardLayout from "../../../layouts/Dashboard";
@@ -107,7 +111,7 @@ const AddNewCollege = () => {
             )}
             {activeStep === 9 && <Faculties />}
             {activeStep === 10 && <Reviews />}
-            {activeStep === 11 && <Videos />}
+            {activeStep === 11 && <Videos parentName={"college"} />}
             {activeStep === 12 && <Alumni />}
             {activeStep === 13 && <PreviousCutoffs />}
             {activeStep === 14 && <PlacementDetails />}
@@ -132,12 +136,12 @@ const AddNewCollege = () => {
 };
 
 // const ImportantNews = () => <div>ImportantNews Content</div>;
-const ImportantDates = () => <div>ImportantDates Content</div>;
-const DetailedApplicationProcessAndEligibilityCriteria = () => (
-  <div>DetailedApplicationProcessAndEligibilityCriteria Content</div>
-);
-const Alumni = () => <div>Alumni Content</div>;
-const PreviousCutoffs = () => <div>PreviousCutoffs Content</div>;
+// const ImportantDates = () => <div>ImportantDates Content</div>;
+// const DetailedApplicationProcessAndEligibilityCriteria = () => (
+//   <div>DetailedApplicationProcessAndEligibilityCriteria Content</div>
+// );
+// const Alumni = () => <div>Alumni Content</div>;
+// const PreviousCutoffs = () => <div>PreviousCutoffs Content</div>;
 const PlacementDetails = () => <div>PlacementDetails Content</div>;
 
 AddNewCollege.getLayout = function getLayout(page) {

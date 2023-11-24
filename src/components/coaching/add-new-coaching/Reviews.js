@@ -72,7 +72,7 @@ const Reviews = () => {
 
             <Grid container mb={2}>
               <Typography>
-                <b>Rate the College on the following factors</b>
+                <b>Rate the coaching class on the following factors</b>
               </Typography>
             </Grid>
 
@@ -80,15 +80,14 @@ const Reviews = () => {
               <Grid item xs={4}>
                 <StarRating title={"Overall Rating"} />
                 <StarRating title={"Infrastructure"} />
-                <StarRating title={"Social Life"} />
               </Grid>
               <Grid item xs={4}>
-                <StarRating title={"Academics"} />
-                <StarRating title={"Accommodation"} />
+                <StarRating title={"Competitive Environment"} />
+                <StarRating title={"Study Material"} />
               </Grid>
               <Grid item xs={4}>
                 <StarRating title={"Faculty"} />
-                <StarRating title={"Placement"} />
+                <StarRating title={"Peer Learning"} />
               </Grid>
             </Grid>
 

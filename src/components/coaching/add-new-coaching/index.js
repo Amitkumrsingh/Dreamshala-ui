@@ -4,3 +4,4 @@ export { default as EntranceExams } from "./EntranceExams";
 export { default as CoursesAndFees } from "./CoursesAndFees";
 export { default as Results } from "./Results";
 export { default as StudyMaterial } from "./StudyMaterial";
+export { default as Reviews } from "./Reviews";
