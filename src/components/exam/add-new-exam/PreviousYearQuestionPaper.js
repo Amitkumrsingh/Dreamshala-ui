@@ -22,7 +22,7 @@ const PreviousYearQuestionPaper = () => {
       <Container>
         <Grid>
           <Typography variant="h5" gutterBottom>
-            STUDY MATERIAL
+            PREVIOUS YEAR QUESTION PAPER
           </Typography>
           <Typography>
             This section is to add all previous year papers
