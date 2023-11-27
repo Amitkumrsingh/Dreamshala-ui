@@ -115,13 +115,15 @@ const ContactDetails = () => {
       <Grid container spacing={2} mt={2}>
         {/* Additional Account Inputs */}
         {accountInputs.map((account, index) => (
-          <TextField
-            key={index}
-            label={`Account ${index + 1}`}
-            fullWidth
-            value={account}
-            // onChange={(e) => handleAccountInputChange(index, e.target.value)}
-          />
+          <Grid item key={index} xs={4}>
+            <TextField
+              label={`Account ${index + 1}`}
+              fullWidth
+              size="small"
+              value={account}
+              // onChange={(e) => handleAccountInputChange(index, e.target.value)}
+            />
+          </Grid>
         ))}
 
         <Grid item xs={2}>
