@@ -43,7 +43,7 @@ function SignIn() {
           await signIn(values.email, values.password);
 
           // router.push("/private");
-          router.push("/dashboard/analytics");
+          router.push("/college/add-new-college");
         } catch (error) {
           const message = error.message || "Something went wrong";
 

@@ -18,116 +18,116 @@ import {
 } from "react-feather";
 
 const pagesSection = [
-  {
-    href: "/dashboard",
-    icon: Sliders,
-    title: "Dashboard",
-    children: [
-      {
-        href: "/dashboard/default",
-        title: "Default",
-      },
-      {
-        href: "/dashboard/analytics",
-        title: "Analytics",
-      },
-      {
-        href: "/dashboard/saas",
-        title: "SaaS",
-      },
-    ],
-  },
-  {
-    href: "/pages",
-    icon: Layout,
-    title: "Pages",
-    children: [
-      {
-        href: "/pages/profile",
-        title: "Profile",
-      },
-      {
-        href: "/pages/settings",
-        title: "Settings",
-      },
-      {
-        href: "/pages/pricing",
-        title: "Pricing",
-      },
-      {
-        href: "/pages/chat",
-        title: "Chat",
-      },
-      {
-        href: "/pages/blank",
-        title: "Blank Page",
-      },
-    ],
-  },
-  {
-    href: "/projects",
-    icon: Briefcase,
-    title: "Projects",
-    badge: "8",
-  },
-  {
-    href: "/orders",
-    icon: ShoppingCart,
-    title: "Orders",
-  },
-  {
-    href: "/invoices",
-    icon: CreditCard,
-    title: "Invoices",
-    children: [
-      {
-        href: "/invoices",
-        title: "List",
-      },
-      {
-        href: "/invoices/detail",
-        title: "Detail",
-      },
-    ],
-  },
-  {
-    href: "/tasks",
-    icon: CheckSquare,
-    title: "Tasks",
-    badge: "17",
-  },
-  {
-    href: "/calendar",
-    icon: Calendar,
-    title: "Calendar",
-  },
-  {
-    href: "/auth",
-    icon: Users,
-    title: "Auth",
-    children: [
-      {
-        href: "/auth/sign-in",
-        title: "Sign In",
-      },
-      {
-        href: "/auth/sign-up",
-        title: "Sign Up",
-      },
-      {
-        href: "/auth/reset-password",
-        title: "Reset Password",
-      },
-      {
-        href: "/auth/404",
-        title: "404 Page",
-      },
-      {
-        href: "/auth/500",
-        title: "500 Page",
-      },
-    ],
-  },
+  // {
+  //   href: "/dashboard",
+  //   icon: Sliders,
+  //   title: "Dashboard",
+  //   children: [
+  //     {
+  //       href: "/dashboard/default",
+  //       title: "Default",
+  //     },
+  //     {
+  //       href: "/dashboard/analytics",
+  //       title: "Analytics",
+  //     },
+  //     {
+  //       href: "/dashboard/saas",
+  //       title: "SaaS",
+  //     },
+  //   ],
+  // },
+  // {
+  //   href: "/pages",
+  //   icon: Layout,
+  //   title: "Pages",
+  //   children: [
+  //     {
+  //       href: "/pages/profile",
+  //       title: "Profile",
+  //     },
+  //     {
+  //       href: "/pages/settings",
+  //       title: "Settings",
+  //     },
+  //     {
+  //       href: "/pages/pricing",
+  //       title: "Pricing",
+  //     },
+  //     {
+  //       href: "/pages/chat",
+  //       title: "Chat",
+  //     },
+  //     {
+  //       href: "/pages/blank",
+  //       title: "Blank Page",
+  //     },
+  //   ],
+  // },
+  // {
+  //   href: "/projects",
+  //   icon: Briefcase,
+  //   title: "Projects",
+  //   badge: "8",
+  // },
+  // {
+  //   href: "/orders",
+  //   icon: ShoppingCart,
+  //   title: "Orders",
+  // },
+  // {
+  //   href: "/invoices",
+  //   icon: CreditCard,
+  //   title: "Invoices",
+  //   children: [
+  //     {
+  //       href: "/invoices",
+  //       title: "List",
+  //     },
+  //     {
+  //       href: "/invoices/detail",
+  //       title: "Detail",
+  //     },
+  //   ],
+  // },
+  // {
+  //   href: "/tasks",
+  //   icon: CheckSquare,
+  //   title: "Tasks",
+  //   badge: "17",
+  // },
+  // {
+  //   href: "/calendar",
+  //   icon: Calendar,
+  //   title: "Calendar",
+  // },
+  // {
+  //   href: "/auth",
+  //   icon: Users,
+  //   title: "Auth",
+  //   children: [
+  //     {
+  //       href: "/auth/sign-in",
+  //       title: "Sign In",
+  //     },
+  //     {
+  //       href: "/auth/sign-up",
+  //       title: "Sign Up",
+  //     },
+  //     {
+  //       href: "/auth/reset-password",
+  //       title: "Reset Password",
+  //     },
+  //     {
+  //       href: "/auth/404",
+  //       title: "404 Page",
+  //     },
+  //     {
+  //       href: "/auth/500",
+  //       title: "500 Page",
+  //     },
+  //   ],
+  // },
   {
     href: "/college",
     title: "College",
@@ -408,14 +408,14 @@ const navItems = [
     title: "Pages",
     pages: pagesSection,
   },
-  {
-    title: "Elements",
-    pages: elementsSection,
-  },
-  {
-    title: "Mira Pro",
-    pages: docsSection,
-  },
+  // {
+  //   title: "Elements",
+  //   pages: elementsSection,
+  // },
+  // {
+  //   title: "Mira Pro",
+  //   pages: docsSection,
+  // },
 ];
 
 export default navItems;
