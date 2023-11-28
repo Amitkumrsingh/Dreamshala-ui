@@ -73,7 +73,7 @@ const AddNewCollege = () => {
   return (
     <Container>
       <Stepper
-        activeStep={activeStep < 10 ? activeStep : activeStep - 10}
+        activeStep={activeStep}
         alternativeLabel
         style={{ marginBottom: "20px" }}
       >
@@ -86,7 +86,11 @@ const AddNewCollege = () => {
 
         {activeStep >= 10 &&
           steps1.map((label, index) => (
-            <Step key={index + 10} onClick={() => handleToStep(index + 10)}>
+            <Step
+              key={index + 10}
+              onClick={() => handleToStep(index + 10)}
+              index={index + 10}
+            >
               <StepLabel>{label}</StepLabel>
             </Step>
           ))}
