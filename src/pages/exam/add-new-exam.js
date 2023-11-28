@@ -1,18 +1,4 @@
-import {
-  ManagementContact,
-  CoursesAndFees,
-  EntranceExams,
-  Faculties,
-  Reviews,
-  Videos,
-  Location,
-  CompanyDetails,
-  CheckList,
-  FAQ,
-  Results,
-  Photos,
-  ImportantNews,
-} from "../../components/College/add-new-college";
+import { FAQ, ImportantNews } from "../../components/College/add-new-college";
 
 import {
   ContactDetails,
