@@ -100,8 +100,8 @@ const CompanyDetails = () => {
           <Typography variant="h5">Company Registered Address</Typography>
         </Grid>
 
-        <Grid container>
-          <Grid xs={8}>
+        <Grid container spacing={2}>
+          <Grid xs={8} item>
             <Grid container spacing={2} mb={4}>
               <Grid item xs={4}>
                 <Typography>Address Line 1</Typography>
@@ -175,7 +175,17 @@ const CompanyDetails = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid xs={4}>This is for location</Grid>
+          <Grid xs={4} item>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7613.422063208642!2d78.449477!3d17.42565!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9734d5af1441%3A0x888e3aafdd74f605!2sMAD%20SCHOOL%20Hyderabad%20-%20NIFT%2C%20NID%2C%20NATA%2C%20UCEED%20Coaching%20Centre!5e0!3m2!1sen!2sin!4v1701170248797!5m2!1sen!2sin"
+              fullWidth
+              height="100%"
+              style={{ border: 0 }}
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </Grid>
         </Grid>
 
         <Grid container pr={2}>

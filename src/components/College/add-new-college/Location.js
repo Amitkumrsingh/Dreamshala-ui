@@ -67,7 +67,7 @@ const Location = () => {
 
         {/* This is main Location container */}
         {addMoreLocation.map((data, index) => (
-          <Grid container mt={4} mb={4} key={index}>
+          <Grid container mt={4} mb={4} key={index} spacing={2}>
             <Grid item xs={8}>
               <Grid container>
                 <Grid xs={6} pr={2}>
@@ -155,7 +155,17 @@ const Location = () => {
               </Grid>
             </Grid>
             <Grid item xs={4}>
-              <Grid>This is location component</Grid>
+              {/* <Grid mt={5}> */}
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7613.422063208642!2d78.449477!3d17.42565!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9734d5af1441%3A0x888e3aafdd74f605!2sMAD%20SCHOOL%20Hyderabad%20-%20NIFT%2C%20NID%2C%20NATA%2C%20UCEED%20Coaching%20Centre!5e0!3m2!1sen!2sin!4v1701170248797!5m2!1sen!2sin"
+                fullWidth
+                height="100%"
+                style={{ border: 0 }}
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+              {/* </Grid> */}
             </Grid>
           </Grid>
         ))}
