@@ -8,7 +8,7 @@ import {
   Reviews,
   Videos,
   Location,
-  CompanyDetails,
+  CollegeDetails,
   CheckList,
   FAQ,
   Photos,
@@ -22,7 +22,14 @@ import {
 
 import DashboardLayout from "../../../layouts/Dashboard";
 import React from "react";
-import { Button, Container, Stepper, Step, StepLabel } from "@mui/material";
+import {
+  Button,
+  Container,
+  Stepper,
+  Step,
+  StepLabel,
+  Grid,
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   nextStep,
@@ -121,11 +128,11 @@ const AddNewCollege = () => {
             {activeStep === 13 && <PreviousCutoffs />}
             {activeStep === 14 && <PlacementDetails />}
             {activeStep === 15 && <Location />}
-            {activeStep === 16 && <CompanyDetails />}
+            {activeStep === 16 && <CollegeDetails />}
             {activeStep === 17 && <CheckList />}
             {activeStep === 18 && <FAQ />}
             {/* Add more steps as needed */}
-            <div style={{ marginTop: "10px" }}>
+            <Grid mt={6}>
               <Button disabled={activeStep === 0} onClick={handleBack}>
                 Back
               </Button>
@@ -134,7 +141,7 @@ const AddNewCollege = () => {
                   ? "Finish"
                   : "Next"}
               </Button>
-            </div>
+            </Grid>
           </div>
         )}
       </div>

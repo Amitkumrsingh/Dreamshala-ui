@@ -12,6 +12,9 @@ import {
 
 const PreviousCutoffs = () => {
   const [addMoreCutOffs, setAddMoreCutOffs] = useState([""]);
+  const [degreeBranch, setDegreeBranch] = useState("");
+  const [selectCategory, setSelectCategory] = useState("");
+  const [subject, setSubject] = useState("");
   return (
     <>
       <Container>
@@ -26,7 +29,14 @@ const PreviousCutoffs = () => {
                 <Typography>Degree/ Branch</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select
+                    onChange={(e) => setDegreeBranch(e.target.value)}
+                    value={degreeBranch}
+                    displayEmpty
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     {/* Add more exam options as needed */}
@@ -51,7 +61,14 @@ const PreviousCutoffs = () => {
                   <Grid xs={6} item>
                     <Typography>Select Category</Typography>
                     <FormControl fullWidth size="small">
-                      <Select defaultValue={""}>
+                      <Select
+                        onChange={(e) => setSelectCategory(e.target.value)}
+                        value={selectCategory}
+                        displayEmpty
+                      >
+                        <MenuItem value={""} disabled>
+                          Select/ Type Here
+                        </MenuItem>
                         <MenuItem value="1">1</MenuItem>
                         <MenuItem value="2">2</MenuItem>
                       </Select>
@@ -64,7 +81,14 @@ const PreviousCutoffs = () => {
                   <Grid xs={6} item>
                     <Typography>Select Category</Typography>
                     <FormControl fullWidth size="small">
-                      <Select defaultValue={""}>
+                      <Select
+                        onChange={(e) => setSelectCategory(e.target.value)}
+                        value={selectCategory}
+                        displayEmpty
+                      >
+                        <MenuItem value={""} disabled>
+                          Select/ Type Here
+                        </MenuItem>
                         <MenuItem value="1">1</MenuItem>
                         <MenuItem value="2">2</MenuItem>
                       </Select>
@@ -73,7 +97,7 @@ const PreviousCutoffs = () => {
                   <Grid xs={6} item>
                     <Typography>Overall Percentile</Typography>
                     <Grid container spacing={2}>
-                      <Grid item xs={10}>
+                      <Grid item xs={8.4}>
                         <TextField
                           placeholder="Type Here"
                           size="small"
@@ -81,7 +105,9 @@ const PreviousCutoffs = () => {
                         />
                       </Grid>
                       <Grid item xs={2}>
-                        <Button variant="outlined">+</Button>
+                        <Button fullWidth variant="outlined">
+                          +
+                        </Button>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -97,7 +123,14 @@ const PreviousCutoffs = () => {
                 <Grid item xs={4}>
                   <Typography>Select Subject</Typography>
                   <FormControl fullWidth size="small">
-                    <Select defaultValue={""}>
+                    <Select
+                      onChange={(e) => setSubject(e.target.value)}
+                      value={subject}
+                      displayEmpty
+                    >
+                      <MenuItem value={""} disabled>
+                        Select/ Type Here
+                      </MenuItem>
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="2">2</MenuItem>
                     </Select>
@@ -106,7 +139,14 @@ const PreviousCutoffs = () => {
                 <Grid item xs={4}>
                   <Typography>Select Category</Typography>
                   <FormControl fullWidth size="small">
-                    <Select defaultValue={""}>
+                    <Select
+                      onChange={(e) => setSelectCategory(e.target.value)}
+                      value={selectCategory}
+                      displayEmpty
+                    >
+                      <MenuItem value={""} disabled>
+                        Select/ Type Here
+                      </MenuItem>
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="2">2</MenuItem>
                     </Select>
@@ -115,7 +155,7 @@ const PreviousCutoffs = () => {
                 <Grid item xs={4}>
                   <Typography>Cutoff Percentile</Typography>
                   <Grid container spacing={2}>
-                    <Grid item xs={10}>
+                    <Grid item xs={9.3}>
                       <TextField
                         placeholder="Type Here"
                         size="small"

@@ -40,12 +40,14 @@ const ImportantDates = () => {
               <Grid item xs={2}>
                 <Typography>Ends At</Typography>
                 <TextField fullWidth size="small" type="date" />
+                {/* <Link> */}
                 <Typography
                   variant="subtitle2"
-                  style={{ textDecoration: "underline" }}
+                  style={{ textDecoration: "underline", cursor: "pointer" }}
                 >
                   Same as Start Date
                 </Typography>
+                {/* </Link> */}
               </Grid>
               <Grid item xs={4}>
                 <Typography>Event Description (if any)</Typography>

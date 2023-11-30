@@ -16,6 +16,8 @@ import StarRating from "../../other/StarRating";
 
 const Reviews = () => {
   const [addMoreReviews, setAddMoreReviews] = useState([""]);
+  const [yearOfStudy, setYearOfStudy] = useState("");
+  const [courseTaken, setCourseTaken] = useState("");
   return (
     <>
       <Container>
@@ -40,9 +42,16 @@ const Reviews = () => {
               </Grid>
               <Grid item xs={4}>
                 <Typography>Year of Your Study</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""} size="small">
+                  <Select
+                    onChange={(e) => setYearOfStudy(e.target.value)}
+                    value={yearOfStudy}
+                    displayEmpty
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -55,9 +64,16 @@ const Reviews = () => {
               </Grid>
               <Grid item xs={4}>
                 <Typography>Course Taken</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""} size="small">
+                  <Select
+                    onChange={(e) => setCourseTaken(e.target.value)}
+                    value={courseTaken}
+                    displayEmpty
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>

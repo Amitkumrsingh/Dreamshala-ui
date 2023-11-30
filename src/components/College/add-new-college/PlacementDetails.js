@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   IconButton,
   Box,
@@ -14,7 +14,16 @@ import {
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 
 const PlacementDetails = () => {
-  const [addMorePlacement, setAddMorePlacement] = React.useState([""]);
+  const [addMorePlacement, setAddMorePlacement] = useState([""]);
+  const [degreeBranch, setDegreeBranch] = useState("");
+  const [numberOfRecruiters, setNumberOfRecruiters] = useState("");
+  const [numberOfOffers, setNumberOfOffers] = useState("");
+  const [numberOfInternationalOffers, setNumberOfInternationalOffers] =
+    useState("");
+  const [topRecruiters, setTopRecruiters] = useState("");
+  const [highestPackage, setHighestPackage] = useState("");
+  const [averagePackage, setAveragePackage] = useState("");
+
   return (
     <>
       <Container>
@@ -54,7 +63,14 @@ const PlacementDetails = () => {
               <Grid item xs={4}>
                 <Typography>Degree/ Branch</Typography>
                 <FormControl fullWidth size="small">
-                  <Select defaultValue={""}>
+                  <Select
+                    onChange={(e) => setDegreeBranch(e.target.value)}
+                    value={degreeBranch}
+                    displayEmpty
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                   </Select>
@@ -77,7 +93,14 @@ const PlacementDetails = () => {
                 <Grid mt={2}>
                   <Typography>Highest Package</Typography>
                   <FormControl fullWidth size="small">
-                    <Select defaultValue={""}>
+                    <Select
+                      onChange={(e) => setHighestPackage(e.target.value)}
+                      value={highestPackage}
+                      displayEmpty
+                    >
+                      <MenuItem value={""} disabled>
+                        Select/ Type Here
+                      </MenuItem>
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="2">2</MenuItem>
                     </Select>
@@ -88,7 +111,14 @@ const PlacementDetails = () => {
                 <Grid>
                   <Typography>Number of Recruiters</Typography>
                   <FormControl fullWidth size="small">
-                    <Select defaultValue={""}>
+                    <Select
+                      onChange={(e) => setNumberOfRecruiters(e.target.value)}
+                      value={numberOfRecruiters}
+                      displayEmpty
+                    >
+                      <MenuItem value={""} disabled>
+                        Select/ Type Here
+                      </MenuItem>
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="2">2</MenuItem>
                     </Select>
@@ -97,7 +127,16 @@ const PlacementDetails = () => {
                 <Grid mt={3}>
                   <Typography>Number of International Offers</Typography>
                   <FormControl fullWidth size="small">
-                    <Select defaultValue={""}>
+                    <Select
+                      onChange={(e) =>
+                        setNumberOfInternationalOffers(e.target.value)
+                      }
+                      value={numberOfInternationalOffers}
+                      displayEmpty
+                    >
+                      <MenuItem value={""} disabled>
+                        Select/ Type Here
+                      </MenuItem>
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="2">2</MenuItem>
                     </Select>
@@ -106,7 +145,14 @@ const PlacementDetails = () => {
                 <Grid mt={3}>
                   <Typography>Average Package</Typography>
                   <FormControl fullWidth size="small">
-                    <Select defaultValue={""}>
+                    <Select
+                      onChange={(e) => setAveragePackage(e.target.value)}
+                      value={averagePackage}
+                      displayEmpty
+                    >
+                      <MenuItem value={""} disabled>
+                        Select/ Type Here
+                      </MenuItem>
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="2">2</MenuItem>
                     </Select>
@@ -117,7 +163,14 @@ const PlacementDetails = () => {
                 <Grid>
                   <Typography>Number of Offers</Typography>
                   <FormControl fullWidth size="small">
-                    <Select defaultValue={""}>
+                    <Select
+                      onChange={(e) => setNumberOfOffers(e.target.value)}
+                      value={numberOfOffers}
+                      displayEmpty
+                    >
+                      <MenuItem value={""} disabled>
+                        Select/ Type Here
+                      </MenuItem>
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="2">2</MenuItem>
                     </Select>
@@ -128,7 +181,14 @@ const PlacementDetails = () => {
                     Top Recruiters (use ','to separate them)
                   </Typography>
                   <FormControl fullWidth size="small">
-                    <Select defaultValue={""}>
+                    <Select
+                      onChange={(e) => setTopRecruiters(e.target.value)}
+                      value={topRecruiters}
+                      displayEmpty
+                    >
+                      <MenuItem value={""} disabled>
+                        Select/ Type Here
+                      </MenuItem>
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="2">2</MenuItem>
                     </Select>

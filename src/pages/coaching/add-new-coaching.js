@@ -3,7 +3,6 @@ import {
   Faculties,
   Videos,
   Location,
-  CompanyDetails,
   CheckList,
   FAQ,
   Photos,
@@ -17,6 +16,7 @@ import {
   EntranceExams,
   CoursesAndFees,
   Reviews,
+  CoachingDetails,
 } from "../../components/coaching/add-new-coaching";
 
 import DashboardLayout from "../../layouts/Dashboard";
@@ -36,7 +36,7 @@ const steps = [
   "Videos",
   "Study Material",
   "Location",
-  "Company Details",
+  "Coaching Details",
   "Checklist",
   "Frequently Asked Questions",
 ]; // Add more steps as needed
@@ -89,7 +89,7 @@ const AddNewExam = () => {
             {activeStep === 9 && <Videos parentName={"coaching class"} />}
             {activeStep === 10 && <StudyMaterial />}
             {activeStep === 11 && <Location />}
-            {activeStep === 12 && <CompanyDetails />}
+            {activeStep === 12 && <CoachingDetails />}
             {activeStep === 13 && <CheckList />}
             {activeStep === 14 && <FAQ />}
             {/* Add more steps as needed */}

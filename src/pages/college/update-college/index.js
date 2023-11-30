@@ -22,7 +22,14 @@ import {
 
 import DashboardLayout from "../../../layouts/Dashboard";
 import React, { useState } from "react";
-import { Button, Container, Stepper, Step, StepLabel } from "@mui/material";
+import {
+  Button,
+  Container,
+  Stepper,
+  Step,
+  StepLabel,
+  Grid,
+} from "@mui/material";
 
 const steps = [
   "About",

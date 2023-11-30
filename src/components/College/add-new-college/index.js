@@ -1,6 +1,6 @@
 export { default as About } from "./About";
 export { default as CheckList } from "./CheckList";
-export { default as CompanyDetails } from "./CompanyDetails";
+export { default as CollegeDetails } from "./CollegeDetails";
 export { default as ContactDetails } from "./ContactDetails";
 export { default as CoursesAndFees } from "./CoursesAndFees";
 export { default as EntranceExams } from "./EntranceExams";

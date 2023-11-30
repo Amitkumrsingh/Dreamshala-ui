@@ -156,6 +156,7 @@ const About = () => {
         {/* Row 3 */}
 
         <Grid item xs={12} sm={6} mt={2}>
+          <Typography>Days of Operation</Typography>
           <ButtonGroup
             style={{
               display: "flex",

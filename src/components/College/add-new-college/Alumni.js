@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   IconButton,
   Box,
@@ -14,13 +14,17 @@ import {
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 const Alumni = () => {
-  const [addMoreFaculties, setAddMoreFaculties] = React.useState([""]);
+  const [addMoreFaculties, setAddMoreFaculties] = useState([""]);
+  const [experience, setExperience] = useState("");
+  const [degree, setDegree] = useState("");
+  const [yearOfGraduation, setYearOfGraduation] = useState("");
+  const [latestPosition, setLatestPosition] = useState("");
   return (
     <>
       <Container>
         <Grid container justifyContent={"space-between"} mb={4}>
           <Typography variant="h5" gutterBottom>
-            FACULTIES
+            ALUMNI
           </Typography>
         </Grid>
 
@@ -77,9 +81,16 @@ const Alumni = () => {
               </Grid>
               <Grid mt={2}>
                 <Typography>Experience</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""} size="small">
+                  <Select
+                    onChange={(e) => setExperience(e.target.value)}
+                    value={experience}
+                    displayEmpty
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -95,9 +106,16 @@ const Alumni = () => {
             <Grid item xs={10 / 3}>
               <Grid>
                 <Typography>Degree</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""} size="small">
+                  <Select
+                    onChange={(e) => setDegree(e.target.value)}
+                    value={degree}
+                    displayEmpty
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -110,9 +128,16 @@ const Alumni = () => {
               </Grid>
               <Grid mt={2}>
                 <Typography>Latest Position/ Achievement</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""} size="small">
+                  <Select
+                    onChange={(e) => setLatestPosition(e.target.value)}
+                    value={latestPosition}
+                    displayEmpty
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -127,9 +152,16 @@ const Alumni = () => {
             <Grid item xs={10 / 3}>
               <Grid>
                 <Typography>Year of Graduation</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""} size="small">
+                  <Select
+                    onChange={(e) => setYearOfGraduation(e.target.value)}
+                    value={yearOfGraduation}
+                    displayEmpty
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>

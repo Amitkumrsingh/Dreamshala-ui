@@ -166,6 +166,7 @@ const CheckList = () => {
               <Button
                 variant={data.selected ? "contained" : "outlined"}
                 onClick={() => handleFacilitiesUpdate(index)}
+                fullWidth
               >
                 {data.text}
               </Button>

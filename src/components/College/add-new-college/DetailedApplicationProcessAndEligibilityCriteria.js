@@ -12,6 +12,7 @@ import {
 
 const DetailedApplicationProcessAndEligibilityCriteria = () => {
   const [addMoreDegrees, setAddMoreDegrees] = useState([""]);
+  const [degreeBranch, setDegreeBranch] = useState("");
   return (
     <>
       <Container>
@@ -28,7 +29,14 @@ const DetailedApplicationProcessAndEligibilityCriteria = () => {
                 <Typography>Degree/ Branch</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select
+                    onChange={(e) => setDegreeBranch(e.target.value)}
+                    value={degreeBranch}
+                    displayEmpty
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     {/* Add more exam options as needed */}

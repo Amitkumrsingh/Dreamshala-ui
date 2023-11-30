@@ -5,3 +5,4 @@ export { default as CoursesAndFees } from "./CoursesAndFees";
 export { default as Results } from "./Results";
 export { default as StudyMaterial } from "./StudyMaterial";
 export { default as Reviews } from "./Reviews";
+export { default as CoachingDetails } from "./CoachingDetails";

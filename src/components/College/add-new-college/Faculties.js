@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   IconButton,
   Box,
@@ -14,7 +14,12 @@ import {
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 const Faculties = () => {
-  const [addMoreFaculties, setAddMoreFaculties] = React.useState([""]);
+  const [addMoreFaculties, setAddMoreFaculties] = useState([""]);
+  const [background, setBackground] = useState("");
+  const [experience, setExperience] = useState("");
+  const [specialisation, setSpecialisation] = useState("");
+  const [baseCity, setBaseCity] = useState("");
+
   return (
     <>
       <Container>
@@ -77,9 +82,16 @@ const Faculties = () => {
               </Grid>
               <Grid mt={2}>
                 <Typography>Experience</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""} size="small">
+                  <Select
+                    onChange={(e) => setExperience(e.target.value)}
+                    value={experience}
+                    displayEmpty
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -95,9 +107,16 @@ const Faculties = () => {
             <Grid item xs={10 / 3}>
               <Grid>
                 <Typography>Specialisation</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""} size="small">
+                  <Select
+                    onChange={(e) => setSpecialisation(e.target.value)}
+                    value={specialisation}
+                    displayEmpty
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -110,9 +129,16 @@ const Faculties = () => {
               </Grid>
               <Grid mt={2}>
                 <Typography>Base City</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""} size="small">
+                  <Select
+                    onChange={(e) => setBaseCity(e.target.value)}
+                    value={baseCity}
+                    displayEmpty
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -127,9 +153,16 @@ const Faculties = () => {
             <Grid item xs={10 / 3}>
               <Grid>
                 <Typography>Background</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""} size="small">
+                  <Select
+                    onChange={(e) => setBackground(e.target.value)}
+                    value={background}
+                    displayEmpty
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>

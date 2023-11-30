@@ -129,7 +129,7 @@ const About = () => {
 
         <Grid item xs={12} sm={10}>
           <Typography>
-            Add short 2 line description about your college class
+            Add short 2 line description about your college
           </Typography>
           <TextField
             fullWidth
@@ -156,39 +156,44 @@ const About = () => {
         {/* Row 3 */}
 
         <Grid item xs={12} sm={6} mt={2}>
-          <ButtonGroup
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-            }}
-          >
-            <Button
-              onClick={selectAllDays}
-              disabled={isAllSelected}
-              style={ButtonStyling}
+          <Typography>Days of Operation</Typography>
+          <Grid mt={2}>
+            <ButtonGroup
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+              }}
             >
-              Select All
-            </Button>
-            {daysOfWeek.map((day) => (
-              <Checkbox
-                key={day}
-                checked={selectedDays.includes(day)}
-                onChange={() => toggleDay(day)}
-                inputProps={{ "aria-label": day }}
-                style={{ display: "none" }} // Hide the actual checkbox input
-              />
-            ))}
-            {daysOfWeek.map((day, index) => (
               <Button
-                key={day}
-                variant={selectedDays.includes(day) ? "contained" : "outlined"}
-                onClick={() => toggleDay(day)}
+                onClick={selectAllDays}
+                disabled={isAllSelected}
                 style={ButtonStyling}
               >
-                {day}
+                Select All
               </Button>
-            ))}
-          </ButtonGroup>
+              {daysOfWeek.map((day) => (
+                <Checkbox
+                  key={day}
+                  checked={selectedDays.includes(day)}
+                  onChange={() => toggleDay(day)}
+                  inputProps={{ "aria-label": day }}
+                  style={{ display: "none" }} // Hide the actual checkbox input
+                />
+              ))}
+              {daysOfWeek.map((day, index) => (
+                <Button
+                  key={day}
+                  variant={
+                    selectedDays.includes(day) ? "contained" : "outlined"
+                  }
+                  onClick={() => toggleDay(day)}
+                  style={ButtonStyling}
+                >
+                  {day}
+                </Button>
+              ))}
+            </ButtonGroup>
+          </Grid>
         </Grid>
         <Grid item xs={12} sm={6} mt={2}>
           <Typography>Hours of Operation</Typography>
