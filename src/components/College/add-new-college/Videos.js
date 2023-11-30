@@ -138,7 +138,7 @@ const Videos = ({ parentName }) => {
 
         <Button
           m={2}
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => setAddMoreVideos([...addMoreVideos, ""])}
         >

@@ -38,7 +38,7 @@ const FAQ = () => {
 
         <Button
           m={2}
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => setAddMoreFAQ([...addMoreFAQ, ""])}
         >

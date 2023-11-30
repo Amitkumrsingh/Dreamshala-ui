@@ -121,7 +121,7 @@ const StudyMaterial = () => {
 
         <Button
           m={2}
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => setAddMoreStudyMaterial([...addMoreStudyMaterial, ""])}
         >

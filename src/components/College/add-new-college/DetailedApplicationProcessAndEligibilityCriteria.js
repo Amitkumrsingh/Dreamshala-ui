@@ -89,7 +89,7 @@ const DetailedApplicationProcessAndEligibilityCriteria = () => {
 
         <Button
           m={2}
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => setAddMoreDegrees([...addMoreDegrees, ""])}
         >

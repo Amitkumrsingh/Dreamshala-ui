@@ -192,7 +192,7 @@ const PreviousCutoffs = () => {
 
         <Button
           m={2}
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => setAddMoreCutOffs([...addMoreCutOffs, ""])}
         >

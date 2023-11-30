@@ -146,7 +146,7 @@ const ManagementContact = () => {
 
       {/* Button to add more contacts */}
       <Grid mt={4}>
-        <Button variant="contained" color="primary" onClick={addContact}>
+        <Button variant="outlined" color="primary" onClick={addContact}>
           Add More Contacts
         </Button>
       </Grid>

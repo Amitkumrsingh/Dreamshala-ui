@@ -127,7 +127,7 @@ const ContactDetails = () => {
         ))}
 
         <Grid item xs={2}>
-          <Button variant="contained" color="primary" onClick={addAccountInput}>
+          <Button variant="outlined" color="primary" onClick={addAccountInput}>
             Add More Accounts
           </Button>
         </Grid>

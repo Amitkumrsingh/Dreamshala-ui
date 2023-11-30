@@ -204,7 +204,7 @@ const Faculties = () => {
 
         <Button
           m={2}
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => setAddMoreFaculties([...addMoreFaculties, ""])}
         >

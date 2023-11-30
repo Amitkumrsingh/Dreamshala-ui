@@ -181,7 +181,7 @@ const Results = () => {
 
         <Button
           m={2}
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => setAddMoreResults([...addMoreResults, ""])}
         >

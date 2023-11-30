@@ -147,7 +147,7 @@ const Reviews = () => {
 
         <Button
           m={2}
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => setAddMoreReviews([...addMoreReviews, ""])}
         >

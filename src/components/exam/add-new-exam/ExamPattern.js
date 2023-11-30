@@ -152,7 +152,7 @@ const ExamPattern = () => {
         ))}
 
         <Button
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => setAddMorePattern([...addMorePattern, ""])}
         >

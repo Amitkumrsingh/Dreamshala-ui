@@ -194,7 +194,7 @@ const Location = () => {
 
         <Button
           m={2}
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => setAddMoreLocation([...addMoreLocation, ""])}
         >
