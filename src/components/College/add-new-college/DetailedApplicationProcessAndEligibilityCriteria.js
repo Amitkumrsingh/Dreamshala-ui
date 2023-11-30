@@ -9,8 +9,12 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const DetailedApplicationProcessAndEligibilityCriteria = () => {
+  const theme = useTheme();
+  const placeholderColor = theme.palette.text.secondary;
+
   const [addMoreDegrees, setAddMoreDegrees] = useState([""]);
   const [degreeBranch, setDegreeBranch] = useState("");
   return (
@@ -33,6 +37,9 @@ const DetailedApplicationProcessAndEligibilityCriteria = () => {
                     onChange={(e) => setDegreeBranch(e.target.value)}
                     value={degreeBranch}
                     displayEmpty
+                    style={{
+                      color: degreeBranch === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here

@@ -9,9 +9,15 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const ImportantDates = () => {
+  const theme = useTheme();
+  const placeholderColor = theme.palette.text.secondary;
+
   const [addMoreDates, setAddMoreDates] = useState([""]);
+  const [dateDiscription, setDateDiscription] = useState("");
+  const [eventDiscription, setEventDiscription] = useState("");
   return (
     <>
       <Container>
@@ -26,7 +32,17 @@ const ImportantDates = () => {
                 <Typography>Date Description</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select
+                    onChange={(e) => setDateDiscription(e.target.value)}
+                    value={dateDiscription}
+                    displayEmpty
+                    style={{
+                      color: dateDiscription === "" && placeholderColor,
+                    }}
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     {/* Add more exam options as needed */}
@@ -53,7 +69,17 @@ const ImportantDates = () => {
                 <Typography>Event Description (if any)</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select
+                    onChange={(e) => setEventDiscription(e.target.value)}
+                    value={eventDiscription}
+                    displayEmpty
+                    style={{
+                      color: eventDiscription === "" && placeholderColor,
+                    }}
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     {/* Add more exam options as needed */}

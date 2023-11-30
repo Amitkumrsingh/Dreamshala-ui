@@ -12,8 +12,12 @@ import {
   Select,
 } from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { useTheme } from "@mui/material/styles";
 
 const Alumni = () => {
+  const theme = useTheme();
+  const placeholderColor = theme.palette.text.secondary;
+
   const [addMoreFaculties, setAddMoreFaculties] = useState([""]);
   const [experience, setExperience] = useState("");
   const [degree, setDegree] = useState("");
@@ -87,6 +91,9 @@ const Alumni = () => {
                     onChange={(e) => setExperience(e.target.value)}
                     value={experience}
                     displayEmpty
+                    style={{
+                      color: experience === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
@@ -112,6 +119,9 @@ const Alumni = () => {
                     onChange={(e) => setDegree(e.target.value)}
                     value={degree}
                     displayEmpty
+                    style={{
+                      color: degree === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
@@ -134,6 +144,9 @@ const Alumni = () => {
                     onChange={(e) => setLatestPosition(e.target.value)}
                     value={latestPosition}
                     displayEmpty
+                    style={{
+                      color: latestPosition === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
@@ -158,6 +171,9 @@ const Alumni = () => {
                     onChange={(e) => setYearOfGraduation(e.target.value)}
                     value={yearOfGraduation}
                     displayEmpty
+                    style={{
+                      color: yearOfGraduation === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here

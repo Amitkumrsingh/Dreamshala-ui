@@ -11,10 +11,14 @@ import {
   Select,
   Button,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import StarRating from "../../other/StarRating";
 
 const Reviews = () => {
+  const theme = useTheme();
+  const placeholderColor = theme.palette.text.secondary;
+
   const [addMoreReviews, setAddMoreReviews] = useState([""]);
   const [yearOfStudy, setYearOfStudy] = useState("");
   const [courseTaken, setCourseTaken] = useState("");
@@ -48,6 +52,9 @@ const Reviews = () => {
                     onChange={(e) => setYearOfStudy(e.target.value)}
                     value={yearOfStudy}
                     displayEmpty
+                    style={{
+                      color: yearOfStudy === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
@@ -70,6 +77,9 @@ const Reviews = () => {
                     onChange={(e) => setCourseTaken(e.target.value)}
                     value={courseTaken}
                     displayEmpty
+                    style={{
+                      color: courseTaken === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here

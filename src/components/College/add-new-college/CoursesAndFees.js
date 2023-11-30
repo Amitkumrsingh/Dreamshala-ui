@@ -8,10 +8,13 @@ import {
   FormControl,
   Typography,
   Button,
-  InputLabel,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const CoursesAndFees = () => {
+  const theme = useTheme();
+  const placeholderColor = theme.palette.text.secondary;
+
   const [anotherCourse, setAnotherCourse] = useState([""]);
   const [batchStrength, setBatchStrength] = useState("");
   const [exams, setExams] = useState("");
@@ -41,6 +44,9 @@ const CoursesAndFees = () => {
                   onChange={(e) => setExams(e.target.value)}
                   value={exams}
                   displayEmpty
+                  style={{
+                    color: exams === "" && placeholderColor,
+                  }}
                 >
                   <MenuItem value={""} disabled>
                     Select/ Type Here
@@ -59,6 +65,9 @@ const CoursesAndFees = () => {
                   onChange={(e) => setCourseDuration(e.target.value)}
                   value={courseDuration}
                   displayEmpty
+                  style={{
+                    color: courseDuration === "" && placeholderColor,
+                  }}
                 >
                   <MenuItem value={""} disabled>
                     Select/ Type Here
@@ -77,6 +86,9 @@ const CoursesAndFees = () => {
                   onChange={(e) => setDegreeOffered(e.target.value)}
                   value={degreeOffered}
                   displayEmpty
+                  style={{
+                    color: degreeOffered === "" && placeholderColor,
+                  }}
                 >
                   <MenuItem value={""} disabled>
                     Select/ Type Here
@@ -109,6 +121,9 @@ const CoursesAndFees = () => {
                     onChange={(e) => setTotalFees(e.target.value)}
                     value={totalFees}
                     displayEmpty
+                    style={{
+                      color: totalFees === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
@@ -127,6 +142,9 @@ const CoursesAndFees = () => {
                     onChange={(e) => setEligibiligyCriteria(e.target.value)}
                     value={eligibiligyCriteria}
                     displayEmpty
+                    style={{
+                      color: eligibiligyCriteria === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
@@ -148,6 +166,9 @@ const CoursesAndFees = () => {
                     onChange={(e) => setCourseMode(e.target.value)}
                     value={courseMode}
                     displayEmpty
+                    style={{
+                      color: courseMode === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
@@ -166,6 +187,9 @@ const CoursesAndFees = () => {
                     onChange={(e) => setBatchStrength(e.target.value)}
                     value={batchStrength}
                     displayEmpty
+                    style={{
+                      color: batchStrength === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here

@@ -11,9 +11,12 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 const Faculties = () => {
+  const theme = useTheme();
+  const placeholderColor = theme.palette.text.secondary;
   const [addMoreFaculties, setAddMoreFaculties] = useState([""]);
   const [background, setBackground] = useState("");
   const [experience, setExperience] = useState("");
@@ -88,6 +91,9 @@ const Faculties = () => {
                     onChange={(e) => setExperience(e.target.value)}
                     value={experience}
                     displayEmpty
+                    style={{
+                      color: experience === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
@@ -113,6 +119,9 @@ const Faculties = () => {
                     onChange={(e) => setSpecialisation(e.target.value)}
                     value={specialisation}
                     displayEmpty
+                    style={{
+                      color: specialisation === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
@@ -135,6 +144,9 @@ const Faculties = () => {
                     onChange={(e) => setBaseCity(e.target.value)}
                     value={baseCity}
                     displayEmpty
+                    style={{
+                      color: baseCity === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
@@ -159,6 +171,9 @@ const Faculties = () => {
                     onChange={(e) => setBackground(e.target.value)}
                     value={background}
                     displayEmpty
+                    style={{
+                      color: background === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here

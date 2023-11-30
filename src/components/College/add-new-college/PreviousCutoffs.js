@@ -9,8 +9,11 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const PreviousCutoffs = () => {
+  const theme = useTheme();
+  const placeholderColor = theme.palette.text.secondary;
   const [addMoreCutOffs, setAddMoreCutOffs] = useState([""]);
   const [degreeBranch, setDegreeBranch] = useState("");
   const [selectCategory, setSelectCategory] = useState("");
@@ -33,6 +36,9 @@ const PreviousCutoffs = () => {
                     onChange={(e) => setDegreeBranch(e.target.value)}
                     value={degreeBranch}
                     displayEmpty
+                    style={{
+                      color: degreeBranch === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
@@ -65,6 +71,9 @@ const PreviousCutoffs = () => {
                         onChange={(e) => setSelectCategory(e.target.value)}
                         value={selectCategory}
                         displayEmpty
+                        style={{
+                          color: selectCategory === "" && placeholderColor,
+                        }}
                       >
                         <MenuItem value={""} disabled>
                           Select/ Type Here
@@ -85,6 +94,9 @@ const PreviousCutoffs = () => {
                         onChange={(e) => setSelectCategory(e.target.value)}
                         value={selectCategory}
                         displayEmpty
+                        style={{
+                          color: selectCategory === "" && placeholderColor,
+                        }}
                       >
                         <MenuItem value={""} disabled>
                           Select/ Type Here
@@ -127,6 +139,9 @@ const PreviousCutoffs = () => {
                       onChange={(e) => setSubject(e.target.value)}
                       value={subject}
                       displayEmpty
+                      style={{
+                        color: subject === "" && placeholderColor,
+                      }}
                     >
                       <MenuItem value={""} disabled>
                         Select/ Type Here
@@ -143,6 +158,9 @@ const PreviousCutoffs = () => {
                       onChange={(e) => setSelectCategory(e.target.value)}
                       value={selectCategory}
                       displayEmpty
+                      style={{
+                        color: selectCategory === "" && placeholderColor,
+                      }}
                     >
                       <MenuItem value={""} disabled>
                         Select/ Type Here

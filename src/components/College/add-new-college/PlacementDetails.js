@@ -12,8 +12,11 @@ import {
   Select,
 } from "@mui/material";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
+import { useTheme } from "@mui/material/styles";
 
 const PlacementDetails = () => {
+  const theme = useTheme();
+  const placeholderColor = theme.palette.text.secondary;
   const [addMorePlacement, setAddMorePlacement] = useState([""]);
   const [degreeBranch, setDegreeBranch] = useState("");
   const [numberOfRecruiters, setNumberOfRecruiters] = useState("");
@@ -67,6 +70,9 @@ const PlacementDetails = () => {
                     onChange={(e) => setDegreeBranch(e.target.value)}
                     value={degreeBranch}
                     displayEmpty
+                    style={{
+                      color: degreeBranch === "" && placeholderColor,
+                    }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
@@ -97,6 +103,9 @@ const PlacementDetails = () => {
                       onChange={(e) => setHighestPackage(e.target.value)}
                       value={highestPackage}
                       displayEmpty
+                      style={{
+                        color: highestPackage === "" && placeholderColor,
+                      }}
                     >
                       <MenuItem value={""} disabled>
                         Select/ Type Here
@@ -115,6 +124,9 @@ const PlacementDetails = () => {
                       onChange={(e) => setNumberOfRecruiters(e.target.value)}
                       value={numberOfRecruiters}
                       displayEmpty
+                      style={{
+                        color: numberOfRecruiters === "" && placeholderColor,
+                      }}
                     >
                       <MenuItem value={""} disabled>
                         Select/ Type Here
@@ -133,6 +145,11 @@ const PlacementDetails = () => {
                       }
                       value={numberOfInternationalOffers}
                       displayEmpty
+                      style={{
+                        color:
+                          numberOfInternationalOffers === "" &&
+                          placeholderColor,
+                      }}
                     >
                       <MenuItem value={""} disabled>
                         Select/ Type Here
@@ -149,6 +166,9 @@ const PlacementDetails = () => {
                       onChange={(e) => setAveragePackage(e.target.value)}
                       value={averagePackage}
                       displayEmpty
+                      style={{
+                        color: averagePackage === "" && placeholderColor,
+                      }}
                     >
                       <MenuItem value={""} disabled>
                         Select/ Type Here
@@ -167,6 +187,9 @@ const PlacementDetails = () => {
                       onChange={(e) => setNumberOfOffers(e.target.value)}
                       value={numberOfOffers}
                       displayEmpty
+                      style={{
+                        color: numberOfOffers === "" && placeholderColor,
+                      }}
                     >
                       <MenuItem value={""} disabled>
                         Select/ Type Here
@@ -185,6 +208,9 @@ const PlacementDetails = () => {
                       onChange={(e) => setTopRecruiters(e.target.value)}
                       value={topRecruiters}
                       displayEmpty
+                      style={{
+                        color: topRecruiters === "" && placeholderColor,
+                      }}
                     >
                       <MenuItem value={""} disabled>
                         Select/ Type Here
