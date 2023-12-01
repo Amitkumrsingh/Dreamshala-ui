@@ -28,7 +28,7 @@ const ManagementContact = () => {
         MANAGEMENT CONTACT (For Office Use Only)
       </Typography>
       {/* First Row */}
-      <Grid container spacing={2} mt={4}>
+      <Grid container spacing={6} mt={2}>
         <Grid item xs={4}>
           <Typography>Name</Typography>
           <TextField
@@ -65,7 +65,7 @@ const ManagementContact = () => {
       </Grid>
 
       {/* Second Row */}
-      <Grid container spacing={2} mt={2}>
+      <Grid container spacing={6} mt={2}>
         <Grid item xs={4}>
           <Typography>Contact</Typography>
           <TextField
@@ -83,8 +83,8 @@ const ManagementContact = () => {
 
       {/* Additional Contact Fields */}
       {contacts.slice(2).map((contact, index) => (
-        <>
-          <Grid container spacing={2} key={index} mt={4}>
+        <Grid key={index}>
+          <Grid container spacing={6} mt={2}>
             <Grid item xs={4}>
               <Typography>Name</Typography>
               <TextField
@@ -125,7 +125,7 @@ const ManagementContact = () => {
               />
             </Grid>
           </Grid>
-          <Grid container spacing={2} mt={2}>
+          <Grid container spacing={6} mt={2}>
             <Grid item xs={4}>
               <Typography>Contact</Typography>
               <TextField
@@ -141,11 +141,11 @@ const ManagementContact = () => {
             <Grid item xs={4}></Grid>
             <Grid item xs={4}></Grid>
           </Grid>
-        </>
+        </Grid>
       ))}
 
       {/* Button to add more contacts */}
-      <Grid mt={4}>
+      <Grid mt={6}>
         <Button variant="outlined" color="primary" onClick={addContact}>
           Add More Contacts
         </Button>

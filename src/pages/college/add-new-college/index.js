@@ -102,37 +102,49 @@ const AddNewCollege = () => {
             </Step>
           ))}
       </Stepper>
-      <div>
+      <Grid>
         {activeStep === steps.length + steps1.length ? (
-          <div>
+          <Grid>
             <p>All steps completed - you're finished</p>
-          </div>
+          </Grid>
         ) : (
-          <div>
-            {/* Render the current step form */}
-            {activeStep === 0 && <About />}
-            {activeStep === 1 && <ContactDetails />}
-            {activeStep === 2 && <ManagementContact />}
-            {activeStep === 3 && <EntranceExams />}
-            {activeStep === 4 && <CoursesAndFees />}
-            {activeStep === 5 && <Photos />}
-            {activeStep === 6 && <ImportantNews />}
-            {activeStep === 7 && <ImportantDates />}
-            {activeStep === 8 && (
-              <DetailedApplicationProcessAndEligibilityCriteria />
-            )}
-            {activeStep === 9 && <Faculties />}
-            {activeStep === 10 && <Reviews />}
-            {activeStep === 11 && <Videos parentName={"college"} />}
-            {activeStep === 12 && <Alumni />}
-            {activeStep === 13 && <PreviousCutoffs />}
-            {activeStep === 14 && <PlacementDetails />}
-            {activeStep === 15 && <Location />}
-            {activeStep === 16 && <CollegeDetails />}
-            {activeStep === 17 && <CheckList />}
-            {activeStep === 18 && <FAQ />}
-            {/* Add more steps as needed */}
-            <Grid mt={6}>
+          <Grid
+            container
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+          >
+            <Grid>
+              {/* Render the current step form */}
+              {activeStep === 0 && <About />}
+              {activeStep === 1 && <ContactDetails />}
+              {activeStep === 2 && <ManagementContact />}
+              {activeStep === 3 && <EntranceExams />}
+              {activeStep === 4 && <CoursesAndFees />}
+              {activeStep === 5 && <Photos />}
+              {activeStep === 6 && <ImportantNews />}
+              {activeStep === 7 && <ImportantDates />}
+              {activeStep === 8 && (
+                <DetailedApplicationProcessAndEligibilityCriteria />
+              )}
+              {activeStep === 9 && <Faculties />}
+              {activeStep === 10 && <Reviews />}
+              {activeStep === 11 && <Videos parentName={"college"} />}
+              {activeStep === 12 && <Alumni />}
+              {activeStep === 13 && <PreviousCutoffs />}
+              {activeStep === 14 && <PlacementDetails />}
+              {activeStep === 15 && <Location />}
+              {activeStep === 16 && <CollegeDetails />}
+              {activeStep === 17 && <CheckList />}
+              {activeStep === 18 && <FAQ />}
+              {/* Add more steps as needed */}
+            </Grid>
+
+            <Grid
+              container
+              alignItems={"center"}
+              justifyContent={"center"}
+              mt={20}
+            >
               <Button disabled={activeStep === 0} onClick={handleBack}>
                 Back
               </Button>
@@ -142,9 +154,9 @@ const AddNewCollege = () => {
                   : "Next"}
               </Button>
             </Grid>
-          </div>
+          </Grid>
         )}
-      </div>
+      </Grid>
     </Container>
   );
 };

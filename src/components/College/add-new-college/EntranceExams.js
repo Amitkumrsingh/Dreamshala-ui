@@ -1,7 +1,21 @@
 import React, { useState } from "react";
 import { TextField, Button, Grid, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const EntranceExams = () => {
+  const theme = useTheme();
+  const secondaryColor = theme.palette.text.secondary;
+  const primaryColor = theme.palette.text.primary;
+
+  const buttonSelectedStyle = {
+    color: primaryColor,
+  };
+
+  const buttonNotSelectedStyle = {
+    color: secondaryColor,
+    borderColor: secondaryColor,
+  };
+
   const [checkboxes, setCheckboxes] = useState({
     design: [
       { exam: "CEED", selected: false },
@@ -67,69 +81,77 @@ const EntranceExams = () => {
           ENTRANCE EXAMS
         </Typography>
       </Grid>
-      <Grid mt={4}>
-        <Typography variant="p">
-          Select all the exams through which students can get admission in your
-          college/ institute
-        </Typography>
-      </Grid>
       <form>
         {/* First Row */}
-        <Grid container mb={2} mt={2}>
-          <Grid item xs={4}>
-            <Typography>Design</Typography>
-            <Grid style={{ display: "flex" }}>
-              {checkboxes.design.map(({ exam, selected }, index) => (
-                <Grid key={index} mr={1}>
-                  <Button
-                    variant={selected ? "contained" : "outlined"}
-                    color="primary"
-                    onClick={() => handleCheckboxChange(0, index)}
-                  >
-                    {`${exam}`}
-                  </Button>
-                </Grid>
-              ))}
-            </Grid>
+        <Grid mt={6}>
+          <Grid mb={4}>
+            <Typography variant="p">
+              Select all the exams through which students can get admission in
+              your college/ institute
+            </Typography>
           </Grid>
-
-          <Grid item xs={4}>
-            <Typography>Engineering</Typography>
-            <Grid style={{ display: "flex" }}>
-              {checkboxes.engineering.map(({ exam, selected }, index) => (
-                <Grid key={index} mr={1}>
-                  <Button
-                    variant={selected ? "contained" : "outlined"}
-                    color="primary"
-                    onClick={() => handleCheckboxChange(1, index)}
-                  >
-                    {`${exam}`}
-                  </Button>
-                </Grid>
-              ))}
+          <Grid container spacing={6}>
+            <Grid item xs={4}>
+              <Typography>Design</Typography>
+              <Grid style={{ display: "flex" }}>
+                {checkboxes.design.map(({ exam, selected }, index) => (
+                  <Grid key={index} mr={1}>
+                    <Button
+                      variant={selected ? "contained" : "outlined"}
+                      style={
+                        selected ? buttonSelectedStyle : buttonNotSelectedStyle
+                      }
+                      onClick={() => handleCheckboxChange(0, index)}
+                    >
+                      {`${exam}`}
+                    </Button>
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
-          </Grid>
 
-          <Grid item xs={4}>
-            <Typography>Medical</Typography>
-            <Grid style={{ display: "flex" }}>
-              {checkboxes.medical.map(({ exam, selected }, index) => (
-                <Grid key={index} mr={1}>
-                  <Button
-                    variant={selected ? "contained" : "outlined"}
-                    color="primary"
-                    onClick={() => handleCheckboxChange(2, index)}
-                  >
-                    {`${exam}`}
-                  </Button>
-                </Grid>
-              ))}
+            <Grid item xs={4}>
+              <Typography>Engineering</Typography>
+              <Grid style={{ display: "flex" }}>
+                {checkboxes.engineering.map(({ exam, selected }, index) => (
+                  <Grid key={index} mr={1}>
+                    <Button
+                      variant={selected ? "contained" : "outlined"}
+                      style={
+                        selected ? buttonSelectedStyle : buttonNotSelectedStyle
+                      }
+                      onClick={() => handleCheckboxChange(1, index)}
+                    >
+                      {`${exam}`}
+                    </Button>
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+
+            <Grid item xs={4}>
+              <Typography>Medical</Typography>
+              <Grid style={{ display: "flex" }}>
+                {checkboxes.medical.map(({ exam, selected }, index) => (
+                  <Grid key={index} mr={1}>
+                    <Button
+                      variant={selected ? "contained" : "outlined"}
+                      style={
+                        selected ? buttonSelectedStyle : buttonNotSelectedStyle
+                      }
+                      onClick={() => handleCheckboxChange(2, index)}
+                    >
+                      {`${exam}`}
+                    </Button>
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
 
         {/* Second Row */}
-        <Grid container mt={2}>
+        <Grid container spacing={6} mt={2}>
           <Grid item xs={4}>
             <Typography>Law</Typography>
             <Grid style={{ display: "flex" }}>
@@ -137,7 +159,9 @@ const EntranceExams = () => {
                 <Grid key={index} mr={1}>
                   <Button
                     variant={selected ? "contained" : "outlined"}
-                    color="primary"
+                    style={
+                      selected ? buttonSelectedStyle : buttonNotSelectedStyle
+                    }
                     onClick={() => handleCheckboxChange(3, index)}
                   >
                     {`${exam}`}
@@ -154,7 +178,9 @@ const EntranceExams = () => {
                 <Grid key={index} mr={1}>
                   <Button
                     variant={selected ? "contained" : "outlined"}
-                    color="primary"
+                    style={
+                      selected ? buttonSelectedStyle : buttonNotSelectedStyle
+                    }
                     onClick={() => handleCheckboxChange(1, index)}
                   >
                     {`${exam}`}
@@ -171,7 +197,9 @@ const EntranceExams = () => {
                 <Grid key={index} mr={1}>
                   <Button
                     variant={selected ? "contained" : "outlined"}
-                    color="primary"
+                    style={
+                      selected ? buttonSelectedStyle : buttonNotSelectedStyle
+                    }
                     onClick={() => handleCheckboxChange(2, index)}
                   >
                     {`${exam}`}
@@ -183,7 +211,7 @@ const EntranceExams = () => {
         </Grid>
 
         {/* Third Row */}
-        <Grid container mt={4}>
+        <Grid container spacing={6} mt={2}>
           <Grid item xs={4}>
             <Typography>
               Other (If any entrance/criteria is not in the list)

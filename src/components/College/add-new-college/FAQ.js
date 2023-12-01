@@ -7,13 +7,20 @@ const FAQ = () => {
   return (
     <>
       <Container>
-        <Grid mb={4}>
+        <Grid>
           <Typography variant="h5">FREQUENTLY ASKED QUESTIONS</Typography>
         </Grid>
 
         {addMoreFAQ.map((data, index) => (
-          <Grid key={index}>
-            <Grid mb={4}>
+          <Grid
+            key={index}
+            container
+            spacing={6}
+            mt={2}
+            flexDirection={"column"}
+            mb={6}
+          >
+            <Grid item>
               <Typography>Questions</Typography>
               <TextField
                 fullWidth
@@ -23,7 +30,7 @@ const FAQ = () => {
               />
             </Grid>
 
-            <Grid mb={4}>
+            <Grid item>
               <Typography>Answer</Typography>
               <TextField
                 fullWidth
@@ -35,15 +42,16 @@ const FAQ = () => {
             </Grid>
           </Grid>
         ))}
-
-        <Button
-          m={2}
-          variant="outlined"
-          color="primary"
-          onClick={() => setAddMoreFAQ([...addMoreFAQ, ""])}
-        >
-          + Add More
-        </Button>
+        <Grid>
+          <Button
+            m={2}
+            variant="outlined"
+            color="primary"
+            onClick={() => setAddMoreFAQ([...addMoreFAQ, ""])}
+          >
+            + Add More
+          </Button>
+        </Grid>
       </Container>
     </>
   );

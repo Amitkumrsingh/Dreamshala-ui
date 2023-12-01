@@ -65,7 +65,7 @@ const CollegeDetails = () => {
           </Typography>
         </Grid>
 
-        <Grid container spacing={2} mt={2} mb={2}>
+        <Grid container spacing={6} mt={2}>
           <Grid item xs={4}>
             <Typography>College Name</Typography>
             <TextField
@@ -110,13 +110,13 @@ const CollegeDetails = () => {
           </Grid>
         </Grid>
 
-        <Grid mt={4} mb={4}>
+        <Grid mt={6} mb={4}>
           <Typography variant="h5">College Registered Address</Typography>
         </Grid>
 
-        <Grid container spacing={2}>
+        <Grid container spacing={6}>
           <Grid xs={8} item>
-            <Grid container spacing={2} mb={6}>
+            <Grid container spacing={6}>
               <Grid item xs={4}>
                 <Typography>Address Line 1</Typography>
                 <TextField
@@ -148,7 +148,7 @@ const CollegeDetails = () => {
                 />
               </Grid>
             </Grid>
-            <Grid container spacing={2}>
+            <Grid container spacing={6} mt={1}>
               <Grid item xs={4}>
                 <Typography>Pincode</Typography>
                 <TextField
@@ -224,8 +224,8 @@ const CollegeDetails = () => {
           </Grid>
         </Grid>
 
-        <Grid container pr={2} spacing={2}>
-          <Grid item xs={16.2 / 3}>
+        <Grid container spacing={6}>
+          <Grid item xs={16 / 3}>
             <Typography>PAN Card No.</Typography>
             <TextField
               fullWidth
@@ -240,7 +240,7 @@ const CollegeDetails = () => {
             <label htmlFor="image-input">
               <Box
                 border={1}
-                borderColor="grey.500"
+                borderColor={placeholderColor}
                 borderRadius="4px"
                 display="flex"
                 alignItems="center"
@@ -255,7 +255,7 @@ const CollegeDetails = () => {
                   id="image-input"
                 />
                 <IconButton component="span">
-                  <FileUploadIcon fontSize="small" color="primary" />
+                  <FileUploadIcon fontSize="small" color={placeholderColor} />
                 </IconButton>
                 Click here to Upload
                 {/* You can display the selected image here if needed */}

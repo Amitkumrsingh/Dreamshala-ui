@@ -61,7 +61,7 @@ const Location = () => {
           <Typography variant="h5" gutterBottom>
             LOCATION
           </Typography>
-          <Typography>
+          <Typography mt={4}>
             This section is to add all the location where your services are
             available
           </Typography>
@@ -69,10 +69,10 @@ const Location = () => {
 
         {/* This is main Location container */}
         {addMoreLocation.map((data, index) => (
-          <Grid container mt={4} mb={4} key={index} spacing={2}>
-            <Grid item xs={8}>
-              <Grid container>
-                <Grid xs={6} pr={2}>
+          <Grid container mt={1} mb={6} key={index} spacing={6}>
+            <Grid item xs={8} container flexDirection={"column"} spacing={6}>
+              <Grid container spacing={6} item>
+                <Grid xs={6} item>
                   <Typography>Select State</Typography>
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
@@ -97,7 +97,7 @@ const Location = () => {
                     </Select>
                   </FormControl>
                 </Grid>
-                <Grid xs={6}>
+                <Grid xs={6} item>
                   <Typography>Select City</Typography>
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
@@ -120,8 +120,8 @@ const Location = () => {
                   </FormControl>
                 </Grid>
               </Grid>
-              <Grid container mt={4}>
-                <Grid xs={6} pr={2}>
+              <Grid container spacing={6} item>
+                <Grid xs={6} item>
                   <Typography>Address Line 1</Typography>
                   <TextField
                     fullWidth
@@ -131,7 +131,7 @@ const Location = () => {
                     size="small"
                   />
                 </Grid>
-                <Grid xs={6}>
+                <Grid xs={6} item>
                   <Typography>Address Line 2</Typography>
                   <TextField
                     fullWidth
@@ -143,7 +143,7 @@ const Location = () => {
                 </Grid>
               </Grid>
 
-              <Grid container spacing={2} mt={4}>
+              <Grid container spacing={6} item>
                 <Grid item xs={3.5}>
                   <Typography>Landmark/ Locality</Typography>
                   <TextField
@@ -192,14 +192,16 @@ const Location = () => {
           </Grid>
         ))}
 
-        <Button
-          m={2}
-          variant="outlined"
-          color="primary"
-          onClick={() => setAddMoreLocation([...addMoreLocation, ""])}
-        >
-          + Add More Location
-        </Button>
+        <Grid>
+          <Button
+            m={2}
+            variant="outlined"
+            color="primary"
+            onClick={() => setAddMoreLocation([...addMoreLocation, ""])}
+          >
+            + Add More Location
+          </Button>
+        </Grid>
       </Container>
     </>
   );

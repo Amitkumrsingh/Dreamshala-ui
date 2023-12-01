@@ -8,16 +8,20 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 
 const Videos = ({ parentName }) => {
+  const theme = useTheme();
+  const secondaryColor = theme.palette.text.secondary;
+
   const [addMoreVideos, setAddMoreVideos] = useState([" "]);
   return (
     <>
       <Container>
-        <Grid>
-          <Typography variant="h5" gutterBottom>
+        <Grid mb={4}>
+          <Typography variant="h5" mb={6}>
             VIDEOS
           </Typography>
           <Typography>
@@ -26,8 +30,8 @@ const Videos = ({ parentName }) => {
         </Grid>
 
         {addMoreVideos.map((data, index) => (
-          <Grid mt={4} mb={4} key={index}>
-            <Grid container spacing={4}>
+          <Grid mb={6} key={index}>
+            <Grid container spacing={6}>
               <Grid item xs={4}>
                 <Grid>
                   <Typography>Video Link</Typography>
@@ -36,15 +40,18 @@ const Videos = ({ parentName }) => {
                     // label="Description"
                     placeholder="Type here"
                     variant="outlined"
+                    size="small"
                   />
                 </Grid>
                 <Grid
                   alignItems={"center"}
                   container
                   justifyContent={"center"}
-                  mt={4}
+                  mt={5}
                 >
-                  <Typography variant="h5">OR</Typography>
+                  <Typography variant="h5">
+                    <em>OR</em>
+                  </Typography>
                 </Grid>
               </Grid>
 
@@ -56,94 +63,107 @@ const Videos = ({ parentName }) => {
                   placeholder="Describe here"
                   variant="outlined"
                   multiline
-                  minRows={4}
-                  maxRows={4}
+                  minRows={3}
+                  maxRows={3}
                 />
               </Grid>
             </Grid>
 
-            <Grid container spacing={4}>
+            <Grid container spacing={6}>
               <Grid item xs={4}>
-                <label htmlFor="image-input">
-                  <Box
-                    border={1}
-                    borderColor="grey.500"
-                    borderRadius="4px"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    padding="20px"
-                    height={"100%"}
-                  >
-                    <input
-                      type="file"
-                      accept="image/*"
-                      // onChange={handleImageChange}
-                      style={{ display: "none" }}
-                      id="image-input"
-                    />
-
-                    <IconButton component="span">
-                      <VideoCallIcon fontSize="large" color="primary" />
-                    </IconButton>
-                    {/* You can display the selected image here if needed */}
-                  </Box>
-                </label>
-              </Grid>
-
-              <Grid container spacing={4} item xs={8} mt={4}>
-                <Grid xs={6} item>
-                  <Typography>Enter Keywords/ meta tags</Typography>
-                  <TextField
-                    fullWidth
-                    // label="Description"
-                    placeholder="Type here"
-                    variant="outlined"
-                    multiline
-                    minRows={2}
-                    maxRows={2}
-                  />
-                </Grid>
-                <Grid item>
-                  <Typography>Upload thumbnail for video</Typography>
+                <Typography>Insert Video</Typography>
+                <Grid>
                   <label htmlFor="image-input">
                     <Box
-                      border={1}
-                      borderColor="grey.500"
+                      border={"2px dashed"}
+                      borderColor={secondaryColor}
                       borderRadius="4px"
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
-                      paddingRight={"10px"}
+                      padding="20px"
+                      height={130}
                     >
                       <input
                         type="file"
-                        accept="file/*"
-                        //   onChange={handleImageChange}
+                        accept="image/*"
+                        // onChange={handleImageChange}
                         style={{ display: "none" }}
                         id="image-input"
                       />
+
                       <IconButton component="span">
-                        <FileUploadIcon fontSize="small" color="primary" />
+                        <VideoCallIcon
+                          fontSize="large"
+                          color={secondaryColor}
+                        />
                       </IconButton>
-                      Click here to Upload
                       {/* You can display the selected image here if needed */}
                     </Box>
                   </label>
+                </Grid>
+              </Grid>
+
+              <Grid item xs={8} container alignItems={"end"}>
+                <Grid container spacing={6}>
+                  <Grid xs={6} item>
+                    <Typography>Enter Keywords/ meta tags</Typography>
+                    <TextField
+                      fullWidth
+                      // label="Description"
+                      placeholder="Type here"
+                      variant="outlined"
+                      multiline
+                      minRows={2}
+                      maxRows={2}
+                    />
+                  </Grid>
+                  <Grid item>
+                    <Typography>Upload thumbnail for video</Typography>
+                    <label htmlFor="image-input">
+                      <Box
+                        border={1}
+                        borderColor={secondaryColor}
+                        borderRadius="4px"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                        paddingRight={"10px"}
+                      >
+                        <input
+                          type="file"
+                          accept="file/*"
+                          //   onChange={handleImageChange}
+                          style={{ display: "none" }}
+                          id="image-input"
+                        />
+                        <IconButton component="span">
+                          <FileUploadIcon
+                            fontSize="small"
+                            color={secondaryColor}
+                          />
+                        </IconButton>
+                        Click here to Upload
+                        {/* You can display the selected image here if needed */}
+                      </Box>
+                    </label>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
         ))}
 
-        <Button
-          m={2}
-          variant="outlined"
-          color="primary"
-          onClick={() => setAddMoreVideos([...addMoreVideos, ""])}
-        >
-          + Add More Videos
-        </Button>
+        <Grid>
+          <Button
+            m={2}
+            variant="outlined"
+            color="primary"
+            onClick={() => setAddMoreVideos([...addMoreVideos, ""])}
+          >
+            + Add More Videos
+          </Button>
+        </Grid>
       </Container>
     </>
   );

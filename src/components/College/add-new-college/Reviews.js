@@ -32,8 +32,8 @@ const Reviews = () => {
         </Grid>
 
         {addMoreReviews.map((data, index) => (
-          <Grid key={index} mb={4}>
-            <Grid container spacing={2} mb={4}>
+          <Grid key={index} mb={6}>
+            <Grid container spacing={6}>
               <Grid item xs={4}>
                 <Typography>Name</Typography>
                 <TextField
@@ -96,13 +96,13 @@ const Reviews = () => {
               </Grid>
             </Grid>
 
-            <Grid container mb={2}>
+            <Grid container mb={2} mt={6}>
               <Typography>
                 <b>Rate the College on the following factors</b>
               </Typography>
             </Grid>
 
-            <Grid container spacing={2} mb={2}>
+            <Grid container spacing={6}>
               <Grid item xs={4}>
                 <StarRating title={"Overall Rating"} />
                 <StarRating title={"Infrastructure"} />
@@ -118,7 +118,7 @@ const Reviews = () => {
               </Grid>
             </Grid>
 
-            <Grid container spacing={2} mt={2}>
+            <Grid container spacing={6} mt={2}>
               <Grid item xs={8}>
                 <Typography variant="h6">Detailed Description</Typography>
                 <TextField
@@ -145,7 +145,7 @@ const Reviews = () => {
                   <label htmlFor="image-input">
                     <Box
                       border={1}
-                      borderColor="grey.500"
+                      borderColor={placeholderColor}
                       borderRadius="4px"
                       display="flex"
                       alignItems="center"
@@ -160,7 +160,10 @@ const Reviews = () => {
                         id="image-input"
                       />
                       <IconButton component="span">
-                        <FileUploadIcon fontSize="small" color="primary" />
+                        <FileUploadIcon
+                          fontSize="small"
+                          color={placeholderColor}
+                        />
                       </IconButton>
                       Click here to Upload
                       {/* You can display the selected image here if needed */}
@@ -172,14 +175,16 @@ const Reviews = () => {
           </Grid>
         ))}
 
-        <Button
-          m={2}
-          variant="outlined"
-          color="primary"
-          onClick={() => setAddMoreReviews([...addMoreReviews, ""])}
-        >
-          + Add More Reviews
-        </Button>
+        <Grid>
+          <Button
+            m={2}
+            variant="outlined"
+            color="primary"
+            onClick={() => setAddMoreReviews([...addMoreReviews, ""])}
+          >
+            + Add More Reviews
+          </Button>
+        </Grid>
       </Container>
     </>
   );

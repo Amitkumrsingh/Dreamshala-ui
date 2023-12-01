@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import { TextField, Button, Grid, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const ContactDetails = () => {
+  const theme = useTheme();
+  const secondaryColor = theme.palette.text.secondary;
+
+  const buttonNotSelectedStyle = {
+    color: secondaryColor,
+    borderColor: secondaryColor,
+  };
+
   const [linkInputs, setLinkInputs] = useState([""]); // State to store link inputs
   const [accountInputs, setAccountInputs] = useState([]); // State to store account inputs
 
@@ -24,9 +33,11 @@ const ContactDetails = () => {
 
   return (
     <form>
-      <Typography variant="h5">Contact Details</Typography>
+      <Grid>
+        <Typography variant="h5">Contact Details</Typography>
+      </Grid>
       {/* First Row */}
-      <Grid container spacing={2} mt={4}>
+      <Grid container spacing={6} mt={2}>
         <Grid item xs={4}>
           <Typography>Your college main website</Typography>
           <TextField placeholder="Website Link" fullWidth size="small" />
@@ -42,13 +53,13 @@ const ContactDetails = () => {
       </Grid>
 
       {/* Second Row */}
-      <Grid container spacing={2} mt={2}>
+      <Grid container spacing={6} mt={2}>
         <Grid item xs={4} alignItems={"center"}>
           <Grid>
             <Typography>Other websites/important links</Typography>
           </Grid>
-          <Grid container alignItems={"end"}>
-            <Grid xs={10}>
+          <Grid container alignItems={"end"} spacing={2}>
+            <Grid xs={10} item>
               {linkInputs.map((link, index) => (
                 <Grid key={index} mb={index + 1 !== linkInputs.length ? 2 : 0}>
                   <TextField
@@ -66,10 +77,10 @@ const ContactDetails = () => {
               ))}
             </Grid>
 
-            <Grid xs={2} mb={0}>
+            <Grid xs={2} mb={0} item>
               <Button
-                variant="contained"
-                color="primary"
+                variant="outlined"
+                style={buttonNotSelectedStyle}
                 onClick={addLinkInput}
               >
                 +
@@ -80,7 +91,7 @@ const ContactDetails = () => {
       </Grid>
 
       {/* Third Row */}
-      <Grid container spacing={2} mt={2}>
+      <Grid container spacing={6} mt={2}>
         <Grid item xs={4}>
           <Typography>Facebook Page</Typography>
           <TextField placeholder="Website Link" fullWidth size="small" />
@@ -96,7 +107,7 @@ const ContactDetails = () => {
       </Grid>
 
       {/* Fourth Row */}
-      <Grid container spacing={2} mt={2}>
+      <Grid container spacing={6} mt={2}>
         <Grid item xs={4}>
           <Typography>YouTube Channel</Typography>
           <TextField placeholder="Website Link" fullWidth size="small" />
@@ -112,7 +123,7 @@ const ContactDetails = () => {
       </Grid>
 
       {/* Fifth Row */}
-      <Grid container spacing={2} mt={2}>
+      <Grid container spacing={6} mt={2}>
         {/* Additional Account Inputs */}
         {accountInputs.map((account, index) => (
           <Grid item key={index} xs={4}>

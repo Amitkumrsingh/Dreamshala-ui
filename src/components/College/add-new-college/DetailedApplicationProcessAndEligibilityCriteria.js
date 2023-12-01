@@ -27,7 +27,7 @@ const DetailedApplicationProcessAndEligibilityCriteria = () => {
         </Grid>
 
         {addMoreDegrees.map((data, index) => (
-          <Grid key={index} mb={4}>
+          <Grid key={index} mb={6}>
             <Grid container>
               <Grid xs={4}>
                 <Typography>Degree/ Branch</Typography>
@@ -52,49 +52,49 @@ const DetailedApplicationProcessAndEligibilityCriteria = () => {
               </Grid>
             </Grid>
 
-            <Grid mt={2}>
-              <Grid container spacing={2}>
-                <Grid xs={6} item>
-                  <Typography>
-                    Add detailed description about your application process
-                  </Typography>
-                  <TextField
-                    fullWidth
-                    //   label="Describe here"
-                    placeholder="Describe here"
-                    variant="outlined"
-                    multiline
-                    minRows={4}
-                    maxRows={4}
-                  />
-                </Grid>
-                <Grid xs={6} item>
-                  <Typography>
-                    Add detailed description about your eligibility criteria
-                  </Typography>
-                  <TextField
-                    fullWidth
-                    //   label="Describe here"
-                    placeholder="Describe here"
-                    variant="outlined"
-                    multiline
-                    minRows={4}
-                    maxRows={4}
-                  />
-                </Grid>
+            <Grid container spacing={6} mt={2}>
+              <Grid xs={6} item>
+                <Typography>
+                  Add detailed description about your application process
+                </Typography>
+                <TextField
+                  fullWidth
+                  //   label="Describe here"
+                  placeholder="Describe here"
+                  variant="outlined"
+                  multiline
+                  minRows={4}
+                  maxRows={4}
+                />
+              </Grid>
+              <Grid xs={6} item>
+                <Typography>
+                  Add detailed description about your eligibility criteria
+                </Typography>
+                <TextField
+                  fullWidth
+                  //   label="Describe here"
+                  placeholder="Describe here"
+                  variant="outlined"
+                  multiline
+                  minRows={4}
+                  maxRows={4}
+                />
               </Grid>
             </Grid>
           </Grid>
         ))}
 
-        <Button
-          m={2}
-          variant="outlined"
-          color="primary"
-          onClick={() => setAddMoreDegrees([...addMoreDegrees, ""])}
-        >
-          + Add More Courses
-        </Button>
+        <Grid>
+          <Button
+            m={2}
+            variant="outlined"
+            color="primary"
+            onClick={() => setAddMoreDegrees([...addMoreDegrees, ""])}
+          >
+            + Add More Courses
+          </Button>
+        </Grid>
       </Container>
     </>
   );

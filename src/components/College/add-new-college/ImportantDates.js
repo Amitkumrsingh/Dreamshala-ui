@@ -21,13 +21,13 @@ const ImportantDates = () => {
   return (
     <>
       <Container>
-        <Grid mb={4}>
+        <Grid mb={6}>
           <Typography variant="h5">IMPORTANT DATES</Typography>
         </Grid>
 
         {addMoreDates.map((data, index) => (
-          <Grid mb={4} key={index}>
-            <Grid container spacing={2}>
+          <Grid mb={6} key={index}>
+            <Grid container spacing={6}>
               <Grid item xs={4}>
                 <Typography>Date Description</Typography>
                 <FormControl fullWidth size="small">
@@ -90,14 +90,16 @@ const ImportantDates = () => {
           </Grid>
         ))}
 
-        <Button
-          m={2}
-          variant="outlined"
-          color="primary"
-          onClick={() => setAddMoreDates([...addMoreDates, ""])}
-        >
-          + Add More Courses
-        </Button>
+        <Grid>
+          <Button
+            m={2}
+            variant="outlined"
+            color="primary"
+            onClick={() => setAddMoreDates([...addMoreDates, ""])}
+          >
+            + Add More Courses
+          </Button>
+        </Grid>
       </Container>
     </>
   );

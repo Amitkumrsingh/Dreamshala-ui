@@ -1,7 +1,21 @@
 import React, { useState } from "react";
 import { Container, Grid, TextField, Typography, Button } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const ImportantNews = () => {
+  const theme = useTheme();
+  const secondaryColor = theme.palette.text.secondary;
+  const primaryColor = theme.palette.text.primary;
+
+  const buttonSelectedStyle = {
+    color: primaryColor,
+  };
+
+  const buttonNotSelectedStyle = {
+    color: secondaryColor,
+    borderColor: secondaryColor,
+  };
+
   const [addMoreNews, setAddMoreNews] = useState([""]);
   return (
     <>
@@ -11,7 +25,7 @@ const ImportantNews = () => {
         </Grid>
 
         {addMoreNews.map((data, index) => (
-          <Grid container spacing={2} mb={4} key={index}>
+          <Grid container spacing={6} mb={6} key={index}>
             <Grid item xs={8}>
               <Typography>Post a news</Typography>
               <TextField
@@ -29,12 +43,20 @@ const ImportantNews = () => {
                 <Grid container spacing={2}>
                   <Grid xs={6} item>
                     <Grid mb={2}>
-                      <Button variant="outlined" fullWidth>
+                      <Button
+                        variant="outlined"
+                        fullWidth
+                        style={buttonNotSelectedStyle}
+                      >
                         Very Important
                       </Button>
                     </Grid>
                     <Grid>
-                      <Button variant="outlined" fullWidth>
+                      <Button
+                        variant="outlined"
+                        fullWidth
+                        style={buttonNotSelectedStyle}
+                      >
                         Medium Important
                       </Button>
                     </Grid>
@@ -42,13 +64,21 @@ const ImportantNews = () => {
 
                   <Grid xs={6} item>
                     <Grid mb={2}>
-                      <Button variant="outlined" fullWidth>
+                      <Button
+                        variant="outlined"
+                        fullWidth
+                        style={buttonNotSelectedStyle}
+                      >
                         Impotant
                       </Button>
                     </Grid>
 
                     <Grid>
-                      <Button variant="outlined" fullWidth>
+                      <Button
+                        variant="outlined"
+                        fullWidth
+                        style={buttonNotSelectedStyle}
+                      >
                         Less Impotant
                       </Button>
                     </Grid>
@@ -59,14 +89,16 @@ const ImportantNews = () => {
           </Grid>
         ))}
 
-        <Button
-          m={2}
-          variant="outlined"
-          color="primary"
-          onClick={() => setAddMoreNews([...addMoreNews, ""])}
-        >
-          + Add More News
-        </Button>
+        <Grid>
+          <Button
+            m={2}
+            variant="outlined"
+            color="primary"
+            onClick={() => setAddMoreNews([...addMoreNews, ""])}
+          >
+            + Add More News
+          </Button>
+        </Grid>
       </Container>
     </>
   );
