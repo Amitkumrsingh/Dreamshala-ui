@@ -21,25 +21,6 @@ const daysOfWeek = [
   "Sunday",
 ];
 
-// const InpubLabelTextStyling = {
-//   color: "#000",
-//   fontFamily: "Inter",
-//   fontSize: "14px",
-//   fontStyle: "normal",
-//   fontWeight: 400,
-//   lineHeight: "18px",
-// };
-
-// const AboutHeadingTextStyle = {
-//   color: "#263238",
-//   fontFamily: "Inter",
-//   fontSize: "16px",
-//   fontStyle: "italic",
-//   fontWeight: 900,
-//   lineHeight: "45px",
-//   letterSpacing: "-0.32px",
-// };
-
 const About = () => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;

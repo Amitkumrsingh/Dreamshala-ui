@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTheme } from "@mui/material/styles";
 // import DashboardLayout from "../../../layouts/Dashboard";
 import {
   Box,
@@ -22,6 +23,13 @@ const daysOfWeek = [
 ];
 
 const About = () => {
+  const theme = useTheme();
+  const secondaryColor = theme.palette.text.secondary;
+
+  const [examFrequency, setExamFrequency] = useState("");
+  const [examMode, setExamMode] = useState("");
+  const [statesApplicable, setStatesApplicable] = useState("");
+
   const [formData, setFormData] = useState({
     image: null,
     textField1: "",
@@ -41,10 +49,17 @@ const About = () => {
 
   return (
     <Container>
-      <Typography variant="h5" gutterBottom>
-        About
+      <Typography
+        variant="h5"
+        gutterBottom
+        borderLeft={"4px solid " + theme.palette.primary.main}
+        padding={1}
+      >
+        <em>
+          <strong>ABOUT</strong>
+        </em>
       </Typography>
-      <Grid container spacing={2} mt={4}>
+      <Grid container spacing={6} mt={2}>
         {/* Row 1 */}
         <Grid item xs={12} sm={2}>
           <label
@@ -57,7 +72,7 @@ const About = () => {
           >
             <Box
               border={1}
-              borderColor="primary.main"
+              borderColor={secondaryColor}
               borderRadius="50%"
               p={2}
               textAlign="center"
@@ -76,7 +91,7 @@ const About = () => {
                 type="file"
                 onChange={handleFileChange}
               />
-              <Typography variant="inherit" color="primary">
+              <Typography variant="inherit" color={secondaryColor}>
                 + Add Logo
               </Typography>
             </Box>
@@ -93,7 +108,7 @@ const About = () => {
           />
         </Grid>
         {/* Row 2 */}
-        <Grid item xs={12} mt={2}>
+        <Grid item xs={12}>
           <Typography>Add detailed description about the exam</Typography>
           <TextField
             fullWidth
@@ -106,12 +121,22 @@ const About = () => {
         </Grid>
 
         {/* Row 3 */}
-        <Grid item xs={12} mt={2}>
-          <Grid container spacing={2} mt={2}>
+        <Grid item xs={12}>
+          <Grid container spacing={6}>
             <Grid item xs={4}>
               <Typography>Exam Frequency</Typography>
               <FormControl fullWidth size="small">
-                <Select defaultValue={""}>
+                <Select
+                  onChange={(e) => setExamFrequency(e.target.value)}
+                  value={examFrequency}
+                  displayEmpty
+                  style={{
+                    color: examFrequency === "" && secondaryColor,
+                  }}
+                >
+                  <MenuItem value={""} disabled>
+                    Select/ Type Here
+                  </MenuItem>
                   <MenuItem value="1"> 1</MenuItem>
                   <MenuItem value="2"> 2</MenuItem>
                 </Select>
@@ -120,7 +145,17 @@ const About = () => {
             <Grid item xs={4}>
               <Typography>Exam Mode</Typography>
               <FormControl fullWidth size="small">
-                <Select defaultValue={""}>
+                <Select
+                  onChange={(e) => setExamMode(e.target.value)}
+                  value={examMode}
+                  displayEmpty
+                  style={{
+                    color: examMode === "" && secondaryColor,
+                  }}
+                >
+                  <MenuItem value={""} disabled>
+                    Select/ Type Here
+                  </MenuItem>
                   <MenuItem value="1"> 1</MenuItem>
                   <MenuItem value="2"> 2</MenuItem>
                 </Select>
@@ -129,7 +164,17 @@ const About = () => {
             <Grid item xs={4}>
               <Typography>States Applicable</Typography>
               <FormControl fullWidth size="small">
-                <Select defaultValue={""}>
+                <Select
+                  onChange={(e) => setStatesApplicable(e.target.value)}
+                  value={statesApplicable}
+                  displayEmpty
+                  style={{
+                    color: statesApplicable === "" && secondaryColor,
+                  }}
+                >
+                  <MenuItem value={""} disabled>
+                    Select/ Type Here
+                  </MenuItem>
                   <MenuItem value="1"> 1</MenuItem>
                   <MenuItem value="2"> 2</MenuItem>
                 </Select>

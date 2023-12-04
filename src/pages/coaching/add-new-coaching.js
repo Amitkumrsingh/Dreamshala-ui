@@ -75,7 +75,7 @@ const AddNewCoaching = () => {
             flexDirection={"column"}
             justifyContent={"space-between"}
           >
-            <Grid>
+            <Grid mt={4}>
               {/* Render the current step form */}
               {activeStep === 0 && (
                 <Grid container flexDirection={"column"} spacing={6}>

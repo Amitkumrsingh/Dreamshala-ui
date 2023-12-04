@@ -9,29 +9,48 @@ import {
   FormControl,
   Select,
   MenuItem,
+  Container,
 } from "@mui/material";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+// import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+import { useTheme } from "@mui/material/styles";
 
 const Brochure = () => {
+  const theme = useTheme();
+  const secondaryColor = theme.palette.text.secondary;
+
   const [image, setImage] = useState(null);
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
     setImage(selectedImage);
   };
+  const [examsWhoCanRefer, setExamsWhoCanRefer] = useState("");
+
+  const buttonNotSelectedStyle = {
+    color: secondaryColor,
+    borderColor: secondaryColor,
+  };
 
   return (
-    <>
-      <Typography variant="h5" mb={4}>
-        BROCHURE
+    <Container>
+      <Typography
+        variant="h5"
+        gutterBottom
+        borderLeft={"4px solid " + theme.palette.primary.main}
+        padding={1}
+        mb={2}
+      >
+        <em>
+          <strong>BROCHURE </strong>
+        </em>
       </Typography>
 
-      <Grid container spacing={2}>
+      <Grid container spacing={6} mt={2}>
         <Grid item xs={4}>
           <label htmlFor="image-input">
             <Box
               border={1}
-              borderColor="grey.500"
+              borderColor={secondaryColor}
               borderRadius="4px"
               display="flex"
               flexDirection="column"
@@ -48,15 +67,15 @@ const Brochure = () => {
                 id="image-input"
               />
               <IconButton component="span">
-                <FileUploadIcon fontSize="large" color="primary" />
+                <FileUploadIcon fontSize="large" color={secondaryColor} />
               </IconButton>
               Upload Brochure
             </Box>
           </label>
         </Grid>
 
-        <Grid item xs={4}>
-          <Grid>
+        <Grid item xs={4} container flexDirection={"column"} spacing={6}>
+          <Grid item>
             <Typography>Add Description to the Brochure</Typography>
             <TextField
               placeholder="Describe here"
@@ -66,20 +85,22 @@ const Brochure = () => {
               maxRows={3}
             />
           </Grid>
-          <Grid mt={2}>
+          <Grid item>
             <Typography>Links (if any)</Typography>
             <Grid container spacing={2}>
               <Grid item xs={8}>
                 <TextField placeholder="Describe here" fullWidth size="small" />
               </Grid>
               <Grid item xs={2}>
-                <Button variant="outlined">+</Button>
+                <Button variant="outlined" style={buttonNotSelectedStyle}>
+                  +
+                </Button>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4}>
-          <Grid>
+        <Grid item xs={4} container flexDirection={"column"} spacing={6}>
+          <Grid item>
             <Typography>Enter keywords/ meta tags</Typography>
             <TextField
               placeholder="Describe here"
@@ -89,10 +110,20 @@ const Brochure = () => {
               maxRows={3}
             />
           </Grid>
-          <Grid mt={2}>
+          <Grid item>
             <Typography>Enter Exams who can refer</Typography>
             <FormControl fullWidth size="small">
-              <Select defaultValue={""}>
+              <Select
+                onChange={(e) => setExamsWhoCanRefer(e.target.value)}
+                value={examsWhoCanRefer}
+                displayEmpty
+                style={{
+                  color: examsWhoCanRefer === "" && secondaryColor,
+                }}
+              >
+                <MenuItem value={""} disabled>
+                  Select/ Type Here
+                </MenuItem>
                 <MenuItem value="1"> 1</MenuItem>
                 <MenuItem value="2"> 2</MenuItem>
               </Select>
@@ -100,7 +131,7 @@ const Brochure = () => {
           </Grid>
         </Grid>
       </Grid>
-    </>
+    </Container>
   );
 };
 
