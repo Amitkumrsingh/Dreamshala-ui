@@ -172,8 +172,8 @@ const AddNewCollege = () => {
 
             <Grid
               container
-              alignItems={"center"}
-              justifyContent={"center"}
+              // alignItems={"right"}
+              justifyContent={"end"}
               mt={20}
             >
               <Button disabled={activeStep === 0} onClick={handleBack}>
