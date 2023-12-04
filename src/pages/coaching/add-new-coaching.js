@@ -21,27 +21,22 @@ import {
 
 import DashboardLayout from "../../layouts/Dashboard";
 import React, { useState } from "react";
-import { Button, Container, Stepper, Step, StepLabel } from "@mui/material";
+import {
+  Button,
+  Container,
+  Stepper,
+  Step,
+  StepLabel,
+  Grid,
+} from "@mui/material";
 
 const steps = [
-  "About",
-  "Contact Details",
-  "Management Contact",
-  "Exams",
-  "Courses and Fees",
-  "Photos",
-  "Results",
-  "Faculties",
-  "Reviews",
-  "Videos",
-  "Study Material",
-  "Location",
-  "Coaching Details",
-  "Checklist",
-  "Frequently Asked Questions",
+  "Basic Details",
+  "Courses Offered and Its Details",
+  "Additional Details",
 ]; // Add more steps as needed
 
-const AddNewExam = () => {
+const AddNewCoaching = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -69,47 +64,95 @@ const AddNewExam = () => {
           </Step>
         ))}
       </Stepper>
-      <div>
+      <Grid>
         {activeStep === steps.length ? (
-          <div>
+          <Grid>
             <p>All steps completed - you're finished</p>
-          </div>
+          </Grid>
         ) : (
-          <div>
-            {/* Render the current step form */}
-            {activeStep === 0 && <About />}
-            {activeStep === 1 && <ContactDetails />}
-            {activeStep === 2 && <ManagementContact />}
-            {activeStep === 3 && <EntranceExams />}
-            {activeStep === 4 && <CoursesAndFees />}
-            {activeStep === 5 && <Photos />}
-            {activeStep === 6 && <Results />}
-            {activeStep === 7 && <Faculties />}
-            {activeStep === 8 && <Reviews />}
-            {activeStep === 9 && <Videos parentName={"coaching class"} />}
-            {activeStep === 10 && <StudyMaterial />}
-            {activeStep === 11 && <Location />}
-            {activeStep === 12 && <CoachingDetails />}
-            {activeStep === 13 && <CheckList />}
-            {activeStep === 14 && <FAQ />}
-            {/* Add more steps as needed */}
-            <div style={{ marginTop: "10px" }}>
+          <Grid
+            container
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+          >
+            <Grid>
+              {/* Render the current step form */}
+              {activeStep === 0 && (
+                <Grid container flexDirection={"column"} spacing={6}>
+                  <Grid item>
+                    <About />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <ContactDetails />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <ManagementContact />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <CoachingDetails />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <Location />
+                  </Grid>
+                </Grid>
+              )}
+              {activeStep === 1 && (
+                <Grid container flexDirection={"column"} spacing={6}>
+                  <Grid item>
+                    <EntranceExams />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <CoursesAndFees />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <StudyMaterial />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <Results />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <Faculties />
+                  </Grid>
+                </Grid>
+              )}
+              {activeStep === 2 && (
+                <Grid container flexDirection={"column"} spacing={6}>
+                  <Grid item>
+                    <Photos />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <Videos />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <Reviews />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <CheckList />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <FAQ />
+                  </Grid>
+                </Grid>
+              )}
+            </Grid>
+
+            <Grid container justifyContent={"end"} mt={20}>
               <Button disabled={activeStep === 0} onClick={handleBack}>
                 Back
               </Button>
               <Button variant="contained" color="primary" onClick={handleNext}>
                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
               </Button>
-            </div>
-          </div>
+            </Grid>
+          </Grid>
         )}
-      </div>
+      </Grid>
     </Container>
   );
 };
 
-AddNewExam.getLayout = function getLayout(page) {
+AddNewCoaching.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export default AddNewExam;
+export default AddNewCoaching;

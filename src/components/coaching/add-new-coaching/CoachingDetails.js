@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   IconButton,
   Box,
@@ -11,9 +11,15 @@ import {
   Select,
 } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+import { useTheme } from "@mui/material/styles";
 // import UploadFileIcon from "@mui/icons-material/UploadFile";
 
 const CoachingDetails = () => {
+  const theme = useTheme();
+  const placeholderColor = theme.palette.text.secondary;
+  const [selectState, setSelectState] = useState("");
+  const [city, setCity] = useState("");
+  const [yearOfEstablishment, setYearOfEstablishment] = useState("");
   const indianStatesAndUTs = [
     "Andhra Pradesh",
     "Arunachal Pradesh",
@@ -54,12 +60,20 @@ const CoachingDetails = () => {
     <>
       <Container>
         <Grid>
-          <Typography variant="h5">
-            COACHING DETAILS (For Office Use Only)
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+          >
+            <em>
+              <strong>COACHING DETAILS </strong>
+            </em>
+            <Typography variant="span">(For Office Use Only)</Typography>
           </Typography>
         </Grid>
 
-        <Grid container spacing={2} mt={2} mb={2}>
+        <Grid container spacing={6} mt={2}>
           <Grid item xs={4}>
             <Typography>Coaching Name</Typography>
             <TextField
@@ -84,7 +98,17 @@ const CoachingDetails = () => {
             <Typography>Year of Establishment</Typography>
             <FormControl fullWidth size="small">
               {/* <InputLabel>Select/ Type Here</InputLabel> */}
-              <Select defaultValue={""}>
+              <Select
+                onChange={(e) => setYearOfEstablishment(e.target.value)}
+                value={yearOfEstablishment}
+                displayEmpty
+                style={{
+                  color: yearOfEstablishment === "" && placeholderColor,
+                }}
+              >
+                <MenuItem value={""} disabled>
+                  Select/ Type Here
+                </MenuItem>
                 <MenuItem value="1">1</MenuItem>
                 <MenuItem value="2">2</MenuItem>
                 <MenuItem value="3">3</MenuItem>
@@ -94,13 +118,13 @@ const CoachingDetails = () => {
           </Grid>
         </Grid>
 
-        <Grid mt={4} mb={4}>
-          <Typography variant="h5">Coaching Registered Address</Typography>
+        <Grid mt={6} mb={4}>
+          <Typography variant="h6">Coaching Registered Address</Typography>
         </Grid>
 
-        <Grid container spacing={2}>
+        <Grid container spacing={6}>
           <Grid xs={8} item>
-            <Grid container spacing={2} mb={6}>
+            <Grid container spacing={6}>
               <Grid item xs={4}>
                 <Typography>Address Line 1</Typography>
                 <TextField
@@ -132,7 +156,7 @@ const CoachingDetails = () => {
                 />
               </Grid>
             </Grid>
-            <Grid container spacing={2}>
+            <Grid container spacing={6} mt={1}>
               <Grid item xs={4}>
                 <Typography>Pincode</Typography>
                 <TextField
@@ -148,7 +172,17 @@ const CoachingDetails = () => {
                 <Typography>Select State</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select
+                    onChange={(e) => setSelectState(e.target.value)}
+                    value={selectState}
+                    displayEmpty
+                    style={{
+                      color: selectState === "" && placeholderColor,
+                    }}
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     {indianStatesAndUTs.map((data, index) => (
                       <MenuItem value={data} key={index}>
                         {data}
@@ -163,7 +197,17 @@ const CoachingDetails = () => {
                 <Typography>Select City</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select
+                    onChange={(e) => setCity(e.target.value)}
+                    value={city}
+                    displayEmpty
+                    style={{
+                      color: city === "" && placeholderColor,
+                    }}
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -188,8 +232,8 @@ const CoachingDetails = () => {
           </Grid>
         </Grid>
 
-        <Grid container pr={2} spacing={2}>
-          <Grid item xs={16.2 / 3}>
+        <Grid container spacing={6}>
+          <Grid item xs={16 / 3}>
             <Typography>PAN Card No.</Typography>
             <TextField
               fullWidth
@@ -204,7 +248,7 @@ const CoachingDetails = () => {
             <label htmlFor="image-input">
               <Box
                 border={1}
-                borderColor="grey.500"
+                borderColor={placeholderColor}
                 borderRadius="4px"
                 display="flex"
                 alignItems="center"
@@ -219,7 +263,7 @@ const CoachingDetails = () => {
                   id="image-input"
                 />
                 <IconButton component="span">
-                  <FileUploadIcon fontSize="small" color="primary" />
+                  <FileUploadIcon fontSize="small" color={placeholderColor} />
                 </IconButton>
                 Click here to Upload
                 {/* You can display the selected image here if needed */}

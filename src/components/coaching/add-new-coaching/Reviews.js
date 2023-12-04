@@ -13,21 +13,34 @@ import {
 } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import StarRating from "../../other/StarRating";
+import { useTheme } from "@mui/material/styles";
 
 const Reviews = () => {
+  const theme = useTheme();
+  const placeholderColor = theme.palette.text.secondary;
+
   const [addMoreReviews, setAddMoreReviews] = useState([""]);
+  const [yearOfStudy, setYearOfStudy] = useState("");
+  const [courseTaken, setCourseTaken] = useState("");
   return (
     <>
       <Container>
-        <Grid container mb={4}>
-          <Typography variant="h5" gutterBottom>
-            REVIEWS
+        <Grid>
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+          >
+            <em>
+              <strong>REVIEWS </strong>
+            </em>
           </Typography>
         </Grid>
 
         {addMoreReviews.map((data, index) => (
-          <Grid key={index} mb={4}>
-            <Grid container spacing={2} mb={4}>
+          <Grid key={index}>
+            <Grid container spacing={6} mt={2}>
               <Grid item xs={4}>
                 <Typography>Name</Typography>
                 <TextField
@@ -40,9 +53,19 @@ const Reviews = () => {
               </Grid>
               <Grid item xs={4}>
                 <Typography>Year of Your Study</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""} size="small">
+                  <Select
+                    onChange={(e) => setYearOfStudy(e.target.value)}
+                    value={yearOfStudy}
+                    displayEmpty
+                    style={{
+                      color: yearOfStudy === "" && placeholderColor,
+                    }}
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -55,9 +78,19 @@ const Reviews = () => {
               </Grid>
               <Grid item xs={4}>
                 <Typography>Course Taken</Typography>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""} size="small">
+                  <Select
+                    onChange={(e) => setCourseTaken(e.target.value)}
+                    value={courseTaken}
+                    displayEmpty
+                    style={{
+                      color: courseTaken === "" && placeholderColor,
+                    }}
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -70,28 +103,40 @@ const Reviews = () => {
               </Grid>
             </Grid>
 
-            <Grid container mb={2}>
+            <Grid mt={6} mb={4}>
               <Typography>
                 <b>Rate the coaching class on the following factors</b>
               </Typography>
             </Grid>
 
-            <Grid container spacing={2} mb={2}>
-              <Grid item xs={4}>
-                <StarRating title={"Overall Rating"} />
-                <StarRating title={"Infrastructure"} />
+            <Grid container spacing={6}>
+              <Grid item xs={4} container flexDirection={"column"} spacing={6}>
+                <Grid item>
+                  <StarRating title={"Overall Rating"} />
+                </Grid>
+                <Grid item>
+                  <StarRating title={"Infrastructure"} />
+                </Grid>
               </Grid>
-              <Grid item xs={4}>
-                <StarRating title={"Competitive Environment"} />
-                <StarRating title={"Study Material"} />
+              <Grid item xs={4} container flexDirection={"column"} spacing={6}>
+                <Grid item>
+                  <StarRating title={"Competitive Environment"} />
+                </Grid>
+                <Grid item>
+                  <StarRating title={"Study Material"} />
+                </Grid>
               </Grid>
-              <Grid item xs={4}>
-                <StarRating title={"Faculty"} />
-                <StarRating title={"Peer Learning"} />
+              <Grid item xs={4} container flexDirection={"column"} spacing={6}>
+                <Grid item>
+                  <StarRating title={"Faculty"} />
+                </Grid>
+                <Grid item>
+                  <StarRating title={"Peer Learning"} />
+                </Grid>
               </Grid>
             </Grid>
 
-            <Grid container spacing={2} mt={2}>
+            <Grid container spacing={6} mt={2}>
               <Grid item xs={8}>
                 <Typography variant="h6">Detailed Description</Typography>
                 <TextField
@@ -145,14 +190,16 @@ const Reviews = () => {
           </Grid>
         ))}
 
-        <Button
-          m={2}
-          variant="outlined"
-          color="primary"
-          onClick={() => setAddMoreReviews([...addMoreReviews, ""])}
-        >
-          + Add More Reviews
-        </Button>
+        <Grid mt={6}>
+          <Button
+            m={2}
+            variant="outlined"
+            color="primary"
+            onClick={() => setAddMoreReviews([...addMoreReviews, ""])}
+          >
+            + Add More Reviews
+          </Button>
+        </Grid>
       </Container>
     </>
   );

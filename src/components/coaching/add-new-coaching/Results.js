@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   IconButton,
   Box,
@@ -13,20 +13,38 @@ import {
 } from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
+import { useTheme } from "@mui/material/styles";
 
 const Results = () => {
-  const [addMoreResults, setAddMoreResults] = React.useState([""]);
+  const theme = useTheme();
+  const secondaryColor = theme.palette.text.secondary;
+
+  const [addMoreResults, setAddMoreResults] = useState([""]);
+  const [collegeSecured, setCollegeSecured] = useState("");
+  const [examCracked, setExamCracked] = useState("");
+  const [allIndiaRank, setAllIndiaRank] = useState("");
+  const [baseCity, setBaseCity] = useState("");
+
   return (
     <>
       <Container>
         <Grid container justifyContent={"space-between"}>
-          <Typography variant="h5" gutterBottom>
-            RESULTS
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+            mb={2}
+          >
+            <em>
+              <strong>RESULTS </strong>
+            </em>
           </Typography>
+
           <label htmlFor="image-input">
             <Box
               border={1}
-              borderColor="grey.500"
+              borderColor={secondaryColor}
               borderRadius="4px"
               display="flex"
               alignItems="center"
@@ -41,7 +59,7 @@ const Results = () => {
                 id="image-input"
               />
               <IconButton component="span">
-                <UploadFileIcon fontSize="small" color="primary" />
+                <UploadFileIcon fontSize="small" color={secondaryColor} />
               </IconButton>
               Upload Excel
               {/* You can display the selected image here if needed */}
@@ -50,8 +68,8 @@ const Results = () => {
         </Grid>
 
         {addMoreResults.map((d, index) => (
-          <Grid container spacing={2} key={index} mb={4}>
-            <Grid item xs={3}>
+          <Grid container spacing={6} mt={2} key={index} mb={4}>
+            <Grid item xs={2}>
               Add Photo
               <label
                 htmlFor="image"
@@ -63,7 +81,7 @@ const Results = () => {
               >
                 <Box
                   border={1}
-                  borderColor="primary.main"
+                  borderColor={secondaryColor}
                   borderRadius="50%"
                   p={2}
                   textAlign="center"
@@ -74,6 +92,7 @@ const Results = () => {
                   justifyContent="center"
                   alignItems="center"
                   cursor="pointer"
+                  mt={4}
                 >
                   <input
                     accept="image/*"
@@ -83,14 +102,23 @@ const Results = () => {
                     //   onChange={handleFileChange}
                   />
                   <IconButton component="span">
-                    <AddPhotoAlternateIcon fontSize="medium" color="primary" />
+                    <AddPhotoAlternateIcon
+                      fontSize="medium"
+                      color={secondaryColor}
+                    />
                   </IconButton>
                 </Box>
               </label>
             </Grid>
 
-            <Grid item xs={3}>
-              <Grid>
+            <Grid
+              item
+              xs={10 / 3}
+              container
+              spacing={6}
+              flexDirection={"column"}
+            >
+              <Grid item>
                 <Typography>Name</Typography>
                 <TextField
                   fullWidth
@@ -100,11 +128,21 @@ const Results = () => {
                   size="small"
                 />
               </Grid>
-              <Grid mt={2}>
+              <Grid item>
                 <Typography>All India Rank</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select
+                    onChange={(e) => setAllIndiaRank(e.target.value)}
+                    value={allIndiaRank}
+                    displayEmpty
+                    style={{
+                      color: allIndiaRank === "" && secondaryColor,
+                    }}
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -117,12 +155,28 @@ const Results = () => {
               </Grid>
             </Grid>
 
-            <Grid item xs={3}>
-              <Grid>
+            <Grid
+              item
+              xs={10 / 3}
+              container
+              spacing={6}
+              flexDirection={"column"}
+            >
+              <Grid item>
                 <Typography>College secured</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select
+                    onChange={(e) => setCollegeSecured(e.target.value)}
+                    value={collegeSecured}
+                    displayEmpty
+                    style={{
+                      color: collegeSecured === "" && secondaryColor,
+                    }}
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -133,11 +187,21 @@ const Results = () => {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid mt={2}>
+              <Grid item>
                 <Typography>Base City</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select
+                    onChange={(e) => setBaseCity(e.target.value)}
+                    value={baseCity}
+                    displayEmpty
+                    style={{
+                      color: baseCity === "" && secondaryColor,
+                    }}
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -149,12 +213,28 @@ const Results = () => {
                 </FormControl>
               </Grid>
             </Grid>
-            <Grid item xs={3}>
-              <Grid>
+            <Grid
+              item
+              xs={10 / 3}
+              container
+              spacing={6}
+              flexDirection={"column"}
+            >
+              <Grid item>
                 <Typography>Exam Cracked</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select
+                    onChange={(e) => setExamCracked(e.target.value)}
+                    value={examCracked}
+                    displayEmpty
+                    style={{
+                      color: examCracked === "" && secondaryColor,
+                    }}
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
@@ -165,7 +245,7 @@ const Results = () => {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid mt={2}>
+              <Grid item>
                 <Typography>Testimonial by Student (if any)</Typography>
                 <TextField
                   fullWidth
@@ -179,14 +259,15 @@ const Results = () => {
           </Grid>
         ))}
 
-        <Button
-          m={2}
-          variant="outlined"
-          color="primary"
-          onClick={() => setAddMoreResults([...addMoreResults, ""])}
-        >
-          + Add More Results
-        </Button>
+        <Grid mt={6}>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => setAddMoreResults([...addMoreResults, ""])}
+          >
+            + Add More Results
+          </Button>
+        </Grid>
       </Container>
     </>
   );

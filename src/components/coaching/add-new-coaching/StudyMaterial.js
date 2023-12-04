@@ -7,22 +7,40 @@ import {
   Container,
   Typography,
   FormControl,
-  InputLabel,
   MenuItem,
   Select,
   Button,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
 const StudyMaterial = () => {
+  const theme = useTheme();
+  const secondaryColor = theme.palette.text.secondary;
+  // const primaryColor = theme.palette.text.primary;
+
+  const buttonNotSelectedStyle = {
+    color: secondaryColor,
+    borderColor: secondaryColor,
+  };
+
   const [addMoreStudyMaterial, setAddMoreStudyMaterial] = useState([""]);
+  const [examsWhoCanRefer, setExamsWhoCanRefer] = useState("");
 
   return (
     <>
       <Container>
         <Grid>
-          <Typography variant="h5" gutterBottom>
-            STUDY MATERIAL
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+            mb={2}
+          >
+            <em>
+              <strong>STUDY MATERIAL </strong>
+            </em>
           </Typography>
           <Typography>
             This section is to add all the free study material for students
@@ -30,12 +48,12 @@ const StudyMaterial = () => {
         </Grid>
 
         {addMoreStudyMaterial.map((data, index) => (
-          <Grid container mt={4} mb={4} spacing={2} key={index}>
+          <Grid container mt={2} mb={6} spacing={6} key={index}>
             <Grid item xs={4}>
               <label htmlFor="image-input">
                 <Box
                   border={1}
-                  borderColor="grey.500"
+                  borderColor={secondaryColor}
                   borderRadius="4px"
                   display="flex"
                   flexDirection={"column"}
@@ -51,7 +69,7 @@ const StudyMaterial = () => {
                     id="image-input"
                   />
                   <IconButton component="span">
-                    <FileUploadIcon fontSize="large" color="primary" />
+                    <FileUploadIcon fontSize="large" color={secondaryColor} />
                   </IconButton>
                   Upload photos, Videos, PDF's
                   {/* You can display the selected image here if needed */}
@@ -60,7 +78,7 @@ const StudyMaterial = () => {
             </Grid>
 
             <Grid item xs={8}>
-              <Grid container spacing={2} mb={4}>
+              <Grid container spacing={6}>
                 <Grid item xs={6}>
                   <Typography>Add Description to the material</Typography>
                   <TextField
@@ -87,7 +105,7 @@ const StudyMaterial = () => {
                 </Grid>
               </Grid>
 
-              <Grid container spacing={2}>
+              <Grid container spacing={6} mt={2}>
                 <Grid item xs={6}>
                   <Typography>Links (if any)</Typography>
                   <Grid container fullWidth>
@@ -99,14 +117,26 @@ const StudyMaterial = () => {
                       variant="outlined"
                       size="small"
                     />
-                    <Button variant="outlined">+</Button>
+                    <Button variant="outlined" style={buttonNotSelectedStyle}>
+                      +
+                    </Button>
                   </Grid>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography>Enter Exams who can refer</Typography>
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                    <Select defaultValue={""}>
+                    <Select
+                      onChange={(e) => setExamsWhoCanRefer(e.target.value)}
+                      value={examsWhoCanRefer}
+                      displayEmpty
+                      style={{
+                        color: examsWhoCanRefer === "" && secondaryColor,
+                      }}
+                    >
+                      <MenuItem value={""} disabled>
+                        Select/ Type Here
+                      </MenuItem>
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="2">2</MenuItem>
                       <MenuItem value="3">3</MenuItem>
@@ -119,14 +149,18 @@ const StudyMaterial = () => {
           </Grid>
         ))}
 
-        <Button
-          m={2}
-          variant="outlined"
-          color="primary"
-          onClick={() => setAddMoreStudyMaterial([...addMoreStudyMaterial, ""])}
-        >
-          + Add More Material
-        </Button>
+        <Grid>
+          <Button
+            m={2}
+            variant="outlined"
+            color="primary"
+            onClick={() =>
+              setAddMoreStudyMaterial([...addMoreStudyMaterial, ""])
+            }
+          >
+            + Add More Material
+          </Button>
+        </Grid>
       </Container>
     </>
   );

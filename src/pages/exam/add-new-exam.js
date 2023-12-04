@@ -13,20 +13,16 @@ import {
 
 import DashboardLayout from "../../layouts/Dashboard";
 import React, { useState } from "react";
-import { Button, Container, Stepper, Step, StepLabel } from "@mui/material";
+import {
+  Button,
+  Container,
+  Stepper,
+  Step,
+  StepLabel,
+  Grid,
+} from "@mui/material";
 
-const steps = [
-  "About",
-  "Contact Details",
-  "Important News",
-  "Important Dates",
-  "Registration Details",
-  "Brochure",
-  "Exam Pattern",
-  "Study Material",
-  "Previous Year Question Papers",
-  "Frequently Asked Questions",
-]; // Add more steps as needed
+const steps = ["Basic Details", "Important Updates", "Preparation Material"]; // Add more steps as needed
 
 const AddNewExam = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -56,41 +52,77 @@ const AddNewExam = () => {
           </Step>
         ))}
       </Stepper>
-      <div>
+      <Grid>
         {activeStep === steps.length ? (
-          <div>
+          <Grid>
             <p>All steps completed - you're finished</p>
-          </div>
+          </Grid>
         ) : (
-          <div>
-            {/* Render the current step form */}
-            {activeStep === 0 && <About />}
-            {activeStep === 1 && <ContactDetails />}
-            {activeStep === 2 && <ImportantNews />}
-            {activeStep === 3 && <ImportantDates />}
-            {activeStep === 4 && <RegistrationDetails />}
-            {activeStep === 5 && <Brochure />}
-            {activeStep === 6 && <ExamPattern />}
-            {activeStep === 7 && <StudyMaterial />}
-            {activeStep === 8 && <PreviousYearQuestionPaper />}
-            {activeStep === 9 && <FAQ />}
-            {/* Add more steps as needed */}
-            <div style={{ marginTop: "10px" }}>
+          <Grid
+            container
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+          >
+            <Grid>
+              {/* Render the current step form */}
+              {activeStep === 0 && (
+                <Grid container flexDirection={"column"} spacing={6}>
+                  <Grid item>
+                    <About />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <ContactDetails />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <Brochure />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <RegistrationDetails />
+                  </Grid>
+                </Grid>
+              )}
+              {activeStep === 1 && (
+                <Grid container flexDirection={"column"} spacing={6}>
+                  <Grid item>
+                    <ImportantNews />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <ImportantDates />
+                  </Grid>
+                </Grid>
+              )}
+              {activeStep === 2 && (
+                <Grid container flexDirection={"column"} spacing={6}>
+                  <Grid item>
+                    <ExamPattern />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <StudyMaterial />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <PreviousYearQuestionPaper />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <FAQ />
+                  </Grid>
+                </Grid>
+              )}
+              {/* Add more steps as needed */}
+            </Grid>
+            <Grid container justifyContent={"end"} mt={20}>
               <Button disabled={activeStep === 0} onClick={handleBack}>
                 Back
               </Button>
               <Button variant="contained" color="primary" onClick={handleNext}>
                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
               </Button>
-            </div>
-          </div>
+            </Grid>
+          </Grid>
         )}
-      </div>
+      </Grid>
     </Container>
   );
 };
-
-const Alumni = () => <div>Alumni Content</div>;
 
 AddNewExam.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;

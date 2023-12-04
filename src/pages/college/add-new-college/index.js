@@ -170,12 +170,7 @@ const AddNewCollege = () => {
               {/* Add more steps as needed */}
             </Grid>
 
-            <Grid
-              container
-              // alignItems={"right"}
-              justifyContent={"end"}
-              mt={20}
-            >
+            <Grid container justifyContent={"end"} mt={20}>
               <Button disabled={activeStep === 0} onClick={handleBack}>
                 Back
               </Button>

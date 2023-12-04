@@ -17,7 +17,6 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 const Faculties = () => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
-  const primaryColor = theme.palette.text.primary;
 
   const [addMoreFaculties, setAddMoreFaculties] = useState([""]);
   const [background, setBackground] = useState("");
@@ -66,6 +65,7 @@ const Faculties = () => {
                   justifyContent="center"
                   alignItems="center"
                   cursor="pointer"
+                  mt={4}
                 >
                   <input
                     accept="image/*"

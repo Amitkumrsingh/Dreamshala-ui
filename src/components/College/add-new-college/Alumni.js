@@ -42,8 +42,13 @@ const Alumni = () => {
         {addMoreFaculties.map((d, index) => (
           <Grid container spacing={6} key={index} mb={6}>
             <Grid item xs={2}>
-              <Typography mb={2}>Add Photo</Typography>
-              <Grid container alignItems={"center"} justifyContent={"center"}>
+              <Typography>Add Photo</Typography>
+              <Grid
+                container
+                alignItems={"center"}
+                justifyContent={"center"}
+                mt={4}
+              >
                 <label
                   htmlFor="image"
                   style={{

@@ -6,30 +6,55 @@ import {
   Select,
   MenuItem,
   FormControl,
-  InputLabel,
   Typography,
   Button,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const CoursesAndFees = () => {
+  const theme = useTheme();
+  const placeholderColor = theme.palette.text.secondary;
+
+  const [exams, setExams] = useState("");
+  const [courseDuration, setCourseDuration] = useState("");
+  const [courseMode, setCourseMode] = useState("");
+  const [studyMaterial, setStudyMaterial] = useState("");
+
   const [anotherCourse, setAnotherCourse] = useState([""]);
   return (
     <Container>
       <Grid>
-        <Typography variant="h5" gutterBottom>
-          COURSES AND FEES
+        <Typography
+          variant="h5"
+          gutterBottom
+          borderLeft={"4px solid " + theme.palette.primary.main}
+          padding={1}
+          mb={2}
+        >
+          <em>
+            <strong>COURSES AND FEES </strong>
+          </em>
         </Typography>
       </Grid>
 
       <form>
         {anotherCourse.map((data, index) => (
-          <Grid container spacing={2} mt={2} key={index} mb={4}>
+          <Grid container spacing={6} mt={2} key={index} mb={4}>
             {/* First Row */}
             <Grid item xs={4} mt={2}>
               <Typography>Select Exam for the course</Typography>
               <FormControl fullWidth size="small">
-                {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                <Select defaultValue={""}>
+                <Select
+                  onChange={(e) => setExams(e.target.value)}
+                  value={exams}
+                  displayEmpty
+                  style={{
+                    color: exams === "" && placeholderColor,
+                  }}
+                >
+                  <MenuItem value={""} disabled>
+                    Select/ Type Here
+                  </MenuItem>
                   <MenuItem value="exam1">Exam 1</MenuItem>
                   <MenuItem value="exam2">Exam 2</MenuItem>
                   {/* Add more exam options as needed */}
@@ -39,8 +64,17 @@ const CoursesAndFees = () => {
             <Grid item xs={4} mt={2}>
               <Typography>Course Duration</Typography>
               <FormControl fullWidth size="small">
-                {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                <Select defaultValue={""}>
+                <Select
+                  onChange={(e) => setCourseDuration(e.target.value)}
+                  value={courseDuration}
+                  displayEmpty
+                  style={{
+                    color: courseDuration === "" && placeholderColor,
+                  }}
+                >
+                  <MenuItem value={""} disabled>
+                    Select/ Type Here
+                  </MenuItem>
                   <MenuItem value="1">1 Year</MenuItem>
                   <MenuItem value="2">2 Years</MenuItem>
                   {/* Add more duration options as needed */}
@@ -51,7 +85,17 @@ const CoursesAndFees = () => {
               <Typography>Course Mode</Typography>
               <FormControl fullWidth size="small">
                 {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                <Select defaultValue={""}>
+                <Select
+                  onChange={(e) => setCourseMode(e.target.value)}
+                  value={courseMode}
+                  displayEmpty
+                  style={{
+                    color: courseMode === "" && placeholderColor,
+                  }}
+                >
+                  <MenuItem value={""} disabled>
+                    Select/ Type Here
+                  </MenuItem>
                   <MenuItem value="degree1">Online</MenuItem>
                   <MenuItem value="degree2">Off Line</MenuItem>
                   <MenuItem value="degree2">Hybrid</MenuItem>
@@ -81,7 +125,17 @@ const CoursesAndFees = () => {
                 <Typography>Study Material included?</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select defaultValue={""}>
+                  <Select
+                    onChange={(e) => setStudyMaterial(e.target.value)}
+                    value={studyMaterial}
+                    displayEmpty
+                    style={{
+                      color: studyMaterial === "" && placeholderColor,
+                    }}
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
                     <MenuItem value="criteria1">Yes</MenuItem>
                     <MenuItem value="criteria2">No</MenuItem>
                     {/* Add more eligibility criteria options as needed */}
@@ -108,14 +162,15 @@ const CoursesAndFees = () => {
           </Grid>
         ))}
 
-        <Button
-          m={2}
-          variant="outlined"
-          color="primary"
-          onClick={() => setAnotherCourse([...anotherCourse, ""])}
-        >
-          + Add More Courses
-        </Button>
+        <Grid mt={6}>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => setAnotherCourse([...anotherCourse, ""])}
+          >
+            + Add More Courses
+          </Button>
+        </Grid>
       </form>
     </Container>
   );

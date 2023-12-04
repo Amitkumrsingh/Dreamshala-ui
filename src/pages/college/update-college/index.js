@@ -8,7 +8,7 @@ import {
   Reviews,
   Videos,
   Location,
-  CompanyDetails,
+  CollegeDetails,
   CheckList,
   FAQ,
   Photos,
@@ -30,34 +30,24 @@ import {
   StepLabel,
   Grid,
 } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  nextStep,
+  preStep,
+  toStep,
+} from "../../../redux/slices/add-new-college-step-form";
+// import { Checklist } from "@mui/icons-material";
 
 const steps = [
-  "About",
-  "Contact Details",
-  "Management Contact",
-  "Entrance Exams",
-  "Courses and Fees",
-  "Photos",
-  "Important News",
-  "Important Dates",
-  "Detailed application process and eligibility criteria",
-  "Faculties",
+  "Basic Details",
+  "Important Updates",
+  "Courses Offered and its Details",
+  "People",
+  "Additional Details",
 ];
-const steps1 = [
-  "Reviews",
-  "Videos",
-  "Alumni",
-  "Previous cutoffs",
-  "Placement Details",
-  "Location",
-  "College Details",
-  "Checklist",
-  "Frequently Asked Questions",
-]; // Add more steps as needed
 
-const UpdateCollege = () => {
-  // const dispatch = useDispatch();
-  // const activeStep = useSelector((state) => state.activeStep);
+const AddNewCollege = () => {
+  const dispatch = useDispatch();
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -79,82 +69,129 @@ const UpdateCollege = () => {
         alternativeLabel
         style={{ marginBottom: "20px" }}
       >
-        {activeStep < 10 &&
-          steps.map((label, index) => (
-            <Step key={index} onClick={() => handleToStep(index)}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-
-        {activeStep >= 10 &&
-          steps1.map((label, index) => (
-            <Step
-              key={index + 10}
-              onClick={() => handleToStep(index + 10)}
-              index={index + 10}
-            >
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
+        {steps.map((label, index) => (
+          <Step key={index} onClick={() => handleToStep(index)}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
       </Stepper>
-      <div>
-        {activeStep === steps.length + steps1.length ? (
-          <div>
+      <Grid>
+        {activeStep === steps.length ? (
+          <Grid>
             <p>All steps completed - you're finished</p>
-          </div>
+          </Grid>
         ) : (
-          <div>
-            {/* Render the current step form */}
-            {activeStep === 0 && <About />}
-            {activeStep === 1 && <ContactDetails />}
-            {activeStep === 2 && <ManagementContact />}
-            {activeStep === 3 && <EntranceExams />}
-            {activeStep === 4 && <CoursesAndFees />}
-            {activeStep === 5 && <Photos />}
-            {activeStep === 6 && <ImportantNews />}
-            {activeStep === 7 && <ImportantDates />}
-            {activeStep === 8 && (
-              <DetailedApplicationProcessAndEligibilityCriteria />
-            )}
-            {activeStep === 9 && <Faculties />}
-            {activeStep === 10 && <Reviews />}
-            {activeStep === 11 && <Videos parentName={"college"} />}
-            {activeStep === 12 && <Alumni />}
-            {activeStep === 13 && <PreviousCutoffs />}
-            {activeStep === 14 && <PlacementDetails />}
-            {activeStep === 15 && <Location />}
-            {activeStep === 16 && <CompanyDetails />}
-            {activeStep === 17 && <CheckList />}
-            {activeStep === 18 && <FAQ />}
-            {/* Add more steps as needed */}
-            <div style={{ marginTop: "10px" }}>
+          <Grid
+            container
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+          >
+            <Grid>
+              {/* Render the current step form */}
+              {activeStep === 0 && (
+                <Grid container flexDirection={"column"} spacing={6}>
+                  <Grid item>
+                    <About />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <ContactDetails />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <CollegeDetails />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <Location />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <ManagementContact />
+                  </Grid>
+                </Grid>
+              )}
+              {activeStep === 1 && (
+                <Grid container flexDirection={"column"} spacing={6}>
+                  <Grid item>
+                    <ImportantNews />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <ImportantDates />
+                  </Grid>
+                </Grid>
+              )}
+
+              {activeStep === 2 && (
+                <Grid container flexDirection={"column"} spacing={6}>
+                  <Grid item>
+                    <EntranceExams />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <CoursesAndFees />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <DetailedApplicationProcessAndEligibilityCriteria />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <PreviousCutoffs />
+                  </Grid>
+                </Grid>
+              )}
+              {activeStep === 3 && (
+                <Grid container flexDirection={"column"} spacing={6}>
+                  <Grid item>
+                    <Alumni />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <Faculties />
+                  </Grid>
+                  <Grid item mt={6}></Grid>
+                </Grid>
+              )}
+              {activeStep === 4 && (
+                <Grid container flexDirection={"column"} spacing={6}>
+                  <Grid item>
+                    <PlacementDetails />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <Photos />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <Videos />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <Reviews />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <CheckList />
+                  </Grid>
+                  <Grid item mt={6}>
+                    <FAQ />
+                  </Grid>
+                </Grid>
+              )}
+              {/* Add more steps as needed */}
+            </Grid>
+
+            <Grid
+              container
+              // alignItems={"right"}
+              justifyContent={"end"}
+              mt={20}
+            >
               <Button disabled={activeStep === 0} onClick={handleBack}>
                 Back
               </Button>
               <Button variant="contained" color="primary" onClick={handleNext}>
-                {activeStep === steps.length + steps1.length - 1
-                  ? "Finish"
-                  : "Next"}
+                {activeStep === steps.length - 1 ? "Finish" : "Next"}
               </Button>
-            </div>
-          </div>
+            </Grid>
+          </Grid>
         )}
-      </div>
+      </Grid>
     </Container>
   );
 };
 
-// const ImportantNews = () => <div>ImportantNews Content</div>;
-// const ImportantDates = () => <div>ImportantDates Content</div>;
-// const DetailedApplicationProcessAndEligibilityCriteria = () => (
-//   <div>DetailedApplicationProcessAndEligibilityCriteria Content</div>
-// );
-// const Alumni = () => <div>Alumni Content</div>;
-// const PreviousCutoffs = () => <div>PreviousCutoffs Content</div>;
-// const PlacementDetails = () => <div>PlacementDetails Content</div>;
-
-UpdateCollege.getLayout = function getLayout(page) {
+AddNewCollege.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export default UpdateCollege;
+export default AddNewCollege;
