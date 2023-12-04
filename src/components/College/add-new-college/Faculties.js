@@ -29,8 +29,15 @@ const Faculties = () => {
     <>
       <Container>
         <Grid container justifyContent={"space-between"} mb={4}>
-          <Typography variant="h5" gutterBottom>
-            FACULTIES
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+          >
+            <em>
+              <strong>FACULTIES </strong>
+            </em>
           </Typography>
         </Grid>
 

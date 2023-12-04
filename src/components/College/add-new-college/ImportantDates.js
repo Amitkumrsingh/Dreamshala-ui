@@ -22,7 +22,16 @@ const ImportantDates = () => {
     <>
       <Container>
         <Grid mb={6}>
-          <Typography variant="h5">IMPORTANT DATES</Typography>
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+          >
+            <em>
+              <strong>IMPORTANT DATES </strong>
+            </em>
+          </Typography>
         </Grid>
 
         {addMoreDates.map((data, index) => (

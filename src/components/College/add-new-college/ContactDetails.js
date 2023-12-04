@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, Button, Grid, Typography } from "@mui/material";
+import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 const ContactDetails = () => {
@@ -32,9 +32,18 @@ const ContactDetails = () => {
   };
 
   return (
-    <form>
+    <Container>
       <Grid>
-        <Typography variant="h5">Contact Details</Typography>
+        <Typography
+          variant="h5"
+          gutterBottom
+          borderLeft={"4px solid " + theme.palette.primary.main}
+          padding={1}
+        >
+          <em>
+            <strong>CONTACT DETAILS</strong>
+          </em>
+        </Typography>
       </Grid>
       {/* First Row */}
       <Grid container spacing={6} mt={2}>
@@ -143,7 +152,7 @@ const ContactDetails = () => {
           </Button>
         </Grid>
       </Grid>
-    </form>
+    </Container>
   );
 };
 

@@ -1,14 +1,26 @@
 import React, { useState } from "react";
+import { useTheme } from "@mui/material/styles";
 
 import { Button, Grid, TextField, Container, Typography } from "@mui/material";
 
 const FAQ = () => {
+  const theme = useTheme();
+
   const [addMoreFAQ, setAddMoreFAQ] = useState([""]);
   return (
     <>
       <Container>
         <Grid>
-          <Typography variant="h5">FREQUENTLY ASKED QUESTIONS</Typography>
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+          >
+            <em>
+              <strong>FREQUENTLY ASKED QUESTIONS </strong>
+            </em>
+          </Typography>
         </Grid>
 
         {addMoreFAQ.map((data, index) => (

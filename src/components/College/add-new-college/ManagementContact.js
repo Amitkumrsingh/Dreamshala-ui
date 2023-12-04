@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { TextField, Button, Grid, Typography } from "@mui/material";
+import { TextField, Button, Grid, Typography, Container } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const ManagementContact = () => {
+  const theme = useTheme();
+
   const [contacts, setContacts] = useState([
     { name: "", role: "", email: "" },
     { mobile: "", col2: "", col3: "" },
@@ -23,9 +26,17 @@ const ManagementContact = () => {
   };
 
   return (
-    <form>
-      <Typography variant="h5">
-        MANAGEMENT CONTACT (For Office Use Only)
+    <Container>
+      <Typography
+        variant="h5"
+        gutterBottom
+        borderLeft={"4px solid " + theme.palette.primary.main}
+        padding={1}
+      >
+        <em>
+          <strong>MANAGEMENT CONTACT </strong>
+        </em>
+        <Typography variant="span">(For Office Use Only)</Typography>
       </Typography>
       {/* First Row */}
       <Grid container spacing={6} mt={2}>
@@ -150,7 +161,7 @@ const ManagementContact = () => {
           Add More Contacts
         </Button>
       </Grid>
-    </form>
+    </Container>
   );
 };
 

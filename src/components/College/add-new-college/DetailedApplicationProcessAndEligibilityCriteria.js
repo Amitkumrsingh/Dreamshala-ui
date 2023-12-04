@@ -21,8 +21,18 @@ const DetailedApplicationProcessAndEligibilityCriteria = () => {
     <>
       <Container>
         <Grid mb={4}>
-          <Typography variant="h5">
-            DETAILED APPLICATION PROCESS AND ELIGIBILITY CRITERIA
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+            mb={2}
+          >
+            <em>
+              <strong>
+                DETAILED APPLICATION PROCESS AND ELIGIBILITY CRITERIA
+              </strong>
+            </em>
           </Typography>
         </Grid>
 

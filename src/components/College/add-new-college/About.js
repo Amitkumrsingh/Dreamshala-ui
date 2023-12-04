@@ -99,8 +99,15 @@ const About = () => {
 
   return (
     <Container>
-      <Typography variant="h5" gutterBottom>
-        About
+      <Typography
+        variant="h5"
+        gutterBottom
+        borderLeft={"4px solid " + theme.palette.primary.main}
+        padding={1}
+      >
+        <em>
+          <strong>ABOUT</strong>
+        </em>
       </Typography>
       <Grid container spacing={6} mt={2}>
         {/* Row 1 */}
@@ -154,9 +161,7 @@ const About = () => {
         </Grid>
         {/* Row 2 */}
         <Grid item xs={12} mt={4}>
-          <Typography>
-            Add detailed description about your college class
-          </Typography>
+          <Typography>Add detailed description about your college</Typography>
           <TextField
             fullWidth
             placeholder="Decribe here"

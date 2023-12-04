@@ -21,7 +21,16 @@ const ImportantNews = () => {
     <>
       <Container>
         <Grid mb={4}>
-          <Typography variant="h5">IMPORTANT NEWS</Typography>
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+          >
+            <em>
+              <strong>IMPORTANT NEWS </strong>
+            </em>
+          </Typography>
         </Grid>
 
         {addMoreNews.map((data, index) => (

@@ -164,7 +164,17 @@ const CheckList = () => {
     <>
       <Container>
         <Grid mb={6}>
-          <Typography variant="h5">CHECKLIST</Typography>
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+          >
+            <em>
+              <strong>CHECKLIST </strong>
+            </em>
+          </Typography>
+          {/* <Typography variant="h5">CHECKLIST</Typography> */}
         </Grid>
 
         <Grid container flexDirection={"column"} spacing={4}>

@@ -27,8 +27,16 @@ const CoursesAndFees = () => {
   return (
     <Container>
       <Grid>
-        <Typography variant="h5" gutterBottom>
-          COURSES AND FEES
+        <Typography
+          variant="h5"
+          gutterBottom
+          borderLeft={"4px solid " + theme.palette.primary.main}
+          padding={1}
+          mb={2}
+        >
+          <em>
+            <strong>COURSES AND FEES </strong>
+          </em>
         </Typography>
       </Grid>
 

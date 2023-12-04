@@ -25,9 +25,16 @@ const Reviews = () => {
   return (
     <>
       <Container>
-        <Grid container mb={4}>
-          <Typography variant="h5" gutterBottom>
-            REVIEWS
+        <Grid container mb={6}>
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+          >
+            <em>
+              <strong>REVIEWS </strong>
+            </em>
           </Typography>
         </Grid>
 

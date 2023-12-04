@@ -21,8 +21,16 @@ const Videos = ({ parentName }) => {
     <>
       <Container>
         <Grid mb={4}>
-          <Typography variant="h5" mb={6}>
-            VIDEOS
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+            mb={6}
+          >
+            <em>
+              <strong>VIDEOS </strong>
+            </em>
           </Typography>
           <Typography>
             This section is to add videos about your {parentName}

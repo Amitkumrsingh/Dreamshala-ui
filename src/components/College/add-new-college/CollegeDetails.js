@@ -60,8 +60,16 @@ const CollegeDetails = () => {
     <>
       <Container>
         <Grid>
-          <Typography variant="h5">
-            COLLEGE DETAILS (For Office Use Only)
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+          >
+            <em>
+              <strong>COLLEGE DETAILS </strong>
+            </em>
+            <Typography variant="span">(For Office Use Only)</Typography>
           </Typography>
         </Grid>
 

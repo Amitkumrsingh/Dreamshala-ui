@@ -22,7 +22,17 @@ const PreviousCutoffs = () => {
     <>
       <Container>
         <Grid mb={4}>
-          <Typography variant="h5">PREVIOUS CUTOFFS</Typography>
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+            mb={2}
+          >
+            <em>
+              <strong>PREVIOUS CUTOFFS</strong>
+            </em>
+          </Typography>
         </Grid>
 
         {addMoreCutOffs.map((data, index) => (

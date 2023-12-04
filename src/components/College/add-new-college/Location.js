@@ -58,8 +58,15 @@ const Location = () => {
     <>
       <Container>
         <Grid>
-          <Typography variant="h5" gutterBottom>
-            LOCATION
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+          >
+            <em>
+              <strong>LOCATION</strong>
+            </em>
           </Typography>
           <Typography mt={4}>
             This section is to add all the location where your services are

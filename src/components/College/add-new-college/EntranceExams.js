@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, Button, Grid, Typography } from "@mui/material";
+import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 const EntranceExams = () => {
@@ -75,10 +75,18 @@ const EntranceExams = () => {
   };
 
   return (
-    <>
+    <Container>
       <Grid>
-        <Typography variant="h5" mb={2}>
-          ENTRANCE EXAMS
+        <Typography
+          variant="h5"
+          gutterBottom
+          borderLeft={"4px solid " + theme.palette.primary.main}
+          padding={1}
+          mb={2}
+        >
+          <em>
+            <strong>ENTRANCE EXAMS </strong>
+          </em>
         </Typography>
       </Grid>
       <form>
@@ -226,7 +234,7 @@ const EntranceExams = () => {
           </Grid>
         </Grid>
       </form>
-    </>
+    </Container>
   );
 };
 

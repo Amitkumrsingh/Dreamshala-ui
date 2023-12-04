@@ -6,6 +6,7 @@ import {
   Box,
   Typography,
   IconButton,
+  Container,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
@@ -54,11 +55,20 @@ const MyForm = () => {
   };
 
   return (
-    <>
-      <Typography variant="h5" mb={4}>
-        PHOTOS
+    <Container>
+      <Typography
+        variant="h5"
+        gutterBottom
+        borderLeft={"4px solid " + theme.palette.primary.main}
+        padding={1}
+      >
+        <em>
+          <strong>PHOTOS </strong>
+        </em>
       </Typography>
-      <Typography mb={2}>Photos to give a glimpse of your class</Typography>
+      <Typography mb={4} mt={8}>
+        Photos to give a glimpse of your class
+      </Typography>
       {addMorePhotos.map((d, index) => (
         <Grid key={index} container spacing={6} mb={6}>
           <Grid item xs={4}>
@@ -255,7 +265,7 @@ const MyForm = () => {
       >
         + Add More Photos
       </Button>
-    </>
+    </Container>
   );
 };
 

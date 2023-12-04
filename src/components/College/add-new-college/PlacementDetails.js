@@ -31,8 +31,15 @@ const PlacementDetails = () => {
     <>
       <Container>
         <Grid container justifyContent={"space-between"}>
-          <Typography variant="h5" gutterBottom>
-            PLACEMENT DETAILS
+          <Typography
+            variant="h5"
+            gutterBottom
+            borderLeft={"4px solid " + theme.palette.primary.main}
+            padding={1}
+          >
+            <em>
+              <strong>PLACEMENT DETAILS </strong>
+            </em>
           </Typography>
           <label htmlFor="image-input">
             <Box
