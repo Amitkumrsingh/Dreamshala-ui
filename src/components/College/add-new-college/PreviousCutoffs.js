@@ -18,6 +18,10 @@ const PreviousCutoffs = () => {
   const [degreeBranch, setDegreeBranch] = useState("");
   const [selectCategory, setSelectCategory] = useState("");
   const [subject, setSubject] = useState("");
+
+  const [moreCategoryPercentile, setMoreCategoryPercentile] = useState([""]);
+  const [moreSubjectWise, setMoreSubjectWise] = useState([]);
+
   return (
     <>
       <Container>
@@ -74,34 +78,43 @@ const PreviousCutoffs = () => {
               </Grid>
               <Grid xs={6} item>
                 <Grid>
-                  <Grid container spacing={6}>
-                    <Grid xs={6} item>
-                      <Typography>Select Category</Typography>
-                      <FormControl fullWidth size="small">
-                        <Select
-                          onChange={(e) => setSelectCategory(e.target.value)}
-                          value={selectCategory}
-                          displayEmpty
-                          style={{
-                            color: selectCategory === "" && placeholderColor,
-                          }}
-                        >
-                          <MenuItem value={""} disabled>
-                            Select/ Type Here
-                          </MenuItem>
-                          <MenuItem value="1">1</MenuItem>
-                          <MenuItem value="2">2</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                    <Grid xs={6} item>
-                      <Typography>Overall Percentile</Typography>
-                      <TextField
-                        placeholder="Type Here"
-                        size="small"
-                        fullWidth
-                      />
-                    </Grid>
+                  <Grid container spacing={6} flexDirection={"column"}>
+                    {moreCategoryPercentile.map((data, index) => (
+                      <Grid item container spacing={6} key={index}>
+                        <Grid xs={6} item>
+                          <Typography>Select Category</Typography>
+                          <FormControl fullWidth size="small">
+                            <Select
+                              onChange={(e) =>
+                                setSelectCategory(e.target.value)
+                              }
+                              value={selectCategory}
+                              displayEmpty
+                              style={{
+                                color:
+                                  selectCategory === "" && placeholderColor,
+                              }}
+                            >
+                              <MenuItem value={""} disabled>
+                                Select/ Type Here
+                              </MenuItem>
+                              <MenuItem value="general">General</MenuItem>
+                              <MenuItem value="obc">OBC</MenuItem>
+                              <MenuItem value="sc">SC</MenuItem>
+                              <MenuItem value="st">ST</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </Grid>
+                        <Grid xs={6} item>
+                          <Typography>Overall Percentile</Typography>
+                          <TextField
+                            placeholder="Type Here"
+                            size="small"
+                            fullWidth
+                          />
+                        </Grid>
+                      </Grid>
+                    ))}
                   </Grid>
                   <Grid container spacing={6} mt={1}>
                     <Grid xs={6} item>
@@ -118,23 +131,34 @@ const PreviousCutoffs = () => {
                           <MenuItem value={""} disabled>
                             Select/ Type Here
                           </MenuItem>
-                          <MenuItem value="1">1</MenuItem>
-                          <MenuItem value="2">2</MenuItem>
+                          <MenuItem value="general">General</MenuItem>
+                          <MenuItem value="obc">OBC</MenuItem>
+                          <MenuItem value="sc">SC</MenuItem>
+                          <MenuItem value="st">ST</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
                     <Grid xs={6} item>
                       <Typography>Overall Percentile</Typography>
                       <Grid container spacing={2}>
-                        <Grid item xs={9}>
+                        <Grid item xs={10}>
                           <TextField
                             placeholder="Type Here"
                             size="small"
                             fullWidth
                           />
                         </Grid>
-                        <Grid item xs={3}>
-                          <Button variant="outlined" fullWidth>
+                        <Grid item xs={2}>
+                          <Button
+                            variant="outlined"
+                            fullWidth
+                            onClick={() =>
+                              setMoreCategoryPercentile([
+                                ...moreCategoryPercentile,
+                                "",
+                              ])
+                            }
+                          >
                             +
                           </Button>
                         </Grid>
@@ -146,13 +170,70 @@ const PreviousCutoffs = () => {
             </Grid>
 
             <Grid container spacing={6} flexDirection={"column"} mt={2}>
-              <Grid item>
-                <Grid mb={4}>
+              <Grid item container spacing={6} flexDirection={"column"}>
+                <Grid item>
                   <Typography variant="subtitle2">
                     Subject Wise Cutoff
                   </Typography>
                 </Grid>
-                <Grid container spacing={6}>
+
+                {moreSubjectWise.map((data, index) => (
+                  <Grid item key={index}>
+                    <Grid container spacing={6}>
+                      <Grid item xs={4}>
+                        <Typography>Select Subject</Typography>
+                        <FormControl fullWidth size="small">
+                          <Select
+                            onChange={(e) => setSubject(e.target.value)}
+                            value={subject}
+                            displayEmpty
+                            style={{
+                              color: subject === "" && placeholderColor,
+                            }}
+                          >
+                            <MenuItem value={""} disabled>
+                              Select/ Type Here
+                            </MenuItem>
+                            <MenuItem value="1">1</MenuItem>
+                            <MenuItem value="2">2</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Typography>Select Category</Typography>
+                        <FormControl fullWidth size="small">
+                          <Select
+                            onChange={(e) => setSelectCategory(e.target.value)}
+                            value={selectCategory}
+                            displayEmpty
+                            style={{
+                              color: selectCategory === "" && placeholderColor,
+                            }}
+                          >
+                            <MenuItem value={""} disabled>
+                              Select/ Type Here
+                            </MenuItem>
+                            <MenuItem value="general">General</MenuItem>
+                            <MenuItem value="obc">OBC</MenuItem>
+                            <MenuItem value="sc">SC</MenuItem>
+                            <MenuItem value="st">ST</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Typography>Cutoff Percentile</Typography>
+
+                        <TextField
+                          placeholder="Type Here"
+                          size="small"
+                          fullWidth
+                        />
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                ))}
+
+                <Grid item container spacing={6}>
                   <Grid item xs={4}>
                     <Typography>Select Subject</Typography>
                     <FormControl fullWidth size="small">
@@ -186,8 +267,10 @@ const PreviousCutoffs = () => {
                         <MenuItem value={""} disabled>
                           Select/ Type Here
                         </MenuItem>
-                        <MenuItem value="1">1</MenuItem>
-                        <MenuItem value="2">2</MenuItem>
+                        <MenuItem value="general">General</MenuItem>
+                        <MenuItem value="obc">OBC</MenuItem>
+                        <MenuItem value="sc">SC</MenuItem>
+                        <MenuItem value="st">ST</MenuItem>
                       </Select>
                     </FormControl>
                   </Grid>
@@ -202,7 +285,14 @@ const PreviousCutoffs = () => {
                         />
                       </Grid>
                       <Grid item xs={2}>
-                        <Button variant="outlined">+</Button>
+                        <Button
+                          variant="outlined"
+                          onClick={() =>
+                            setMoreSubjectWise([...moreSubjectWise, ""])
+                          }
+                        >
+                          +
+                        </Button>
                       </Grid>
                     </Grid>
                   </Grid>

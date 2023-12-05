@@ -17,6 +17,12 @@ import { useTheme } from "@mui/material/styles";
 const PlacementDetails = () => {
   const theme = useTheme();
   const placeholderColor = theme.palette.text.secondary;
+
+  const buttonNotSelectedStyle = {
+    color: placeholderColor,
+    borderColor: placeholderColor,
+  };
+
   const [addMorePlacement, setAddMorePlacement] = useState([""]);
   const [degreeBranch, setDegreeBranch] = useState("");
   const [numberOfRecruiters, setNumberOfRecruiters] = useState("");
@@ -26,6 +32,7 @@ const PlacementDetails = () => {
   const [topRecruiters, setTopRecruiters] = useState("");
   const [highestPackage, setHighestPackage] = useState("");
   const [averagePackage, setAveragePackage] = useState("");
+  const [addMoreFields, setAddMoreFields] = useState([]);
 
   return (
     <>
@@ -68,8 +75,15 @@ const PlacementDetails = () => {
         </Grid>
 
         {addMorePlacement.map((data, index) => (
-          <Grid mb={6} key={index}>
-            <Grid container mt={2} spacing={6}>
+          <Grid
+            mb={6}
+            key={index}
+            container
+            flexDirection={"column"}
+            spacing={6}
+            mt={2}
+          >
+            <Grid container spacing={6} item>
               <Grid item xs={4}>
                 <Typography>Degree/ Branch</Typography>
                 <FormControl fullWidth size="small">
@@ -91,7 +105,7 @@ const PlacementDetails = () => {
               </Grid>
             </Grid>
 
-            <Grid container spacing={6} mt={2}>
+            <Grid container spacing={6} item>
               <Grid item xs={4}>
                 <Grid container spacing={6} flexDirection={"column"}>
                   <Grid item>
@@ -103,25 +117,6 @@ const PlacementDetails = () => {
                       minRows={4}
                       maxRows={4}
                     />
-                  </Grid>
-                  <Grid item>
-                    <Typography>Highest Package</Typography>
-                    <FormControl fullWidth size="small">
-                      <Select
-                        onChange={(e) => setHighestPackage(e.target.value)}
-                        value={highestPackage}
-                        displayEmpty
-                        style={{
-                          color: highestPackage === "" && placeholderColor,
-                        }}
-                      >
-                        <MenuItem value={""} disabled>
-                          Select/ Type Here
-                        </MenuItem>
-                        <MenuItem value="1">1</MenuItem>
-                        <MenuItem value="2">2</MenuItem>
-                      </Select>
-                    </FormControl>
                   </Grid>
                 </Grid>
               </Grid>
@@ -159,25 +154,6 @@ const PlacementDetails = () => {
                           color:
                             numberOfInternationalOffers === "" &&
                             placeholderColor,
-                        }}
-                      >
-                        <MenuItem value={""} disabled>
-                          Select/ Type Here
-                        </MenuItem>
-                        <MenuItem value="1">1</MenuItem>
-                        <MenuItem value="2">2</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item>
-                    <Typography>Average Package</Typography>
-                    <FormControl fullWidth size="small">
-                      <Select
-                        onChange={(e) => setAveragePackage(e.target.value)}
-                        value={averagePackage}
-                        displayEmpty
-                        style={{
-                          color: averagePackage === "" && placeholderColor,
                         }}
                       >
                         <MenuItem value={""} disabled>
@@ -233,16 +209,76 @@ const PlacementDetails = () => {
                       </Select>
                     </FormControl>
                   </Grid>
-                  <Grid item>
-                    <Typography style={{ visibility: "hidden" }}>.</Typography>
-                    <Grid>
-                      <TextField
-                        placeholder="+ Add a Field"
-                        fullWidth
-                        size="small"
-                      />
-                    </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={6} item>
+              <Grid item xs={4}>
+                <Typography>Highest Package</Typography>
+                <FormControl fullWidth size="small">
+                  <Select
+                    onChange={(e) => setHighestPackage(e.target.value)}
+                    value={highestPackage}
+                    displayEmpty
+                    style={{
+                      color: highestPackage === "" && placeholderColor,
+                    }}
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
+                    <MenuItem value="1">1</MenuItem>
+                    <MenuItem value="2">2</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography>Average Package</Typography>
+                <FormControl fullWidth size="small">
+                  <Select
+                    onChange={(e) => setAveragePackage(e.target.value)}
+                    value={averagePackage}
+                    displayEmpty
+                    style={{
+                      color: averagePackage === "" && placeholderColor,
+                    }}
+                  >
+                    <MenuItem value={""} disabled>
+                      Select/ Type Here
+                    </MenuItem>
+                    <MenuItem value="1">1</MenuItem>
+                    <MenuItem value="2">2</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              {addMoreFields.map((data, index) => (
+                <Grid item xs={4} key={index}>
+                  <Typography style={{ visibility: "hidden" }}>.</Typography>
+                  <Grid>
+                    <TextField
+                      placeholder="+ Add a Field"
+                      fullWidth
+                      size="small"
+                      variant="outlined"
+                      style={buttonNotSelectedStyle}
+                    />
                   </Grid>
+                </Grid>
+              ))}
+
+              <Grid item xs={4}>
+                <Typography style={{ visibility: "hidden" }}>.</Typography>
+                <Grid>
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    style={buttonNotSelectedStyle}
+                    onClick={() => setAddMoreFields([...addMoreFields, ""])}
+                  >
+                    + Add a Field
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>
