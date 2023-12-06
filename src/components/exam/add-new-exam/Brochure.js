@@ -25,6 +25,7 @@ const Brochure = () => {
     setImage(selectedImage);
   };
   const [examsWhoCanRefer, setExamsWhoCanRefer] = useState("");
+  const [linkInputs, setLinkInputs] = useState([""]);
 
   const buttonNotSelectedStyle = {
     color: secondaryColor,
@@ -87,12 +88,30 @@ const Brochure = () => {
           </Grid>
           <Grid item>
             <Typography>Links (if any)</Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={8}>
-                <TextField placeholder="Describe here" fullWidth size="small" />
+            <Grid container alignItems={"end"} spacing={2}>
+              <Grid xs={10} item>
+                {linkInputs.map((link, index) => (
+                  <Grid
+                    key={index}
+                    mb={index + 1 !== linkInputs.length ? 2 : 0}
+                  >
+                    <TextField
+                      key={index}
+                      label={`Link ${index + 1}`}
+                      size="small"
+                      margin="none"
+                      fullWidth
+                    />
+                  </Grid>
+                ))}
               </Grid>
-              <Grid item xs={2}>
-                <Button variant="outlined" style={buttonNotSelectedStyle}>
+
+              <Grid xs={2} mb={0} item>
+                <Button
+                  variant="outlined"
+                  style={buttonNotSelectedStyle}
+                  onClick={() => setLinkInputs([...linkInputs, ""])}
+                >
                   +
                 </Button>
               </Grid>

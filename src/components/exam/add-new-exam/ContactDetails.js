@@ -17,6 +17,7 @@ const ContactDetails = () => {
   ]);
 
   const [addMoreContact, setAddMoreContact] = useState([""]);
+  const [addMoreWebsiteLink, setAddMoreWebsiteLink] = useState([]);
 
   // Function to handle changes in the contact fields
   const handleContactChange = (index, field, value) => {
@@ -84,29 +85,33 @@ const ContactDetails = () => {
 
           {/* Second Row */}
           <Grid container spacing={6} mt={2}>
+            {addMoreWebsiteLink.map((data, index) => (
+              <Grid key={index} item xs={4}>
+                <Typography>Other websites/impotant links</Typography>
+                <TextField placeholder={"Type Here"} size="small" fullWidth />
+              </Grid>
+            ))}
+
             <Grid item xs={4}>
               <Typography>Other websites/impotant links</Typography>
               <Grid container spacing={2}>
                 <Grid item xs={10}>
-                  <TextField
-                    // label="Mobile Number"
-                    size="small"
-                    fullWidth
-                  />
+                  <TextField placeholder={"Type Here"} size="small" fullWidth />
                 </Grid>
                 <Grid item xs={2}>
                   <Button
                     fullWidth
                     variant="outlined"
                     style={buttonNotSelectedStyle}
+                    onClick={() =>
+                      setAddMoreWebsiteLink([...addMoreWebsiteLink, ""])
+                    }
                   >
                     +
                   </Button>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={4}></Grid>
-            <Grid item xs={4}></Grid>
           </Grid>
         </Grid>
       ))}

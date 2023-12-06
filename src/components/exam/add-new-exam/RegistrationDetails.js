@@ -18,6 +18,7 @@ const RegistrationDetails = () => {
   const [registrationMode, setRegistrationMode] = useState("");
   const [paymentMode, setPaymentMode] = useState("");
   const [category, setCategory] = useState("");
+  const [addMoreCategoryFee, setAddMoreCategoryFee] = useState([""]);
 
   const buttonNotSelectedStyle = {
     color: secondaryColor,
@@ -96,6 +97,35 @@ const RegistrationDetails = () => {
             <Typography variant="h6">Registration</Typography>
           </Grid>
           <Grid container spacing={6} item>
+            {addMoreCategoryFee.map((data, index) => (
+              <Grid key={index} item xs={6} container spacing={4}>
+                <Grid item xs={6}>
+                  <Typography>Category</Typography>
+                  <FormControl fullWidth size="small">
+                    <Select
+                      onChange={(e) => setCategory(e.target.value)}
+                      value={category}
+                      displayEmpty
+                      style={{
+                        color: category === "" && secondaryColor,
+                      }}
+                    >
+                      <MenuItem value={""} disabled>
+                        Select/ Type Here
+                      </MenuItem>
+                      <MenuItem value="general">General</MenuItem>
+                      <MenuItem value="obc">OBC</MenuItem>
+                      <MenuItem value="sc">SC</MenuItem>
+                      <MenuItem value="st">ST</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography>Fees</Typography>
+                  <TextField placeholder="Type Here" size="small" fullWidth />
+                </Grid>
+              </Grid>
+            ))}
             <Grid item xs={6} container spacing={4}>
               <Grid item xs={6}>
                 <Typography>Category</Typography>
@@ -111,33 +141,10 @@ const RegistrationDetails = () => {
                     <MenuItem value={""} disabled>
                       Select/ Type Here
                     </MenuItem>
-                    <MenuItem value="1"> 1</MenuItem>
-                    <MenuItem value="2"> 2</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography>Fees</Typography>
-                <TextField placeholder="Type Here" size="small" fullWidth />
-              </Grid>
-            </Grid>
-            <Grid item xs={6} container spacing={4}>
-              <Grid item xs={6}>
-                <Typography>Category</Typography>
-                <FormControl fullWidth size="small">
-                  <Select
-                    onChange={(e) => setCategory(e.target.value)}
-                    value={category}
-                    displayEmpty
-                    style={{
-                      color: category === "" && secondaryColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1"> 1</MenuItem>
-                    <MenuItem value="2"> 2</MenuItem>
+                    <MenuItem value="general">General</MenuItem>
+                    <MenuItem value="obc">OBC</MenuItem>
+                    <MenuItem value="sc">SC</MenuItem>
+                    <MenuItem value="st">ST</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -148,7 +155,13 @@ const RegistrationDetails = () => {
                     <TextField placeholder="Type Here" size="small" fullWidth />
                   </Grid>
                   <Grid item xs={2}>
-                    <Button variant="outlined" style={buttonNotSelectedStyle}>
+                    <Button
+                      variant="outlined"
+                      style={buttonNotSelectedStyle}
+                      onClick={() =>
+                        setAddMoreCategoryFee([...addMoreCategoryFee, ""])
+                      }
+                    >
                       +
                     </Button>
                   </Grid>

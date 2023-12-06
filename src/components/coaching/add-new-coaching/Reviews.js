@@ -163,7 +163,7 @@ const Reviews = () => {
                   <label htmlFor="image-input">
                     <Box
                       border={1}
-                      borderColor="grey.500"
+                      borderColor={placeholderColor}
                       borderRadius="4px"
                       display="flex"
                       alignItems="center"
@@ -178,7 +178,10 @@ const Reviews = () => {
                         id="image-input"
                       />
                       <IconButton component="span">
-                        <FileUploadIcon fontSize="small" color="primary" />
+                        <FileUploadIcon
+                          fontSize="small"
+                          color={placeholderColor}
+                        />
                       </IconButton>
                       Click here to Upload
                       {/* You can display the selected image here if needed */}

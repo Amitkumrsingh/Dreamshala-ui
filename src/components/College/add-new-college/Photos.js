@@ -76,7 +76,7 @@ const MyForm = () => {
             <label htmlFor="image-input">
               <Box
                 border={"2px dashed"}
-                borderColor="grey.500"
+                borderColor={secondaryColor}
                 borderRadius="4px"
                 display="flex"
                 alignItems="center"
@@ -93,7 +93,10 @@ const MyForm = () => {
                 />
 
                 <IconButton component="span">
-                  <AddPhotoAlternateIcon fontSize="large" color="primary" />
+                  <AddPhotoAlternateIcon
+                    fontSize="large"
+                    color={secondaryColor}
+                  />
                 </IconButton>
                 {/* You can display the selected image here if needed */}
               </Box>

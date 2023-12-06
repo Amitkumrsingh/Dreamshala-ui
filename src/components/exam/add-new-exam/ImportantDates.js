@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Grid, TextField, Typography, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
@@ -10,6 +10,8 @@ const ImportantDates = () => {
     color: secondaryColor,
     borderColor: secondaryColor,
   };
+
+  const [addMoreExamDate, setAddMoreExamDate] = useState([]);
 
   return (
     <>
@@ -71,14 +73,25 @@ const ImportantDates = () => {
           </Grid>
 
           <Grid item container spacing={6}>
+            {addMoreExamDate.map((data, index) => (
+              <Grid item xs={4} key={index}>
+                <Typography>Exam Date {index + 1}</Typography>
+                <TextField type="date" fullWidth size="small" />
+              </Grid>
+            ))}
+
             <Grid item xs={4}>
-              <Typography>Exam Dates</Typography>
+              <Typography>Exam Date {addMoreExamDate.length + 1}</Typography>
               <Grid container spacing={2}>
                 <Grid item xs={10}>
                   <TextField type="date" fullWidth size="small" />
                 </Grid>
                 <Grid item xs={2}>
-                  <Button variant="outlined" style={buttonNotSelectedStyle}>
+                  <Button
+                    variant="outlined"
+                    style={buttonNotSelectedStyle}
+                    onClick={() => setAddMoreExamDate([...addMoreExamDate, ""])}
+                  >
                     +
                   </Button>
                 </Grid>

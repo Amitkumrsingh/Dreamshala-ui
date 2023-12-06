@@ -26,6 +26,7 @@ const StudyMaterial = () => {
 
   const [addMoreStudyMaterial, setAddMoreStudyMaterial] = useState([""]);
   const [examsWhoCanRefer, setExamsWhoCanRefer] = useState("");
+  const [linkInputs, setLinkInputs] = useState([""]);
 
   return (
     <>
@@ -108,18 +109,33 @@ const StudyMaterial = () => {
               <Grid container spacing={6} mt={2}>
                 <Grid item xs={6}>
                   <Typography>Links (if any)</Typography>
-                  <Grid container fullWidth>
-                    <TextField
-                      // fullWidth
-                      // label="Description"
-                      style={{ width: "78%", marginRight: 5 }}
-                      placeholder="Type here"
-                      variant="outlined"
-                      size="small"
-                    />
-                    <Button variant="outlined" style={buttonNotSelectedStyle}>
-                      +
-                    </Button>
+                  <Grid container alignItems={"end"} spacing={2}>
+                    <Grid xs={10} item>
+                      {linkInputs.map((link, index) => (
+                        <Grid
+                          key={index}
+                          mb={index + 1 !== linkInputs.length ? 2 : 0}
+                        >
+                          <TextField
+                            key={index}
+                            label={`Link ${index + 1}`}
+                            size="small"
+                            margin="none"
+                            fullWidth
+                          />
+                        </Grid>
+                      ))}
+                    </Grid>
+
+                    <Grid xs={2} mb={0} item>
+                      <Button
+                        variant="outlined"
+                        style={buttonNotSelectedStyle}
+                        onClick={() => setLinkInputs([...linkInputs, ""])}
+                      >
+                        +
+                      </Button>
+                    </Grid>
                   </Grid>
                 </Grid>
                 <Grid item xs={6}>

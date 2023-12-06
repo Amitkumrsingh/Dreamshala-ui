@@ -30,6 +30,7 @@ const ExamPattern = () => {
   const [durationOfExam, setDurationOfExam] = useState("");
   const [numberOfQuestions, setNumberOfQuestions] = useState("");
   const [totalMarks, setTotalMarks] = useState("");
+  const [addMoreField, setAddMoreField] = useState([]);
 
   const [addMorePattern, setAddMorePattern] = useState([""]);
   return (
@@ -213,6 +214,20 @@ const ExamPattern = () => {
                 minRows={3}
               />
             </Grid>
+            <Grid item xs={4} container spacing={6} flexDirection={"column"}>
+              <Grid item>
+                <Typography>12</Typography>
+                <TextField placeholder="Field Name" fullWidth size="small" />
+              </Grid>
+              <Grid item>
+                <TextField
+                  placeholder="Describe Field Here"
+                  fullWidth
+                  size="small"
+                />
+              </Grid>
+            </Grid>
+
             <Grid item xs={4}>
               <Grid mt={5}>
                 <Button
