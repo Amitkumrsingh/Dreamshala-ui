@@ -21,7 +21,7 @@ import {
 } from "../../../components/College/add-new-college";
 
 import DashboardLayout from "../../../layouts/Dashboard";
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Container,
@@ -47,19 +47,20 @@ const steps = [
 ];
 
 const AddNewCollege = () => {
-  const dispatch = useDispatch();
-  const activeStep = useSelector((state) => state.activeStep);
+  const [activeStep, setActiveStep] = useState(0);
+  // const dispatch = useDispatch();
+  // const activeStep = useSelector((state) => state.activeStep);
 
   const handleNext = () => {
-    dispatch(nextStep());
+    setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
-    dispatch(preStep());
+    setActiveStep(activeStep - 1);
   };
 
   const handleToStep = (step) => {
-    dispatch(toStep(step));
+    setActiveStep(step);
   };
 
   return (
