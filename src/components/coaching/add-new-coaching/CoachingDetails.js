@@ -224,7 +224,7 @@ const CoachingDetails = () => {
                 width={"100%"}
                 style={{ border: 0 }}
                 height={"100%"}
-                allowfullscreen=""
+                // allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
               ></iframe>
