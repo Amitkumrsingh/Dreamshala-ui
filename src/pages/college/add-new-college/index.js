@@ -30,12 +30,7 @@ import {
   StepLabel,
   Grid,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  nextStep,
-  preStep,
-  toStep,
-} from "../../../redux/slices/add-new-college-step-form";
+
 // import { Checklist } from "@mui/icons-material";
 
 const steps = [

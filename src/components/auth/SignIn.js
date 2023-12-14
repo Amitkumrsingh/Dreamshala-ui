@@ -4,6 +4,9 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { API_BASE_URL } from "../../config";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserData } from "../../redux/slices/userReducer";
 
 import {
   Alert as MuiAlert,
@@ -23,6 +26,8 @@ const TextField = styled(MuiTextField)(spacing);
 function SignIn() {
   const router = useRouter();
   const { signIn } = useAuth();
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.user);
 
   return (
     <Formik
@@ -32,18 +37,38 @@ function SignIn() {
         submit: false,
       }}
       validationSchema={Yup.object().shape({
-        email: Yup.string()
-          .email("Must be a valid email")
-          .max(255)
-          .required("Email is required"),
+        email: Yup.string().max(255).required("Username is required"),
         password: Yup.string().max(255).required("Password is required"),
       })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
         try {
-          await signIn(values.email, values.password);
+          // await signIn(values.email, values.password);
+          // await fetch("http://13.235.115.71/api/users/signin/", {
+          const response = await fetch(API_BASE_URL + "/users/signin/", {
+            method: "POST",
+            body: JSON.stringify({
+              username: values.email,
+              password: values.password,
+            }),
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (response.status === 200) {
+            const data = await response.json();
+            // console.log({ data: data, status: response.status });
+            dispatch(setUserData(data));
+            router.push("/college/add-new-college");
+          } else {
+            const errorData = await response.json();
+            console.log({ error: errorData, status: response.status });
+            // Handle the successful response
+          }
 
           // router.push("/private");
-          router.push("/college/add-new-college");
+          // router.push("/college/add-new-college");
         } catch (error) {
           const message = error.message || "Something went wrong";
 
@@ -73,9 +98,9 @@ function SignIn() {
             </Alert>
           )}
           <TextField
-            type="email"
+            type="text"
             name="email"
-            label="Email Address"
+            label="Username"
             value={values.email}
             error={Boolean(touched.email && errors.email)}
             fullWidth

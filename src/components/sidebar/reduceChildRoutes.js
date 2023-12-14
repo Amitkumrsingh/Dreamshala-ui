@@ -1,16 +1,9 @@
 import React from "react";
 import SidebarNavListItem from "./SidebarNavListItem";
 import SidebarNavList from "./SidebarNavList";
-import { useDispatch } from "react-redux";
-import { toStep } from "../../redux/slices/add-new-college-step-form";
 
 const ReduceChildRoutes = (props) => {
-  const dispatch = useDispatch();
   const { items, page, depth, currentRoute } = props;
-
-  const handleToStep = (step) => {
-    dispatch(toStep(step));
-  };
 
   if (page.children) {
     const open = currentRoute.includes(page.href);

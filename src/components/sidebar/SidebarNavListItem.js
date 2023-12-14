@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { Chip, Collapse, ListItemButton, ListItemText } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import { toStep } from "../../redux/slices/add-new-college-step-form";
 
 const Item = styled(ListItemButton)`
   padding-top: ${(props) =>

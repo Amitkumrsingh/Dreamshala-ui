@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 // import counterReducer from "./slices/counter";
-import AddNewCollegeStepReducer from "./slices/add-new-college-step-form";
+import rootReducer from "./slices/index";
 
 export const store = configureStore({
-  reducer: AddNewCollegeStepReducer,
+  reducer: rootReducer,
 
   // reducer: {
   //   counter: counterReducer,

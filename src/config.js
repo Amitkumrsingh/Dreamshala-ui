@@ -18,3 +18,5 @@ export const cognitoConfig = {
   userPoolId: process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID,
   clientId: process.env.NEXT_PUBLIC_COGNITO_CLIENT_ID,
 };
+
+export const API_BASE_URL = "http://13.235.115.71/api";
