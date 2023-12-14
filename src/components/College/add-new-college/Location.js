@@ -189,10 +189,11 @@ const Location = () => {
                   src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7613.422063208642!2d78.449477!3d17.42565!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9734d5af1441%3A0x888e3aafdd74f605!2sMAD%20SCHOOL%20Hyderabad%20-%20NIFT%2C%20NID%2C%20NATA%2C%20UCEED%20Coaching%20Centre!5e0!3m2!1sen!2sin!4v1701170248797!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
+                  referrerPolicy="no-referrer"
                   style={{ border: 0 }}
                   // allowfullscreen=""
                   loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
+                  // referrerpolicy="no-referrer-when-downgrade"
                 ></iframe>
               </Grid>
             </Grid>

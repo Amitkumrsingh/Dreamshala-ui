@@ -224,9 +224,10 @@ const CoachingDetails = () => {
                 width={"100%"}
                 style={{ border: 0 }}
                 height={"100%"}
+                referrerPolicy="no-referrer"
                 // allowfullscreen=""
                 loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
+                // referrerpolicy="no-referrer-when-downgrade"
               ></iframe>
             </Grid>
           </Grid>
