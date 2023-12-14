@@ -19,6 +19,8 @@ import {
   PreviousCutoffs,
   PlacementDetails,
 } from "../../../components/College/add-new-college";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 import DashboardLayout from "../../../layouts/Dashboard";
 import React, { useState } from "react";
@@ -30,6 +32,9 @@ import {
   StepLabel,
   Grid,
 } from "@mui/material";
+import SignIn from "../../auth/sign-in";
+
+// import userServices from "../../../services/userServices";
 
 // import { Checklist } from "@mui/icons-material";
 
@@ -42,9 +47,10 @@ const steps = [
 ];
 
 const AddNewCollege = () => {
+  const router = useRouter();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
   const [activeStep, setActiveStep] = useState(0);
-  // const dispatch = useDispatch();
-  // const activeStep = useSelector((state) => state.activeStep);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -57,6 +63,10 @@ const AddNewCollege = () => {
   const handleToStep = (step) => {
     setActiveStep(step);
   };
+
+  if (!isLoggedIn) {
+    return <SignIn />;
+  }
 
   return (
     <Container>

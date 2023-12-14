@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
 
@@ -40,7 +40,10 @@ const FooterBadge = styled(Badge)`
 
 const SidebarFooter = ({ ...rest }) => {
   const { user } = useAuth();
-  const userData = useSelector((state) => state.user);
+  const userData = useSelector((state) => state.user.user);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
+  // console.log(userData, isLoggedIn);
 
   return (
     <Footer {...rest}>
@@ -65,12 +68,10 @@ const SidebarFooter = ({ ...rest }) => {
           </FooterBadge>
         </Grid>
         <Grid item>
-          {userServices.isLogedIn() && (
+          {isLoggedIn && (
             <>
-              <FooterText variant="body2">{userData.user.username}</FooterText>
-              <FooterSubText variant="caption">
-                {userData.user.email}
-              </FooterSubText>
+              <FooterText variant="body2">{userData.username}</FooterText>
+              <FooterSubText variant="caption">{userData.email}</FooterSubText>
             </>
           )}
         </Grid>

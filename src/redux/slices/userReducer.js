@@ -1,16 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { API_BASE_URL } from "../../config";
-import userServices from "../../services/userServices";
-
-let user;
-if (userServices.isLogedIn()) {
-  user = localStorage.getItem("reduxState")
-    ? JSON.parse(localStorage.getItem("reduxState"))
-    : {};
-}
 
 const initialState = {
-  user: user,
+  user: {},
+  isLoggedIn: false,
 };
 
 export const userSlice = createSlice({
@@ -20,12 +12,11 @@ export const userSlice = createSlice({
     setUserData: (state, action) => {
       const { email, token, username } = action.payload;
       state.user = { email, token, username };
-
-      localStorage.setItem("reduxState", JSON.stringify({ ...state.user }));
+      state.isLoggedIn = true;
     },
     signOutUser: (state, action) => {
-      localStorage.clear();
       state.user = {};
+      state.isLoggedIn = false;
     },
   },
 });

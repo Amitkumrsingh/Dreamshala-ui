@@ -27,7 +27,7 @@ function NavbarUserDropdown() {
   const [anchorMenu, setAnchorMenu] = React.useState(null);
   const router = useRouter();
   const { signOut } = useAuth();
-  const userData = useSelector((state) => state.user);
+  const userData = useSelector((state) => state.user.user);
 
   const toggleMenu = (event) => {
     setAnchorMenu(event.currentTarget);
@@ -37,22 +37,23 @@ function NavbarUserDropdown() {
     setAnchorMenu(null);
   };
 
+  console.log(userData.username, userData.token);
+
   const handleSignOut = async () => {
-    // const response = await fetch(API_BASE_URL + "/users/signin/", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     username: values.email,
-    //     password: values.password,
-    //   }),
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //     Authorization: "Token " + userData.user.token,
-    //   },
-    // });
-    // const jsonData = await response.json();
-    // console.log(jsonData);
-    // router.push("/auth/sign-in");
+    const response = await fetch(API_BASE_URL + "/users/logout/", {
+      method: "POST",
+      body: JSON.stringify({
+        username: userData.username,
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Token " + userData.token,
+      },
+    });
+    const status = response.status;
+    const jsonData = await response.json();
+    // console.log(jsonData, status);
 
     dispatch(signOutUser());
     router.push("/");
