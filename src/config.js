@@ -20,4 +20,4 @@ export const cognitoConfig = {
 };
 
 // export const API_BASE_URL = "http://13.235.115.71/api";
-export const API_BASE_URL = "https://api.ifnotnowthenwhen.in/api";
+export const API_BASE_URL = "https://api.ifnotnowthenwhen.in";

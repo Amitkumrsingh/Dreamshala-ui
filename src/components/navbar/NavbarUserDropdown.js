@@ -37,10 +37,10 @@ function NavbarUserDropdown() {
     setAnchorMenu(null);
   };
 
-  console.log(userData.username, userData.token);
+  // console.log(userData.username, userData.token);
 
   const handleSignOut = async () => {
-    const response = await fetch(API_BASE_URL + "/users/logout/", {
+    const response = await fetch(API_BASE_URL + "/api/users/logout/", {
       method: "POST",
       body: JSON.stringify({
         username: userData.username,

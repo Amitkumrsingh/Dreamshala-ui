@@ -1,29 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const ManagementContact = () => {
+const ManagementContact = ({ setManagementContact }) => {
   const theme = useTheme();
 
-  const [contacts, setContacts] = useState([
-    { name: "", role: "", email: "" },
-    { mobile: "", col2: "", col3: "" },
-  ]);
+  const [formData, setFormData] = useState({
+    name: "",
+    role: "",
+    email_mang: "",
+    contact_number_mang: "",
+  });
 
-  // Function to add a new set of contact fields
-  const addContact = () => {
-    setContacts([
-      ...contacts,
-      { name: "", role: "", email: "", mobile: "", col2: "", col3: "" },
-    ]);
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
   };
 
-  // Function to handle changes in the contact fields
-  const handleContactChange = (index, field, value) => {
-    const newContacts = [...contacts];
-    newContacts[index][field] = value;
-    setContacts(newContacts);
-  };
+  useEffect(() => {
+    setManagementContact({ ...formData });
+  }, [formData, setManagementContact]);
 
   return (
     <Container>
@@ -46,9 +41,10 @@ const ManagementContact = () => {
             // label="Name"
             placeholder="Type Here"
             size="small"
+            name="name"
             fullWidth
-            value={contacts[0].name}
-            onChange={(e) => handleContactChange(0, "name", e.target.value)}
+            value={formData.name}
+            onChange={handleInputChange("name")}
           />
         </Grid>
         <Grid item xs={4}>
@@ -58,8 +54,8 @@ const ManagementContact = () => {
             placeholder="Type Here"
             size="small"
             fullWidth
-            value={contacts[0].role}
-            onChange={(e) => handleContactChange(0, "role", e.target.value)}
+            value={formData.role}
+            onChange={handleInputChange("role")}
           />
         </Grid>
         <Grid item xs={4}>
@@ -69,8 +65,10 @@ const ManagementContact = () => {
             placeholder="timesedu@gmail.com"
             size="small"
             fullWidth
-            value={contacts[0].email}
-            onChange={(e) => handleContactChange(0, "email", e.target.value)}
+            name="email"
+            type="email"
+            value={formData.email_mang}
+            onChange={handleInputChange("email_mang")}
           />
         </Grid>
       </Grid>
@@ -84,80 +82,23 @@ const ManagementContact = () => {
             size="small"
             placeholder="+91 00000 00000"
             fullWidth
-            value={contacts[1].mobile}
-            onChange={(e) => handleContactChange(1, "mobile", e.target.value)}
+            type="tel"
+            name="phone"
+            value={formData.contact_number_mang}
+            onChange={handleInputChange("contact_number_mang")}
           />
         </Grid>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}></Grid>
       </Grid>
 
-      {/* Additional Contact Fields */}
-      {contacts.slice(2).map((contact, index) => (
-        <Grid key={index}>
-          <Grid container spacing={6} mt={2}>
-            <Grid item xs={4}>
-              <Typography>Name</Typography>
-              <TextField
-                // label="Name"
-                placeholder="Type Here"
-                fullWidth
-                value={contact.name}
-                size="small"
-                onChange={(e) =>
-                  handleContactChange(index + 2, "name", e.target.value)
-                }
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <Typography>Role in the Institute</Typography>
-              <TextField
-                // label="Role in the Institute"
-                placeholder="Type Here"
-                fullWidth
-                value={contact.role}
-                size="small"
-                onChange={(e) =>
-                  handleContactChange(index + 2, "role", e.target.value)
-                }
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <Typography>Email ID</Typography>
-              <TextField
-                // label="Email ID"
-                placeholder="timesedu@gmail.com"
-                fullWidth
-                value={contact.email}
-                size="small"
-                onChange={(e) =>
-                  handleContactChange(index + 2, "email", e.target.value)
-                }
-              />
-            </Grid>
-          </Grid>
-          <Grid container spacing={6} mt={2}>
-            <Grid item xs={4}>
-              <Typography>Contact</Typography>
-              <TextField
-                placeholder="+91 00000 00000"
-                fullWidth
-                value={contacts[1].mobile}
-                size="small"
-                onChange={(e) =>
-                  handleContactChange(1, "mobile", e.target.value)
-                }
-              />
-            </Grid>
-            <Grid item xs={4}></Grid>
-            <Grid item xs={4}></Grid>
-          </Grid>
-        </Grid>
-      ))}
-
       {/* Button to add more contacts */}
       <Grid mt={6}>
-        <Button variant="outlined" color="primary" onClick={addContact}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => console.log("add new contact")}
+        >
           Add More Contacts
         </Button>
       </Grid>

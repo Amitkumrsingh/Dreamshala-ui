@@ -10,6 +10,7 @@ import { setUserData } from "../../redux/slices/userReducer";
 
 import {
   Alert as MuiAlert,
+  Grid,
   Checkbox,
   FormControlLabel,
   Button,
@@ -44,7 +45,7 @@ function SignIn() {
         try {
           // await signIn(values.email, values.password);
           // await fetch("http://13.235.115.71/api/users/signin/", {
-          const response = await fetch(API_BASE_URL + "/users/signin/", {
+          const response = await fetch(API_BASE_URL + "/api/users/signin/", {
             method: "POST",
             body: JSON.stringify({
               username: values.email,
@@ -125,6 +126,7 @@ function SignIn() {
             onBlur={handleBlur}
             onChange={handleChange}
             my={2}
+            mb={8}
           />
           {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

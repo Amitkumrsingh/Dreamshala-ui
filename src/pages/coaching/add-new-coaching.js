@@ -32,6 +32,8 @@ import {
 
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import { coachingStep1FormSubmit } from "../../services/coachingServices";
+import { unstable_gridTabIndexColumnHeaderFilterSelector } from "@mui/x-data-grid";
 
 const steps = [
   "Basic Details",
@@ -42,6 +44,11 @@ const steps = [
 const AddNewCoaching = () => {
   const router = useRouter();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const [about, setAbout] = useState();
+  const [contactDetails, setContactDetails] = useState();
+  const [managementContact, setManagementContact] = useState();
+  const [coachingDetails, setCoachingDetails] = useState();
+  const [location, setLocation] = useState();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -51,8 +58,34 @@ const AddNewCoaching = () => {
 
   const [activeStep, setActiveStep] = useState(0);
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
+  const handleNext = async () => {
+    switch (activeStep) {
+      case 0:
+        const data = await coachingStep1FormSubmit({
+          ...about,
+          ...contactDetails,
+          ...managementContact,
+          ...coachingDetails,
+          ...location,
+        });
+
+        if (data.response === 201) console.log("form Submitted 1");
+
+        const obj = await data.json();
+        console.log(obj);
+
+        // console.log(coachingDetails);
+        break;
+
+      case 1:
+        console.log("stpe 2");
+        break;
+
+      case 2:
+        console.log("step 3");
+        break;
+    }
+    // setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
@@ -92,19 +125,21 @@ const AddNewCoaching = () => {
               {activeStep === 0 && (
                 <Grid container flexDirection={"column"} spacing={6}>
                   <Grid item>
-                    <About />
+                    <About setAbout={setAbout} />
                   </Grid>
                   <Grid item mt={6}>
-                    <ContactDetails />
+                    <ContactDetails setContactDetails={setContactDetails} />
                   </Grid>
                   <Grid item mt={6}>
-                    <ManagementContact />
+                    <ManagementContact
+                      setManagementContact={setManagementContact}
+                    />
                   </Grid>
                   <Grid item mt={6}>
-                    <CoachingDetails />
+                    <CoachingDetails setCoachingDetails={setCoachingDetails} />
                   </Grid>
                   <Grid item mt={6}>
-                    <Location />
+                    <Location setLocation={setLocation} />
                   </Grid>
                 </Grid>
               )}
