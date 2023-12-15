@@ -32,8 +32,8 @@ function SignIn() {
   return (
     <Formik
       initialValues={{
-        email: "youdotcreate@gmail.com",
-        password: "Daydreamers#2023",
+        email: "",
+        password: "",
         submit: false,
       }}
       validationSchema={Yup.object().shape({
@@ -63,7 +63,12 @@ function SignIn() {
             router.push("/college/add-new-college");
           } else {
             const errorData = await response.json();
-            console.log({ error: errorData, status: response.status });
+            // console.log({ error: errorData, status: response.status });
+            setErrors({
+              submit: "Invalid Sign in Credential",
+              email: values.email,
+              password: values.password,
+            });
             // Handle the successful response
           }
 
@@ -121,10 +126,10 @@ function SignIn() {
             onChange={handleChange}
             my={2}
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth
@@ -134,11 +139,11 @@ function SignIn() {
           >
             Sign in
           </Button>
-          <Link href="/auth/reset-password">
+          {/* <Link href="/auth/reset-password">
             <Button fullWidth color="primary">
               Forgot password
             </Button>
-          </Link>
+          </Link> */}
         </form>
       )}
     </Formik>
