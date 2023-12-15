@@ -45,6 +45,8 @@ const steps = [
 const AddNewCollege = () => {
   const router = useRouter();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const [managementContact, setManagementContact] = useState();
+  const [location, setLocation] = useState();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -104,10 +106,12 @@ const AddNewCollege = () => {
                     <CollegeDetails />
                   </Grid>
                   <Grid item mt={6}>
-                    <Location />
+                    <Location setLocation={setLocation} />
                   </Grid>
                   <Grid item mt={6}>
-                    <ManagementContact />
+                    <ManagementContact
+                      setManagementContact={setManagementContact}
+                    />
                   </Grid>
                 </Grid>
               )}

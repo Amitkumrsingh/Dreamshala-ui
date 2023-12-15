@@ -251,8 +251,4 @@ const About = ({ setAbout }) => {
   );
 };
 
-// About.getLayout = function getLayout(page) {
-//   return <DashboardLayout>{page}</DashboardLayout>;
-// };
-
 export default About;

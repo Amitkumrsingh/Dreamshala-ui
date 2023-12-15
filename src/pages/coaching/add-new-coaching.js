@@ -69,6 +69,7 @@ const AddNewCoaching = () => {
         });
 
         if (data.response === 201) console.log("form Submitted 1");
+        console.log(about);
 
         const obj = await data.json();
         console.log(obj);

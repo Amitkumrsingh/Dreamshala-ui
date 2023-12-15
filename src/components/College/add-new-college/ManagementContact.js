@@ -16,8 +16,12 @@ const ManagementContact = ({ setManagementContact }) => {
     setFormData({ ...formData, [field]: event.target.value });
   };
 
+  // useEffect(() => {
+  //   setManagementContact(formData);
+  // }, [formData, setManagementContact]);
+
   useEffect(() => {
-    setManagementContact({ ...formData });
+    setManagementContact(formData);
   }, [formData, setManagementContact]);
 
   return (

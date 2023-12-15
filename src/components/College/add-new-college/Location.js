@@ -31,8 +31,12 @@ const Location = ({ setLocation }) => {
     setFormData({ ...formData, [field]: event.target.value });
   };
 
+  // useEffect(() => {
+  //   setLocation(formData);
+  // }, [formData, setLocation]);
+
   useEffect(() => {
-    setLocation({ ...formData });
+    setLocation(formData);
   }, [formData, setLocation]);
 
   const indianStatesAndUTs = [

@@ -50,6 +50,8 @@ const UpdateCoaching = () => {
   }, [router, isLoggedIn]);
 
   const [activeStep, setActiveStep] = useState(0);
+  const [managementContact, setManagementContact] = useState();
+  const [location, setLocation] = useState();
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -98,13 +100,15 @@ const UpdateCoaching = () => {
                     <ContactDetails />
                   </Grid>
                   <Grid item mt={6}>
-                    <ManagementContact />
+                    <ManagementContact
+                      setManagementContact={setManagementContact}
+                    />
                   </Grid>
                   <Grid item mt={6}>
                     <CoachingDetails />
                   </Grid>
                   <Grid item mt={6}>
-                    <Location />
+                    <Location setLocation={setLocation} />
                   </Grid>
                 </Grid>
               )}
