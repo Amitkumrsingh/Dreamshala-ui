@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   TextField,
@@ -11,12 +11,30 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const Location = () => {
+const Location = ({ setLocation }) => {
   const theme = useTheme();
   const placeholderColor = theme.palette.text.secondary;
   const [addMoreLocation, setAddMoreLocation] = useState([" "]);
-  const [selectState, setSelectState] = useState("");
-  const [city, setCity] = useState("");
+  const [formData, setFormData] = useState({
+    state: "",
+    city: "",
+    address_line_1_loc: "",
+    address_line_2_loc: "",
+    landmark: "",
+    pincode: "",
+    branch_name: "",
+    latitude: "",
+    longitude: "",
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  useEffect(() => {
+    setLocation({ ...formData });
+  }, [formData, setLocation]);
+
   const indianStatesAndUTs = [
     "Andhra Pradesh",
     "Arunachal Pradesh",
@@ -84,11 +102,12 @@ const Location = () => {
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select
-                      onChange={(e) => setSelectState(e.target.value)}
-                      value={selectState}
+                      value={formData.state}
+                      onChange={handleInputChange("state")}
                       displayEmpty
+                      name="state"
                       style={{
-                        color: selectState === "" && placeholderColor,
+                        color: formData.state === "" && placeholderColor,
                       }}
                     >
                       <MenuItem value={""} disabled>
@@ -109,11 +128,11 @@ const Location = () => {
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select
-                      onChange={(e) => setCity(e.target.value)}
-                      value={city}
-                      displayEmpty
+                      value={formData.city}
+                      onChange={handleInputChange("city")}
+                      name="city"
                       style={{
-                        color: city === "" && placeholderColor,
+                        color: formData.city === "" && placeholderColor,
                       }}
                     >
                       <MenuItem value={""} disabled>
@@ -136,6 +155,9 @@ const Location = () => {
                     placeholder="Type Here"
                     variant="outlined"
                     size="small"
+                    name="address"
+                    value={formData.address_line_1_loc}
+                    onChange={handleInputChange("address_line_1_loc")}
                   />
                 </Grid>
                 <Grid xs={6} item>
@@ -146,6 +168,8 @@ const Location = () => {
                     placeholder="Type Here"
                     variant="outlined"
                     size="small"
+                    value={formData.address_line_2_loc}
+                    onChange={handleInputChange("address_line_2_loc")}
                   />
                 </Grid>
               </Grid>
@@ -159,6 +183,9 @@ const Location = () => {
                     placeholder="Type Here"
                     variant="outlined"
                     size="small"
+                    name="landmark"
+                    value={formData.landmark}
+                    onChange={handleInputChange("landmark")}
                   />
                 </Grid>
                 <Grid item xs={3.5}>
@@ -169,6 +196,9 @@ const Location = () => {
                     placeholder="Type Here"
                     variant="outlined"
                     size="small"
+                    name="pincode"
+                    value={formData.pincode}
+                    onChange={handleInputChange("pincode")}
                   />
                 </Grid>
                 <Grid item xs={5}>
@@ -179,6 +209,8 @@ const Location = () => {
                     placeholder="Type Here"
                     variant="outlined"
                     size="small"
+                    value={formData.branch_name}
+                    onChange={handleInputChange("branch_name")}
                   />
                 </Grid>
               </Grid>

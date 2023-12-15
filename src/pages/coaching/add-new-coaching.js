@@ -33,7 +33,6 @@ import {
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { coachingStep1FormSubmit } from "../../services/coachingServices";
-import { unstable_gridTabIndexColumnHeaderFilterSelector } from "@mui/x-data-grid";
 
 const steps = [
   "Basic Details",
@@ -74,7 +73,7 @@ const AddNewCoaching = () => {
         const obj = await data.json();
         console.log(obj);
 
-        // console.log(coachingDetails);
+        // console.log(location);
         break;
 
       case 1:
