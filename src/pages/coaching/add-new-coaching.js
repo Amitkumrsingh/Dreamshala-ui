@@ -84,7 +84,7 @@ const AddNewCoaching = () => {
         console.log("step 3");
         break;
     }
-    // setActiveStep(activeStep + 1);
+    setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
