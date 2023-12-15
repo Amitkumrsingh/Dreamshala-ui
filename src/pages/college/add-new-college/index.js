@@ -23,7 +23,7 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 import DashboardLayout from "../../../layouts/Dashboard";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Container,
@@ -32,7 +32,6 @@ import {
   StepLabel,
   Grid,
 } from "@mui/material";
-import SignIn from "../../auth/sign-in";
 
 // import userServices from "../../../services/userServices";
 
@@ -50,6 +49,12 @@ const AddNewCollege = () => {
   const router = useRouter();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push("/auth/sign-in");
+    }
+  }, [router, isLoggedIn]);
+
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -63,10 +68,6 @@ const AddNewCollege = () => {
   const handleToStep = (step) => {
     setActiveStep(step);
   };
-
-  if (!isLoggedIn) {
-    return <SignIn />;
-  }
 
   return (
     <Container>

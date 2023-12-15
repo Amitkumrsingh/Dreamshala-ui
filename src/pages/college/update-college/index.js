@@ -21,7 +21,7 @@ import {
 } from "../../../components/College/add-new-college";
 
 import DashboardLayout from "../../../layouts/Dashboard";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Container,
@@ -30,6 +30,8 @@ import {
   StepLabel,
   Grid,
 } from "@mui/material";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 // import { Checklist } from "@mui/icons-material";
 
 const steps = [
@@ -41,6 +43,15 @@ const steps = [
 ];
 
 const AddNewCollege = () => {
+  const router = useRouter();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push("/auth/sign-in");
+    }
+  }, [router, isLoggedIn]);
+
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {

@@ -20,7 +20,7 @@ import {
 } from "../../components/coaching/add-new-coaching";
 
 import DashboardLayout from "../../layouts/Dashboard";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Container,
@@ -30,6 +30,9 @@ import {
   Grid,
 } from "@mui/material";
 
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+
 const steps = [
   "Basic Details",
   "Courses Offered and Its Details",
@@ -37,6 +40,15 @@ const steps = [
 ]; // Add more steps as needed
 
 const UpdateCoaching = () => {
+  const router = useRouter();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push("/auth/sign-in");
+    }
+  }, [router, isLoggedIn]);
+
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
