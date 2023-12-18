@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IconButton,
   Box,
@@ -14,7 +14,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-const StudyMaterial = () => {
+const StudyMaterial = ({setStudyMaterial}) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
   // const primaryColor = theme.palette.text.primary;
@@ -27,6 +27,26 @@ const StudyMaterial = () => {
   const [addMoreStudyMaterial, setAddMoreStudyMaterial] = useState([""]);
   const [examsWhoCanRefer, setExamsWhoCanRefer] = useState("");
   const [linkInputs, setLinkInputs] = useState([""]);
+  const [formData, setFormData] = useState({
+    material_file: null,
+    material_description: "",
+    links: "",
+    exams_who_can_refer: "",
+    keywords_meta_tags: "",
+  })
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+  
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, material_file: event.target.files[0] });
+  };
+
+
+  useEffect(() => {
+    setStudyMaterial(formData)
+  }, [formData, setStudyMaterial])
 
   return (
     <>
@@ -64,15 +84,16 @@ const StudyMaterial = () => {
                 >
                   <input
                     type="file"
-                    accept="image/*"
+                    // accept="image/*"
                     // onChange={handleImageChange}
                     style={{ display: "none" }}
                     id="image-input"
+                    onChange={handleFileChange}
                   />
                   <IconButton component="span">
                     <FileUploadIcon fontSize="large" color={secondaryColor} />
                   </IconButton>
-                  Upload photos, Videos, PDF's
+                  {formData.material_file ? formData.material_file.name : "Upload photos, Videos, PDF's"}
                   {/* You can display the selected image here if needed */}
                 </Box>
               </label>
@@ -90,6 +111,8 @@ const StudyMaterial = () => {
                     multiline
                     minRows={2}
                     maxRows={3}
+                    value={formData.material_description}
+                    onChange={handleInputChange("material_description")}
                   />
                 </Grid>
                 <Grid item xs={6}>
@@ -102,6 +125,8 @@ const StudyMaterial = () => {
                     multiline
                     minRows={2}
                     maxRows={3}
+                    value={formData.keywords_meta_tags}
+                    onChange={handleInputChange("keywords_meta_tags")}                    
                   />
                 </Grid>
               </Grid>
@@ -118,10 +143,12 @@ const StudyMaterial = () => {
                         >
                           <TextField
                             key={index}
-                            label={`Link ${index + 1}`}
+                            placeholder={`Link ${index + 1}`}
                             size="small"
                             margin="none"
                             fullWidth
+                            value={formData.links}
+                            onChange={handleInputChange("links")}
                           />
                         </Grid>
                       ))}
@@ -143,11 +170,11 @@ const StudyMaterial = () => {
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select
-                      onChange={(e) => setExamsWhoCanRefer(e.target.value)}
-                      value={examsWhoCanRefer}
+                      value={formData.exams_who_can_refer}
+                      onChange={handleInputChange("exams_who_can_refer")}
                       displayEmpty
                       style={{
-                        color: examsWhoCanRefer === "" && secondaryColor,
+                        color: formData.exams_who_can_refer === "" && secondaryColor,
                       }}
                     >
                       <MenuItem value={""} disabled>

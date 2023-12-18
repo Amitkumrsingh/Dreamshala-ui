@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IconButton,
   Box,
@@ -14,15 +14,33 @@ import {
 import { useTheme } from "@mui/material/styles";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
-const Faculties = () => {
+const Faculties = ({setFaculties}) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
 
   const [addMoreFaculties, setAddMoreFaculties] = useState([""]);
-  const [background, setBackground] = useState("");
-  const [experience, setExperience] = useState("");
-  const [specialisation, setSpecialisation] = useState("");
-  const [baseCity, setBaseCity] = useState("");
+  const [formData, setFormData] = useState({
+    faculty_photo: null,
+    faculty_name: "",
+    specialization: "",
+    background: "",
+    experience: "",
+    base_city_faculty: "",
+    faculty_links: ""
+  })
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, faculty_photo: event.target.files[0] });
+  };
+
+  useEffect(() => {
+    setFaculties(formData)
+  }, [setFaculties, formData])
+
 
   return (
     <>
@@ -45,7 +63,7 @@ const Faculties = () => {
             <Grid item xs={2}>
               Add Photo
               <label
-                htmlFor="image"
+                htmlFor="faculty-image"
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -70,16 +88,19 @@ const Faculties = () => {
                   <input
                     accept="image/*"
                     style={{ display: "none" }}
-                    id="image"
+                    id="faculty-image"
                     type="file"
-                    //   onChange={handleFileChange}
+                    onChange={handleFileChange}
                   />
-                  <IconButton component="span">
-                    <AddPhotoAlternateIcon
-                      fontSize="medium"
-                      color={secondaryColor}
-                    />
-                  </IconButton>
+                  {
+                    formData.faculty_photo ? formData.faculty_photo.name :
+                    <IconButton component="span">
+                      <AddPhotoAlternateIcon
+                        fontSize="medium"
+                        color={secondaryColor}
+                      />
+                    </IconButton>
+                  }
                 </Box>
               </label>
             </Grid>
@@ -94,6 +115,8 @@ const Faculties = () => {
                     placeholder="Type here"
                     variant="outlined"
                     size="small"
+                    value={formData.faculty_name}
+                    onChange={handleInputChange("faculty_name")}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -101,11 +124,11 @@ const Faculties = () => {
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select
-                      onChange={(e) => setExperience(e.target.value)}
-                      value={experience}
+                      value={formData.experience}
+                      onChange={handleInputChange("experience")}
                       displayEmpty
                       style={{
-                        color: experience === "" && secondaryColor,
+                        color: formData.experience === "" && secondaryColor,
                       }}
                     >
                       <MenuItem value={""} disabled>
@@ -131,11 +154,11 @@ const Faculties = () => {
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select
-                      onChange={(e) => setSpecialisation(e.target.value)}
-                      value={specialisation}
+                      value={formData.specialization}
+                      onChange={handleInputChange("specialization")}
                       displayEmpty
                       style={{
-                        color: specialisation === "" && secondaryColor,
+                        color: formData.specialization === "" && secondaryColor,
                       }}
                     >
                       <MenuItem value={""} disabled>
@@ -156,11 +179,11 @@ const Faculties = () => {
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select
-                      onChange={(e) => setBaseCity(e.target.value)}
-                      value={baseCity}
+                      value={formData.base_city_faculty}
+                      onChange={handleInputChange("base_city_faculty")}
                       displayEmpty
                       style={{
-                        color: baseCity === "" && secondaryColor,
+                        color: formData.base_city_faculty === "" && secondaryColor,
                       }}
                     >
                       <MenuItem value={""} disabled>
@@ -185,11 +208,11 @@ const Faculties = () => {
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select
-                      onChange={(e) => setBackground(e.target.value)}
-                      value={background}
+                      value={formData.background}
+                      onChange={handleInputChange("background")}
                       displayEmpty
                       style={{
-                        color: background === "" && secondaryColor,
+                        color: formData.background === "" && secondaryColor,
                       }}
                     >
                       <MenuItem value={""} disabled>
@@ -213,6 +236,8 @@ const Faculties = () => {
                     placeholder="Type here"
                     variant="outlined"
                     size="small"
+                    value={formData.faculty_links}
+                    onChange={handleInputChange("faculty_links")}
                   />
                 </Grid>
               </Grid>

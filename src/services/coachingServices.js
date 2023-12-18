@@ -1,8 +1,8 @@
 import { API_BASE_URL } from "../config";
 
-export const coachingStep1FormSubmit = async (data) => {
+export const addNewCoachingForms = async ({data, urlEndpoint}) => {
   try {
-    const response = await fetch(API_BASE_URL + "/coaching/Step1/", {
+    const response = await fetch(API_BASE_URL + urlEndpoint, {
       method: "POST",
       body: JSON.stringify({ ...data }),
       headers: {

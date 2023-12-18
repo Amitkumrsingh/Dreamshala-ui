@@ -32,7 +32,7 @@ import {
 
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { coachingStep1FormSubmit } from "../../services/coachingServices";
+import { addNewCoachingForms } from "../../services/coachingServices";
 
 const steps = [
   "Basic Details",
@@ -48,6 +48,12 @@ const AddNewCoaching = () => {
   const [managementContact, setManagementContact] = useState();
   const [coachingDetails, setCoachingDetails] = useState();
   const [location, setLocation] = useState();
+  const [entranceExams, setEntranceExams] = useState();
+  const [coursesAndFees, setCoursesAndFees] = useState();
+  const [studyMaterial, setStudyMaterial] = useState();
+  const [results, setResults] = useState()
+  const [faculties, setFaculties] = useState()
+  
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -58,34 +64,49 @@ const AddNewCoaching = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = async () => {
+    let data, obj;
     switch (activeStep) {
       case 0:
-        const data = await coachingStep1FormSubmit({
-          ...about,
-          ...contactDetails,
-          ...managementContact,
-          ...coachingDetails,
-          ...location,
+        data = await addNewCoachingForms({
+          data: {
+            ...about,
+            ...contactDetails,
+            ...managementContact,
+            ...coachingDetails,
+            ...location,
+          },
+          urlEndpoint: "/coaching/Step1/"
         });
 
-        if (data.response === 201) console.log("form Submitted 1");
-        console.log(about);
+        // if (data.response === 201) console.log("form Submitted 1");
 
-        const obj = await data.json();
+        obj = await data.json();
         console.log(obj);
-
-        // console.log(location);
         break;
 
       case 1:
-        console.log("stpe 2");
+         data = await addNewCoachingForms({
+          data: {
+            ...entranceExams,
+            ...coursesAndFees,
+            ...studyMaterial,
+            ...results,
+            ...faculties,
+          },
+          urlEndpoint: "/coaching/Step2/"
+        });
+
+        // if (data.response === 201) console.log("form Submitted 2");
+
+         obj = await data.json();
+        console.log(obj);
         break;
 
       case 2:
         console.log("step 3");
         break;
     }
-    setActiveStep(activeStep + 1);
+    // setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
@@ -146,19 +167,19 @@ const AddNewCoaching = () => {
               {activeStep === 1 && (
                 <Grid container flexDirection={"column"} spacing={6}>
                   <Grid item>
-                    <EntranceExams />
+                    <EntranceExams setEntranceExams={setEntranceExams}/>
                   </Grid>
                   <Grid item mt={6}>
-                    <CoursesAndFees />
+                    <CoursesAndFees setCoursesAndFees={setCoursesAndFees} />
                   </Grid>
                   <Grid item mt={6}>
-                    <StudyMaterial />
+                    <StudyMaterial setStudyMaterial={setStudyMaterial} />
                   </Grid>
                   <Grid item mt={6}>
-                    <Results />
+                    <Results setResults={setResults} />
                   </Grid>
                   <Grid item mt={6}>
-                    <Faculties />
+                    <Faculties setFaculties={setFaculties} />
                   </Grid>
                 </Grid>
               )}

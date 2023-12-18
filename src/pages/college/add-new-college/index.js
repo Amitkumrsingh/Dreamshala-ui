@@ -50,6 +50,7 @@ const AddNewCollege = () => {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const [managementContact, setManagementContact] = useState();
   const [location, setLocation] = useState();
+  const [faculties, setFaculties] = useState();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -151,7 +152,7 @@ const AddNewCollege = () => {
                     <Alumni />
                   </Grid>
                   <Grid item mt={6}>
-                    <Faculties />
+                    <Faculties setFaculties={setFaculties}/>
                   </Grid>
                   <Grid item mt={6}></Grid>
                 </Grid>

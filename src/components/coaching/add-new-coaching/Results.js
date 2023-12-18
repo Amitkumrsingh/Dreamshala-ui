@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IconButton,
   Box,
@@ -15,7 +15,7 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useTheme } from "@mui/material/styles";
 
-const Results = () => {
+const Results = ({setResults}) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
 
@@ -24,6 +24,29 @@ const Results = () => {
   const [examCracked, setExamCracked] = useState("");
   const [allIndiaRank, setAllIndiaRank] = useState("");
   const [baseCity, setBaseCity] = useState("");
+  const [formData, setFormData] = useState({
+    excel_file: null,
+    result_photo: null,
+    result_name: "",
+    college_secured: "",
+    exam_cracked: "",
+    all_india_rank: "",
+    base_city_result: "",
+    testimonial: ""
+  })
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  const handleFileChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.files[0] });
+  };
+
+  useEffect(() => {
+    setResults(formData)
+  }, [formData, setResults])
+
 
   return (
     <>
@@ -41,7 +64,7 @@ const Results = () => {
             </em>
           </Typography>
 
-          <label htmlFor="image-input">
+          <label htmlFor="excel-input">
             <Box
               border={1}
               borderColor={secondaryColor}
@@ -53,15 +76,16 @@ const Results = () => {
             >
               <input
                 type="file"
-                accept="file/*"
+                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                 //   onChange={handleImageChange}
                 style={{ display: "none" }}
-                id="image-input"
+                id="excel-input"
+                onChange={handleFileChange("excel_file")}
               />
               <IconButton component="span">
                 <UploadFileIcon fontSize="small" color={secondaryColor} />
               </IconButton>
-              Upload Excel
+              {formData.excel_file ? formData.excel_file.name : "Upload Excel"}
               {/* You can display the selected image here if needed */}
             </Box>
           </label>
@@ -99,14 +123,17 @@ const Results = () => {
                     style={{ display: "none" }}
                     id="image"
                     type="file"
-                    //   onChange={handleFileChange}
+                    onChange={handleFileChange("result_photo")}
                   />
-                  <IconButton component="span">
+                  {
+                    formData.result_photo ? formData.result_photo.name :
+                    <IconButton component="span">
                     <AddPhotoAlternateIcon
                       fontSize="medium"
                       color={secondaryColor}
                     />
                   </IconButton>
+                  }
                 </Box>
               </label>
             </Grid>
@@ -126,6 +153,8 @@ const Results = () => {
                   placeholder="Type here"
                   variant="outlined"
                   size="small"
+                  value={formData.result_name}
+                  onChange={handleInputChange("result_name")}
                 />
               </Grid>
               <Grid item>
@@ -133,11 +162,11 @@ const Results = () => {
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select
-                    onChange={(e) => setAllIndiaRank(e.target.value)}
-                    value={allIndiaRank}
+                    value={formData.all_india_rank}
+                    onChange={handleInputChange("all_india_rank")}
                     displayEmpty
                     style={{
-                      color: allIndiaRank === "" && secondaryColor,
+                      color: formData.all_india_rank === "" && secondaryColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
@@ -167,11 +196,11 @@ const Results = () => {
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select
-                    onChange={(e) => setCollegeSecured(e.target.value)}
-                    value={collegeSecured}
+                    value={formData.college_secured}
+                    onChange={handleInputChange("college_secured")}
                     displayEmpty
                     style={{
-                      color: collegeSecured === "" && secondaryColor,
+                      color: formData.college_secured === "" && secondaryColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
@@ -192,11 +221,11 @@ const Results = () => {
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select
-                    onChange={(e) => setBaseCity(e.target.value)}
-                    value={baseCity}
+                    value={formData.base_city_result}
+                    onChange={handleInputChange("base_city_result")}
                     displayEmpty
                     style={{
-                      color: baseCity === "" && secondaryColor,
+                      color: formData.base_city_result === "" && secondaryColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
@@ -225,11 +254,11 @@ const Results = () => {
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select
-                    onChange={(e) => setExamCracked(e.target.value)}
-                    value={examCracked}
+                    value={formData.exam_cracked}
+                    onChange={handleInputChange("exam_cracked")}
                     displayEmpty
                     style={{
-                      color: examCracked === "" && secondaryColor,
+                      color: formData.exam_cracked === "" && secondaryColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
@@ -253,6 +282,8 @@ const Results = () => {
                   placeholder="Type here"
                   variant="outlined"
                   size="small"
+                  value={formData.testimonial}
+            onChange={handleInputChange("testimonial")}
                 />
               </Grid>
             </Grid>
