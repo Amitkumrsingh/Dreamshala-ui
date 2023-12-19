@@ -54,6 +54,7 @@ const AddNewCollege = () => {
   const [photos, setPhotos] = useState();
   const [videos, setVideos] = useState();
   const [checkList, setCheckList] = useState();
+  const [importantNews, setImportantNews] = useState();
   const [faq, setFaq] = useState();
 
   useEffect(() => {
@@ -126,7 +127,7 @@ const AddNewCollege = () => {
               {activeStep === 1 && (
                 <Grid container flexDirection={"column"} spacing={6}>
                   <Grid item>
-                    <ImportantNews />
+                    <ImportantNews setImportantNews={setImportantNews} />
                   </Grid>
                   <Grid item mt={6}>
                     <ImportantDates />

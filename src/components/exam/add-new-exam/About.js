@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 // import DashboardLayout from "../../../layouts/Dashboard";
 import {
@@ -22,21 +22,53 @@ const daysOfWeek = [
   "Sunday",
 ];
 
-const About = () => {
+const About = ({ setAbout }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
-
-  const [examFrequency, setExamFrequency] = useState("");
-  const [examMode, setExamMode] = useState("");
-  const [statesApplicable, setStatesApplicable] = useState("");
+  const indianStatesAndUTs = [
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
+    "Andaman and Nicobar Islands",
+    "Chandigarh",
+    "Dadra and Nagar Haveli and Daman and Diu",
+    "Lakshadweep",
+    "Delhi",
+    "Puducherry",
+  ];
 
   const [formData, setFormData] = useState({
-    image: null,
-    textField1: "",
-    textField2: "",
-    dayOfWeek: "",
-    startTime: "",
-    endTime: "",
+    logo: null,
+    short_description: "",
+    detailed_description: "",
+    exam_frequency: "",
+    exam_mode: "",
+    states_applicable: "",
   });
 
   const handleInputChange = (field) => (event) => {
@@ -44,8 +76,12 @@ const About = () => {
   };
 
   const handleFileChange = (event) => {
-    setFormData({ ...formData, image: event.target.files[0] });
+    setFormData({ ...formData, logo: event.target.files[0] });
   };
+
+  useEffect(() => {
+    setAbout(formData);
+  }, [formData, setAbout]);
 
   return (
     <Container>
@@ -71,7 +107,7 @@ const About = () => {
             }}
           >
             <Box
-              border={1}
+              border={"2px dashed"}
               borderColor={secondaryColor}
               borderRadius="50%"
               p={2}
@@ -91,9 +127,13 @@ const About = () => {
                 type="file"
                 onChange={handleFileChange}
               />
-              <Typography variant="inherit" color={secondaryColor}>
-                + Add Logo
-              </Typography>
+              {formData.logo ? (
+                formData.logo.name
+              ) : (
+                <Typography variant="inherit" color={secondaryColor}>
+                  + Add Logo
+                </Typography>
+              )}
             </Box>
           </label>
         </Grid>
@@ -103,8 +143,8 @@ const About = () => {
           <TextField
             fullWidth
             placeholder="Decribe here"
-            value={formData.textField1}
-            onChange={handleInputChange("textField1")}
+            value={formData.short_description}
+            onChange={handleInputChange("short_description")}
           />
         </Grid>
         {/* Row 2 */}
@@ -113,8 +153,8 @@ const About = () => {
           <TextField
             fullWidth
             placeholder="Decribe here"
-            value={formData.textField2}
-            onChange={handleInputChange("textField2")}
+            value={formData.detailed_description}
+            onChange={handleInputChange("detailed_description")}
             multiline
             minRows={4}
           />
@@ -127,15 +167,15 @@ const About = () => {
               <Typography>Exam Frequency</Typography>
               <FormControl fullWidth size="small">
                 <Select
-                  onChange={(e) => setExamFrequency(e.target.value)}
-                  value={examFrequency}
+                  value={formData.exam_frequency}
+                  onChange={handleInputChange("exam_frequency")}
                   displayEmpty
                   style={{
-                    color: examFrequency === "" && secondaryColor,
+                    color: formData.exam_frequency === "" && secondaryColor,
                   }}
                 >
                   <MenuItem value={""} disabled>
-                    Select/ Type Here
+                    Number/Yearly
                   </MenuItem>
                   <MenuItem value="1"> 1</MenuItem>
                   <MenuItem value="2"> 2</MenuItem>
@@ -146,18 +186,18 @@ const About = () => {
               <Typography>Exam Mode</Typography>
               <FormControl fullWidth size="small">
                 <Select
-                  onChange={(e) => setExamMode(e.target.value)}
-                  value={examMode}
+                  value={formData.exam_mode}
+                  onChange={handleInputChange("exam_mode")}
                   displayEmpty
                   style={{
-                    color: examMode === "" && secondaryColor,
+                    color: formData.exam_mode === "" && secondaryColor,
                   }}
                 >
                   <MenuItem value={""} disabled>
                     Select/ Type Here
                   </MenuItem>
-                  <MenuItem value="1"> 1</MenuItem>
-                  <MenuItem value="2"> 2</MenuItem>
+                  <MenuItem value="online"> Online</MenuItem>
+                  <MenuItem value="offline"> Offline</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -165,18 +205,21 @@ const About = () => {
               <Typography>States Applicable</Typography>
               <FormControl fullWidth size="small">
                 <Select
-                  onChange={(e) => setStatesApplicable(e.target.value)}
-                  value={statesApplicable}
+                  value={formData.states_applicable}
+                  onChange={handleInputChange("states_applicable")}
                   displayEmpty
                   style={{
-                    color: statesApplicable === "" && secondaryColor,
+                    color: formData.states_applicable === "" && secondaryColor,
                   }}
                 >
                   <MenuItem value={""} disabled>
                     Select/ Type Here
                   </MenuItem>
-                  <MenuItem value="1"> 1</MenuItem>
-                  <MenuItem value="2"> 2</MenuItem>
+                  {indianStatesAndUTs.map((data, index) => (
+                    <MenuItem value={data} key={index}>
+                      {data}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </Grid>

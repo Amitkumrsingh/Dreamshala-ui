@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const ContactDetails = () => {
+const ContactDetails = ({ setContactDetails }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
 
@@ -11,20 +11,23 @@ const ContactDetails = () => {
     borderColor: secondaryColor,
   };
 
-  const [contacts, setContacts] = useState([
-    { name: "", role: "", email: "" },
-    { mobile: "", col2: "", col3: "" },
-  ]);
-
   const [addMoreContact, setAddMoreContact] = useState([""]);
   const [addMoreWebsiteLink, setAddMoreWebsiteLink] = useState([]);
 
-  // Function to handle changes in the contact fields
-  const handleContactChange = (index, field, value) => {
-    const newContacts = [...contacts];
-    newContacts[index][field] = value;
-    setContacts(newContacts);
+  const [formData, setFormData] = useState({
+    exam_official_website: "",
+    contact_number: "",
+    email: "",
+    other_links: "",
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
   };
+
+  useEffect(() => {
+    setContactDetails(formData);
+  }, [setContactDetails, formData]);
 
   return (
     <Container>
@@ -51,8 +54,8 @@ const ContactDetails = () => {
                 placeholder="Type Here"
                 size="small"
                 fullWidth
-                value={contacts[0].name}
-                onChange={(e) => handleContactChange(0, "name", e.target.value)}
+                value={formData.exam_official_website}
+                onChange={handleInputChange("exam_official_website")}
               />
             </Grid>
             <Grid item xs={4}>
@@ -61,11 +64,11 @@ const ContactDetails = () => {
                 // label="Mobile Number"
                 size="small"
                 placeholder="+91 00000 00000"
+                name="contactNumber"
+                type="tel"
                 fullWidth
-                value={contacts[1].mobile}
-                onChange={(e) =>
-                  handleContactChange(1, "mobile", e.target.value)
-                }
+                value={formData.contact_number}
+                onChange={handleInputChange("contact_number")}
               />
             </Grid>
             <Grid item xs={4}>
@@ -74,11 +77,11 @@ const ContactDetails = () => {
                 // label="Email ID"
                 placeholder="timesedu@gmail.com"
                 size="small"
+                name="email"
+                type="email"
                 fullWidth
-                value={contacts[0].email}
-                onChange={(e) =>
-                  handleContactChange(0, "email", e.target.value)
-                }
+                value={formData.email}
+                onChange={handleInputChange("email")}
               />
             </Grid>
           </Grid>
@@ -88,7 +91,13 @@ const ContactDetails = () => {
             {addMoreWebsiteLink.map((data, index) => (
               <Grid key={index} item xs={4}>
                 <Typography>Other websites/impotant links</Typography>
-                <TextField placeholder={"Type Here"} size="small" fullWidth />
+                <TextField
+                  placeholder={"Type Here"}
+                  size="small"
+                  fullWidth
+                  value={formData.other_links}
+                  onChange={handleInputChange("other_links")}
+                />
               </Grid>
             ))}
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Button,
@@ -15,22 +15,36 @@ import {
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { useTheme } from "@mui/material/styles";
 
-const Brochure = () => {
+const Brochure = ({ setBrochure }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
 
-  const [image, setImage] = useState(null);
-  const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    setImage(selectedImage);
-  };
-  const [examsWhoCanRefer, setExamsWhoCanRefer] = useState("");
   const [linkInputs, setLinkInputs] = useState([""]);
 
   const buttonNotSelectedStyle = {
     color: secondaryColor,
     borderColor: secondaryColor,
   };
+
+  const [formData, setFormData] = useState({
+    upload_brochure: null,
+    brochure_description: "",
+    keywords_meta_tags: "",
+    brochure_links: "",
+    exams_who_can_refer: "",
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, upload_brochure: event.target.files[0] });
+  };
+
+  useEffect(() => {
+    setBrochure(formData);
+  }, [setBrochure, formData]);
 
   return (
     <Container>
@@ -48,7 +62,7 @@ const Brochure = () => {
 
       <Grid container spacing={6} mt={2}>
         <Grid item xs={4}>
-          <label htmlFor="image-input">
+          <label htmlFor="brochure-file-input">
             <Box
               border={1}
               borderColor={secondaryColor}
@@ -62,15 +76,21 @@ const Brochure = () => {
             >
               <input
                 type="file"
-                accept="image/*"
-                onChange={handleImageChange}
+                accept="file/*"
+                onChange={handleFileChange}
                 style={{ display: "none" }}
-                id="image-input"
+                id="brochure-file-input"
               />
-              <IconButton component="span">
-                <FileUploadIcon fontSize="large" color={secondaryColor} />
-              </IconButton>
-              Upload Brochure
+              {formData.upload_brochure ? (
+                formData.upload_brochure.name
+              ) : (
+                <>
+                  <IconButton component="span">
+                    <FileUploadIcon fontSize="large" color={secondaryColor} />
+                  </IconButton>
+                  Upload Brochure
+                </>
+              )}
             </Box>
           </label>
         </Grid>
@@ -84,6 +104,8 @@ const Brochure = () => {
               multiline
               minRows={3}
               maxRows={3}
+              value={formData.brochure_description}
+              onChange={handleInputChange("brochure_description")}
             />
           </Grid>
           <Grid item>
@@ -97,10 +119,12 @@ const Brochure = () => {
                   >
                     <TextField
                       key={index}
-                      label={`Link ${index + 1}`}
+                      placeholder={`Link ${index + 1}`}
                       size="small"
                       margin="none"
                       fullWidth
+                      value={formData.brochure_links}
+                      onChange={handleInputChange("brochure_links")}
                     />
                   </Grid>
                 ))}
@@ -127,24 +151,26 @@ const Brochure = () => {
               multiline
               minRows={3}
               maxRows={3}
+              value={formData.keywords_meta_tags}
+              onChange={handleInputChange("keywords_meta_tags")}
             />
           </Grid>
           <Grid item>
             <Typography>Enter Exams who can refer</Typography>
             <FormControl fullWidth size="small">
               <Select
-                onChange={(e) => setExamsWhoCanRefer(e.target.value)}
-                value={examsWhoCanRefer}
+                value={formData.exams_who_can_refer}
+                onChange={handleInputChange("exams_who_can_refer")}
                 displayEmpty
                 style={{
-                  color: examsWhoCanRefer === "" && secondaryColor,
+                  color: formData.exams_who_can_refer === "" && secondaryColor,
                 }}
               >
                 <MenuItem value={""} disabled>
                   Select/ Type Here
                 </MenuItem>
-                <MenuItem value="1"> 1</MenuItem>
-                <MenuItem value="2"> 2</MenuItem>
+                {/* <MenuItem value="1"> 1</MenuItem>
+                <MenuItem value="2"> 2</MenuItem> */}
               </Select>
             </FormControl>
           </Grid>

@@ -1,20 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Grid, TextField, Typography, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const ImportantNews = () => {
+const ImportantNews = ({ setImportantNews }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
   const primaryColor = theme.palette.text.primary;
 
   const buttonSelectedStyle = {
-    color: primaryColor,
+    borderColor: primaryColor,
+  };
+
+  const handleButtonClick = (item) => {
+    if (formData.news_category === item) {
+      setFormData({ ...formData, news_category: "" });
+    } else {
+      setFormData({ ...formData, news_category: item });
+    }
   };
 
   const buttonNotSelectedStyle = {
     color: secondaryColor,
     borderColor: secondaryColor,
   };
+
+  const [formData, setFormData] = useState({
+    news_post: "",
+    news_category: "",
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  useEffect(() => {
+    setImportantNews(formData);
+  }, [setImportantNews, formData]);
 
   const [addMoreNews, setAddMoreNews] = useState([""]);
   return (
@@ -43,6 +64,8 @@ const ImportantNews = () => {
                 multiline
                 minRows={2.5}
                 fullWidth
+                value={formData.news_post}
+                onChange={handleInputChange("news_post")}
               />
             </Grid>
 
@@ -55,7 +78,12 @@ const ImportantNews = () => {
                       <Button
                         variant="outlined"
                         fullWidth
-                        style={buttonNotSelectedStyle}
+                        style={
+                          formData.news_category === "Very Important"
+                            ? {}
+                            : buttonNotSelectedStyle
+                        }
+                        onClick={() => handleButtonClick("Very Important")}
                       >
                         Very Important
                       </Button>
@@ -64,7 +92,12 @@ const ImportantNews = () => {
                       <Button
                         variant="outlined"
                         fullWidth
-                        style={buttonNotSelectedStyle}
+                        style={
+                          formData.news_category === "Medium Important"
+                            ? {}
+                            : buttonNotSelectedStyle
+                        }
+                        onClick={() => handleButtonClick("Medium Important")}
                       >
                         Medium Important
                       </Button>
@@ -76,7 +109,12 @@ const ImportantNews = () => {
                       <Button
                         variant="outlined"
                         fullWidth
-                        style={buttonNotSelectedStyle}
+                        style={
+                          formData.news_category === "Important"
+                            ? {}
+                            : buttonNotSelectedStyle
+                        }
+                        onClick={() => handleButtonClick("Important")}
                       >
                         Impotant
                       </Button>
@@ -86,7 +124,12 @@ const ImportantNews = () => {
                       <Button
                         variant="outlined"
                         fullWidth
-                        style={buttonNotSelectedStyle}
+                        style={
+                          formData.news_category === "Less Important"
+                            ? {}
+                            : buttonNotSelectedStyle
+                        }
+                        onClick={() => handleButtonClick("Less Important")}
                       >
                         Less Impotant
                       </Button>

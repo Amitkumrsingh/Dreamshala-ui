@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Grid,
@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const RegistrationDetails = () => {
+const RegistrationDetails = ({ setRegistrationDetails }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
 
@@ -24,6 +24,23 @@ const RegistrationDetails = () => {
     color: secondaryColor,
     borderColor: secondaryColor,
   };
+
+  const [formData, setFormData] = useState({
+    registration_website: "",
+    registration_mode: "",
+    payment_modes: "",
+    category: "",
+    fee: "",
+    registration_fees: "",
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  useEffect(() => {
+    setRegistrationDetails(formData);
+  }, [formData, setRegistrationDetails]);
 
   return (
     <>
@@ -50,24 +67,26 @@ const RegistrationDetails = () => {
               placeholder="Type Here"
               size="small"
               fullWidth
+              value={formData.registration_website}
+              onChange={handleInputChange("registration_website")}
             />
           </Grid>
           <Grid item xs={4}>
             <Typography>Registration Mode</Typography>
             <FormControl fullWidth size="small">
               <Select
-                onChange={(e) => setRegistrationMode(e.target.value)}
-                value={registrationMode}
+                value={formData.registration_mode}
+                onChange={handleInputChange("registration_mode")}
                 displayEmpty
                 style={{
-                  color: registrationMode === "" && secondaryColor,
+                  color: formData.registration_mode === "" && secondaryColor,
                 }}
               >
                 <MenuItem value={""} disabled>
                   Select/ Type Here
                 </MenuItem>
-                <MenuItem value="1"> 1</MenuItem>
-                <MenuItem value="2"> 2</MenuItem>
+                {/* <MenuItem value="1"> 1</MenuItem>
+                <MenuItem value="2"> 2</MenuItem> */}
               </Select>
             </FormControl>
           </Grid>
@@ -75,18 +94,18 @@ const RegistrationDetails = () => {
             <Typography>Payment Modes Available</Typography>
             <FormControl fullWidth size="small">
               <Select
-                onChange={(e) => setPaymentMode(e.target.value)}
-                value={paymentMode}
+                value={formData.payment_modes}
+                onChange={handleInputChange("payment_modes")}
                 displayEmpty
                 style={{
-                  color: paymentMode === "" && secondaryColor,
+                  color: formData.payment_modes === "" && secondaryColor,
                 }}
               >
                 <MenuItem value={""} disabled>
                   Select/ Type Here
                 </MenuItem>
-                <MenuItem value="1"> 1</MenuItem>
-                <MenuItem value="2"> 2</MenuItem>
+                {/* <MenuItem value="1"> 1</MenuItem>
+                <MenuItem value="2"> 2</MenuItem> */}
               </Select>
             </FormControl>
           </Grid>
@@ -103,26 +122,32 @@ const RegistrationDetails = () => {
                   <Typography>Category</Typography>
                   <FormControl fullWidth size="small">
                     <Select
-                      onChange={(e) => setCategory(e.target.value)}
-                      value={category}
+                      value={formData.category}
+                      onChange={handleInputChange("category")}
                       displayEmpty
                       style={{
-                        color: category === "" && secondaryColor,
+                        color: formData.category === "" && secondaryColor,
                       }}
                     >
                       <MenuItem value={""} disabled>
                         Select/ Type Here
                       </MenuItem>
-                      <MenuItem value="general">General</MenuItem>
+                      {/* <MenuItem value="general">General</MenuItem>
                       <MenuItem value="obc">OBC</MenuItem>
                       <MenuItem value="sc">SC</MenuItem>
-                      <MenuItem value="st">ST</MenuItem>
+                      <MenuItem value="st">ST</MenuItem> */}
                     </Select>
                   </FormControl>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography>Fees</Typography>
-                  <TextField placeholder="Type Here" size="small" fullWidth />
+                  <TextField
+                    placeholder="Type Here"
+                    size="small"
+                    fullWidth
+                    value={formData.fee}
+                    onChange={handleInputChange("fee")}
+                  />
                 </Grid>
               </Grid>
             ))}
@@ -131,20 +156,20 @@ const RegistrationDetails = () => {
                 <Typography>Category</Typography>
                 <FormControl fullWidth size="small">
                   <Select
-                    onChange={(e) => setCategory(e.target.value)}
-                    value={category}
+                    value={formData.category}
+                    onChange={handleInputChange("category")}
                     displayEmpty
                     style={{
-                      color: category === "" && secondaryColor,
+                      color: formData.category === "" && secondaryColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
                     </MenuItem>
-                    <MenuItem value="general">General</MenuItem>
+                    {/* <MenuItem value="general">General</MenuItem>
                     <MenuItem value="obc">OBC</MenuItem>
                     <MenuItem value="sc">SC</MenuItem>
-                    <MenuItem value="st">ST</MenuItem>
+                    <MenuItem value="st">ST</MenuItem> */}
                   </Select>
                 </FormControl>
               </Grid>
@@ -152,7 +177,13 @@ const RegistrationDetails = () => {
                 <Typography>Fees</Typography>
                 <Grid container spacing={2}>
                   <Grid item xs={10}>
-                    <TextField placeholder="Type Here" size="small" fullWidth />
+                    <TextField
+                      placeholder="Type Here"
+                      size="small"
+                      fullWidth
+                      value={formData.registration_fees}
+                      onChange={handleInputChange("registration_fees")}
+                    />
                   </Grid>
                   <Grid item xs={2}>
                     <Button

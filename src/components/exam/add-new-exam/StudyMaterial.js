@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IconButton,
   Box,
@@ -14,7 +14,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-const StudyMaterial = () => {
+const StudyMaterial = ({ setStudyMaterial }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
   // const primaryColor = theme.palette.text.primary;
@@ -24,8 +24,37 @@ const StudyMaterial = () => {
     borderColor: secondaryColor,
   };
 
+  const handleButtonClick = (item) => {
+    if (formData.material_category) {
+      setFormData({ ...formData, material_category: "" });
+    } else {
+      setFormData({ ...formData, material_category: item });
+    }
+  };
+
   const [addMoreStudyMaterial, setAddMoreStudyMaterial] = useState([""]);
   const [examsWhoCanRefer, setExamsWhoCanRefer] = useState("");
+
+  const [formData, setFormData] = useState({
+    material_file: null,
+    material_description: "",
+    material_keywords: "",
+    material_category: "",
+    material_exam_ref: "",
+    material_links: "",
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, material_file: event.target.files[0] });
+  };
+
+  useEffect(() => {
+    setStudyMaterial(formData);
+  }, [setStudyMaterial, formData]);
 
   return (
     <>
@@ -50,7 +79,7 @@ const StudyMaterial = () => {
         {addMoreStudyMaterial.map((data, index) => (
           <Grid container mt={2} spacing={6} key={index}>
             <Grid item xs={4}>
-              <label htmlFor="image-input">
+              <label htmlFor="study-material-file-input">
                 <Box
                   border={1}
                   borderColor={secondaryColor}
@@ -63,15 +92,25 @@ const StudyMaterial = () => {
                 >
                   <input
                     type="file"
-                    accept="image/*"
+                    accept="file/*"
                     // onChange={handleImageChange}
                     style={{ display: "none" }}
-                    id="image-input"
+                    id="study-material-file-input"
+                    onChange={handleFileChange}
                   />
-                  <IconButton component="span">
-                    <FileUploadIcon fontSize="large" color={secondaryColor} />
-                  </IconButton>
-                  Upload photos, Videos, PDF's
+                  {formData.material_file ? (
+                    formData.material_file.name
+                  ) : (
+                    <>
+                      <IconButton component="span">
+                        <FileUploadIcon
+                          fontSize="large"
+                          color={secondaryColor}
+                        />
+                      </IconButton>
+                      Upload photos, Videos, PDF's
+                    </>
+                  )}
                   {/* You can display the selected image here if needed */}
                 </Box>
               </label>
@@ -89,6 +128,8 @@ const StudyMaterial = () => {
                     multiline
                     minRows={2}
                     maxRows={3}
+                    value={formData.material_description}
+                    onChange={handleInputChange("material_description")}
                   />
                 </Grid>
                 <Grid item xs={6}>
@@ -101,6 +142,8 @@ const StudyMaterial = () => {
                     multiline
                     minRows={2}
                     maxRows={3}
+                    value={formData.material_keywords}
+                    onChange={handleInputChange("material_keywords")}
                   />
                 </Grid>
               </Grid>
@@ -113,7 +156,12 @@ const StudyMaterial = () => {
                       <Button
                         variant="outlined"
                         size="small"
-                        style={buttonNotSelectedStyle}
+                        style={
+                          formData.material_category === "Books"
+                            ? {}
+                            : buttonNotSelectedStyle
+                        }
+                        onClick={() => handleButtonClick("Books")}
                       >
                         Books
                       </Button>
@@ -122,7 +170,12 @@ const StudyMaterial = () => {
                       <Button
                         variant="outlined"
                         size="small"
-                        style={buttonNotSelectedStyle}
+                        style={
+                          formData.material_category === "Mock Tests"
+                            ? {}
+                            : buttonNotSelectedStyle
+                        }
+                        onClick={() => handleButtonClick("Mock Tests")}
                       >
                         Mock Tests
                       </Button>
@@ -131,7 +184,12 @@ const StudyMaterial = () => {
                       <Button
                         variant="outlined"
                         size="small"
-                        style={buttonNotSelectedStyle}
+                        style={
+                          formData.material_category === "Articles"
+                            ? {}
+                            : buttonNotSelectedStyle
+                        }
+                        onClick={() => handleButtonClick("Articles")}
                       >
                         Articles
                       </Button>
@@ -140,7 +198,12 @@ const StudyMaterial = () => {
                       <Button
                         variant="outlined"
                         size="small"
-                        style={buttonNotSelectedStyle}
+                        style={
+                          formData.material_category === "Research Papers"
+                            ? {}
+                            : buttonNotSelectedStyle
+                        }
+                        onClick={() => handleButtonClick("Research Papers")}
                       >
                         Research Papers
                       </Button>
@@ -152,8 +215,8 @@ const StudyMaterial = () => {
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select
-                      onChange={(e) => setExamsWhoCanRefer(e.target.value)}
-                      value={examsWhoCanRefer}
+                      value={formData.material_exam_ref}
+                      onChange={handleInputChange("material_exam_ref")}
                       displayEmpty
                       style={{
                         color: examsWhoCanRefer === "" && secondaryColor,
@@ -162,9 +225,9 @@ const StudyMaterial = () => {
                       <MenuItem value={""} disabled>
                         Select/ Type Here
                       </MenuItem>
-                      <MenuItem value="1">1</MenuItem>
+                      {/* <MenuItem value="1">1</MenuItem>
                       <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
+                      <MenuItem value="3">3</MenuItem> */}
                       {/* Add more exam options as needed */}
                     </Select>
                   </FormControl>
@@ -180,6 +243,8 @@ const StudyMaterial = () => {
                         variant="outlined"
                         size="small"
                         fullWidth
+                        value={formData.material_links}
+                        onChange={handleInputChange("material_links")}
                       />
                     </Grid>
                     <Grid item xs={2}>

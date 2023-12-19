@@ -1,4 +1,5 @@
 import { FAQ, ImportantNews } from "../../components/College/add-new-college";
+import { addNewExamForms } from "../../services/examServices";
 
 import {
   ContactDetails,
@@ -31,6 +32,14 @@ const AddNewExam = () => {
   const router = useRouter();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const [faq, setFaq] = useState();
+  const [about, setAbout] = useState();
+  const [contactDetails, setContactDetails] = useState();
+  const [brochure, setBrochure] = useState();
+  const [registrationDetails, setRegistrationDetails] = useState();
+  const [importantNews, setImportantNews] = useState();
+  const [importantDates, setImportantDates] = useState();
+  const [examPattern, setExamPattern] = useState();
+  const [studyMaterial, setStudyMaterial] = useState();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -40,8 +49,47 @@ const AddNewExam = () => {
 
   const [activeStep, setActiveStep] = useState(0);
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
+  const handleNext = async () => {
+    let data, obj;
+    switch (activeStep) {
+      case 0:
+        data = await addNewExamForms({
+          data: {
+            ...about,
+            ...contactDetails,
+            ...brochure,
+            ...registrationDetails,
+          },
+          urlEndpoint: "/exam/step1/",
+        });
+
+        // if (data.response === 201) console.log("form Submitted 1");
+
+        obj = await data.json();
+        console.log(obj);
+        break;
+
+      case 1:
+        data = await addNewExamForms({
+          data: {
+            ...importantNews,
+            ...importantDates,
+          },
+          urlEndpoint: "/exam/step2/",
+        });
+
+        // if (data.response === 201) console.log("form Submitted 1");
+
+        obj = await data.json();
+        console.log(obj);
+        break;
+
+      case 2:
+        console.log(examPattern, studyMaterial);
+        break;
+    }
+
+    // setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
@@ -81,36 +129,38 @@ const AddNewExam = () => {
               {activeStep === 0 && (
                 <Grid container flexDirection={"column"} spacing={6}>
                   <Grid item>
-                    <About />
+                    <About setAbout={setAbout} />
                   </Grid>
                   <Grid item mt={6}>
-                    <ContactDetails />
+                    <ContactDetails setContactDetails={setContactDetails} />
                   </Grid>
                   <Grid item mt={6}>
-                    <Brochure />
+                    <Brochure setBrochure={setBrochure} />
                   </Grid>
                   <Grid item mt={6}>
-                    <RegistrationDetails />
+                    <RegistrationDetails
+                      setRegistrationDetails={setRegistrationDetails}
+                    />
                   </Grid>
                 </Grid>
               )}
               {activeStep === 1 && (
                 <Grid container flexDirection={"column"} spacing={6}>
                   <Grid item>
-                    <ImportantNews />
+                    <ImportantNews setImportantNews={setImportantNews} />
                   </Grid>
                   <Grid item mt={6}>
-                    <ImportantDates />
+                    <ImportantDates setImportantDates={setImportantDates} />
                   </Grid>
                 </Grid>
               )}
               {activeStep === 2 && (
                 <Grid container flexDirection={"column"} spacing={6}>
                   <Grid item>
-                    <ExamPattern />
+                    <ExamPattern setExamPattern={setExamPattern} />
                   </Grid>
                   <Grid item mt={6}>
-                    <StudyMaterial />
+                    <StudyMaterial setStudyMaterial={setStudyMaterial} />
                   </Grid>
                   <Grid item mt={6}>
                     <PreviousYearQuestionPaper />
