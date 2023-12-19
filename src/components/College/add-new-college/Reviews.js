@@ -18,6 +18,13 @@ import StarRating from "../../other/StarRating";
 const Reviews = () => {
   const theme = useTheme();
   const placeholderColor = theme.palette.text.secondary;
+  const [overall_rating, setOverall_rating] = useState(0);
+  const [academics_rating, setAcademics_rating] = useState(0);
+  const [faculty_rating, setFaculty_rating] = useState(0);
+  const [infrastructure_rating, setInfrastructure_rating] = useState(0);
+  const [accommodation_rating, setAccommodation_rating] = useState(0);
+  const [placement_rating, setPlacement_rating] = useState(0);
+  const [social_life_rating, setSocial_life_rating] = useState(0);
 
   const [addMoreReviews, setAddMoreReviews] = useState([""]);
   const [yearOfStudy, setYearOfStudy] = useState("");
@@ -111,17 +118,35 @@ const Reviews = () => {
 
             <Grid container spacing={6}>
               <Grid item xs={4}>
-                <StarRating title={"Overall Rating"} />
-                <StarRating title={"Infrastructure"} />
-                <StarRating title={"Social Life"} />
+                <StarRating
+                  title={"Overall Rating"}
+                  setRating={setOverall_rating}
+                />
+                <StarRating
+                  title={"Infrastructure"}
+                  setRating={setInfrastructure_rating}
+                />
+                <StarRating
+                  title={"Social Life"}
+                  setRating={setSocial_life_rating}
+                />
               </Grid>
               <Grid item xs={4}>
-                <StarRating title={"Academics"} />
-                <StarRating title={"Accommodation"} />
+                <StarRating
+                  title={"Academics"}
+                  setRating={setAcademics_rating}
+                />
+                <StarRating
+                  title={"Accommodation"}
+                  setRating={setAccommodation_rating}
+                />
               </Grid>
               <Grid item xs={4}>
-                <StarRating title={"Faculty"} />
-                <StarRating title={"Placement"} />
+                <StarRating title={"Faculty"} setRating={setFaculty_rating} />
+                <StarRating
+                  title={"Placement"}
+                  setRating={setPlacement_rating}
+                />
               </Grid>
             </Grid>
 

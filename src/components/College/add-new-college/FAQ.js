@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 
 import { Button, Grid, TextField, Container, Typography } from "@mui/material";
 
-const FAQ = () => {
+const FAQ = ({ setFaq }) => {
   const theme = useTheme();
 
   const [addMoreFAQ, setAddMoreFAQ] = useState([""]);
+  const [formData, setFormData] = useState({
+    faq_question: "",
+    faq_answer: "",
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  useEffect(() => {
+    setFaq(formData);
+  }, [formData, setFaq]);
+
   return (
     <Container>
       <Grid>
@@ -31,6 +44,8 @@ const FAQ = () => {
               placeholder="Type Here"
               type="text"
               size="small"
+              value={formData.faq_question}
+              onChange={handleInputChange("faq_question")}
             />
           </Grid>
 
@@ -42,6 +57,8 @@ const FAQ = () => {
               type="text"
               multiline
               minRows={4}
+              value={formData.faq_answer}
+              onChange={handleInputChange("faq_answer")}
             />
           </Grid>
         </Grid>

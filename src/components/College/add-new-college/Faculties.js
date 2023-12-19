@@ -14,7 +14,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
-const Faculties = ({setFaculties}) => {
+const Faculties = ({ setFaculties }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
 
@@ -26,8 +26,8 @@ const Faculties = ({setFaculties}) => {
     background: "",
     experience: "",
     base_city_faculty: "",
-    faculty_links: ""
-  })
+    faculty_links: "",
+  });
 
   const handleInputChange = (field) => (event) => {
     setFormData({ ...formData, [field]: event.target.value });
@@ -38,9 +38,8 @@ const Faculties = ({setFaculties}) => {
   };
 
   useEffect(() => {
-    setFaculties(formData)
-  }, [setFaculties, formData])
-
+    setFaculties(formData);
+  }, [setFaculties, formData]);
 
   return (
     <>
@@ -92,15 +91,16 @@ const Faculties = ({setFaculties}) => {
                     type="file"
                     onChange={handleFileChange}
                   />
-                  {
-                    formData.faculty_photo ? formData.faculty_photo.name :
+                  {formData.faculty_photo ? (
+                    formData.faculty_photo.name
+                  ) : (
                     <IconButton component="span">
                       <AddPhotoAlternateIcon
                         fontSize="medium"
                         color={secondaryColor}
                       />
                     </IconButton>
-                  }
+                  )}
                 </Box>
               </label>
             </Grid>
@@ -183,7 +183,8 @@ const Faculties = ({setFaculties}) => {
                       onChange={handleInputChange("base_city_faculty")}
                       displayEmpty
                       style={{
-                        color: formData.base_city_faculty === "" && secondaryColor,
+                        color:
+                          formData.base_city_faculty === "" && secondaryColor,
                       }}
                     >
                       <MenuItem value={""} disabled>

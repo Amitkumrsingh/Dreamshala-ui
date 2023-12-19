@@ -3,7 +3,7 @@ import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { cleanDigitSectionValue } from "@mui/x-date-pickers/internals/hooks/useField/useField.utils";
 
-const EntranceExams = ({setEntranceExams}) => {
+const EntranceExams = ({ setEntranceExams }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
   const primaryColor = theme.palette.text.primary;
@@ -48,28 +48,25 @@ const EntranceExams = ({setEntranceExams}) => {
   const handleCheckboxChange = (category, index) => {
     const updatedCheckboxes = { ...checkboxes };
     const selectedCategory = updatedCheckboxes[category];
-  
+
     selectedCategory[index].selected = !selectedCategory[index].selected;
-  
+
     setCheckboxes({ ...updatedCheckboxes });
   };
-  
 
   // Function to handle text input change
   const handleTextInputChange = (e) => {
-    setFormData({...formData, other_exams: e.target.value})
+    setFormData({ ...formData, other_exams: e.target.value });
   };
 
   const [formData, setFormData] = useState({
     coaching_for_exams: "",
-    other_exams: ""
-  })
+    other_exams: "",
+  });
 
   useEffect(() => {
-    setEntranceExams(formData)
-  }, [setEntranceExams, formData])
-
-
+    setEntranceExams(formData);
+  }, [setEntranceExams, formData]);
 
   return (
     <Container>

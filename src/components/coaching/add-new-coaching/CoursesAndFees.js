@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const CoursesAndFees = ({setCoursesAndFees}) => {
+const CoursesAndFees = ({ setCoursesAndFees }) => {
   const theme = useTheme();
   const placeholderColor = theme.palette.text.secondary;
 
@@ -24,15 +24,15 @@ const CoursesAndFees = ({setCoursesAndFees}) => {
     total_fee: "",
     discount: "",
     study_material_included: "",
-  })
+  });
 
   const handleInputChange = (field) => (event) => {
     setFormData({ ...formData, [field]: event.target.value });
   };
 
   useEffect(() => {
-    setCoursesAndFees(formData)
-  }, [formData, setCoursesAndFees])
+    setCoursesAndFees(formData);
+  }, [formData, setCoursesAndFees]);
 
   return (
     <Container>
@@ -134,7 +134,13 @@ const CoursesAndFees = ({setCoursesAndFees}) => {
             <Grid item xs={4} mt={2}>
               <Grid item>
                 <Typography>Total Fees</Typography>
-                <TextField fullWidth placeholder="Type Here" size="small" onChange={handleInputChange("total_fee")} value={formData.total_fee} />
+                <TextField
+                  fullWidth
+                  placeholder="Type Here"
+                  size="small"
+                  onChange={handleInputChange("total_fee")}
+                  value={formData.total_fee}
+                />
               </Grid>
               <Grid item mt={4}>
                 <Typography>Study Material included?</Typography>
@@ -145,7 +151,9 @@ const CoursesAndFees = ({setCoursesAndFees}) => {
                     value={formData.study_material_included}
                     displayEmpty
                     style={{
-                      color: formData.study_material_included === "" && placeholderColor,
+                      color:
+                        formData.study_material_included === "" &&
+                        placeholderColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
@@ -162,7 +170,13 @@ const CoursesAndFees = ({setCoursesAndFees}) => {
             <Grid item xs={4} mt={2}>
               <Grid item>
                 <Typography>Discount Offered (if any)</Typography>
-                <TextField fullWidth placeholder="Type Here" size="small" value={formData.discount} onChange={handleInputChange("discount")} />
+                <TextField
+                  fullWidth
+                  placeholder="Type Here"
+                  size="small"
+                  value={formData.discount}
+                  onChange={handleInputChange("discount")}
+                />
               </Grid>
               <Grid item mt={4}>
                 {/* <Typography>Eligibility Criteria</Typography>

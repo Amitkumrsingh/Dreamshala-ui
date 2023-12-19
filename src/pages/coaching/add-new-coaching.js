@@ -51,9 +51,13 @@ const AddNewCoaching = () => {
   const [entranceExams, setEntranceExams] = useState();
   const [coursesAndFees, setCoursesAndFees] = useState();
   const [studyMaterial, setStudyMaterial] = useState();
-  const [results, setResults] = useState()
-  const [faculties, setFaculties] = useState()
-  
+  const [results, setResults] = useState();
+  const [faculties, setFaculties] = useState();
+  const [photos, setPhotos] = useState();
+  const [videos, setVideos] = useState();
+  const [reviews, setReviews] = useState();
+  const [checkList, setCheckList] = useState();
+  const [faq, setFaq] = useState();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -75,7 +79,7 @@ const AddNewCoaching = () => {
             ...coachingDetails,
             ...location,
           },
-          urlEndpoint: "/coaching/Step1/"
+          urlEndpoint: "/coaching/Step1/",
         });
 
         // if (data.response === 201) console.log("form Submitted 1");
@@ -85,7 +89,7 @@ const AddNewCoaching = () => {
         break;
 
       case 1:
-         data = await addNewCoachingForms({
+        data = await addNewCoachingForms({
           data: {
             ...entranceExams,
             ...coursesAndFees,
@@ -93,20 +97,34 @@ const AddNewCoaching = () => {
             ...results,
             ...faculties,
           },
-          urlEndpoint: "/coaching/Step2/"
+          urlEndpoint: "/coaching/Step2/",
         });
 
         // if (data.response === 201) console.log("form Submitted 2");
 
-         obj = await data.json();
+        obj = await data.json();
         console.log(obj);
         break;
 
       case 2:
-        console.log("step 3");
+        data = await addNewCoachingForms({
+          data: {
+            ...photos,
+            ...videos,
+            ...reviews,
+            ...checkList,
+            ...faq,
+          },
+          urlEndpoint: "/coaching/Step3/",
+        });
+
+        // if (data.response === 201) console.log("form Submitted 2");
+
+        obj = await data.json();
+        console.log(obj);
         break;
     }
-    // setActiveStep(activeStep + 1);
+    setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
@@ -167,7 +185,7 @@ const AddNewCoaching = () => {
               {activeStep === 1 && (
                 <Grid container flexDirection={"column"} spacing={6}>
                   <Grid item>
-                    <EntranceExams setEntranceExams={setEntranceExams}/>
+                    <EntranceExams setEntranceExams={setEntranceExams} />
                   </Grid>
                   <Grid item mt={6}>
                     <CoursesAndFees setCoursesAndFees={setCoursesAndFees} />
@@ -186,19 +204,19 @@ const AddNewCoaching = () => {
               {activeStep === 2 && (
                 <Grid container flexDirection={"column"} spacing={6}>
                   <Grid item>
-                    <Photos />
+                    <Photos setPhotos={setPhotos} />
                   </Grid>
                   <Grid item mt={6}>
-                    <Videos />
+                    <Videos setVideos={setVideos} parentName="coaching" />
                   </Grid>
                   <Grid item mt={6}>
-                    <Reviews />
+                    <Reviews setReviews={setReviews} />
                   </Grid>
                   <Grid item mt={6}>
-                    <CheckList />
+                    <CheckList setCheckList={setCheckList} />
                   </Grid>
                   <Grid item mt={6}>
-                    <FAQ />
+                    <FAQ setFaq={setFaq} />
                   </Grid>
                 </Grid>
               )}

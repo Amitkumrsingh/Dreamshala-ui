@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IconButton,
   Box,
@@ -15,13 +15,64 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import StarRating from "../../other/StarRating";
 import { useTheme } from "@mui/material/styles";
 
-const Reviews = () => {
+const Reviews = ({ setReviews }) => {
   const theme = useTheme();
   const placeholderColor = theme.palette.text.secondary;
 
   const [addMoreReviews, setAddMoreReviews] = useState([""]);
-  const [yearOfStudy, setYearOfStudy] = useState("");
-  const [courseTaken, setCourseTaken] = useState("");
+  const [overall_rating, setOverall_rating] = useState(0);
+  const [competitive_environment, setCompetitive_environment] = useState(0);
+  const [faculty_rating, setFaculty_rating] = useState(0);
+  const [infrastructure_rating, setInfrastructure_rating] = useState(0);
+  const [peer_learning_rating, setPeer_learning_rating] = useState(0);
+  const [study_material_rating, setStudy_material_rating] = useState(0);
+
+  const [formData, setFormData] = useState({
+    review_name: "",
+    year_of_study: "",
+    course_taken: "",
+    competitive_environment: competitive_environment,
+    faculty_rating: faculty_rating,
+    infrastructure_rating: infrastructure_rating,
+    overall_rating: overall_rating,
+    peer_learning_rating: peer_learning_rating,
+    study_material_rating: study_material_rating,
+    review_description: "",
+    review_links: "",
+    review_photo_or_video: null,
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, review_photo_or_video: event.target.files[0] });
+  };
+
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      competitive_environment: competitive_environment,
+      faculty_rating: faculty_rating,
+      infrastructure_rating: infrastructure_rating,
+      overall_rating: overall_rating,
+      peer_learning_rating: peer_learning_rating,
+      study_material_rating: study_material_rating,
+    });
+
+    setReviews(formData);
+  }, [
+    competitive_environment,
+    faculty_rating,
+    formData,
+    infrastructure_rating,
+    overall_rating,
+    peer_learning_rating,
+    setReviews,
+    study_material_rating,
+  ]);
+
   return (
     <>
       <Container>
@@ -49,6 +100,8 @@ const Reviews = () => {
                   placeholder="Type here"
                   variant="outlined"
                   size="small"
+                  value={formData.review_name}
+                  onChange={handleInputChange("review_name")}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -56,11 +109,11 @@ const Reviews = () => {
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select
-                    onChange={(e) => setYearOfStudy(e.target.value)}
-                    value={yearOfStudy}
+                    value={formData.year_of_study}
+                    onChange={handleInputChange("year_of_study")}
                     displayEmpty
                     style={{
-                      color: yearOfStudy === "" && placeholderColor,
+                      color: formData.year_of_study === "" && placeholderColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
@@ -81,11 +134,11 @@ const Reviews = () => {
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select
-                    onChange={(e) => setCourseTaken(e.target.value)}
-                    value={courseTaken}
+                    value={formData.course_taken}
+                    onChange={handleInputChange("course_taken")}
                     displayEmpty
                     style={{
-                      color: courseTaken === "" && placeholderColor,
+                      color: formData.course_taken === "" && placeholderColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
@@ -112,26 +165,41 @@ const Reviews = () => {
             <Grid container spacing={6}>
               <Grid item xs={4} container flexDirection={"column"} spacing={6}>
                 <Grid item>
-                  <StarRating title={"Overall Rating"} />
+                  <StarRating
+                    title={"Overall Rating"}
+                    setRating={setOverall_rating}
+                  />
                 </Grid>
                 <Grid item>
-                  <StarRating title={"Infrastructure"} />
-                </Grid>
-              </Grid>
-              <Grid item xs={4} container flexDirection={"column"} spacing={6}>
-                <Grid item>
-                  <StarRating title={"Competitive Environment"} />
-                </Grid>
-                <Grid item>
-                  <StarRating title={"Study Material"} />
+                  <StarRating
+                    title={"Infrastructure"}
+                    setRating={setInfrastructure_rating}
+                  />
                 </Grid>
               </Grid>
               <Grid item xs={4} container flexDirection={"column"} spacing={6}>
                 <Grid item>
-                  <StarRating title={"Faculty"} />
+                  <StarRating
+                    title={"Competitive Environment"}
+                    setRating={setCompetitive_environment}
+                  />
                 </Grid>
                 <Grid item>
-                  <StarRating title={"Peer Learning"} />
+                  <StarRating
+                    title={"Study Material"}
+                    setRating={setStudy_material_rating}
+                  />
+                </Grid>
+              </Grid>
+              <Grid item xs={4} container flexDirection={"column"} spacing={6}>
+                <Grid item>
+                  <StarRating title={"Faculty"} setRating={setFaculty_rating} />
+                </Grid>
+                <Grid item>
+                  <StarRating
+                    title={"Peer Learning"}
+                    setRating={setPeer_learning_rating}
+                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -146,6 +214,8 @@ const Reviews = () => {
                   multiline
                   minRows={4}
                   maxRows={4}
+                  value={formData.review_description}
+                  onChange={handleInputChange("review_description")}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -156,11 +226,13 @@ const Reviews = () => {
                     placeholder="Describe here"
                     variant="outlined"
                     size="small"
+                    value={formData.review_links}
+                    onChange={handleInputChange("review_links")}
                   />
                 </Grid>
                 <Grid>
                   <Typography variant="h6">Upload Photo/ Video</Typography>
-                  <label htmlFor="image-input">
+                  <label htmlFor="reviews-image-input">
                     <Box
                       border={1}
                       borderColor={placeholderColor}
@@ -175,15 +247,24 @@ const Reviews = () => {
                         accept="file/*"
                         //   onChange={handleImageChange}
                         style={{ display: "none" }}
-                        id="image-input"
+                        id="reviews-image-input"
+                        onChange={handleFileChange}
                       />
-                      <IconButton component="span">
-                        <FileUploadIcon
-                          fontSize="small"
-                          color={placeholderColor}
-                        />
-                      </IconButton>
-                      Click here to Upload
+                      {formData.review_photo_or_video ? (
+                        <Button disabled style={{ color: placeholderColor }}>
+                          {formData.review_photo_or_video.name}
+                        </Button>
+                      ) : (
+                        <>
+                          <IconButton component="span">
+                            <FileUploadIcon
+                              fontSize="small"
+                              color={placeholderColor}
+                            />
+                          </IconButton>
+                          Click here to Upload
+                        </>
+                      )}
                       {/* You can display the selected image here if needed */}
                     </Box>
                   </label>

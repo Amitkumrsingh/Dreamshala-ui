@@ -51,6 +51,10 @@ const AddNewCollege = () => {
   const [managementContact, setManagementContact] = useState();
   const [location, setLocation] = useState();
   const [faculties, setFaculties] = useState();
+  const [photos, setPhotos] = useState();
+  const [videos, setVideos] = useState();
+  const [checkList, setCheckList] = useState();
+  const [faq, setFaq] = useState();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -152,7 +156,7 @@ const AddNewCollege = () => {
                     <Alumni />
                   </Grid>
                   <Grid item mt={6}>
-                    <Faculties setFaculties={setFaculties}/>
+                    <Faculties setFaculties={setFaculties} />
                   </Grid>
                   <Grid item mt={6}></Grid>
                 </Grid>
@@ -163,19 +167,19 @@ const AddNewCollege = () => {
                     <PlacementDetails />
                   </Grid>
                   <Grid item mt={6}>
-                    <Photos />
+                    <Photos setPhotos={setPhotos} />
                   </Grid>
                   <Grid item mt={6}>
-                    <Videos />
+                    <Videos setVideos={setVideos} parentName="college" />
                   </Grid>
                   <Grid item mt={6}>
                     <Reviews />
                   </Grid>
                   <Grid item mt={6}>
-                    <CheckList />
+                    <CheckList setCheckList={setCheckList} />
                   </Grid>
                   <Grid item mt={6}>
-                    <FAQ />
+                    <FAQ setFaq={setFaq} />
                   </Grid>
                 </Grid>
               )}

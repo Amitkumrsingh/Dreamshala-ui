@@ -30,6 +30,7 @@ const steps = ["Basic Details", "Important Updates", "Preparation Material"]; //
 const AddNewExam = () => {
   const router = useRouter();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const [faq, setFaq] = useState();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -115,7 +116,7 @@ const AddNewExam = () => {
                     <PreviousYearQuestionPaper />
                   </Grid>
                   <Grid item mt={6}>
-                    <FAQ />
+                    <FAQ setFaq={setFaq} />
                   </Grid>
                 </Grid>
               )}

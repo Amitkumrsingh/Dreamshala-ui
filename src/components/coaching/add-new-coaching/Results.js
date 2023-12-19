@@ -15,7 +15,7 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useTheme } from "@mui/material/styles";
 
-const Results = ({setResults}) => {
+const Results = ({ setResults }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
 
@@ -32,8 +32,8 @@ const Results = ({setResults}) => {
     exam_cracked: "",
     all_india_rank: "",
     base_city_result: "",
-    testimonial: ""
-  })
+    testimonial: "",
+  });
 
   const handleInputChange = (field) => (event) => {
     setFormData({ ...formData, [field]: event.target.value });
@@ -44,9 +44,8 @@ const Results = ({setResults}) => {
   };
 
   useEffect(() => {
-    setResults(formData)
-  }, [formData, setResults])
-
+    setResults(formData);
+  }, [formData, setResults]);
 
   return (
     <>
@@ -125,15 +124,16 @@ const Results = ({setResults}) => {
                     type="file"
                     onChange={handleFileChange("result_photo")}
                   />
-                  {
-                    formData.result_photo ? formData.result_photo.name :
+                  {formData.result_photo ? (
+                    formData.result_photo.name
+                  ) : (
                     <IconButton component="span">
-                    <AddPhotoAlternateIcon
-                      fontSize="medium"
-                      color={secondaryColor}
-                    />
-                  </IconButton>
-                  }
+                      <AddPhotoAlternateIcon
+                        fontSize="medium"
+                        color={secondaryColor}
+                      />
+                    </IconButton>
+                  )}
                 </Box>
               </label>
             </Grid>
@@ -283,7 +283,7 @@ const Results = ({setResults}) => {
                   variant="outlined"
                   size="small"
                   value={formData.testimonial}
-            onChange={handleInputChange("testimonial")}
+                  onChange={handleInputChange("testimonial")}
                 />
               </Grid>
             </Grid>

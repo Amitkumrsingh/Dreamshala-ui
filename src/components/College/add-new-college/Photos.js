@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Button,
@@ -11,13 +11,14 @@ import {
 import { useTheme } from "@mui/material/styles";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
-const MyForm = () => {
+const MyForm = ({ setPhotos }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
-  const primaryColor = theme.palette.text.primary;
+  const primaryColor = theme.palette.primary.main;
 
   const buttonSelectedStyle = {
     color: primaryColor,
+    borderColor: primaryColor,
   };
 
   const buttonNotSelectedStyle = {
@@ -25,8 +26,6 @@ const MyForm = () => {
     borderColor: secondaryColor,
   };
 
-  const [image, setImage] = useState(null);
-  const [description, setDescription] = useState("");
   const [addMorePhotos, setAddMorePhotos] = useState([""]);
   const [buttons, setButtons] = useState([
     false,
@@ -39,20 +38,38 @@ const MyForm = () => {
     false,
   ]);
 
-  const handleButtonChange = (item) => {
-    const preButtons = buttons;
-    preButtons[item] = !preButtons[item];
-    setButtons(preButtons);
+  const [selectedCategory, setSelectedCategory] = useState({
+    category: "",
+    index: -1,
+  });
+
+  const handleButtonChange = (item, index) => {
+    if (item === selectedCategory.category) {
+      setSelectedCategory({ category: "", index: -1 });
+    } else {
+      setSelectedCategory({ category: item, index: index });
+      setFormData({ ...formData, photo_category: item });
+    }
   };
 
-  const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    setImage(selectedImage);
+  const [formData, setFormData] = useState({
+    photo: null,
+    photo_description: "",
+    photo_keywords_meta_tags: "",
+    photo_category: selectedCategory.category,
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
   };
 
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, photo: event.target.files[0] });
   };
+
+  useEffect(() => {
+    setPhotos(formData);
+  }, [formData, setPhotos, selectedCategory]);
 
   return (
     <Container>
@@ -73,7 +90,7 @@ const MyForm = () => {
         <Grid key={index} container spacing={6} mb={6}>
           <Grid item xs={4}>
             {/* 1st Column - Image Input */}
-            <label htmlFor="image-input">
+            <label htmlFor="photo-input">
               <Box
                 border={"2px dashed"}
                 borderColor={secondaryColor}
@@ -87,17 +104,21 @@ const MyForm = () => {
                 <input
                   type="file"
                   accept="image/*"
-                  onChange={handleImageChange}
+                  onChange={handleFileChange}
                   style={{ display: "none" }}
-                  id="image-input"
+                  id="photo-input"
                 />
 
-                <IconButton component="span">
-                  <AddPhotoAlternateIcon
-                    fontSize="large"
-                    color={secondaryColor}
-                  />
-                </IconButton>
+                {formData.photo ? (
+                  formData.photo.name
+                ) : (
+                  <IconButton component="span">
+                    <AddPhotoAlternateIcon
+                      fontSize="large"
+                      color={secondaryColor}
+                    />
+                  </IconButton>
+                )}
                 {/* You can display the selected image here if needed */}
               </Box>
             </label>
@@ -115,8 +136,8 @@ const MyForm = () => {
                   //   label="Describe here"
                   placeholder="Describe here"
                   variant="outlined"
-                  value={description}
-                  onChange={handleDescriptionChange}
+                  value={formData.photo_description}
+                  onChange={handleInputChange("photo_description")}
                   multiline
                   minRows={5}
                   maxRows={5}
@@ -131,22 +152,28 @@ const MyForm = () => {
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={4} md={4} mb={2.5}>
                       <Button
-                        variant={false ? "contained" : "outlined"}
-                        color="primary"
-                        style={buttonNotSelectedStyle}
-                        onClick={() => handleButtonChange(0)}
+                        variant={"outlined"}
+                        style={
+                          selectedCategory.index === 0
+                            ? buttonSelectedStyle
+                            : buttonNotSelectedStyle
+                        }
+                        onClick={() => handleButtonChange("Classroom", 0)}
                         fullWidth
                       >
-                        Classrom
+                        Classroom
                       </Button>
                     </Grid>
                     <Grid item xs={12} sm={4} md={4}>
                       <Button
-                        variant={false ? "contained" : "outlined"}
-                        color="primary"
-                        style={buttonNotSelectedStyle}
+                        variant={"outlined"}
+                        style={
+                          selectedCategory.index === 1
+                            ? buttonSelectedStyle
+                            : buttonNotSelectedStyle
+                        }
                         // style={{ margin: "5px" }}
-                        onClick={() => handleButtonChange(1)}
+                        onClick={() => handleButtonChange("Infrastructure", 1)}
                         fullWidth
                       >
                         Infrastructure
@@ -154,26 +181,31 @@ const MyForm = () => {
                     </Grid>
                     <Grid item xs={12} sm={4} md={4}>
                       <Button
-                        variant={false ? "contained" : "outlined"}
-                        color="primary"
-                        style={buttonNotSelectedStyle}
+                        variant={"outlined"}
+                        style={
+                          selectedCategory.index === 2
+                            ? buttonSelectedStyle
+                            : buttonNotSelectedStyle
+                        }
                         // style={{ margin: "5px" }}
-                        onClick={() => handleButtonChange(2)}
+                        onClick={() => handleButtonChange("Study Material", 2)}
                         fullWidth
                       >
                         Study Material
                       </Button>
                     </Grid>
                   </Grid>
-
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={4} md={4} mb={2.5}>
                       <Button
-                        variant={false ? "contained" : "outlined"}
-                        color="primary"
-                        style={buttonNotSelectedStyle}
+                        variant={"outlined"}
+                        style={
+                          selectedCategory.index === 3
+                            ? buttonSelectedStyle
+                            : buttonNotSelectedStyle
+                        }
                         // style={{ margin: "5px" }}
-                        onClick={() => handleButtonChange(3)}
+                        onClick={() => handleButtonChange("People", 3)}
                         fullWidth
                       >
                         People
@@ -182,11 +214,14 @@ const MyForm = () => {
 
                     <Grid item xs={12} sm={4} md={4}>
                       <Button
-                        variant={false ? "contained" : "outlined"}
-                        color="primary"
-                        style={buttonNotSelectedStyle}
+                        variant={"outlined"}
+                        style={
+                          selectedCategory.index === 4
+                            ? buttonSelectedStyle
+                            : buttonNotSelectedStyle
+                        }
                         // style={{ margin: "5px" }}
-                        onClick={() => handleButtonChange(4)}
+                        onClick={() => handleButtonChange("Events", 4)}
                         fullWidth
                       >
                         Events
@@ -195,11 +230,14 @@ const MyForm = () => {
                     <Grid item xs={12} sm={4} md={4}>
                       <Button
                         fullWidth
-                        variant={false ? "contained" : "outlined"}
-                        color="primary"
-                        style={buttonNotSelectedStyle}
+                        variant={"outlined"}
+                        style={
+                          selectedCategory.index === 5
+                            ? buttonSelectedStyle
+                            : buttonNotSelectedStyle
+                        }
                         // style={{ margin: "5px" }}
-                        onClick={() => handleButtonChange(5)}
+                        onClick={() => handleButtonChange("Environment", 5)}
                       >
                         Environment
                       </Button>
@@ -209,11 +247,14 @@ const MyForm = () => {
                     <Grid item xs={12} sm={4} md={4}>
                       <Button
                         xs={4}
-                        variant={false ? "contained" : "outlined"}
-                        color="primary"
-                        style={buttonNotSelectedStyle}
+                        variant={"outlined"}
+                        style={
+                          selectedCategory.index === 6
+                            ? buttonSelectedStyle
+                            : buttonNotSelectedStyle
+                        }
                         // style={{ margin: "5px" }}
-                        onClick={() => handleButtonChange(6)}
+                        onClick={() => handleButtonChange("Peer Learning", 6)}
                         fullWidth
                       >
                         Peer Learning
@@ -222,11 +263,14 @@ const MyForm = () => {
                     <Grid item xs={12} sm={4} md={4}>
                       <Button
                         xs={4}
-                        variant={buttons[7] ? "contained" : "outlined"}
-                        color="primary"
-                        style={buttonNotSelectedStyle}
+                        variant={"outlined"}
+                        style={
+                          selectedCategory.index === 7
+                            ? buttonSelectedStyle
+                            : buttonNotSelectedStyle
+                        }
                         // style={{ margin: "5px" }}
-                        onClick={() => handleButtonChange(7)}
+                        onClick={() => handleButtonChange("Other", 7)}
                         fullWidth
                       >
                         Other
@@ -237,6 +281,7 @@ const MyForm = () => {
                         variant="outlined"
                         placeholder="Type Your Own"
                         size="small"
+                        disabled={selectedCategory.index !== -1}
                         fullWidth
                       />
                     </Grid>
@@ -252,8 +297,8 @@ const MyForm = () => {
                 // label="Description"
                 placeholder="Type here"
                 variant="outlined"
-                value={description}
-                onChange={handleDescriptionChange}
+                value={formData.photo_keywords_meta_tags}
+                onChange={handleInputChange("photo_keywords_meta_tags")}
               />
             </Grid>
           </Grid>

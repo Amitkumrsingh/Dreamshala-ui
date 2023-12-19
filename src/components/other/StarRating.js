@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Rating, Typography } from "@mui/material";
 
-const StarRating = ({ title }) => {
+const StarRating = ({ title, setRating }) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    setRating(value);
+  }, [setRating, value]);
 
   return (
     <div>
@@ -16,7 +20,7 @@ const StarRating = ({ title }) => {
         value={value}
         size="large"
         onChange={handleChange}
-        precision={0.5} // You can customize the precision to allow half-star ratings
+        precision={1} // You can customize the precision to allow half-star ratings
       />
       {/* <Typography variant="caption">{value}</Typography> */}
     </div>

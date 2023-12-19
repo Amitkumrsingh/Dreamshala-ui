@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 import { Button, Grid, TextField, Container, Typography } from "@mui/material";
 
-const CheckList = () => {
+const CheckList = ({ setCheckList }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
-  const primaryColor = theme.palette.text.primary;
+
+  const primaryColor = theme.palette.primary.main;
 
   const buttonSelectedStyle = {
-    color: primaryColor,
+    // color: primaryColor,
+    borderColor: primaryColor,
   };
 
   const buttonNotSelectedStyle = {
@@ -86,6 +88,13 @@ const CheckList = () => {
     const preArray = facilities;
     preArray[index].selected = !preArray[index].selected;
     setFacilities([...preArray]);
+
+    if (preArray[index].selected) {
+      setFormData({
+        ...formData,
+        available_facilities: `${formData.available_facilities}, ${facilities[index].text}`,
+      });
+    }
   };
 
   const numberOfStudents = [
@@ -160,6 +169,91 @@ const CheckList = () => {
     },
   ];
 
+  const [formData, setFormData] = useState({
+    students_in_batch: "",
+    total_students_in_coaching: "",
+    number_of_faculty: "",
+    available_facilities: "",
+  });
+
+  const [students_in_batch, setStudents_in_batch] = useState({
+    numbers: "",
+    index: -1,
+  });
+  const [total_students_in_coaching, setTotal_students_in_coaching] = useState({
+    numbers: "",
+    index: -1,
+  });
+  const [number_of_faculty, setNumber_of_faculty] = useState({
+    numbers: "",
+    index: -1,
+  });
+
+  const handleStudentsInBatch = (text, index) => {
+    if (students_in_batch.index === index) {
+      setStudents_in_batch({
+        numbers: "",
+        index: -1,
+      });
+    } else {
+      setStudents_in_batch({
+        numbers: text,
+        index: index,
+      });
+    }
+
+    setFormData({ ...formData, students_in_batch: students_in_batch.numbers });
+  };
+
+  const handleTotalStudentsInCoaching = (text, index) => {
+    if (total_students_in_coaching.index === index) {
+      setTotal_students_in_coaching({
+        numbers: "",
+        index: -1,
+      });
+    } else {
+      setTotal_students_in_coaching({
+        numbers: text,
+        index: index,
+      });
+    }
+    setFormData({
+      ...formData,
+      total_students_in_coaching: total_students_in_coaching.numbers,
+    });
+  };
+
+  const handleNumberOfFaculty = (text, index) => {
+    if (number_of_faculty.index === index) {
+      setNumber_of_faculty({
+        numbers: "",
+        index: -1,
+      });
+    } else {
+      setNumber_of_faculty({
+        numbers: text,
+        index: index,
+      });
+    }
+    setFormData({ ...formData, number_of_faculty: number_of_faculty.numbers });
+  };
+
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      number_of_faculty: number_of_faculty.numbers,
+      total_students_in_coaching: total_students_in_coaching.numbers,
+      students_in_batch: students_in_batch.numbers,
+    });
+    setCheckList(formData);
+  }, [
+    setCheckList,
+    formData,
+    number_of_faculty.numbers,
+    total_students_in_coaching.numbers,
+    students_in_batch.numbers,
+  ]);
+
   return (
     <>
       <Container>
@@ -215,10 +309,14 @@ const CheckList = () => {
                   {numberOfStudents.map((data, index) => (
                     <Grid item xs={12} sm={12 / 5} md={12 / 5} key={index}>
                       <Button
-                        key={index}
-                        variant={data.selected ? "contained" : "outlined"}
+                        variant={
+                          students_in_batch.index === index
+                            ? "contained"
+                            : "outlined"
+                        }
+                        onClick={() => handleStudentsInBatch(data.text, index)}
                         style={
-                          data.selected
+                          students_in_batch.index === index
                             ? buttonSelectedStyle
                             : buttonNotSelectedStyle
                         }
@@ -236,6 +334,11 @@ const CheckList = () => {
                   placeholder="Type Here"
                   type="text"
                   size="small"
+                  value={students_in_batch.numbers}
+                  disabled={students_in_batch.index !== -1}
+                  onChange={(e) =>
+                    setStudents_in_batch({ index: -1, numbers: e.target.value })
+                  }
                 />
               </Grid>
             </Grid>
@@ -252,9 +355,16 @@ const CheckList = () => {
                     <Grid item xs={12} sm={12 / 5} md={12 / 5} key={index}>
                       <Button
                         key={index}
-                        variant={data.selected ? "contained" : "outlined"}
+                        variant={
+                          total_students_in_coaching.index === index
+                            ? "contained"
+                            : "outlined"
+                        }
+                        onClick={() =>
+                          handleTotalStudentsInCoaching(data.text, index)
+                        }
                         style={
-                          data.selected
+                          total_students_in_coaching.index === index
                             ? buttonSelectedStyle
                             : buttonNotSelectedStyle
                         }
@@ -272,6 +382,14 @@ const CheckList = () => {
                   placeholder="Type Here"
                   type="text"
                   size="small"
+                  value={total_students_in_coaching.numbers}
+                  disabled={total_students_in_coaching.index !== -1}
+                  onChange={(e) =>
+                    setTotal_students_in_coaching({
+                      index: -1,
+                      numbers: e.target.value,
+                    })
+                  }
                 />
               </Grid>
             </Grid>
@@ -290,9 +408,14 @@ const CheckList = () => {
                     <Grid item xs={12} sm={12 / 5} md={12 / 5} key={index}>
                       <Button
                         key={index}
-                        variant={data.selected ? "contained" : "outlined"}
+                        variant={
+                          number_of_faculty.index === index
+                            ? "contained"
+                            : "outlined"
+                        }
+                        onClick={() => handleNumberOfFaculty(data.text, index)}
                         style={
-                          data.selected
+                          number_of_faculty.index === index
                             ? buttonSelectedStyle
                             : buttonNotSelectedStyle
                         }
@@ -310,6 +433,11 @@ const CheckList = () => {
                   placeholder="Type Here"
                   type="text"
                   size="small"
+                  value={number_of_faculty.numbers}
+                  disabled={number_of_faculty.index !== -1}
+                  onChange={(e) =>
+                    setNumber_of_faculty({ index: -1, numbers: e.target.value })
+                  }
                 />
               </Grid>
             </Grid>

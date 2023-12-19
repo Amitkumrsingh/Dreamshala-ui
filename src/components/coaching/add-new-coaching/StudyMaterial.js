@@ -14,7 +14,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-const StudyMaterial = ({setStudyMaterial}) => {
+const StudyMaterial = ({ setStudyMaterial }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
   // const primaryColor = theme.palette.text.primary;
@@ -33,20 +33,19 @@ const StudyMaterial = ({setStudyMaterial}) => {
     links: "",
     exams_who_can_refer: "",
     keywords_meta_tags: "",
-  })
+  });
 
   const handleInputChange = (field) => (event) => {
     setFormData({ ...formData, [field]: event.target.value });
   };
-  
+
   const handleFileChange = (event) => {
     setFormData({ ...formData, material_file: event.target.files[0] });
   };
 
-
   useEffect(() => {
-    setStudyMaterial(formData)
-  }, [formData, setStudyMaterial])
+    setStudyMaterial(formData);
+  }, [formData, setStudyMaterial]);
 
   return (
     <>
@@ -93,7 +92,9 @@ const StudyMaterial = ({setStudyMaterial}) => {
                   <IconButton component="span">
                     <FileUploadIcon fontSize="large" color={secondaryColor} />
                   </IconButton>
-                  {formData.material_file ? formData.material_file.name : "Upload photos, Videos, PDF's"}
+                  {formData.material_file
+                    ? formData.material_file.name
+                    : "Upload photos, Videos, PDF's"}
                   {/* You can display the selected image here if needed */}
                 </Box>
               </label>
@@ -126,7 +127,7 @@ const StudyMaterial = ({setStudyMaterial}) => {
                     minRows={2}
                     maxRows={3}
                     value={formData.keywords_meta_tags}
-                    onChange={handleInputChange("keywords_meta_tags")}                    
+                    onChange={handleInputChange("keywords_meta_tags")}
                   />
                 </Grid>
               </Grid>
@@ -174,7 +175,8 @@ const StudyMaterial = ({setStudyMaterial}) => {
                       onChange={handleInputChange("exams_who_can_refer")}
                       displayEmpty
                       style={{
-                        color: formData.exams_who_can_refer === "" && secondaryColor,
+                        color:
+                          formData.exams_who_can_refer === "" && secondaryColor,
                       }}
                     >
                       <MenuItem value={""} disabled>
