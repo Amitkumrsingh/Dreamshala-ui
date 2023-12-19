@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "../config";
 
-export const addNewCoachingForms = async ({data, urlEndpoint}) => {
+export const addNewCoachingForms = async ({ data, urlEndpoint }) => {
   try {
     const response = await fetch(API_BASE_URL + urlEndpoint, {
       method: "POST",
