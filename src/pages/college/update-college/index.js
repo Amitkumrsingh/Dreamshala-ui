@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import DashboardLayout from "../../layouts/Dashboard";
+import DashboardLayout from "../../../layouts/Dashboard";
 
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
