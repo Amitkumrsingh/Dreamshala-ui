@@ -40,6 +40,7 @@ const AddNewExam = () => {
   const [importantDates, setImportantDates] = useState();
   const [examPattern, setExamPattern] = useState();
   const [studyMaterial, setStudyMaterial] = useState();
+  const [previousYearQuestionPaper, setPreviousYearQuestionPaper] = useState();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -85,11 +86,24 @@ const AddNewExam = () => {
         break;
 
       case 2:
-        console.log(examPattern, studyMaterial);
+        data = await addNewExamForms({
+          data: {
+            ...examPattern,
+            ...studyMaterial,
+            ...previousYearQuestionPaper,
+            ...faq,
+          },
+          urlEndpoint: "/exam/step3/",
+        });
+
+        // if (data.response === 201) console.log("form Submitted 1");
+
+        obj = await data.json();
+        console.log(obj);
         break;
     }
 
-    // setActiveStep(activeStep + 1);
+    setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
@@ -163,7 +177,11 @@ const AddNewExam = () => {
                     <StudyMaterial setStudyMaterial={setStudyMaterial} />
                   </Grid>
                   <Grid item mt={6}>
-                    <PreviousYearQuestionPaper />
+                    <PreviousYearQuestionPaper
+                      setPreviousYearQuestionPaper={
+                        setPreviousYearQuestionPaper
+                      }
+                    />
                   </Grid>
                   <Grid item mt={6}>
                     <FAQ setFaq={setFaq} />

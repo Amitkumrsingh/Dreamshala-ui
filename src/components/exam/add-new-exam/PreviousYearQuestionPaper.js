@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IconButton,
   Box,
@@ -14,7 +14,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-const PreviousYearQuestionPaper = () => {
+const PreviousYearQuestionPaper = ({ setPreviousYearQuestionPaper }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
 
@@ -23,11 +23,38 @@ const PreviousYearQuestionPaper = () => {
     borderColor: secondaryColor,
   };
 
+  const years = [];
+
+  for (let year = 1990; year <= 2023; year++) {
+    years.push(year.toString());
+  }
+
   const [exams, setExams] = useState("");
   const [yearOfPaper, setYearOfPaper] = useState("");
   const [modeOfPaper, setModeOfPaper] = useState("");
 
   const [addMoreStudyMaterial, setAddMoreStudyMaterial] = useState([""]);
+  const [formData, setFormData] = useState({
+    question_paper_files: null,
+    question_paper_exam: "",
+    question_paper_year: "",
+    question_paper_date: "",
+    question_paper_mode: "",
+    question_paper_description: "",
+    question_paper_links: "",
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, question_paper_files: event.target.files[0] });
+  };
+
+  useEffect(() => {
+    setPreviousYearQuestionPaper(formData);
+  }, [setPreviousYearQuestionPaper, formData]);
 
   return (
     <Container>
@@ -49,7 +76,7 @@ const PreviousYearQuestionPaper = () => {
       {addMoreStudyMaterial.map((data, index) => (
         <Grid container mt={2} spacing={6} key={index}>
           <Grid item xs={4}>
-            <label htmlFor="image-input">
+            <label htmlFor="question-paper-input">
               <Box
                 border={1}
                 borderColor={secondaryColor}
@@ -62,15 +89,22 @@ const PreviousYearQuestionPaper = () => {
               >
                 <input
                   type="file"
-                  accept="image/*"
+                  accept="file/*"
                   // onChange={handleImageChange}
                   style={{ display: "none" }}
-                  id="image-input"
+                  id="question-paper-input"
+                  onChange={handleFileChange}
                 />
-                <IconButton component="span">
-                  <FileUploadIcon fontSize="large" color={secondaryColor} />
-                </IconButton>
-                Upload PDFs of question <br /> papers and answer keys
+                {formData.question_paper_files ? (
+                  formData.question_paper_files.name
+                ) : (
+                  <>
+                    <IconButton component="span">
+                      <FileUploadIcon fontSize="large" color={secondaryColor} />
+                    </IconButton>
+                    Upload PDFs of question <br /> papers and answer keys
+                  </>
+                )}
                 {/* You can display the selected image here if needed */}
               </Box>
             </label>
@@ -82,19 +116,20 @@ const PreviousYearQuestionPaper = () => {
                 <Typography>Enter Exam</Typography>
                 <FormControl fullWidth size="small">
                   <Select
-                    onChange={(e) => setExams(e.target.value)}
-                    value={exams}
+                    value={formData.question_paper_exam}
+                    onChange={handleInputChange("question_paper_exam")}
                     displayEmpty
                     style={{
-                      color: exams === "" && secondaryColor,
+                      color:
+                        formData.question_paper_exam === "" && secondaryColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
                     </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
+                    {/* <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
-                    <MenuItem value="3">3</MenuItem>
+                    <MenuItem value="3">3</MenuItem> */}
                   </Select>
                 </FormControl>
               </Grid>
@@ -102,19 +137,22 @@ const PreviousYearQuestionPaper = () => {
                 <Typography>Year of Paper</Typography>
                 <FormControl fullWidth size="small">
                   <Select
-                    onChange={(e) => setYearOfPaper(e.target.value)}
-                    value={yearOfPaper}
+                    value={formData.question_paper_year}
+                    onChange={handleInputChange("question_paper_year")}
                     displayEmpty
                     style={{
-                      color: yearOfPaper === "" && secondaryColor,
+                      color:
+                        formData.question_paper_year === "" && secondaryColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
                     </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    <MenuItem value="3">3</MenuItem>
+                    {years.map((year) => (
+                      <MenuItem key={year} value={year}>
+                        {year}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               </Grid>
@@ -123,25 +161,32 @@ const PreviousYearQuestionPaper = () => {
             <Grid container spacing={6} item>
               <Grid item xs={6}>
                 <Typography>Date of Paper</Typography>
-                <TextField type="date" fullWidth size="small" />
+                <TextField
+                  type="date"
+                  fullWidth
+                  size="small"
+                  value={formData.question_paper_date}
+                  onChange={handleInputChange("question_paper_date")}
+                />
               </Grid>
               <Grid item xs={6}>
                 <Typography>Mode of Paper</Typography>
                 <FormControl fullWidth size="small">
                   <Select
-                    onChange={(e) => setModeOfPaper(e.target.value)}
-                    value={modeOfPaper}
+                    value={formData.question_paper_mode}
+                    onChange={handleInputChange("question_paper_mode")}
                     displayEmpty
                     style={{
-                      color: modeOfPaper === "" && secondaryColor,
+                      color:
+                        formData.question_paper_mode === "" && secondaryColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
                     </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
+                    {/* <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
-                    <MenuItem value="3">3</MenuItem>
+                    <MenuItem value="3">3</MenuItem> */}
                   </Select>
                 </FormControl>
               </Grid>
@@ -153,9 +198,8 @@ const PreviousYearQuestionPaper = () => {
                 <Grid container spacing={2}>
                   <Grid item>
                     <TextField
-                      // fullWidth
-                      // label="Description"
-                      //   style={{ width: "78%", marginRight: 5 }}
+                      value={formData.question_paper_links}
+                      onChange={handleInputChange("question_paper_links")}
                       placeholder="Type here"
                       variant="outlined"
                       size="small"
@@ -170,7 +214,13 @@ const PreviousYearQuestionPaper = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography>Add Description to the paper</Typography>
-                <TextField size="small" placeholder="Describe here" fullWidth />
+                <TextField
+                  size="small"
+                  placeholder="Describe here"
+                  fullWidth
+                  value={formData.question_paper_description}
+                  onChange={handleInputChange("question_paper_description")}
+                />
               </Grid>
             </Grid>
           </Grid>
