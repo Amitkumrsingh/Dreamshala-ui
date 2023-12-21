@@ -6,3 +6,4 @@ export { default as Brochure } from "./Brochure";
 export { default as ExamPattern } from "./ExamPattern";
 export { default as StudyMaterial } from "./StudyMaterial";
 export { default as PreviousYearQuestionPaper } from "./PreviousYearQuestionPaper";
+export { default as ImportantNews } from "./ImportantNews";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IconButton,
   Box,
@@ -9,17 +9,15 @@ import {
   FormControl,
   MenuItem,
   Select,
+  Button,
 } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { useTheme } from "@mui/material/styles";
 // import UploadFileIcon from "@mui/icons-material/UploadFile";
 
-const CollegeDetails = () => {
+const CollegeDetails = ({ setCollegeDetails }) => {
   const theme = useTheme();
   const placeholderColor = theme.palette.text.secondary;
-  const [selectState, setSelectState] = useState("");
-  const [city, setCity] = useState("");
-  const [yearOfEstablishment, setYearOfEstablishment] = useState("");
   const indianStatesAndUTs = [
     "Andhra Pradesh",
     "Arunachal Pradesh",
@@ -56,6 +54,35 @@ const CollegeDetails = () => {
     "Delhi",
     "Puducherry",
   ];
+
+  const [formData, setFormData] = useState({
+    GSTIN: "",
+    establishment_year: "",
+    pan_card_number: "",
+    pan_card_upload: null,
+    address_line_1: "",
+    address_line_2: "",
+    landmark_locality: "",
+    pincode: "",
+    state: "",
+    city: "",
+    latitude: "0",
+    longitude: "0",
+    name: "",
+  });
+
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, pan_card_upload: event.target.files[0] });
+  };
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  useEffect(() => {
+    setCollegeDetails(formData);
+  }, [formData, setCollegeDetails]);
+
   return (
     <>
       <Container>
@@ -82,6 +109,8 @@ const CollegeDetails = () => {
               placeholder="Type here"
               variant="outlined"
               size="small"
+              value={formData.name}
+              onChange={handleInputChange("name")}
             />
           </Grid>
           <Grid item xs={4}>
@@ -92,6 +121,8 @@ const CollegeDetails = () => {
               placeholder="Type here"
               variant="outlined"
               size="small"
+              value={formData.GSTIN}
+              onChange={handleInputChange("GSTIN")}
             />
           </Grid>
           <Grid item xs={4}>
@@ -99,11 +130,11 @@ const CollegeDetails = () => {
             <FormControl fullWidth size="small">
               {/* <InputLabel>Select/ Type Here</InputLabel> */}
               <Select
-                onChange={(e) => setYearOfEstablishment(e.target.value)}
-                value={yearOfEstablishment}
+                value={formData.establishment_year}
+                onChange={handleInputChange("establishment_year")}
                 displayEmpty
                 style={{
-                  color: yearOfEstablishment === "" && placeholderColor,
+                  color: formData.establishment_year === "" && placeholderColor,
                 }}
               >
                 <MenuItem value={""} disabled>
@@ -133,6 +164,8 @@ const CollegeDetails = () => {
                   placeholder="Type here"
                   variant="outlined"
                   size="small"
+                  value={formData.address_line_1}
+                  onChange={handleInputChange("address_line_1")}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -143,6 +176,8 @@ const CollegeDetails = () => {
                   placeholder="Type here"
                   variant="outlined"
                   size="small"
+                  value={formData.address_line_2}
+                  onChange={handleInputChange("address_line_2")}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -153,6 +188,8 @@ const CollegeDetails = () => {
                   placeholder="Type here"
                   variant="outlined"
                   size="small"
+                  value={formData.landmark_locality}
+                  onChange={handleInputChange("landmark_locality")}
                 />
               </Grid>
             </Grid>
@@ -166,6 +203,10 @@ const CollegeDetails = () => {
                   placeholder="Type here"
                   variant="outlined"
                   size="small"
+                  type="number"
+                  pattern="\d+"
+                  value={formData.pincode}
+                  onChange={handleInputChange("pincode")}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -173,11 +214,11 @@ const CollegeDetails = () => {
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select
-                    onChange={(e) => setSelectState(e.target.value)}
-                    value={selectState}
+                    value={formData.state}
+                    onChange={handleInputChange("state")}
                     displayEmpty
                     style={{
-                      color: selectState === "" && placeholderColor,
+                      color: formData.state === "" && placeholderColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
@@ -194,26 +235,16 @@ const CollegeDetails = () => {
                 </FormControl>
               </Grid>
               <Grid item xs={4}>
-                <Typography>Select City</Typography>
-                <FormControl fullWidth size="small">
-                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select
-                    onChange={(e) => setCity(e.target.value)}
-                    value={city}
-                    displayEmpty
-                    style={{
-                      color: city === "" && placeholderColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    <MenuItem value="3">3</MenuItem>
-                    {/* Add more exam options as needed */}
-                  </Select>
-                </FormControl>
+                <Typography>Type City</Typography>
+                <TextField
+                  fullWidth
+                  // label="Description"
+                  placeholder="Type here"
+                  variant="outlined"
+                  size="small"
+                  value={formData.city}
+                  onChange={handleInputChange("city")}
+                />
               </Grid>
             </Grid>
           </Grid>
@@ -242,6 +273,8 @@ const CollegeDetails = () => {
               placeholder="Type here"
               variant="outlined"
               size="small"
+              value={formData.pan_card_number}
+              onChange={handleInputChange("pan_card_number")}
             />
           </Grid>
           <Grid item xs={2}>
@@ -259,14 +292,23 @@ const CollegeDetails = () => {
                 <input
                   type="file"
                   accept="file/*"
-                  //   onChange={handleImageChange}
+                  onChange={handleFileChange}
                   style={{ display: "none" }}
                   id="image-input"
                 />
-                <IconButton component="span">
-                  <FileUploadIcon fontSize="small" color={placeholderColor} />
-                </IconButton>
-                Click here to Upload
+                {formData.pan_card_upload ? (
+                  <Button disabled>{formData.pan_card_upload.name}</Button>
+                ) : (
+                  <>
+                    <IconButton component="span">
+                      <FileUploadIcon
+                        fontSize="small"
+                        color={placeholderColor}
+                      />
+                    </IconButton>
+                    Click here to Upload
+                  </>
+                )}
                 {/* You can display the selected image here if needed */}
               </Box>
             </label>

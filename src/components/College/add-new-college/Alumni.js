@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IconButton,
   Box,
@@ -14,15 +14,34 @@ import {
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { useTheme } from "@mui/material/styles";
 
-const Alumni = () => {
+const Alumni = ({ setAlumni }) => {
   const theme = useTheme();
   const placeholderColor = theme.palette.text.secondary;
 
   const [addMoreFaculties, setAddMoreFaculties] = useState([""]);
-  const [experience, setExperience] = useState("");
-  const [degree, setDegree] = useState("");
-  const [yearOfGraduation, setYearOfGraduation] = useState("");
-  const [latestPosition, setLatestPosition] = useState("");
+
+  const [formData, setFormData] = useState({
+    photo: null,
+    degree: "",
+    year_of_graduation: "",
+    latest_position_achievement: "",
+    links: "",
+    name: "",
+    experience: "",
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, photo: event.target.files[0] });
+  };
+
+  useEffect(() => {
+    setAlumni(formData);
+  }, [formData, setAlumni]);
+
   return (
     <>
       <Container>
@@ -50,7 +69,7 @@ const Alumni = () => {
                 mt={4}
               >
                 <label
-                  htmlFor="image"
+                  htmlFor="alumni-image"
                   style={{
                     display: "flex",
                     flexDirection: "column",
@@ -74,16 +93,20 @@ const Alumni = () => {
                     <input
                       accept="image/*"
                       style={{ display: "none" }}
-                      id="image"
+                      id="alumni-image"
                       type="file"
-                      //   onChange={handleFileChange}
+                      onChange={handleFileChange}
                     />
-                    <IconButton component="span">
-                      <AddPhotoAlternateIcon
-                        fontSize="medium"
-                        color={placeholderColor}
-                      />
-                    </IconButton>
+                    {formData.photo ? (
+                      formData.photo.name
+                    ) : (
+                      <IconButton component="span">
+                        <AddPhotoAlternateIcon
+                          fontSize="medium"
+                          color={placeholderColor}
+                        />
+                      </IconButton>
+                    )}
                   </Box>
                 </label>
               </Grid>
@@ -99,32 +122,23 @@ const Alumni = () => {
                     placeholder="Type here"
                     variant="outlined"
                     size="small"
+                    value={formData.name}
+                    onChange={handleInputChange("name")}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <Typography>Experience</Typography>
-                  <FormControl fullWidth size="small">
-                    {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                    <Select
-                      onChange={(e) => setExperience(e.target.value)}
-                      value={experience}
-                      displayEmpty
-                      style={{
-                        color: experience === "" && placeholderColor,
-                      }}
-                    >
-                      <MenuItem value={""} disabled>
-                        Select/ Type Here
-                      </MenuItem>
-                      <MenuItem value="1">1</MenuItem>
-                      <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
-                      <MenuItem value="4">4</MenuItem>
-                      <MenuItem value="5">5</MenuItem>
-                      <MenuItem value="6">6</MenuItem>
-                      {/* Add more exam options as needed */}
-                    </Select>
-                  </FormControl>
+                  <TextField
+                    fullWidth
+                    // label="Description"
+                    placeholder="Type here"
+                    variant="outlined"
+                    size="small"
+                    type="number"
+                    InputProps={{ inputProps: { min: 0 } }}
+                    value={formData.experience}
+                    onChange={handleInputChange("experience")}
+                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -133,53 +147,27 @@ const Alumni = () => {
               <Grid container spacing={6}>
                 <Grid item xs={12}>
                   <Typography>Degree</Typography>
-                  <FormControl fullWidth size="small">
-                    {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                    <Select
-                      onChange={(e) => setDegree(e.target.value)}
-                      value={degree}
-                      displayEmpty
-                      style={{
-                        color: degree === "" && placeholderColor,
-                      }}
-                    >
-                      <MenuItem value={""} disabled>
-                        Select/ Type Here
-                      </MenuItem>
-                      <MenuItem value="1">1</MenuItem>
-                      <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
-                      <MenuItem value="4">4</MenuItem>
-                      <MenuItem value="5">5</MenuItem>
-                      <MenuItem value="6">6</MenuItem>
-                      {/* Add more exam options as needed */}
-                    </Select>
-                  </FormControl>
+                  <TextField
+                    fullWidth
+                    // label="Description"
+                    placeholder="Type here"
+                    variant="outlined"
+                    size="small"
+                    value={formData.degree}
+                    onChange={handleInputChange("degree")}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <Typography>Latest Position/ Achievement</Typography>
-                  <FormControl fullWidth size="small">
-                    {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                    <Select
-                      onChange={(e) => setLatestPosition(e.target.value)}
-                      value={latestPosition}
-                      displayEmpty
-                      style={{
-                        color: latestPosition === "" && placeholderColor,
-                      }}
-                    >
-                      <MenuItem value={""} disabled>
-                        Select/ Type Here
-                      </MenuItem>
-                      <MenuItem value="1">1</MenuItem>
-                      <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
-                      <MenuItem value="4">4</MenuItem>
-                      <MenuItem value="5">5</MenuItem>
-                      <MenuItem value="6">6</MenuItem>
-                      {/* Add more exam options as needed */}
-                    </Select>
-                  </FormControl>
+                  <TextField
+                    fullWidth
+                    // label="Description"
+                    placeholder="Type here"
+                    variant="outlined"
+                    size="small"
+                    value={formData.latest_position_achievement}
+                    onChange={handleInputChange("latest_position_achievement")}
+                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -190,11 +178,13 @@ const Alumni = () => {
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select
-                      onChange={(e) => setYearOfGraduation(e.target.value)}
-                      value={yearOfGraduation}
+                      value={formData.year_of_graduation}
+                      onChange={handleInputChange("year_of_graduation")}
                       displayEmpty
                       style={{
-                        color: yearOfGraduation === "" && placeholderColor,
+                        color:
+                          formData.year_of_graduation === "" &&
+                          placeholderColor,
                       }}
                     >
                       <MenuItem value={""} disabled>
@@ -218,6 +208,8 @@ const Alumni = () => {
                     placeholder="Type here"
                     variant="outlined"
                     size="small"
+                    value={formData.links}
+                    onChange={handleInputChange("links")}
                   />
                 </Grid>
               </Grid>

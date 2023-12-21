@@ -1,4 +1,4 @@
-import { FAQ, ImportantNews } from "../../components/College/add-new-college";
+import { FAQ } from "../../components/College/add-new-college";
 import { addNewExamForms } from "../../services/examServices";
 
 import {
@@ -10,6 +10,7 @@ import {
   ExamPattern,
   StudyMaterial,
   PreviousYearQuestionPaper,
+  ImportantNews,
 } from "../../components/exam/add-new-exam";
 
 import DashboardLayout from "../../layouts/Dashboard";
@@ -64,8 +65,6 @@ const AddNewExam = () => {
           urlEndpoint: "/exam/step1/",
         });
 
-        // if (data.response === 201) console.log("form Submitted 1");
-
         obj = await data.json();
         console.log(obj);
         break;
@@ -78,8 +77,6 @@ const AddNewExam = () => {
           },
           urlEndpoint: "/exam/step2/",
         });
-
-        // if (data.response === 201) console.log("form Submitted 1");
 
         obj = await data.json();
         console.log(obj);
@@ -96,14 +93,12 @@ const AddNewExam = () => {
           urlEndpoint: "/exam/step3/",
         });
 
-        // if (data.response === 201) console.log("form Submitted 1");
-
         obj = await data.json();
         console.log(obj);
         break;
     }
 
-    setActiveStep(activeStep + 1);
+    // setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {

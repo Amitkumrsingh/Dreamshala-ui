@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Grid,
@@ -11,18 +11,28 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const CoursesAndFees = () => {
+const CoursesAndFees = ({ setCoursesAndFees }) => {
   const theme = useTheme();
   const placeholderColor = theme.palette.text.secondary;
 
   const [anotherCourse, setAnotherCourse] = useState([""]);
-  const [batchStrength, setBatchStrength] = useState("");
-  const [exams, setExams] = useState("");
-  const [courseDuration, setCourseDuration] = useState("");
-  const [degreeOffered, setDegreeOffered] = useState("");
-  const [totalFees, setTotalFees] = useState("");
-  const [courseMode, setCourseMode] = useState("");
-  const [eligibiligyCriteria, setEligibiligyCriteria] = useState("");
+  const [formData, setFormData] = useState({
+    course: "",
+    course_duration: "",
+    degree_offered: "",
+    course_description: "",
+    total_fees: "",
+    course_mode: "",
+    eligibility_criteria: "",
+    batch_strength: "",
+  });
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  useEffect(() => {
+    setCoursesAndFees(formData);
+  }, [setCoursesAndFees, formData]);
 
   return (
     <Container>
@@ -46,36 +56,26 @@ const CoursesAndFees = () => {
             {/* First Row */}
             <Grid container spacing={6} mt={2}>
               <Grid item xs={4}>
-                <Typography>Select Exam for the course</Typography>
-                <FormControl fullWidth size="small">
-                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select
-                    onChange={(e) => setExams(e.target.value)}
-                    value={exams}
-                    displayEmpty
-                    style={{
-                      color: exams === "" && placeholderColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="exam1">Exam 1</MenuItem>
-                    <MenuItem value="exam2">Exam 2</MenuItem>
-                    {/* Add more exam options as needed */}
-                  </Select>
-                </FormControl>
+                <Typography>Course Name</Typography>
+                <TextField
+                  fullWidth
+                  placeholder="Type here"
+                  size="small"
+                  value={formData.course}
+                  onChange={handleInputChange("course")}
+                />
               </Grid>
               <Grid item xs={4}>
                 <Typography>Course Duration</Typography>
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select
-                    onChange={(e) => setCourseDuration(e.target.value)}
-                    value={courseDuration}
+                    value={formData.course_duration}
+                    onChange={handleInputChange("course_duration")}
                     displayEmpty
                     style={{
-                      color: courseDuration === "" && placeholderColor,
+                      color:
+                        formData.course_duration === "" && placeholderColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
@@ -89,24 +89,13 @@ const CoursesAndFees = () => {
               </Grid>
               <Grid item xs={4}>
                 <Typography>Degree Offered</Typography>
-                <FormControl fullWidth size="small">
-                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select
-                    onChange={(e) => setDegreeOffered(e.target.value)}
-                    value={degreeOffered}
-                    displayEmpty
-                    style={{
-                      color: degreeOffered === "" && placeholderColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="degree1">Degree 1</MenuItem>
-                    <MenuItem value="degree2">Degree 2</MenuItem>
-                    {/* Add more degree options as needed */}
-                  </Select>
-                </FormControl>
+                <TextField
+                  fullWidth
+                  placeholder="Type here"
+                  size="small"
+                  value={formData.degree_offered}
+                  onChange={handleInputChange("degree_offered")}
+                />
               </Grid>
             </Grid>
 
@@ -120,48 +109,42 @@ const CoursesAndFees = () => {
                   multiline
                   minRows={4.4}
                   maxRows={4.4}
+                  value={formData.course_description}
+                  onChange={handleInputChange("course_description")}
                 />
               </Grid>
 
               <Grid item xs={4} mt={2}>
                 <Grid item>
                   <Typography>Total Fees</Typography>
-                  <FormControl fullWidth size="small">
-                    {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                    <Select
-                      onChange={(e) => setTotalFees(e.target.value)}
-                      value={totalFees}
-                      displayEmpty
-                      style={{
-                        color: totalFees === "" && placeholderColor,
-                      }}
-                    >
-                      <MenuItem value={""} disabled>
-                        Select/ Type Here
-                      </MenuItem>
-                      <MenuItem value="fees1">Fees 1</MenuItem>
-                      <MenuItem value="fees2">Fees 2</MenuItem>
-                      {/* Add more fees options as needed */}
-                    </Select>
-                  </FormControl>
+                  <TextField
+                    fullWidth
+                    placeholder="Type here"
+                    value={formData.total_fees}
+                    onChange={handleInputChange("total_fees")}
+                    type="number"
+                    size="small"
+                  />
                 </Grid>
                 <Grid item mt={4}>
                   <Typography>Eligibility Criteria</Typography>
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select
-                      onChange={(e) => setEligibiligyCriteria(e.target.value)}
-                      value={eligibiligyCriteria}
+                      value={formData.eligibility_criteria}
+                      onChange={handleInputChange("eligibility_criteria")}
                       displayEmpty
                       style={{
-                        color: eligibiligyCriteria === "" && placeholderColor,
+                        color:
+                          formData.eligibility_criteria === "" &&
+                          placeholderColor,
                       }}
                     >
                       <MenuItem value={""} disabled>
                         Select/ Type Here
                       </MenuItem>
-                      <MenuItem value="criteria1">Criteria 1</MenuItem>
-                      <MenuItem value="criteria2">Criteria 2</MenuItem>
+                      {/* <MenuItem value="criteria1">Criteria 1</MenuItem>
+                      <MenuItem value="criteria2">Criteria 2</MenuItem> */}
                       {/* Add more eligibility criteria options as needed */}
                     </Select>
                   </FormControl>
@@ -174,42 +157,32 @@ const CoursesAndFees = () => {
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select
-                      onChange={(e) => setCourseMode(e.target.value)}
-                      value={courseMode}
+                      value={formData.course_mode}
+                      onChange={handleInputChange("course_mode")}
                       displayEmpty
                       style={{
-                        color: courseMode === "" && placeholderColor,
+                        color: formData.course_mode === "" && placeholderColor,
                       }}
                     >
                       <MenuItem value={""} disabled>
                         Select/ Type Here
                       </MenuItem>
                       <MenuItem value="onlin">Online</MenuItem>
-                      <MenuItem value="offline">Off-Line</MenuItem>
+                      <MenuItem value="offline">Offline</MenuItem>
                       {/* Add more fees options as needed */}
                     </Select>
                   </FormControl>
                 </Grid>
                 <Grid item mt={4}>
                   <Typography>Batch Strength</Typography>
-                  <FormControl fullWidth size="small">
-                    {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                    <Select
-                      onChange={(e) => setBatchStrength(e.target.value)}
-                      value={batchStrength}
-                      displayEmpty
-                      style={{
-                        color: batchStrength === "" && placeholderColor,
-                      }}
-                    >
-                      <MenuItem value={""} disabled>
-                        Select/ Type Here
-                      </MenuItem>
-                      <MenuItem value="criteria1"> 1</MenuItem>
-                      <MenuItem value="criteria2"> 2</MenuItem>
-                      {/* Add more eligibility criteria options as needed */}
-                    </Select>
-                  </FormControl>
+                  <TextField
+                    fullWidth
+                    placeholder="Type here"
+                    type="number"
+                    value={formData.batch_strength}
+                    onChange={handleInputChange("batch_strength")}
+                    size="small"
+                  />
                 </Grid>
               </Grid>
             </Grid>

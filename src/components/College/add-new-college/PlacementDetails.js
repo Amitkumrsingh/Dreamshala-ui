@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IconButton,
   Box,
@@ -14,7 +14,7 @@ import {
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useTheme } from "@mui/material/styles";
 
-const PlacementDetails = () => {
+const PlacementDetails = ({ setPlacementDetails }) => {
   const theme = useTheme();
   const placeholderColor = theme.palette.text.secondary;
 
@@ -24,15 +24,30 @@ const PlacementDetails = () => {
   };
 
   const [addMorePlacement, setAddMorePlacement] = useState([""]);
-  const [degreeBranch, setDegreeBranch] = useState("");
-  const [numberOfRecruiters, setNumberOfRecruiters] = useState("");
-  const [numberOfOffers, setNumberOfOffers] = useState("");
-  const [numberOfInternationalOffers, setNumberOfInternationalOffers] =
-    useState("");
-  const [topRecruiters, setTopRecruiters] = useState("");
-  const [highestPackage, setHighestPackage] = useState("");
-  const [averagePackage, setAveragePackage] = useState("");
   const [addMoreFields, setAddMoreFields] = useState([]);
+  const [formData, setFormData] = useState({
+    degree_branch: "",
+    overall_placement_description: "",
+    number_of_recruiters: "",
+    number_of_offers: "",
+    number_of_international_offers: "",
+    to_recruiters: "",
+    highest_package: "",
+    average_package: "",
+    excel_file: null,
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, excel_file: event.target.files[0] });
+  };
+
+  useEffect(() => {
+    setPlacementDetails(formData);
+  }, [formData, setPlacementDetails]);
 
   return (
     <>
@@ -48,7 +63,10 @@ const PlacementDetails = () => {
               <strong>PLACEMENT DETAILS </strong>
             </em>
           </Typography>
-          <label htmlFor="image-input">
+          <label
+            htmlFor="upload-excel-file-placement"
+            // style={{ border: "1px solid red" }}
+          >
             <Box
               border={1}
               borderColor={placeholderColor}
@@ -57,18 +75,26 @@ const PlacementDetails = () => {
               alignItems="center"
               justifyContent="center"
               paddingRight={"10px"}
+              cursor="pointer"
             >
               <input
                 type="file"
-                accept="file/*"
+                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                 //   onChange={handleImageChange}
                 style={{ display: "none" }}
-                id="image-input"
+                id="upload-excel-file-placement"
+                onChange={handleFileChange}
               />
-              <IconButton component="span">
-                <UploadFileIcon fontSize="small" color={placeholderColor} />
-              </IconButton>
-              Upload Excel
+              {formData.excel_file ? (
+                <Button disabled>{formData.excel_file.name}</Button>
+              ) : (
+                <>
+                  <IconButton component="span">
+                    <UploadFileIcon fontSize="small" color={placeholderColor} />
+                  </IconButton>
+                  Upload Excel
+                </>
+              )}
               {/* You can display the selected image here if needed */}
             </Box>
           </label>
@@ -88,18 +114,18 @@ const PlacementDetails = () => {
                 <Typography>Degree/ Branch</Typography>
                 <FormControl fullWidth size="small">
                   <Select
-                    onChange={(e) => setDegreeBranch(e.target.value)}
-                    value={degreeBranch}
+                    value={formData.degree_branch}
+                    onChange={handleInputChange("degree_branch")}
                     displayEmpty
                     style={{
-                      color: degreeBranch === "" && placeholderColor,
+                      color: formData.degree_branch === "" && placeholderColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
                       Select/ Type Here
                     </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
+                    {/* <MenuItem value="1">1</MenuItem>
+                    <MenuItem value="2">2</MenuItem> */}
                   </Select>
                 </FormControl>
               </Grid>
@@ -116,6 +142,10 @@ const PlacementDetails = () => {
                       fullWidth
                       minRows={4}
                       maxRows={4}
+                      value={formData.overall_placement_description}
+                      onChange={handleInputChange(
+                        "overall_placement_description"
+                      )}
                     />
                   </Grid>
                 </Grid>
@@ -124,45 +154,29 @@ const PlacementDetails = () => {
                 <Grid container spacing={6} flexDirection={"column"}>
                   <Grid item>
                     <Typography>Number of Recruiters</Typography>
-                    <FormControl fullWidth size="small">
-                      <Select
-                        onChange={(e) => setNumberOfRecruiters(e.target.value)}
-                        value={numberOfRecruiters}
-                        displayEmpty
-                        style={{
-                          color: numberOfRecruiters === "" && placeholderColor,
-                        }}
-                      >
-                        <MenuItem value={""} disabled>
-                          Select/ Type Here
-                        </MenuItem>
-                        <MenuItem value="1">1</MenuItem>
-                        <MenuItem value="2">2</MenuItem>
-                      </Select>
-                    </FormControl>
+                    <TextField
+                      placeholder="Type here"
+                      value={formData.number_of_recruiters}
+                      onChange={handleInputChange("number_of_recruiters")}
+                      type="number"
+                      InputProps={{ inputProps: { min: 0 } }}
+                      size="small"
+                      fullWidth
+                    />
                   </Grid>
                   <Grid item>
                     <Typography>Number of International Offers</Typography>
-                    <FormControl fullWidth size="small">
-                      <Select
-                        onChange={(e) =>
-                          setNumberOfInternationalOffers(e.target.value)
-                        }
-                        value={numberOfInternationalOffers}
-                        displayEmpty
-                        style={{
-                          color:
-                            numberOfInternationalOffers === "" &&
-                            placeholderColor,
-                        }}
-                      >
-                        <MenuItem value={""} disabled>
-                          Select/ Type Here
-                        </MenuItem>
-                        <MenuItem value="1">1</MenuItem>
-                        <MenuItem value="2">2</MenuItem>
-                      </Select>
-                    </FormControl>
+                    <TextField
+                      placeholder="Type here"
+                      value={formData.number_of_international_offers}
+                      onChange={handleInputChange(
+                        "number_of_international_offers"
+                      )}
+                      type="number"
+                      InputProps={{ inputProps: { min: 0 } }}
+                      size="small"
+                      fullWidth
+                    />
                   </Grid>
                 </Grid>
               </Grid>
@@ -171,22 +185,15 @@ const PlacementDetails = () => {
                 <Grid container spacing={6} flexDirection={"column"}>
                   <Grid item>
                     <Typography>Number of Offers</Typography>
-                    <FormControl fullWidth size="small">
-                      <Select
-                        onChange={(e) => setNumberOfOffers(e.target.value)}
-                        value={numberOfOffers}
-                        displayEmpty
-                        style={{
-                          color: numberOfOffers === "" && placeholderColor,
-                        }}
-                      >
-                        <MenuItem value={""} disabled>
-                          Select/ Type Here
-                        </MenuItem>
-                        <MenuItem value="1">1</MenuItem>
-                        <MenuItem value="2">2</MenuItem>
-                      </Select>
-                    </FormControl>
+                    <TextField
+                      placeholder="Type here"
+                      value={formData.number_of_offers}
+                      onChange={handleInputChange("number_of_offers")}
+                      type="number"
+                      InputProps={{ inputProps: { min: 0 } }}
+                      size="small"
+                      fullWidth
+                    />
                   </Grid>
                   <Grid item>
                     <Typography>
@@ -194,18 +201,19 @@ const PlacementDetails = () => {
                     </Typography>
                     <FormControl fullWidth size="small">
                       <Select
-                        onChange={(e) => setTopRecruiters(e.target.value)}
-                        value={topRecruiters}
+                        value={formData.to_recruiters}
+                        onChange={handleInputChange("to_recruiters")}
                         displayEmpty
                         style={{
-                          color: topRecruiters === "" && placeholderColor,
+                          color:
+                            formData.to_recruiters === "" && placeholderColor,
                         }}
                       >
                         <MenuItem value={""} disabled>
                           Select/ Type Here
                         </MenuItem>
-                        <MenuItem value="1">1</MenuItem>
-                        <MenuItem value="2">2</MenuItem>
+                        {/* <MenuItem value="1">1</MenuItem>
+                        <MenuItem value="2">2</MenuItem> */}
                       </Select>
                     </FormControl>
                   </Grid>
@@ -218,11 +226,12 @@ const PlacementDetails = () => {
                 <Typography>Highest Package</Typography>
                 <FormControl fullWidth size="small">
                   <Select
-                    onChange={(e) => setHighestPackage(e.target.value)}
-                    value={highestPackage}
+                    value={formData.highest_package}
+                    onChange={handleInputChange("highest_package")}
                     displayEmpty
                     style={{
-                      color: highestPackage === "" && placeholderColor,
+                      color:
+                        formData.highest_package === "" && placeholderColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
@@ -237,11 +246,12 @@ const PlacementDetails = () => {
                 <Typography>Average Package</Typography>
                 <FormControl fullWidth size="small">
                   <Select
-                    onChange={(e) => setAveragePackage(e.target.value)}
-                    value={averagePackage}
+                    value={formData.average_package}
+                    onChange={handleInputChange("average_package")}
                     displayEmpty
                     style={{
-                      color: averagePackage === "" && placeholderColor,
+                      color:
+                        formData.average_package === "" && placeholderColor,
                     }}
                   >
                     <MenuItem value={""} disabled>

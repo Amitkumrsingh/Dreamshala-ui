@@ -1,14 +1,14 @@
 import {
-  ManagementContact,
   Faculties,
   Videos,
   Location,
   CheckList,
   FAQ,
-  Photos,
 } from "../../components/College/add-new-college";
 
 import {
+  Photos,
+  ManagementContact,
   About,
   StudyMaterial,
   Results,

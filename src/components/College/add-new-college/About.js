@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 import {
   Box,
@@ -21,13 +21,12 @@ const daysOfWeek = [
   "Sunday",
 ];
 
-const About = () => {
+const About = ({ setAbout }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
   const primaryColor = theme.palette.text.primary;
 
   const buttonSelectedStyle = {
-    color: primaryColor,
     textAlign: "center",
     margin: "5px",
     border: "1px solid",
@@ -45,6 +44,25 @@ const About = () => {
 
   const [selectedDays, setSelectedDays] = useState([]);
 
+  const isAllSelected = selectedDays.length === daysOfWeek.length;
+
+  const [formData, setFormData] = useState({
+    logo: null,
+    short_description: "",
+    detailed_description: "",
+    days_of_operation: [],
+    opens: "08:00",
+    closes: "14:00",
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, logo: event.target.files[0] });
+  };
+
   const toggleDay = (day) => {
     if (selectedDays.includes(day)) {
       setSelectedDays(
@@ -53,30 +71,20 @@ const About = () => {
     } else {
       setSelectedDays([...selectedDays, day]);
     }
+
+    setFormData({ ...formData, days_of_operation: selectedDays });
   };
 
   const selectAllDays = () => {
     setSelectedDays(daysOfWeek);
+    setFormData({ ...formData, days_of_operation: selectedDays });
   };
 
-  const isAllSelected = selectedDays.length === daysOfWeek.length;
+  useEffect(() => {
+    setFormData({ ...formData, days_of_operation: selectedDays });
 
-  const [formData, setFormData] = useState({
-    image: null,
-    textField1: "",
-    textField2: "",
-    dayOfWeek: "",
-    startTime: "08:00",
-    endTime: "14:00",
-  });
-
-  const handleInputChange = (field) => (event) => {
-    setFormData({ ...formData, [field]: event.target.value });
-  };
-
-  const handleFileChange = (event) => {
-    setFormData({ ...formData, image: event.target.files[0] });
-  };
+    setAbout(formData);
+  }, [formData, setAbout, selectedDays]);
 
   return (
     <Container>
@@ -123,7 +131,7 @@ const About = () => {
                 onChange={handleFileChange}
               />
               <Typography variant="inherit" color={secondaryColor}>
-                + Add Logo
+                {formData.logo ? formData.logo.name : "+ Add Logo"}
               </Typography>
             </Box>
           </label>
@@ -136,8 +144,8 @@ const About = () => {
           <TextField
             fullWidth
             placeholder="Decribe here"
-            value={formData.textField1}
-            onChange={handleInputChange("textField1")}
+            value={formData.short_description}
+            onChange={handleInputChange("short_description")}
           />
         </Grid>
         {/* Row 2 */}
@@ -146,8 +154,8 @@ const About = () => {
           <TextField
             fullWidth
             placeholder="Decribe here"
-            value={formData.textField2}
-            onChange={handleInputChange("textField2")}
+            value={formData.detailed_description}
+            onChange={handleInputChange("detailed_description")}
             multiline
             minRows={4}
           />
@@ -212,8 +220,8 @@ const About = () => {
                 size="small"
                 // label="Open"
                 type="time"
-                value={formData.startTime}
-                onChange={handleInputChange("startTime")}
+                value={formData.opens}
+                onChange={handleInputChange("opens")}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -226,8 +234,8 @@ const About = () => {
                 size="small"
                 // label="Close"
                 type="time"
-                value={formData.endTime}
-                onChange={handleInputChange("endTime")}
+                value={formData.closes}
+                onChange={handleInputChange("closes")}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -236,12 +244,10 @@ const About = () => {
           </Grid>
         </Grid>
       </Grid>
+
+      {/* <Button onClick={() => console.log(formData)}>Log</Button> */}
     </Container>
   );
 };
-
-// About.getLayout = function getLayout(page) {
-//   return <DashboardLayout>{page}</DashboardLayout>;
-// };
 
 export default About;

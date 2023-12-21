@@ -1,22 +1,28 @@
-import React, { useState } from "react";
-import {
-  Container,
-  Grid,
-  TextField,
-  Typography,
-  Button,
-  FormControl,
-  Select,
-  MenuItem,
-} from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Container, Grid, TextField, Typography, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const DetailedApplicationProcessAndEligibilityCriteria = () => {
+const DetailedApplicationProcessAndEligibilityCriteria = ({
+  setDetailedApplicationProcessAndEligibilityCriteria,
+}) => {
   const theme = useTheme();
-  const placeholderColor = theme.palette.text.secondary;
 
   const [addMoreDegrees, setAddMoreDegrees] = useState([""]);
-  const [degreeBranch, setDegreeBranch] = useState("");
+
+  const [formData, setFormData] = useState({
+    degree_branch_application_process: "",
+    application_process_description: "",
+    eligibility_criteria_description: "",
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  useEffect(() => {
+    setDetailedApplicationProcessAndEligibilityCriteria(formData);
+  }, [formData, setDetailedApplicationProcessAndEligibilityCriteria]);
+
   return (
     <>
       <Container>
@@ -41,24 +47,15 @@ const DetailedApplicationProcessAndEligibilityCriteria = () => {
             <Grid container>
               <Grid xs={4}>
                 <Typography>Degree/ Branch</Typography>
-                <FormControl fullWidth size="small">
-                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select
-                    onChange={(e) => setDegreeBranch(e.target.value)}
-                    value={degreeBranch}
-                    displayEmpty
-                    style={{
-                      color: degreeBranch === "" && placeholderColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    {/* Add more exam options as needed */}
-                  </Select>
-                </FormControl>
+                <TextField
+                  fullWidth
+                  placeholder="Type here"
+                  value={formData.degree_branch_application_process}
+                  onChange={handleInputChange(
+                    "degree_branch_application_process"
+                  )}
+                  size="small"
+                />
               </Grid>
             </Grid>
 
@@ -75,6 +72,10 @@ const DetailedApplicationProcessAndEligibilityCriteria = () => {
                   multiline
                   minRows={4}
                   maxRows={4}
+                  value={formData.application_process_description}
+                  onChange={handleInputChange(
+                    "application_process_description"
+                  )}
                 />
               </Grid>
               <Grid xs={6} item>
@@ -89,6 +90,10 @@ const DetailedApplicationProcessAndEligibilityCriteria = () => {
                   multiline
                   minRows={4}
                   maxRows={4}
+                  value={formData.eligibility_criteria_description}
+                  onChange={handleInputChange(
+                    "eligibility_criteria_description"
+                  )}
                 />
               </Grid>
             </Grid>

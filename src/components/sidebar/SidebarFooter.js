@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { Badge, Grid, Avatar, Typography } from "@mui/material";
 
 import useAuth from "../../hooks/useAuth";
-import userServices from "../../services/userServices";
 
 const Footer = styled.div`
   background-color: ${(props) =>

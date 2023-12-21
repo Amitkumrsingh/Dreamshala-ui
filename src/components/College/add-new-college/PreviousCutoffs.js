@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Grid,
@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const PreviousCutoffs = () => {
+const PreviousCutoffs = ({ setPreviousCutoffs }) => {
   const theme = useTheme();
   const placeholderColor = theme.palette.text.secondary;
   const [addMoreCutOffs, setAddMoreCutOffs] = useState([""]);
@@ -21,6 +21,23 @@ const PreviousCutoffs = () => {
 
   const [moreCategoryPercentile, setMoreCategoryPercentile] = useState([""]);
   const [moreSubjectWise, setMoreSubjectWise] = useState([]);
+  const [formData, setFormData] = useState({
+    degree_branch: "",
+    parameter_of_cutoffs: "",
+    category: "",
+    percentile: "",
+    subject: "",
+    subject_category: "",
+    cutoff_percentile: "",
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  useEffect(() => {
+    setPreviousCutoffs(formData);
+  }, [formData, setPreviousCutoffs]);
 
   return (
     <>
@@ -44,24 +61,13 @@ const PreviousCutoffs = () => {
             <Grid container spacing={6} mt={2}>
               <Grid xs={4} item>
                 <Typography>Degree/ Branch</Typography>
-                <FormControl fullWidth size="small">
-                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select
-                    onChange={(e) => setDegreeBranch(e.target.value)}
-                    value={degreeBranch}
-                    displayEmpty
-                    style={{
-                      color: degreeBranch === "" && placeholderColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    {/* Add more exam options as needed */}
-                  </Select>
-                </FormControl>
+                <TextField
+                  fullWidth
+                  placeholder="Type here"
+                  value={formData.degree_branch}
+                  onChange={handleInputChange("degree_branch")}
+                  size="small"
+                />
               </Grid>
             </Grid>
 
@@ -74,6 +80,8 @@ const PreviousCutoffs = () => {
                   multiline
                   minRows={4.5}
                   maxRows={4.5}
+                  value={formData.parameter_of_cutoffs}
+                  onChange={handleInputChange("parameter_of_cutoffs")}
                 />
               </Grid>
               <Grid xs={6} item>
@@ -85,23 +93,21 @@ const PreviousCutoffs = () => {
                           <Typography>Select Category</Typography>
                           <FormControl fullWidth size="small">
                             <Select
-                              onChange={(e) =>
-                                setSelectCategory(e.target.value)
-                              }
-                              value={selectCategory}
+                              value={formData.category}
+                              onChange={handleInputChange("category")}
                               displayEmpty
                               style={{
                                 color:
-                                  selectCategory === "" && placeholderColor,
+                                  formData.category === "" && placeholderColor,
                               }}
                             >
                               <MenuItem value={""} disabled>
                                 Select/ Type Here
                               </MenuItem>
-                              <MenuItem value="general">General</MenuItem>
+                              {/* <MenuItem value="general">General</MenuItem>
                               <MenuItem value="obc">OBC</MenuItem>
                               <MenuItem value="sc">SC</MenuItem>
-                              <MenuItem value="st">ST</MenuItem>
+                              <MenuItem value="st">ST</MenuItem> */}
                             </Select>
                           </FormControl>
                         </Grid>
@@ -111,6 +117,8 @@ const PreviousCutoffs = () => {
                             placeholder="Type Here"
                             size="small"
                             fullWidth
+                            value={formData.percentile}
+                            onChange={handleInputChange("percentile")}
                           />
                         </Grid>
                       </Grid>
@@ -121,8 +129,8 @@ const PreviousCutoffs = () => {
                       <Typography>Select Category</Typography>
                       <FormControl fullWidth size="small">
                         <Select
-                          onChange={(e) => setSelectCategory(e.target.value)}
-                          value={selectCategory}
+                          value={formData.category}
+                          onChange={handleInputChange("category")}
                           displayEmpty
                           style={{
                             color: selectCategory === "" && placeholderColor,
@@ -131,10 +139,10 @@ const PreviousCutoffs = () => {
                           <MenuItem value={""} disabled>
                             Select/ Type Here
                           </MenuItem>
-                          <MenuItem value="general">General</MenuItem>
+                          {/* <MenuItem value="general">General</MenuItem>
                           <MenuItem value="obc">OBC</MenuItem>
                           <MenuItem value="sc">SC</MenuItem>
-                          <MenuItem value="st">ST</MenuItem>
+                          <MenuItem value="st">ST</MenuItem> */}
                         </Select>
                       </FormControl>
                     </Grid>
@@ -146,6 +154,8 @@ const PreviousCutoffs = () => {
                             placeholder="Type Here"
                             size="small"
                             fullWidth
+                            value={formData.percentile}
+                            onChange={handleInputChange("percentile")}
                           />
                         </Grid>
                         <Grid item xs={2}>
@@ -184,18 +194,19 @@ const PreviousCutoffs = () => {
                         <Typography>Select Subject</Typography>
                         <FormControl fullWidth size="small">
                           <Select
-                            onChange={(e) => setSubject(e.target.value)}
-                            value={subject}
+                            value={formData.subject}
+                            onChange={handleInputChange("subject")}
                             displayEmpty
                             style={{
-                              color: subject === "" && placeholderColor,
+                              color:
+                                formData.subject === "" && placeholderColor,
                             }}
                           >
                             <MenuItem value={""} disabled>
                               Select/ Type Here
                             </MenuItem>
-                            <MenuItem value="1">1</MenuItem>
-                            <MenuItem value="2">2</MenuItem>
+                            {/* <MenuItem value="1">1</MenuItem>
+                            <MenuItem value="2">2</MenuItem> */}
                           </Select>
                         </FormControl>
                       </Grid>
@@ -203,8 +214,8 @@ const PreviousCutoffs = () => {
                         <Typography>Select Category</Typography>
                         <FormControl fullWidth size="small">
                           <Select
-                            onChange={(e) => setSelectCategory(e.target.value)}
-                            value={selectCategory}
+                            value={formData.subject_category}
+                            onChange={handleInputChange("subject_category")}
                             displayEmpty
                             style={{
                               color: selectCategory === "" && placeholderColor,
@@ -213,10 +224,10 @@ const PreviousCutoffs = () => {
                             <MenuItem value={""} disabled>
                               Select/ Type Here
                             </MenuItem>
-                            <MenuItem value="general">General</MenuItem>
+                            {/* <MenuItem value="general">General</MenuItem>
                             <MenuItem value="obc">OBC</MenuItem>
                             <MenuItem value="sc">SC</MenuItem>
-                            <MenuItem value="st">ST</MenuItem>
+                            <MenuItem value="st">ST</MenuItem> */}
                           </Select>
                         </FormControl>
                       </Grid>
@@ -227,6 +238,8 @@ const PreviousCutoffs = () => {
                           placeholder="Type Here"
                           size="small"
                           fullWidth
+                          value={formData.cutoff_percentile}
+                          onChange={handleInputChange("cutoff_percentile")}
                         />
                       </Grid>
                     </Grid>
@@ -238,18 +251,18 @@ const PreviousCutoffs = () => {
                     <Typography>Select Subject</Typography>
                     <FormControl fullWidth size="small">
                       <Select
-                        onChange={(e) => setSubject(e.target.value)}
-                        value={subject}
+                        value={formData.subject}
+                        onChange={handleInputChange("subject")}
                         displayEmpty
                         style={{
-                          color: subject === "" && placeholderColor,
+                          color: formData.subject === "" && placeholderColor,
                         }}
                       >
                         <MenuItem value={""} disabled>
                           Select/ Type Here
                         </MenuItem>
-                        <MenuItem value="1">1</MenuItem>
-                        <MenuItem value="2">2</MenuItem>
+                        {/* <MenuItem value="1">1</MenuItem>
+                        <MenuItem value="2">2</MenuItem> */}
                       </Select>
                     </FormControl>
                   </Grid>
@@ -257,8 +270,8 @@ const PreviousCutoffs = () => {
                     <Typography>Select Category</Typography>
                     <FormControl fullWidth size="small">
                       <Select
-                        onChange={(e) => setSelectCategory(e.target.value)}
-                        value={selectCategory}
+                        value={formData.subject_category}
+                        onChange={handleInputChange("subject_category")}
                         displayEmpty
                         style={{
                           color: selectCategory === "" && placeholderColor,
@@ -267,10 +280,10 @@ const PreviousCutoffs = () => {
                         <MenuItem value={""} disabled>
                           Select/ Type Here
                         </MenuItem>
-                        <MenuItem value="general">General</MenuItem>
-                        <MenuItem value="obc">OBC</MenuItem>
-                        <MenuItem value="sc">SC</MenuItem>
-                        <MenuItem value="st">ST</MenuItem>
+                        {/* <MenuItem value="general">General</MenuItem>
+                            <MenuItem value="obc">OBC</MenuItem>
+                            <MenuItem value="sc">SC</MenuItem>
+                            <MenuItem value="st">ST</MenuItem> */}
                       </Select>
                     </FormControl>
                   </Grid>
@@ -282,6 +295,8 @@ const PreviousCutoffs = () => {
                           placeholder="Type Here"
                           size="small"
                           fullWidth
+                          value={formData.cutoff_percentile}
+                          onChange={handleInputChange("cutoff_percentile")}
                         />
                       </Grid>
                       <Grid item xs={2}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Grid,
@@ -11,13 +11,25 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const ImportantDates = () => {
+const ImportantDates = ({ setImportantDates }) => {
   const theme = useTheme();
   const placeholderColor = theme.palette.text.secondary;
 
   const [addMoreDates, setAddMoreDates] = useState([""]);
-  const [dateDiscription, setDateDiscription] = useState("");
-  const [eventDiscription, setEventDiscription] = useState("");
+  const [formData, setFormData] = useState({
+    date_description: "",
+    starts_from: "",
+    ends_at: "",
+    event_description: "",
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  useEffect(() => {
+    setImportantDates(formData);
+  }, [setImportantDates, formData]);
   return (
     <>
       <Container>
@@ -39,36 +51,40 @@ const ImportantDates = () => {
             <Grid container spacing={6}>
               <Grid item xs={4}>
                 <Typography>Date Description</Typography>
-                <FormControl fullWidth size="small">
-                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select
-                    onChange={(e) => setDateDiscription(e.target.value)}
-                    value={dateDiscription}
-                    displayEmpty
-                    style={{
-                      color: dateDiscription === "" && placeholderColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    {/* Add more exam options as needed */}
-                  </Select>
-                </FormControl>
+                <TextField
+                  fullWidth
+                  placeholder="Decribe here"
+                  value={formData.date_description}
+                  onChange={handleInputChange("date_description")}
+                  size="small"
+                />
               </Grid>
               <Grid item xs={2}>
                 <Typography>Starts From</Typography>
-                <TextField fullWidth size="small" type="date" />
+                <TextField
+                  fullWidth
+                  size="small"
+                  type="date"
+                  value={formData.starts_from}
+                  onChange={handleInputChange("starts_from")}
+                />
               </Grid>
               <Grid item xs={2}>
                 <Typography>Ends At</Typography>
-                <TextField fullWidth size="small" type="date" />
+                <TextField
+                  fullWidth
+                  size="small"
+                  type="date"
+                  value={formData.ends_at}
+                  onChange={handleInputChange("ends_at")}
+                />
                 {/* <Link> */}
                 <Typography
                   variant="subtitle2"
                   style={{ textDecoration: "underline", cursor: "pointer" }}
+                  onClick={() =>
+                    setFormData({ ...formData, ends_at: formData.starts_from })
+                  }
                 >
                   Same as Start Date
                 </Typography>
@@ -76,24 +92,13 @@ const ImportantDates = () => {
               </Grid>
               <Grid item xs={4}>
                 <Typography>Event Description (if any)</Typography>
-                <FormControl fullWidth size="small">
-                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select
-                    onChange={(e) => setEventDiscription(e.target.value)}
-                    value={eventDiscription}
-                    displayEmpty
-                    style={{
-                      color: eventDiscription === "" && placeholderColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    {/* Add more exam options as needed */}
-                  </Select>
-                </FormControl>
+                <TextField
+                  fullWidth
+                  placeholder="Decribe here"
+                  size="small"
+                  value={formData.event_description}
+                  onChange={handleInputChange("event_description")}
+                />
               </Grid>
             </Grid>
           </Grid>

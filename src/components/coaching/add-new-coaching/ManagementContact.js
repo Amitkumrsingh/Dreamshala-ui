@@ -6,10 +6,10 @@ const ManagementContact = ({ setManagementContact }) => {
   const theme = useTheme();
 
   const [formData, setFormData] = useState({
-    management_name: "",
-    management_role: "",
-    management_email: "",
-    management_contact: "",
+    name: "",
+    role: "",
+    email_mang: "",
+    contact_number_mang: "",
   });
 
   const handleInputChange = (field) => (event) => {
@@ -47,8 +47,8 @@ const ManagementContact = ({ setManagementContact }) => {
             size="small"
             name="name"
             fullWidth
-            value={formData.management_name}
-            onChange={handleInputChange("management_name")}
+            value={formData.name}
+            onChange={handleInputChange("name")}
           />
         </Grid>
         <Grid item xs={4}>
@@ -58,8 +58,8 @@ const ManagementContact = ({ setManagementContact }) => {
             placeholder="Type Here"
             size="small"
             fullWidth
-            value={formData.management_role}
-            onChange={handleInputChange("management_role")}
+            value={formData.role}
+            onChange={handleInputChange("role")}
           />
         </Grid>
         <Grid item xs={4}>
@@ -71,8 +71,8 @@ const ManagementContact = ({ setManagementContact }) => {
             fullWidth
             name="email"
             type="email"
-            value={formData.management_email}
-            onChange={handleInputChange("management_email")}
+            value={formData.email_mang}
+            onChange={handleInputChange("email_mang")}
           />
         </Grid>
       </Grid>
@@ -88,8 +88,8 @@ const ManagementContact = ({ setManagementContact }) => {
             fullWidth
             type="tel"
             name="phone"
-            value={formData.management_contact}
-            onChange={handleInputChange("management_contact")}
+            value={formData.contact_number_mang}
+            onChange={handleInputChange("contact_number_mang")}
           />
         </Grid>
         <Grid item xs={4}></Grid>

@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "../config";
 
-export const addNewExamForms = async ({ data, urlEndpoint }) => {
+export const addNewCollegeForms = async ({ data, urlEndpoint }) => {
   try {
     const response = await fetch(API_BASE_URL + urlEndpoint, {
       method: "POST",
@@ -8,7 +8,6 @@ export const addNewExamForms = async ({ data, urlEndpoint }) => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        // "Content-Type": "multipart/form-data",
       },
     });
 

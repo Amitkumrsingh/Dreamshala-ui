@@ -32,8 +32,7 @@ import {
   StepLabel,
   Grid,
 } from "@mui/material";
-
-// import userServices from "../../../services/userServices";
+import { addNewCollegeForms } from "../../../services/collegeServices";
 
 // import { Checklist } from "@mui/icons-material";
 
@@ -48,14 +47,27 @@ const steps = [
 const AddNewCollege = () => {
   const router = useRouter();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const [managementContact, setManagementContact] = useState();
   const [location, setLocation] = useState();
-  const [faculties, setFaculties] = useState();
   const [photos, setPhotos] = useState();
   const [videos, setVideos] = useState();
   const [checkList, setCheckList] = useState();
-  const [importantNews, setImportantNews] = useState();
   const [faq, setFaq] = useState();
+  const [about, setAbout] = useState();
+  const [contactDetails, setContactDetails] = useState();
+  const [collegeDetails, setCollegeDetails] = useState();
+  const [managementContact, setManagementContact] = useState();
+  const [importantNews, setImportantNews] = useState();
+  const [importantDates, setImportantDates] = useState();
+  const [entranceExams, setEntranceExams] = useState();
+  const [coursesAndFees, setCoursesAndFees] = useState();
+  const [
+    detailedApplicationProcessAndEligibilityCriteria,
+    setDetailedApplicationProcessAndEligibilityCriteria,
+  ] = useState();
+  const [previousCutoffs, setPreviousCutoffs] = useState();
+  const [alumni, setAlumni] = useState();
+  const [faculties, setFaculties] = useState();
+  const [placementDetails, setPlacementDetails] = useState();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -65,8 +77,74 @@ const AddNewCollege = () => {
 
   const [activeStep, setActiveStep] = useState(0);
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
+  const handleNext = async () => {
+    let response, obj;
+    switch (activeStep) {
+      case 0:
+        response = await addNewCollegeForms({
+          data: {
+            ...about,
+            ...contactDetails,
+            ...collegeDetails,
+            ...managementContact,
+          },
+          urlEndpoint: "/college/step1/",
+        });
+
+        console.log(response.status);
+        obj = await response.json();
+        console.log(obj);
+        break;
+
+      case 1:
+        response = await addNewCollegeForms({
+          data: {
+            ...importantNews,
+            ...importantDates,
+          },
+          urlEndpoint: "/college/step2/",
+        });
+
+        console.log(response.status);
+        obj = await response.json();
+        console.log(obj);
+        break;
+
+      case 2:
+        response = await addNewCollegeForms({
+          data: {
+            ...entranceExams,
+            ...coursesAndFees,
+            ...detailedApplicationProcessAndEligibilityCriteria,
+            ...previousCutoffs,
+          },
+          urlEndpoint: "/college/step3/",
+        });
+
+        console.log(response.status);
+        obj = await response.json();
+        console.log(obj);
+        break;
+
+      case 3:
+        response = await addNewCollegeForms({
+          data: {
+            ...alumni,
+            ...faculties,
+          },
+          urlEndpoint: "/college/step4/",
+        });
+
+        console.log(response.status);
+        obj = await response.json();
+        console.log(obj);
+        break;
+
+      case 4:
+        console.log(placementDetails);
+    }
+
+    // setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
@@ -106,13 +184,13 @@ const AddNewCollege = () => {
               {activeStep === 0 && (
                 <Grid container flexDirection={"column"} spacing={6}>
                   <Grid item>
-                    <About />
+                    <About setAbout={setAbout} />
                   </Grid>
                   <Grid item mt={6}>
-                    <ContactDetails />
+                    <ContactDetails setContactDetails={setContactDetails} />
                   </Grid>
                   <Grid item mt={6}>
-                    <CollegeDetails />
+                    <CollegeDetails setCollegeDetails={setCollegeDetails} />
                   </Grid>
                   <Grid item mt={6}>
                     <Location setLocation={setLocation} />
@@ -130,7 +208,7 @@ const AddNewCollege = () => {
                     <ImportantNews setImportantNews={setImportantNews} />
                   </Grid>
                   <Grid item mt={6}>
-                    <ImportantDates />
+                    <ImportantDates setImportantDates={setImportantDates} />
                   </Grid>
                 </Grid>
               )}
@@ -138,23 +216,27 @@ const AddNewCollege = () => {
               {activeStep === 2 && (
                 <Grid container flexDirection={"column"} spacing={6}>
                   <Grid item>
-                    <EntranceExams />
+                    <EntranceExams setEntranceExams={setEntranceExams} />
                   </Grid>
                   <Grid item mt={6}>
-                    <CoursesAndFees />
+                    <CoursesAndFees setCoursesAndFees={setCoursesAndFees} />
                   </Grid>
                   <Grid item mt={6}>
-                    <DetailedApplicationProcessAndEligibilityCriteria />
+                    <DetailedApplicationProcessAndEligibilityCriteria
+                      setDetailedApplicationProcessAndEligibilityCriteria={
+                        setDetailedApplicationProcessAndEligibilityCriteria
+                      }
+                    />
                   </Grid>
                   <Grid item mt={6}>
-                    <PreviousCutoffs />
+                    <PreviousCutoffs setPreviousCutoffs={setPreviousCutoffs} />
                   </Grid>
                 </Grid>
               )}
               {activeStep === 3 && (
                 <Grid container flexDirection={"column"} spacing={6}>
                   <Grid item>
-                    <Alumni />
+                    <Alumni setAlumni={setAlumni} />
                   </Grid>
                   <Grid item mt={6}>
                     <Faculties setFaculties={setFaculties} />
@@ -165,7 +247,9 @@ const AddNewCollege = () => {
               {activeStep === 4 && (
                 <Grid container flexDirection={"column"} spacing={6}>
                   <Grid item>
-                    <PlacementDetails />
+                    <PlacementDetails
+                      setPlacementDetails={setPlacementDetails}
+                    />
                   </Grid>
                   <Grid item mt={6}>
                     <Photos setPhotos={setPhotos} />

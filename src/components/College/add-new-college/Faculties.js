@@ -7,9 +7,6 @@ import {
   TextField,
   Container,
   Typography,
-  FormControl,
-  MenuItem,
-  Select,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
@@ -121,28 +118,15 @@ const Faculties = ({ setFaculties }) => {
                 </Grid>
                 <Grid item xs={12}>
                   <Typography>Experience</Typography>
-                  <FormControl fullWidth size="small">
-                    {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                    <Select
-                      value={formData.experience}
-                      onChange={handleInputChange("experience")}
-                      displayEmpty
-                      style={{
-                        color: formData.experience === "" && secondaryColor,
-                      }}
-                    >
-                      <MenuItem value={""} disabled>
-                        Select/ Type Here
-                      </MenuItem>
-                      <MenuItem value="1">1</MenuItem>
-                      <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
-                      <MenuItem value="4">4</MenuItem>
-                      <MenuItem value="5">5</MenuItem>
-                      <MenuItem value="6">6</MenuItem>
-                      {/* Add more exam options as needed */}
-                    </Select>
-                  </FormControl>
+                  <TextField
+                    fullWidth
+                    // label="Description"
+                    placeholder="Type here"
+                    variant="outlined"
+                    size="small"
+                    value={formData.experience}
+                    onChange={handleInputChange("experience")}
+                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -151,54 +135,27 @@ const Faculties = ({ setFaculties }) => {
               <Grid container spacing={6}>
                 <Grid item xs={12}>
                   <Typography>Specialisation</Typography>
-                  <FormControl fullWidth size="small">
-                    {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                    <Select
-                      value={formData.specialization}
-                      onChange={handleInputChange("specialization")}
-                      displayEmpty
-                      style={{
-                        color: formData.specialization === "" && secondaryColor,
-                      }}
-                    >
-                      <MenuItem value={""} disabled>
-                        Select/ Type Here
-                      </MenuItem>
-                      <MenuItem value="1">1</MenuItem>
-                      <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
-                      <MenuItem value="4">4</MenuItem>
-                      <MenuItem value="5">5</MenuItem>
-                      <MenuItem value="6">6</MenuItem>
-                      {/* Add more exam options as needed */}
-                    </Select>
-                  </FormControl>
+                  <TextField
+                    fullWidth
+                    // label="Description"
+                    placeholder="Type here"
+                    variant="outlined"
+                    size="small"
+                    value={formData.specialization}
+                    onChange={handleInputChange("specialization")}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <Typography>Base City</Typography>
-                  <FormControl fullWidth size="small">
-                    {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                    <Select
-                      value={formData.base_city_faculty}
-                      onChange={handleInputChange("base_city_faculty")}
-                      displayEmpty
-                      style={{
-                        color:
-                          formData.base_city_faculty === "" && secondaryColor,
-                      }}
-                    >
-                      <MenuItem value={""} disabled>
-                        Select/ Type Here
-                      </MenuItem>
-                      <MenuItem value="1">1</MenuItem>
-                      <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
-                      <MenuItem value="4">4</MenuItem>
-                      <MenuItem value="5">5</MenuItem>
-                      <MenuItem value="6">6</MenuItem>
-                      {/* Add more exam options as needed */}
-                    </Select>
-                  </FormControl>
+                  <TextField
+                    fullWidth
+                    // label="Description"
+                    placeholder="Type here"
+                    variant="outlined"
+                    size="small"
+                    value={formData.base_city_faculty}
+                    onChange={handleInputChange("base_city_faculty")}
+                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -206,28 +163,15 @@ const Faculties = ({ setFaculties }) => {
               <Grid container spacing={6}>
                 <Grid item xs={12}>
                   <Typography>Background</Typography>
-                  <FormControl fullWidth size="small">
-                    {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                    <Select
-                      value={formData.background}
-                      onChange={handleInputChange("background")}
-                      displayEmpty
-                      style={{
-                        color: formData.background === "" && secondaryColor,
-                      }}
-                    >
-                      <MenuItem value={""} disabled>
-                        Select/ Type Here
-                      </MenuItem>
-                      <MenuItem value="1">1</MenuItem>
-                      <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
-                      <MenuItem value="4">4</MenuItem>
-                      <MenuItem value="5">5</MenuItem>
-                      <MenuItem value="6">6</MenuItem>
-                      {/* Add more exam options as needed */}
-                    </Select>
-                  </FormControl>
+                  <TextField
+                    fullWidth
+                    // label="Description"
+                    placeholder="Type here"
+                    variant="outlined"
+                    size="small"
+                    value={formData.background}
+                    onChange={handleInputChange("background")}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <Typography>Links (if any)</Typography>

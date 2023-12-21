@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const EntranceExams = () => {
+const EntranceExams = ({ setEntranceExams }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
   const primaryColor = theme.palette.text.primary;
@@ -43,36 +43,36 @@ const EntranceExams = () => {
     ],
   });
 
-  const [textInput, setTextInput] = useState("");
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
   // Function to handle checkbox changes
-  const handleCheckboxChange = (field, index) => {
-    if (field === 0) {
-      const design = checkboxes.design;
-      design[index].selected = !design[index].selected;
-      setCheckboxes({ ...checkboxes, design });
+  const handleCheckboxChange = (category, index) => {
+    const updatedCheckboxes = { ...checkboxes };
+    updatedCheckboxes[category][index].selected =
+      !updatedCheckboxes[category][index].selected;
+
+    if (updatedCheckboxes[category][index].selected) {
+      const temp = selectedCheckboxes;
+      temp.push(updatedCheckboxes[category][index].exam);
+      setSelectedCheckboxes(temp);
     }
-    if (field === 1) {
-      const engineering = checkboxes.engineering;
-      engineering[index].selected = !engineering[index].selected;
-      setCheckboxes({ ...checkboxes, engineering });
-    }
-    if (field === 2) {
-      const medical = checkboxes.medical;
-      medical[index].selected = !medical[index].selected;
-      setCheckboxes({ ...checkboxes, medical });
-    }
-    if (field === 3) {
-      const law = checkboxes.law;
-      law[index].selected = !law[index].selected;
-      setCheckboxes({ ...checkboxes, law });
-    }
+
+    setCheckboxes(updatedCheckboxes);
   };
 
-  // Function to handle text input change
-  const handleTextInputChange = (e) => {
-    setTextInput(e.target.value);
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
   };
+
+  const [formData, setFormData] = useState({
+    entrance_exams: [],
+    other_criteria: "",
+  });
+
+  useEffect(() => {
+    setFormData({ ...formData, entrance_exams: selectedCheckboxes });
+    setEntranceExams(formData);
+  }, [formData, selectedCheckboxes, setEntranceExams]);
 
   return (
     <Container>
@@ -109,7 +109,7 @@ const EntranceExams = () => {
                       style={
                         selected ? buttonSelectedStyle : buttonNotSelectedStyle
                       }
-                      onClick={() => handleCheckboxChange(0, index)}
+                      onClick={() => handleCheckboxChange("design", index)}
                     >
                       {`${exam}`}
                     </Button>
@@ -128,7 +128,7 @@ const EntranceExams = () => {
                       style={
                         selected ? buttonSelectedStyle : buttonNotSelectedStyle
                       }
-                      onClick={() => handleCheckboxChange(1, index)}
+                      onClick={() => handleCheckboxChange("engineering", index)}
                     >
                       {`${exam}`}
                     </Button>
@@ -147,7 +147,7 @@ const EntranceExams = () => {
                       style={
                         selected ? buttonSelectedStyle : buttonNotSelectedStyle
                       }
-                      onClick={() => handleCheckboxChange(2, index)}
+                      onClick={() => handleCheckboxChange("medical", index)}
                     >
                       {`${exam}`}
                     </Button>
@@ -170,7 +170,7 @@ const EntranceExams = () => {
                     style={
                       selected ? buttonSelectedStyle : buttonNotSelectedStyle
                     }
-                    onClick={() => handleCheckboxChange(3, index)}
+                    onClick={() => handleCheckboxChange("law", index)}
                   >
                     {`${exam}`}
                   </Button>
@@ -189,7 +189,7 @@ const EntranceExams = () => {
                     style={
                       selected ? buttonSelectedStyle : buttonNotSelectedStyle
                     }
-                    onClick={() => handleCheckboxChange(1, index)}
+                    onClick={() => handleCheckboxChange("engineering", index)}
                   >
                     {`${exam}`}
                   </Button>
@@ -208,7 +208,7 @@ const EntranceExams = () => {
                     style={
                       selected ? buttonSelectedStyle : buttonNotSelectedStyle
                     }
-                    onClick={() => handleCheckboxChange(2, index)}
+                    onClick={() => handleCheckboxChange("medical", index)}
                   >
                     {`${exam}`}
                   </Button>
@@ -228,8 +228,8 @@ const EntranceExams = () => {
               placeholder="Type Here"
               fullWidth
               size="small"
-              value={textInput}
-              onChange={handleTextInputChange}
+              value={formData.other_criteria}
+              onChange={handleInputChange("other_criteria")}
             />
           </Grid>
         </Grid>

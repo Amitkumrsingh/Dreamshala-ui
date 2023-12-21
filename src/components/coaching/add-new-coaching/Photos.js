@@ -84,7 +84,7 @@ const MyForm = ({ setPhotos }) => {
         </em>
       </Typography>
       <Typography mb={4} mt={8}>
-        Photos to give a glimpse of your college
+        Photos to give a glimpse of your class
       </Typography>
       {addMorePhotos.map((d, index) => (
         <Grid key={index} container spacing={6} mb={6}>

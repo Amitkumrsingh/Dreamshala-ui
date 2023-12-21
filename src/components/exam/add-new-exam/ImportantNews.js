@@ -25,7 +25,7 @@ const ImportantNews = ({ setImportantNews }) => {
   };
 
   const [formData, setFormData] = useState({
-    important_news: "",
+    news_post: "",
     news_category: "",
   });
 
@@ -64,8 +64,8 @@ const ImportantNews = ({ setImportantNews }) => {
                 multiline
                 minRows={2.5}
                 fullWidth
-                value={formData.important_news}
-                onChange={handleInputChange("important_news")}
+                value={formData.news_post}
+                onChange={handleInputChange("news_post")}
               />
             </Grid>
 

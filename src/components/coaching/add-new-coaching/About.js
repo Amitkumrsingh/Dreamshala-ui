@@ -82,8 +82,10 @@ const About = ({ setAbout }) => {
   };
 
   useEffect(() => {
+    setFormData({ ...formData, days_of_operation: selectedDays });
+
     setAbout(formData);
-  }, [formData, setAbout]);
+  }, [formData, setAbout, selectedDays]);
 
   return (
     <Container>
