@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IconButton,
   Box,
@@ -15,7 +15,7 @@ import { useTheme } from "@mui/material/styles";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import StarRating from "../../other/StarRating";
 
-const Reviews = () => {
+const Reviews = ({ setReviews }) => {
   const theme = useTheme();
   const placeholderColor = theme.palette.text.secondary;
   const [overall_rating, setOverall_rating] = useState(0);
@@ -25,10 +25,56 @@ const Reviews = () => {
   const [accommodation_rating, setAccommodation_rating] = useState(0);
   const [placement_rating, setPlacement_rating] = useState(0);
   const [social_life_rating, setSocial_life_rating] = useState(0);
-
   const [addMoreReviews, setAddMoreReviews] = useState([""]);
-  const [yearOfStudy, setYearOfStudy] = useState("");
-  const [courseTaken, setCourseTaken] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    year_of_study: "",
+    course_taken: "",
+    overall_rating: overall_rating,
+    academics_rating: academics_rating,
+    faculty_rating: faculty_rating,
+    infrastructure_rating: infrastructure_rating,
+    accommodation_rating: accommodation_rating,
+    placement_rating: placement_rating,
+    social_life_rating: social_life_rating,
+    detailed_description: "",
+    links: "",
+    photo_video: null,
+  });
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, photo_video: event.target.files[0] });
+  };
+
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      overall_rating: overall_rating,
+      academics_rating: academics_rating,
+      faculty_rating: faculty_rating,
+      infrastructure_rating: infrastructure_rating,
+      accommodation_rating: accommodation_rating,
+      placement_rating: placement_rating,
+      social_life_rating: social_life_rating,
+    });
+
+    setReviews(formData);
+  }, [
+    formData,
+    overall_rating,
+    academics_rating,
+    faculty_rating,
+    infrastructure_rating,
+    accommodation_rating,
+    placement_rating,
+    social_life_rating,
+    setReviews,
+  ]);
+
   return (
     <>
       <Container>
@@ -56,6 +102,8 @@ const Reviews = () => {
                   placeholder="Type here"
                   variant="outlined"
                   size="small"
+                  value={formData.name}
+                  onChange={handleInputChange("name")}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -63,11 +111,11 @@ const Reviews = () => {
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select
-                    onChange={(e) => setYearOfStudy(e.target.value)}
-                    value={yearOfStudy}
+                    value={formData.year_of_study}
+                    onChange={handleInputChange("year_of_study")}
                     displayEmpty
                     style={{
-                      color: yearOfStudy === "" && placeholderColor,
+                      color: formData.year_of_study === "" && placeholderColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
@@ -85,28 +133,15 @@ const Reviews = () => {
               </Grid>
               <Grid item xs={4}>
                 <Typography>Course Taken</Typography>
-                <FormControl fullWidth size="small">
-                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select
-                    onChange={(e) => setCourseTaken(e.target.value)}
-                    value={courseTaken}
-                    displayEmpty
-                    style={{
-                      color: courseTaken === "" && placeholderColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    <MenuItem value="3">3</MenuItem>
-                    <MenuItem value="4">4</MenuItem>
-                    <MenuItem value="5">5</MenuItem>
-                    <MenuItem value="6">6</MenuItem>
-                    {/* Add more exam options as needed */}
-                  </Select>
-                </FormControl>
+                <TextField
+                  fullWidth
+                  // label="Description"
+                  placeholder="Type here"
+                  variant="outlined"
+                  size="small"
+                  value={formData.course_taken}
+                  onChange={handleInputChange("course_taken")}
+                />
               </Grid>
             </Grid>
 
@@ -160,6 +195,8 @@ const Reviews = () => {
                   multiline
                   minRows={4}
                   maxRows={4}
+                  value={formData.detailed_description}
+                  onChange={handleInputChange("detailed_description")}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -170,6 +207,8 @@ const Reviews = () => {
                     placeholder="Describe here"
                     variant="outlined"
                     size="small"
+                    value={formData.links}
+                    onChange={handleInputChange("links")}
                   />
                 </Grid>
                 <Grid>
@@ -190,14 +229,23 @@ const Reviews = () => {
                         //   onChange={handleImageChange}
                         style={{ display: "none" }}
                         id="image-input"
+                        onChange={handleFileChange}
                       />
-                      <IconButton component="span">
-                        <FileUploadIcon
-                          fontSize="small"
-                          color={placeholderColor}
-                        />
-                      </IconButton>
-                      Click here to Upload
+                      {formData.photo_video ? (
+                        <Button disabled size="small">
+                          {formData.photo_video.name}
+                        </Button>
+                      ) : (
+                        <>
+                          <IconButton component="span">
+                            <FileUploadIcon
+                              fontSize="small"
+                              color={placeholderColor}
+                            />
+                          </IconButton>
+                          Click here to Upload
+                        </>
+                      )}
                       {/* You can display the selected image here if needed */}
                     </Box>
                   </label>

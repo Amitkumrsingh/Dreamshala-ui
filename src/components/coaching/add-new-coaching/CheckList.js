@@ -171,7 +171,7 @@ const CheckList = ({ setCheckList }) => {
 
   const [formData, setFormData] = useState({
     students_in_batch: "",
-    total_students: "",
+    total_students_in_coaching: "",
     number_of_faculty: "",
     available_facilities: "",
   });
@@ -180,7 +180,7 @@ const CheckList = ({ setCheckList }) => {
     numbers: "",
     index: -1,
   });
-  const [total_students, setTotal_students] = useState({
+  const [total_students_in_coaching, setTotal_students_in_coaching] = useState({
     numbers: "",
     index: -1,
   });
@@ -205,21 +205,21 @@ const CheckList = ({ setCheckList }) => {
     setFormData({ ...formData, students_in_batch: students_in_batch.numbers });
   };
 
-  const handleTotalStudents = (text, index) => {
-    if (total_students.index === index) {
-      setTotal_students({
+  const handleTotalStudentsInCoaching = (text, index) => {
+    if (total_students_in_coaching.index === index) {
+      setTotal_students_in_coaching({
         numbers: "",
         index: -1,
       });
     } else {
-      setTotal_students({
+      setTotal_students_in_coaching({
         numbers: text,
         index: index,
       });
     }
     setFormData({
       ...formData,
-      total_students: total_students.numbers,
+      total_students_in_coaching: total_students_in_coaching.numbers,
     });
   };
 
@@ -242,7 +242,7 @@ const CheckList = ({ setCheckList }) => {
     setFormData({
       ...formData,
       number_of_faculty: number_of_faculty.numbers,
-      total_students: total_students.numbers,
+      total_students_in_coaching: total_students_in_coaching.numbers,
       students_in_batch: students_in_batch.numbers,
     });
     setCheckList(formData);
@@ -250,7 +250,7 @@ const CheckList = ({ setCheckList }) => {
     setCheckList,
     formData,
     number_of_faculty.numbers,
-    total_students.numbers,
+    total_students_in_coaching.numbers,
     students_in_batch.numbers,
   ]);
 
@@ -275,7 +275,7 @@ const CheckList = ({ setCheckList }) => {
           <Grid item mt={1}>
             <Grid mb={2}>
               <Typography>
-                Select all the facilities avaible in your college premises
+                Select all the facilities avaible in your coaching class
               </Typography>
             </Grid>
 
@@ -346,7 +346,7 @@ const CheckList = ({ setCheckList }) => {
 
           <Grid item>
             <Grid mb={2}>
-              <Typography>Total Number of students in your college</Typography>
+              <Typography>Total Number of students in your coaching</Typography>
             </Grid>
             <Grid container spacing={4}>
               <Grid xs={8} item>
@@ -356,13 +356,15 @@ const CheckList = ({ setCheckList }) => {
                       <Button
                         key={index}
                         variant={
-                          total_students.index === index
+                          total_students_in_coaching.index === index
                             ? "contained"
                             : "outlined"
                         }
-                        onClick={() => handleTotalStudents(data.text, index)}
+                        onClick={() =>
+                          handleTotalStudentsInCoaching(data.text, index)
+                        }
                         style={
-                          total_students.index === index
+                          total_students_in_coaching.index === index
                             ? buttonSelectedStyle
                             : buttonNotSelectedStyle
                         }
@@ -380,10 +382,10 @@ const CheckList = ({ setCheckList }) => {
                   placeholder="Type Here"
                   type="text"
                   size="small"
-                  value={total_students.numbers}
-                  disabled={total_students.index !== -1}
+                  value={total_students_in_coaching.numbers}
+                  disabled={total_students_in_coaching.index !== -1}
                   onChange={(e) =>
-                    setTotal_students({
+                    setTotal_students_in_coaching({
                       index: -1,
                       numbers: e.target.value,
                     })
@@ -396,7 +398,7 @@ const CheckList = ({ setCheckList }) => {
           <Grid item>
             <Grid mb={2}>
               <Typography>
-                Total number of faculities associated with your college
+                Total number of faculities associated with your coaching
               </Typography>
             </Grid>
             <Grid container spacing={4}>

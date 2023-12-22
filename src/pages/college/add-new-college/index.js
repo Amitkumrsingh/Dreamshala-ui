@@ -34,8 +34,6 @@ import {
 } from "@mui/material";
 import { addNewCollegeForms } from "../../../services/collegeServices";
 
-// import { Checklist } from "@mui/icons-material";
-
 const steps = [
   "Basic Details",
   "Important Updates",
@@ -48,10 +46,6 @@ const AddNewCollege = () => {
   const router = useRouter();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const [location, setLocation] = useState();
-  const [photos, setPhotos] = useState();
-  const [videos, setVideos] = useState();
-  const [checkList, setCheckList] = useState();
-  const [faq, setFaq] = useState();
   const [about, setAbout] = useState();
   const [contactDetails, setContactDetails] = useState();
   const [collegeDetails, setCollegeDetails] = useState();
@@ -68,6 +62,11 @@ const AddNewCollege = () => {
   const [alumni, setAlumni] = useState();
   const [faculties, setFaculties] = useState();
   const [placementDetails, setPlacementDetails] = useState();
+  const [photos, setPhotos] = useState();
+  const [videos, setVideos] = useState();
+  const [reviews, setReviews] = useState();
+  const [checkList, setCheckList] = useState();
+  const [faq, setFaq] = useState();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -81,19 +80,26 @@ const AddNewCollege = () => {
     let response, obj;
     switch (activeStep) {
       case 0:
-        response = await addNewCollegeForms({
-          data: {
-            ...about,
-            ...contactDetails,
-            ...collegeDetails,
-            ...managementContact,
-          },
-          urlEndpoint: "/college/step1/",
-        });
+        // response = await addNewCollegeForms({
+        //   data: {
+        //     ...about,
+        //     ...contactDetails,
+        //     ...collegeDetails,
+        //     ...managementContact,
+        //   },
+        //   urlEndpoint: "/college/step1/",
+        // });
 
-        console.log(response.status);
-        obj = await response.json();
-        console.log(obj);
+        // console.log(response.status);
+        // obj = await response.json();
+        // console.log(obj);
+        console.log({
+          ...about,
+          ...contactDetails,
+          ...collegeDetails,
+          ...location,
+          ...managementContact,
+        });
         break;
 
       case 1:
@@ -141,7 +147,22 @@ const AddNewCollege = () => {
         break;
 
       case 4:
-        console.log(placementDetails);
+        response = await addNewCollegeForms({
+          data: {
+            ...placementDetails,
+            ...photos,
+            ...videos,
+            ...reviews,
+            ...checkList,
+            ...faq,
+          },
+          urlEndpoint: "/college/step5/",
+        });
+
+        console.log(response.status);
+        obj = await response.json();
+        console.log(obj);
+        break;
     }
 
     // setActiveStep(activeStep + 1);
@@ -258,7 +279,7 @@ const AddNewCollege = () => {
                     <Videos setVideos={setVideos} parentName="college" />
                   </Grid>
                   <Grid item mt={6}>
-                    <Reviews />
+                    <Reviews setReviews={setReviews} />
                   </Grid>
                   <Grid item mt={6}>
                     <CheckList setCheckList={setCheckList} />

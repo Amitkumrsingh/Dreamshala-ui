@@ -2,11 +2,11 @@ import {
   Faculties,
   Videos,
   Location,
-  CheckList,
   FAQ,
 } from "../../components/College/add-new-college";
 
 import {
+  CheckList,
   Photos,
   ManagementContact,
   About,

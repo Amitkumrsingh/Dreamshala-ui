@@ -98,7 +98,7 @@ const AddNewExam = () => {
         break;
     }
 
-    // setActiveStep(activeStep + 1);
+    setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {

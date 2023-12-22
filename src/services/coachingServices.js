@@ -2,12 +2,20 @@ import { API_BASE_URL } from "../config";
 
 export const addNewCoachingForms = async ({ data, urlEndpoint }) => {
   try {
+    const formData = new FormData();
+
+    // Loop through the object and append each key-value pair to the formData
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        formData.append(key, data[key]);
+      }
+    }
+
     const response = await fetch(API_BASE_URL + urlEndpoint, {
       method: "POST",
-      body: JSON.stringify({ ...data }),
+      body: formData,
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json",
       },
     });
 

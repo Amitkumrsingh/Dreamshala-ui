@@ -27,16 +27,6 @@ const MyForm = ({ setPhotos }) => {
   };
 
   const [addMorePhotos, setAddMorePhotos] = useState([""]);
-  const [buttons, setButtons] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
 
   const [selectedCategory, setSelectedCategory] = useState({
     category: "",
