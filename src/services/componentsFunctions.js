@@ -1,14 +1,23 @@
-export function convertDateFormat(inputDateString) {
-  // Split the input date string into parts using "-"
-  const parts = inputDateString.split("-");
+const UrlPatternRegex =
+  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
-  // Ensure that the input string is in the correct format
-  if (parts.length === 3) {
-    // Rearrange the parts to create the new format
-    const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
-    return formattedDate;
-  } else {
-    // Return an error message or handle invalid input as needed
-    return "Invalid date format";
-  }
-}
+const ContactPatterRegex =
+  /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+
+const GSTINpatterRegex = /\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}/;
+const PincodePatterRegex = /^[1-9][0-9]{5}$/;
+const PancardPatterRegex = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
+
+export const checkUrl = (url) => UrlPatternRegex.test(url);
+export const checkContact = (contact) => ContactPatterRegex.test(contact);
+export const checkGSTIN = (gstin) => GSTINpatterRegex.test(gstin);
+export const checkPincode = (pincode) => PincodePatterRegex.test(pincode);
+export const checkPancard = (pancard) => PancardPatterRegex.test(pancard);
+
+export const checkEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};

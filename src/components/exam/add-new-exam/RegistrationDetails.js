@@ -10,14 +10,30 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { checkUrl } from "../../../services/componentsFunctions";
+
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
+
+const paymentModes = [
+  "Debit Card",
+  "Credit Card",
+  "UPI",
+  "NEFT",
+  "Net Banking",
+  "Other",
+];
 
 const RegistrationDetails = ({ setRegistrationDetails }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
 
-  const [registrationMode, setRegistrationMode] = useState("");
-  const [paymentMode, setPaymentMode] = useState("");
-  const [category, setCategory] = useState("");
   const [addMoreCategoryFee, setAddMoreCategoryFee] = useState([""]);
 
   const buttonNotSelectedStyle = {
@@ -28,7 +44,7 @@ const RegistrationDetails = ({ setRegistrationDetails }) => {
   const [formData, setFormData] = useState({
     registration_website: "",
     registration_mode: "",
-    payment_modes: "",
+    payment_modes: [],
     category: "",
     fee: "",
     registration_fees: "",
@@ -36,6 +52,16 @@ const RegistrationDetails = ({ setRegistrationDetails }) => {
 
   const handleInputChange = (field) => (event) => {
     setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  const handlePaymentsModeChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setFormData({
+      ...formData,
+      payment_modes: typeof value === "string" ? value.split(",") : value,
+    });
   };
 
   useEffect(() => {
@@ -69,6 +95,11 @@ const RegistrationDetails = ({ setRegistrationDetails }) => {
               fullWidth
               value={formData.registration_website}
               onChange={handleInputChange("registration_website")}
+              error={
+                formData.registration_website === ""
+                  ? false
+                  : !checkUrl(formData.registration_website)
+              }
             />
           </Grid>
           <Grid item xs={4}>
@@ -85,8 +116,8 @@ const RegistrationDetails = ({ setRegistrationDetails }) => {
                 <MenuItem value={""} disabled>
                   Select/ Type Here
                 </MenuItem>
-                {/* <MenuItem value="1"> 1</MenuItem>
-                <MenuItem value="2"> 2</MenuItem> */}
+                <MenuItem value="online "> Online </MenuItem>
+                <MenuItem value="offline "> Offline </MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -94,18 +125,32 @@ const RegistrationDetails = ({ setRegistrationDetails }) => {
             <Typography>Payment Modes Available</Typography>
             <FormControl fullWidth size="small">
               <Select
+                multiple
                 value={formData.payment_modes}
-                onChange={handleInputChange("payment_modes")}
-                displayEmpty
+                onChange={handlePaymentsModeChange}
                 style={{
                   color: formData.payment_modes === "" && secondaryColor,
                 }}
+                displayEmpty
+                renderValue={
+                  formData.payment_modes.length !== 0
+                    ? undefined
+                    : () => (
+                        <Typography color={secondaryColor}>
+                          Select/ Type Here
+                        </Typography>
+                      )
+                }
               >
-                <MenuItem value={""} disabled>
-                  Select/ Type Here
-                </MenuItem>
-                {/* <MenuItem value="1"> 1</MenuItem>
-                <MenuItem value="2"> 2</MenuItem> */}
+                {paymentModes.map((name) => (
+                  <MenuItem
+                    key={name}
+                    value={name}
+                    style={getStyles(name, paymentModes, theme)}
+                  >
+                    {name}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>
@@ -132,10 +177,10 @@ const RegistrationDetails = ({ setRegistrationDetails }) => {
                       <MenuItem value={""} disabled>
                         Select/ Type Here
                       </MenuItem>
-                      {/* <MenuItem value="general">General</MenuItem>
+                      <MenuItem value="general">General</MenuItem>
                       <MenuItem value="obc">OBC</MenuItem>
                       <MenuItem value="sc">SC</MenuItem>
-                      <MenuItem value="st">ST</MenuItem> */}
+                      <MenuItem value="st">ST</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
@@ -145,6 +190,7 @@ const RegistrationDetails = ({ setRegistrationDetails }) => {
                     placeholder="Type Here"
                     size="small"
                     fullWidth
+                    type="number"
                     value={formData.fee}
                     onChange={handleInputChange("fee")}
                   />
@@ -166,10 +212,10 @@ const RegistrationDetails = ({ setRegistrationDetails }) => {
                     <MenuItem value={""} disabled>
                       Select/ Type Here
                     </MenuItem>
-                    {/* <MenuItem value="general">General</MenuItem>
+                    <MenuItem value="general">General</MenuItem>
                     <MenuItem value="obc">OBC</MenuItem>
                     <MenuItem value="sc">SC</MenuItem>
-                    <MenuItem value="st">ST</MenuItem> */}
+                    <MenuItem value="st">ST</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -183,6 +229,7 @@ const RegistrationDetails = ({ setRegistrationDetails }) => {
                       fullWidth
                       value={formData.registration_fees}
                       onChange={handleInputChange("registration_fees")}
+                      type="number"
                     />
                   </Grid>
                   <Grid item xs={2}>

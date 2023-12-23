@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+import { checkUrl } from "../../../services/componentsFunctions";
 
 const StudyMaterial = ({ setStudyMaterial }) => {
   const theme = useTheme();
@@ -245,6 +246,11 @@ const StudyMaterial = ({ setStudyMaterial }) => {
                         fullWidth
                         value={formData.material_links}
                         onChange={handleInputChange("material_links")}
+                        error={
+                          formData.material_links === ""
+                            ? false
+                            : !checkUrl(formData.material_links)
+                        }
                       />
                     </Grid>
                     <Grid item xs={2}>

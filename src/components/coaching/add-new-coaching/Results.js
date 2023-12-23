@@ -20,10 +20,6 @@ const Results = ({ setResults }) => {
   const secondaryColor = theme.palette.text.secondary;
 
   const [addMoreResults, setAddMoreResults] = useState([""]);
-  const [collegeSecured, setCollegeSecured] = useState("");
-  const [examCracked, setExamCracked] = useState("");
-  const [allIndiaRank, setAllIndiaRank] = useState("");
-  const [baseCity, setBaseCity] = useState("");
   const [formData, setFormData] = useState({
     excel_file: null,
     result_photo: null,
@@ -159,28 +155,17 @@ const Results = ({ setResults }) => {
               </Grid>
               <Grid item>
                 <Typography>All India Rank</Typography>
-                <FormControl fullWidth size="small">
-                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select
-                    value={formData.all_india_rank}
-                    onChange={handleInputChange("all_india_rank")}
-                    displayEmpty
-                    style={{
-                      color: formData.all_india_rank === "" && secondaryColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    <MenuItem value="3">3</MenuItem>
-                    <MenuItem value="4">4</MenuItem>
-                    <MenuItem value="5">5</MenuItem>
-                    <MenuItem value="6">6</MenuItem>
-                    {/* Add more exam options as needed */}
-                  </Select>
-                </FormControl>
+                <TextField
+                  fullWidth
+                  // label="Description"
+                  placeholder="Type here"
+                  variant="outlined"
+                  size="small"
+                  type="number"
+                  inputProps={{ min: 0 }}
+                  value={formData.all_india_rank}
+                  onChange={handleInputChange("all_india_rank")}
+                />
               </Grid>
             </Grid>
 
@@ -193,53 +178,27 @@ const Results = ({ setResults }) => {
             >
               <Grid item>
                 <Typography>College secured</Typography>
-                <FormControl fullWidth size="small">
-                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select
-                    value={formData.college_secured}
-                    onChange={handleInputChange("college_secured")}
-                    displayEmpty
-                    style={{
-                      color: formData.college_secured === "" && secondaryColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    <MenuItem value="3">3</MenuItem>
-                    <MenuItem value="4">4</MenuItem>
-                    <MenuItem value="5">5</MenuItem>
-                    <MenuItem value="6">6</MenuItem>
-                    {/* Add more exam options as needed */}
-                  </Select>
-                </FormControl>
+                <TextField
+                  fullWidth
+                  // label="Description"
+                  placeholder="Type here"
+                  variant="outlined"
+                  size="small"
+                  value={formData.college_secured}
+                  onChange={handleInputChange("college_secured")}
+                />
               </Grid>
               <Grid item>
                 <Typography>Base City</Typography>
-                <FormControl fullWidth size="small">
-                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select
-                    value={formData.base_city_result}
-                    onChange={handleInputChange("base_city_result")}
-                    displayEmpty
-                    style={{
-                      color: formData.base_city_result === "" && secondaryColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    <MenuItem value="3">3</MenuItem>
-                    <MenuItem value="4">4</MenuItem>
-                    <MenuItem value="5">5</MenuItem>
-                    <MenuItem value="6">6</MenuItem>
-                    {/* Add more exam options as needed */}
-                  </Select>
-                </FormControl>
+                <TextField
+                  fullWidth
+                  // label="Description"
+                  placeholder="Type here"
+                  variant="outlined"
+                  size="small"
+                  value={formData.base_city_result}
+                  onChange={handleInputChange("base_city_result")}
+                />
               </Grid>
             </Grid>
             <Grid
@@ -264,12 +223,12 @@ const Results = ({ setResults }) => {
                     <MenuItem value={""} disabled>
                       Select/ Type Here
                     </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
+                    {/* <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
                     <MenuItem value="4">4</MenuItem>
                     <MenuItem value="5">5</MenuItem>
-                    <MenuItem value="6">6</MenuItem>
+                    <MenuItem value="6">6</MenuItem> */}
                     {/* Add more exam options as needed */}
                   </Select>
                 </FormControl>

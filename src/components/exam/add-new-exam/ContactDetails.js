@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import {
+  checkUrl,
+  checkContact,
+  checkEmail,
+} from "../../../services/componentsFunctions";
 
 const ContactDetails = ({ setContactDetails }) => {
   const theme = useTheme();
@@ -56,6 +61,11 @@ const ContactDetails = ({ setContactDetails }) => {
                 fullWidth
                 value={formData.exam_official_website}
                 onChange={handleInputChange("exam_official_website")}
+                error={
+                  formData.exam_official_website === ""
+                    ? false
+                    : !checkUrl(formData.exam_official_website)
+                }
               />
             </Grid>
             <Grid item xs={4}>
@@ -69,6 +79,11 @@ const ContactDetails = ({ setContactDetails }) => {
                 fullWidth
                 value={formData.contact_number}
                 onChange={handleInputChange("contact_number")}
+                error={
+                  formData.contact_number === ""
+                    ? false
+                    : !checkContact(formData.contact_number)
+                }
               />
             </Grid>
             <Grid item xs={4}>
@@ -82,6 +97,9 @@ const ContactDetails = ({ setContactDetails }) => {
                 fullWidth
                 value={formData.email}
                 onChange={handleInputChange("email")}
+                error={
+                  formData.email === "" ? false : !checkEmail(formData.email)
+                }
               />
             </Grid>
           </Grid>
@@ -97,6 +115,11 @@ const ContactDetails = ({ setContactDetails }) => {
                   fullWidth
                   value={formData.other_links}
                   onChange={handleInputChange("other_links")}
+                  error={
+                    formData.other_links === ""
+                      ? false
+                      : !checkUrl(formData.other_links)
+                  }
                 />
               </Grid>
             ))}
@@ -105,7 +128,18 @@ const ContactDetails = ({ setContactDetails }) => {
               <Typography>Other websites/impotant links</Typography>
               <Grid container spacing={2}>
                 <Grid item xs={10}>
-                  <TextField placeholder={"Type Here"} size="small" fullWidth />
+                  <TextField
+                    placeholder={"Type Here"}
+                    size="small"
+                    fullWidth
+                    value={formData.other_links}
+                    onChange={handleInputChange("other_links")}
+                    error={
+                      formData.other_links === ""
+                        ? false
+                        : !checkUrl(formData.other_links)
+                    }
+                  />
                 </Grid>
                 <Grid item xs={2}>
                   <Button

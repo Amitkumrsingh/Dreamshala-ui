@@ -80,26 +80,20 @@ const AddNewCollege = () => {
     let response, obj;
     switch (activeStep) {
       case 0:
-        // response = await addNewCollegeForms({
-        //   data: {
-        //     ...about,
-        //     ...contactDetails,
-        //     ...collegeDetails,
-        //     ...managementContact,
-        //   },
-        //   urlEndpoint: "/college/step1/",
-        // });
-
-        // console.log(response.status);
-        // obj = await response.json();
-        // console.log(obj);
-        console.log({
-          ...about,
-          ...contactDetails,
-          ...collegeDetails,
-          ...location,
-          ...managementContact,
+        response = await addNewCollegeForms({
+          data: {
+            ...about,
+            ...contactDetails,
+            ...collegeDetails,
+            ...location,
+            ...managementContact,
+          },
+          urlEndpoint: "/college/step1/",
         });
+
+        console.log(response.status);
+        obj = await response.json();
+        console.log(obj);
         break;
 
       case 1:
@@ -165,7 +159,7 @@ const AddNewCollege = () => {
         break;
     }
 
-    // setActiveStep(activeStep + 1);
+    setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {

@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+import { checkUrl } from "../../../services/componentsFunctions";
 
 const StudyMaterial = ({ setStudyMaterial }) => {
   const theme = useTheme();
@@ -150,6 +151,11 @@ const StudyMaterial = ({ setStudyMaterial }) => {
                             fullWidth
                             value={formData.links}
                             onChange={handleInputChange("links")}
+                            error={
+                              formData.links === ""
+                                ? false
+                                : !checkUrl(formData.links)
+                            }
                           />
                         </Grid>
                       ))}
@@ -182,9 +188,9 @@ const StudyMaterial = ({ setStudyMaterial }) => {
                       <MenuItem value={""} disabled>
                         Select/ Type Here
                       </MenuItem>
-                      <MenuItem value="1">1</MenuItem>
+                      {/* <MenuItem value="1">1</MenuItem>
                       <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
+                      <MenuItem value="3">3</MenuItem> */}
                       {/* Add more exam options as needed */}
                     </Select>
                   </FormControl>

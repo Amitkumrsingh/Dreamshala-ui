@@ -100,8 +100,6 @@ const AddNewCoaching = () => {
           urlEndpoint: "/coaching/Step2/",
         });
 
-        // if (data.response === 201) console.log("form Submitted 2");
-
         obj = await data.json();
         console.log(obj);
         break;
@@ -117,8 +115,6 @@ const AddNewCoaching = () => {
           },
           urlEndpoint: "/coaching/Step3/",
         });
-
-        // if (data.response === 201) console.log("form Submitted 2");
 
         obj = await data.json();
         console.log(obj);

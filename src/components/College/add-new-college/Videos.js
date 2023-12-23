@@ -11,6 +11,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
+import { checkUrl } from "../../../services/componentsFunctions";
 
 const Videos = ({ parentName, setVideos }) => {
   const theme = useTheme();
@@ -71,6 +72,11 @@ const Videos = ({ parentName, setVideos }) => {
                     value={formData.video_link}
                     onChange={handleInputChange("video_link")}
                     disabled={formData.video_file !== null}
+                    error={
+                      formData.video_link === ""
+                        ? false
+                        : !checkUrl(formData.video_link)
+                    }
                   />
                 </Grid>
                 <Grid

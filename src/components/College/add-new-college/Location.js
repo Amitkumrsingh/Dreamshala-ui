@@ -10,6 +10,7 @@ import {
   Button,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { checkPincode } from "../../../services/componentsFunctions";
 
 const Location = ({ setLocation }) => {
   const theme = useTheme();
@@ -128,26 +129,16 @@ const Location = ({ setLocation }) => {
                   </FormControl>
                 </Grid>
                 <Grid xs={6} item>
-                  <Typography>Select City</Typography>
-                  <FormControl fullWidth size="small">
-                    {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                    <Select
-                      value={formData.city}
-                      onChange={handleInputChange("city")}
-                      name="city"
-                      style={{
-                        color: formData.city === "" && placeholderColor,
-                      }}
-                    >
-                      <MenuItem value={""} disabled>
-                        Select/ Type Here
-                      </MenuItem>
-                      <MenuItem value="1">1</MenuItem>
-                      <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
-                      {/* Add more exam options as needed */}
-                    </Select>
-                  </FormControl>
+                  <Typography>City</Typography>
+                  <TextField
+                    fullWidth
+                    // label="Description"
+                    placeholder="Type here"
+                    variant="outlined"
+                    size="small"
+                    value={formData.city}
+                    onChange={handleInputChange("city")}
+                  />
                 </Grid>
               </Grid>
               <Grid container spacing={6} item>
@@ -201,8 +192,16 @@ const Location = ({ setLocation }) => {
                     variant="outlined"
                     size="small"
                     name="pincode"
+                    inputProps={{
+                      maxLength: 6,
+                    }}
                     value={formData.pincode}
                     onChange={handleInputChange("pincode")}
+                    error={
+                      formData.pincode === ""
+                        ? false
+                        : !checkPincode(formData.pincode)
+                    }
                   />
                 </Grid>
                 <Grid item xs={5}>

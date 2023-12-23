@@ -24,14 +24,6 @@ const ExamPattern = ({ setExamPattern }) => {
     color: secondaryColor,
     borderColor: secondaryColor,
   };
-
-  const [degreeBranch, setDegreeBranch] = useState("");
-  const [modeOfExamination, setModeOfExamination] = useState("");
-  const [durationOfExam, setDurationOfExam] = useState("");
-  const [numberOfQuestions, setNumberOfQuestions] = useState("");
-  const [totalMarks, setTotalMarks] = useState("");
-  const [addMoreField, setAddMoreField] = useState([]);
-
   const [addMorePattern, setAddMorePattern] = useState([""]);
 
   const [formData, setFormData] = useState({
@@ -125,9 +117,9 @@ const ExamPattern = ({ setExamPattern }) => {
                   <MenuItem value={""} disabled>
                     Select/ Type Here
                   </MenuItem>
-                  <MenuItem value="1">1</MenuItem>
+                  {/* <MenuItem value="1">1</MenuItem>
                   <MenuItem value="2">2</MenuItem>
-                  <MenuItem value="3">3</MenuItem>
+                  <MenuItem value="3">3</MenuItem> */}
                 </Select>
               </FormControl>
             </Grid>
@@ -148,9 +140,8 @@ const ExamPattern = ({ setExamPattern }) => {
                   <MenuItem value={""} disabled>
                     Select/ Type Here
                   </MenuItem>
-                  <MenuItem value="1">1</MenuItem>
-                  <MenuItem value="2">2</MenuItem>
-                  <MenuItem value="3">3</MenuItem>
+                  <MenuItem value="online">Online</MenuItem>
+                  <MenuItem value="offline">Offline</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -181,43 +172,25 @@ const ExamPattern = ({ setExamPattern }) => {
           <Grid container spacing={6} item>
             <Grid item xs={4}>
               <Typography>Number Of Questions</Typography>
-              <FormControl fullWidth size="small">
-                <Select
-                  value={formData.pattern_questions}
-                  onChange={handleInputChange("pattern_questions")}
-                  displayEmpty
-                  style={{
-                    color: formData.pattern_questions === "" && secondaryColor,
-                  }}
-                >
-                  <MenuItem value={""} disabled>
-                    Select/ Type Here
-                  </MenuItem>
-                  <MenuItem value="1">1</MenuItem>
-                  <MenuItem value="2">2</MenuItem>
-                  <MenuItem value="3">3</MenuItem>
-                </Select>
-              </FormControl>
+              <TextField
+                size="small"
+                fullWidth
+                type="number"
+                placeholder="Type Here"
+                value={formData.pattern_questions}
+                onChange={handleInputChange("pattern_questions")}
+              />
             </Grid>
             <Grid item xs={4}>
               <Typography>Total Marks</Typography>
-              <FormControl fullWidth size="small">
-                <Select
-                  value={formData.pattern_total_marks}
-                  onChange={handleInputChange("pattern_total_marks")}
-                  displayEmpty
-                  style={{
-                    color: totalMarks === "" && secondaryColor,
-                  }}
-                >
-                  <MenuItem value={""} disabled>
-                    Select/ Type Here
-                  </MenuItem>
-                  <MenuItem value="1">1</MenuItem>
-                  <MenuItem value="2">2</MenuItem>
-                  <MenuItem value="3">3</MenuItem>
-                </Select>
-              </FormControl>
+              <TextField
+                size="small"
+                fullWidth
+                type="number"
+                placeholder="Type Here"
+                value={formData.pattern_total_marks}
+                onChange={handleInputChange("pattern_total_marks")}
+              />
             </Grid>
             <Grid item xs={4}>
               <Typography>Medium of Paper (use ','to separate them)</Typography>

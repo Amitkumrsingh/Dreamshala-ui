@@ -10,6 +10,7 @@ import {
   Button,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { min } from "date-fns";
 
 const CoursesAndFees = ({ setCoursesAndFees }) => {
   const theme = useTheme();
@@ -68,31 +69,23 @@ const CoursesAndFees = ({ setCoursesAndFees }) => {
                   <MenuItem value={""} disabled>
                     Select/ Type Here
                   </MenuItem>
-                  <MenuItem value="exam1">Exam 1</MenuItem>
-                  <MenuItem value="exam2">Exam 2</MenuItem>
+                  {/* <MenuItem value="exam1">Exam 1</MenuItem>
+                  <MenuItem value="exam2">Exam 2</MenuItem> */}
                   {/* Add more exam options as needed */}
                 </Select>
               </FormControl>
             </Grid>
             <Grid item xs={4} mt={2}>
               <Typography>Course Duration</Typography>
-              <FormControl fullWidth size="small">
-                <Select
-                  onChange={handleInputChange("course_duration")}
-                  value={formData.course_duration}
-                  displayEmpty
-                  style={{
-                    color: formData.course_duration === "" && placeholderColor,
-                  }}
-                >
-                  <MenuItem value={""} disabled>
-                    Select/ Type Here
-                  </MenuItem>
-                  <MenuItem value="1">1 Year</MenuItem>
-                  <MenuItem value="2">2 Years</MenuItem>
-                  {/* Add more duration options as needed */}
-                </Select>
-              </FormControl>
+              <TextField
+                fullWidth
+                // label="Description"
+                placeholder="Type here"
+                variant="outlined"
+                size="small"
+                value={formData.course_duration}
+                onChange={handleInputChange("course_duration")}
+              />
             </Grid>
             <Grid item xs={4} mt={2}>
               <Typography>Course Mode</Typography>
@@ -109,9 +102,8 @@ const CoursesAndFees = ({ setCoursesAndFees }) => {
                   <MenuItem value={""} disabled>
                     Select/ Type Here
                   </MenuItem>
-                  <MenuItem value="degree1">Online</MenuItem>
-                  <MenuItem value="degree2">Off Line</MenuItem>
-                  <MenuItem value="degree2">Hybrid</MenuItem>
+                  <MenuItem value="online">Online</MenuItem>
+                  <MenuItem value="offline">Offline</MenuItem>
                   {/* Add more degree options as needed */}
                 </Select>
               </FormControl>
@@ -136,6 +128,8 @@ const CoursesAndFees = ({ setCoursesAndFees }) => {
                 <Typography>Total Fees</Typography>
                 <TextField
                   fullWidth
+                  type="number"
+                  inputProps={{ min: 0 }}
                   placeholder="Type Here"
                   size="small"
                   onChange={handleInputChange("total_fee")}

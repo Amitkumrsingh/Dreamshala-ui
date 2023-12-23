@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { checkUrl } from "../../../services/componentsFunctions";
 
 const Faculties = ({ setFaculties }) => {
   const theme = useTheme();
@@ -183,6 +184,11 @@ const Faculties = ({ setFaculties }) => {
                     size="small"
                     value={formData.faculty_links}
                     onChange={handleInputChange("faculty_links")}
+                    error={
+                      formData.faculty_links === ""
+                        ? false
+                        : !checkUrl(formData.faculty_links)
+                    }
                   />
                 </Grid>
               </Grid>

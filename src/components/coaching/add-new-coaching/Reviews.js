@@ -14,6 +14,7 @@ import {
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import StarRating from "../../other/StarRating";
 import { useTheme } from "@mui/material/styles";
+import { checkUrl } from "../../../services/componentsFunctions";
 
 const Reviews = ({ setReviews }) => {
   const theme = useTheme();
@@ -131,28 +132,15 @@ const Reviews = ({ setReviews }) => {
               </Grid>
               <Grid item xs={4}>
                 <Typography>Course Taken</Typography>
-                <FormControl fullWidth size="small">
-                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select
-                    value={formData.course_taken}
-                    onChange={handleInputChange("course_taken")}
-                    displayEmpty
-                    style={{
-                      color: formData.course_taken === "" && placeholderColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    <MenuItem value="3">3</MenuItem>
-                    <MenuItem value="4">4</MenuItem>
-                    <MenuItem value="5">5</MenuItem>
-                    <MenuItem value="6">6</MenuItem>
-                    {/* Add more exam options as needed */}
-                  </Select>
-                </FormControl>
+                <TextField
+                  fullWidth
+                  // label="Description"
+                  placeholder="Type here"
+                  variant="outlined"
+                  size="small"
+                  value={formData.course_taken}
+                  onChange={handleInputChange("course_taken")}
+                />
               </Grid>
             </Grid>
 
@@ -228,6 +216,11 @@ const Reviews = ({ setReviews }) => {
                     size="small"
                     value={formData.review_links}
                     onChange={handleInputChange("review_links")}
+                    error={
+                      formData.review_links === ""
+                        ? false
+                        : !checkUrl(formData.review_links)
+                    }
                   />
                 </Grid>
                 <Grid>

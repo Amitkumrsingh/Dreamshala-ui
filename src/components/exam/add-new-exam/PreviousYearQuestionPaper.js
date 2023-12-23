@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+import { checkUrl } from "../../../services/componentsFunctions";
 
 const PreviousYearQuestionPaper = ({ setPreviousYearQuestionPaper }) => {
   const theme = useTheme();
@@ -28,10 +29,6 @@ const PreviousYearQuestionPaper = ({ setPreviousYearQuestionPaper }) => {
   for (let year = 1990; year <= 2023; year++) {
     years.push(year.toString());
   }
-
-  const [exams, setExams] = useState("");
-  const [yearOfPaper, setYearOfPaper] = useState("");
-  const [modeOfPaper, setModeOfPaper] = useState("");
 
   const [addMoreStudyMaterial, setAddMoreStudyMaterial] = useState([""]);
   const [formData, setFormData] = useState({
@@ -184,9 +181,8 @@ const PreviousYearQuestionPaper = ({ setPreviousYearQuestionPaper }) => {
                     <MenuItem value={""} disabled>
                       Select/ Type Here
                     </MenuItem>
-                    {/* <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    <MenuItem value="3">3</MenuItem> */}
+                    <MenuItem value="online">Online</MenuItem>
+                    <MenuItem value="offline">Offline</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -203,6 +199,11 @@ const PreviousYearQuestionPaper = ({ setPreviousYearQuestionPaper }) => {
                       placeholder="Type here"
                       variant="outlined"
                       size="small"
+                      error={
+                        formData.question_paper_links === ""
+                          ? false
+                          : !checkUrl(formData.question_paper_links)
+                      }
                     />
                   </Grid>
                   <Grid item>

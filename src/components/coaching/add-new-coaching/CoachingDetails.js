@@ -12,7 +12,11 @@ import {
 } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { useTheme } from "@mui/material/styles";
-// import UploadFileIcon from "@mui/icons-material/UploadFile";
+import {
+  checkGSTIN,
+  checkPancard,
+  checkPincode,
+} from "../../../services/componentsFunctions";
 
 const CoachingDetails = ({ setCoachingDetails }) => {
   const theme = useTheme();
@@ -123,8 +127,16 @@ const CoachingDetails = ({ setCoachingDetails }) => {
               variant="outlined"
               size="small"
               name="gstin"
+              inputProps={{
+                maxLength: 15,
+              }}
               value={formData.coaching_gstin}
               onChange={handleInputChange("coaching_gstin")}
+              error={
+                formData.coaching_gstin === ""
+                  ? false
+                  : !checkGSTIN(formData.coaching_gstin)
+              }
             />
           </Grid>
           <Grid item xs={4}>
@@ -208,8 +220,16 @@ const CoachingDetails = ({ setCoachingDetails }) => {
                   variant="outlined"
                   size="small"
                   name="pincode"
+                  inputProps={{
+                    maxLength: 6,
+                  }}
                   value={formData.pincode}
                   onChange={handleInputChange("pincode")}
+                  error={
+                    formData.pincode === ""
+                      ? false
+                      : !checkPincode(formData.pincode)
+                  }
                 />
               </Grid>
               <Grid item xs={4}>
@@ -238,27 +258,15 @@ const CoachingDetails = ({ setCoachingDetails }) => {
                 </FormControl>
               </Grid>
               <Grid item xs={4}>
-                <Typography>Select City</Typography>
-                <FormControl fullWidth size="small">
-                  {/* <InputLabel>Select/ Type Here</InputLabel> */}
-                  <Select
-                    value={formData.city}
-                    onChange={handleInputChange("city")}
-                    displayEmpty
-                    name="city"
-                    style={{
-                      color: city === "" && placeholderColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    <MenuItem value="3">3</MenuItem>
-                    {/* Add more exam options as needed */}
-                  </Select>
-                </FormControl>
+                <Typography>City</Typography>
+                <TextField
+                  fullWidth
+                  placeholder="Type here"
+                  variant="outlined"
+                  size="small"
+                  value={formData.city}
+                  onChange={handleInputChange("city")}
+                />
               </Grid>
             </Grid>
           </Grid>
@@ -288,8 +296,16 @@ const CoachingDetails = ({ setCoachingDetails }) => {
               variant="outlined"
               size="small"
               name="pancard"
+              inputProps={{
+                maxLength: 10,
+              }}
               value={formData.pan_card_number}
               onChange={handleInputChange("pan_card_number")}
+              error={
+                formData.pan_card_number === ""
+                  ? false
+                  : !checkPancard(formData.pan_card_number)
+              }
             />
           </Grid>
           <Grid item xs={2}>

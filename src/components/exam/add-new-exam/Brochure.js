@@ -14,6 +14,7 @@ import {
 // import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { useTheme } from "@mui/material/styles";
+import { checkUrl } from "../../../services/componentsFunctions";
 
 const Brochure = ({ setBrochure }) => {
   const theme = useTheme();
@@ -125,6 +126,11 @@ const Brochure = ({ setBrochure }) => {
                       fullWidth
                       value={formData.brochure_links}
                       onChange={handleInputChange("brochure_links")}
+                      error={
+                        formData.brochure_links === ""
+                          ? false
+                          : !checkUrl(formData.brochure_links)
+                      }
                     />
                   </Grid>
                 ))}
