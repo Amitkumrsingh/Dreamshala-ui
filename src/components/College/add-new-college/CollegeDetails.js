@@ -13,6 +13,11 @@ import {
 } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { useTheme } from "@mui/material/styles";
+import {
+  checkGSTIN,
+  checkPancard,
+  checkPincode,
+} from "../../../services/componentsFunctions";
 // import UploadFileIcon from "@mui/icons-material/UploadFile";
 
 const CollegeDetails = ({ setCollegeDetails }) => {
@@ -123,6 +128,10 @@ const CollegeDetails = ({ setCollegeDetails }) => {
               size="small"
               value={formData.GSTIN}
               onChange={handleInputChange("GSTIN")}
+              inputProps={{ maxLength: 15 }}
+              error={
+                formData.GSTIN === "" ? false : !checkGSTIN(formData.GSTIN)
+              }
             />
           </Grid>
           <Grid item xs={4}>
@@ -207,6 +216,11 @@ const CollegeDetails = ({ setCollegeDetails }) => {
                   pattern="\d+"
                   value={formData.pincode}
                   onChange={handleInputChange("pincode")}
+                  error={
+                    formData.pincode === ""
+                      ? false
+                      : !checkPincode(formData.pincode)
+                  }
                 />
               </Grid>
               <Grid item xs={4}>
@@ -275,6 +289,11 @@ const CollegeDetails = ({ setCollegeDetails }) => {
               size="small"
               value={formData.pan_card_number}
               onChange={handleInputChange("pan_card_number")}
+              error={
+                formData.pan_card_number === ""
+                  ? false
+                  : !checkPancard(formData.pan_card_number)
+              }
             />
           </Grid>
           <Grid item xs={2}>

@@ -112,22 +112,14 @@ const PlacementDetails = ({ setPlacementDetails }) => {
             <Grid container spacing={6} item>
               <Grid item xs={4}>
                 <Typography>Degree/ Branch</Typography>
-                <FormControl fullWidth size="small">
-                  <Select
-                    value={formData.degree_branch}
-                    onChange={handleInputChange("degree_branch")}
-                    displayEmpty
-                    style={{
-                      color: formData.degree_branch === "" && placeholderColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    {/* <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem> */}
-                  </Select>
-                </FormControl>
+
+                <TextField
+                  placeholder="Type Here"
+                  size="small"
+                  fullWidth
+                  value={formData.degree_branch}
+                  onChange={handleInputChange("degree_branch")}
+                />
               </Grid>
             </Grid>
 
@@ -199,23 +191,13 @@ const PlacementDetails = ({ setPlacementDetails }) => {
                     <Typography>
                       Top Recruiters (use ','to separate them)
                     </Typography>
-                    <FormControl fullWidth size="small">
-                      <Select
-                        value={formData.to_recruiters}
-                        onChange={handleInputChange("to_recruiters")}
-                        displayEmpty
-                        style={{
-                          color:
-                            formData.to_recruiters === "" && placeholderColor,
-                        }}
-                      >
-                        <MenuItem value={""} disabled>
-                          Select/ Type Here
-                        </MenuItem>
-                        {/* <MenuItem value="1">1</MenuItem>
-                        <MenuItem value="2">2</MenuItem> */}
-                      </Select>
-                    </FormControl>
+                    <TextField
+                      placeholder="Type Here"
+                      size="small"
+                      fullWidth
+                      value={formData.to_recruiters}
+                      onChange={handleInputChange("to_recruiters")}
+                    />
                   </Grid>
                 </Grid>
               </Grid>

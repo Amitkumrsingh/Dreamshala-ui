@@ -13,7 +13,10 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
-import { checkUrl } from "../../../services/componentsFunctions";
+import {
+  checkUrl,
+  generateYearsArray,
+} from "../../../services/componentsFunctions";
 
 const PreviousYearQuestionPaper = ({ setPreviousYearQuestionPaper }) => {
   const theme = useTheme();
@@ -24,6 +27,7 @@ const PreviousYearQuestionPaper = ({ setPreviousYearQuestionPaper }) => {
     borderColor: secondaryColor,
   };
 
+  // for generating years
   const years = [];
 
   for (let year = 1990; year <= 2023; year++) {
@@ -145,7 +149,7 @@ const PreviousYearQuestionPaper = ({ setPreviousYearQuestionPaper }) => {
                     <MenuItem value={""} disabled>
                       Select/ Type Here
                     </MenuItem>
-                    {years.map((year) => (
+                    {generateYearsArray(1980, 2023).map((year) => (
                       <MenuItem key={year} value={year}>
                         {year}
                       </MenuItem>

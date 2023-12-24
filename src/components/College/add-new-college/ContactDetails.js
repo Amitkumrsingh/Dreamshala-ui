@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import {
+  checkUrl,
+  checkEmail,
+  checkContact,
+} from "../../../services/componentsFunctions";
 
 const ContactDetails = ({ setContactDetails }) => {
   const theme = useTheme();
@@ -76,6 +81,11 @@ const ContactDetails = ({ setContactDetails }) => {
             size="small"
             value={formData.main_website}
             onChange={handleInputChange("main_website")}
+            error={
+              formData.main_website === ""
+                ? false
+                : !checkUrl(formData.main_website)
+            }
           />
         </Grid>
         <Grid item xs={4}>
@@ -86,8 +96,14 @@ const ContactDetails = ({ setContactDetails }) => {
             size="small"
             type="tel"
             name="phone"
+            inputProps={{ maxLength: 13 }}
             value={formData.contact_number}
             onChange={handleInputChange("contact_number")}
+            error={
+              formData.contact_number === ""
+                ? false
+                : !checkContact(formData.contact_number)
+            }
           />
         </Grid>
         <Grid item xs={4}>
@@ -100,6 +116,7 @@ const ContactDetails = ({ setContactDetails }) => {
             name="email"
             value={formData.email}
             onChange={handleInputChange("email")}
+            error={formData.email === "" ? false : !checkEmail(formData.email)}
           />
         </Grid>
       </Grid>

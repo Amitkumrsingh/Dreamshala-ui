@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import {
+  checkContact,
+  checkEmail,
+} from "../../../services/componentsFunctions";
 
 const ManagementContact = ({ setManagementContact }) => {
   const theme = useTheme();
@@ -15,10 +19,6 @@ const ManagementContact = ({ setManagementContact }) => {
   const handleInputChange = (field) => (event) => {
     setFormData({ ...formData, [field]: event.target.value });
   };
-
-  // useEffect(() => {
-  //   setManagementContact(formData);
-  // }, [formData, setManagementContact]);
 
   useEffect(() => {
     setManagementContact(formData);
@@ -73,6 +73,11 @@ const ManagementContact = ({ setManagementContact }) => {
             type="email"
             value={formData.management_email}
             onChange={handleInputChange("management_email")}
+            error={
+              formData.management_email === ""
+                ? false
+                : !checkEmail(formData.management_email)
+            }
           />
         </Grid>
       </Grid>
@@ -90,6 +95,11 @@ const ManagementContact = ({ setManagementContact }) => {
             name="phone"
             value={formData.management_contact}
             onChange={handleInputChange("management_contact")}
+            error={
+              formData.management_contact === ""
+                ? false
+                : !checkContact(formData.management_contact)
+            }
           />
         </Grid>
         <Grid item xs={4}></Grid>

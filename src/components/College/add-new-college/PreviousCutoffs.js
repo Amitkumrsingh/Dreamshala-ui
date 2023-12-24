@@ -104,10 +104,10 @@ const PreviousCutoffs = ({ setPreviousCutoffs }) => {
                               <MenuItem value={""} disabled>
                                 Select/ Type Here
                               </MenuItem>
-                              {/* <MenuItem value="general">General</MenuItem>
+                              <MenuItem value="general">General</MenuItem>
                               <MenuItem value="obc">OBC</MenuItem>
                               <MenuItem value="sc">SC</MenuItem>
-                              <MenuItem value="st">ST</MenuItem> */}
+                              <MenuItem value="st">ST</MenuItem>
                             </Select>
                           </FormControl>
                         </Grid>
@@ -139,10 +139,10 @@ const PreviousCutoffs = ({ setPreviousCutoffs }) => {
                           <MenuItem value={""} disabled>
                             Select/ Type Here
                           </MenuItem>
-                          {/* <MenuItem value="general">General</MenuItem>
+                          <MenuItem value="general">General</MenuItem>
                           <MenuItem value="obc">OBC</MenuItem>
                           <MenuItem value="sc">SC</MenuItem>
-                          <MenuItem value="st">ST</MenuItem> */}
+                          <MenuItem value="st">ST</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
@@ -191,24 +191,14 @@ const PreviousCutoffs = ({ setPreviousCutoffs }) => {
                   <Grid item key={index}>
                     <Grid container spacing={6}>
                       <Grid item xs={4}>
-                        <Typography>Select Subject</Typography>
-                        <FormControl fullWidth size="small">
-                          <Select
-                            value={formData.subject}
-                            onChange={handleInputChange("subject")}
-                            displayEmpty
-                            style={{
-                              color:
-                                formData.subject === "" && placeholderColor,
-                            }}
-                          >
-                            <MenuItem value={""} disabled>
-                              Select/ Type Here
-                            </MenuItem>
-                            {/* <MenuItem value="1">1</MenuItem>
-                            <MenuItem value="2">2</MenuItem> */}
-                          </Select>
-                        </FormControl>
+                        <Typography>Subject</Typography>
+                        <TextField
+                          placeholder="Type Here"
+                          size="small"
+                          fullWidth
+                          value={formData.subject}
+                          onChange={handleInputChange("subject")}
+                        />
                       </Grid>
                       <Grid item xs={4}>
                         <Typography>Select Category</Typography>
@@ -224,10 +214,10 @@ const PreviousCutoffs = ({ setPreviousCutoffs }) => {
                             <MenuItem value={""} disabled>
                               Select/ Type Here
                             </MenuItem>
-                            {/* <MenuItem value="general">General</MenuItem>
+                            <MenuItem value="general">General</MenuItem>
                             <MenuItem value="obc">OBC</MenuItem>
                             <MenuItem value="sc">SC</MenuItem>
-                            <MenuItem value="st">ST</MenuItem> */}
+                            <MenuItem value="st">ST</MenuItem>
                           </Select>
                         </FormControl>
                       </Grid>
@@ -248,23 +238,14 @@ const PreviousCutoffs = ({ setPreviousCutoffs }) => {
 
                 <Grid item container spacing={6}>
                   <Grid item xs={4}>
-                    <Typography>Select Subject</Typography>
-                    <FormControl fullWidth size="small">
-                      <Select
-                        value={formData.subject}
-                        onChange={handleInputChange("subject")}
-                        displayEmpty
-                        style={{
-                          color: formData.subject === "" && placeholderColor,
-                        }}
-                      >
-                        <MenuItem value={""} disabled>
-                          Select/ Type Here
-                        </MenuItem>
-                        {/* <MenuItem value="1">1</MenuItem>
-                        <MenuItem value="2">2</MenuItem> */}
-                      </Select>
-                    </FormControl>
+                    <Typography>Subject</Typography>
+                    <TextField
+                      placeholder="Type Here"
+                      size="small"
+                      fullWidth
+                      value={formData.subject}
+                      onChange={handleInputChange("subject")}
+                    />
                   </Grid>
                   <Grid item xs={4}>
                     <Typography>Select Category</Typography>
@@ -280,10 +261,10 @@ const PreviousCutoffs = ({ setPreviousCutoffs }) => {
                         <MenuItem value={""} disabled>
                           Select/ Type Here
                         </MenuItem>
-                        {/* <MenuItem value="general">General</MenuItem>
-                            <MenuItem value="obc">OBC</MenuItem>
-                            <MenuItem value="sc">SC</MenuItem>
-                            <MenuItem value="st">ST</MenuItem> */}
+                        <MenuItem value="general">General</MenuItem>
+                        <MenuItem value="obc">OBC</MenuItem>
+                        <MenuItem value="sc">SC</MenuItem>
+                        <MenuItem value="st">ST</MenuItem>
                       </Select>
                     </FormControl>
                   </Grid>

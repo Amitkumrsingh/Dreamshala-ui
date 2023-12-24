@@ -13,6 +13,10 @@ import {
 } from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { useTheme } from "@mui/material/styles";
+import {
+  checkUrl,
+  generateYearsArray,
+} from "../../../services/componentsFunctions";
 
 const Alumni = ({ setAlumni }) => {
   const theme = useTheme();
@@ -190,12 +194,12 @@ const Alumni = ({ setAlumni }) => {
                       <MenuItem value={""} disabled>
                         Select/ Type Here
                       </MenuItem>
-                      <MenuItem value="1">1</MenuItem>
-                      <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
-                      <MenuItem value="4">4</MenuItem>
-                      <MenuItem value="5">5</MenuItem>
-                      <MenuItem value="6">6</MenuItem>
+                      {generateYearsArray(1980, 2023).map((year) => (
+                        <MenuItem key={year} value={year}>
+                          {year}
+                        </MenuItem>
+                      ))}
+
                       {/* Add more exam options as needed */}
                     </Select>
                   </FormControl>
@@ -210,6 +214,9 @@ const Alumni = ({ setAlumni }) => {
                     size="small"
                     value={formData.links}
                     onChange={handleInputChange("links")}
+                    error={
+                      formData.links === "" ? false : !checkUrl(formData.links)
+                    }
                   />
                 </Grid>
               </Grid>
