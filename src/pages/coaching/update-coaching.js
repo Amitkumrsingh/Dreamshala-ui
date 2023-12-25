@@ -12,6 +12,7 @@ const UpdateCoaching = () => {
       router.push("/auth/sign-in");
     }
   }, [router, isLoggedIn]);
+  console.log("update coaching");
 
   return <div>UpdateCoaching</div>;
 };

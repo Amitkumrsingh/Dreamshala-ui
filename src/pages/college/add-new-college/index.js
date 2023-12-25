@@ -21,7 +21,6 @@ import {
 } from "../../../components/College/add-new-college";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-
 import DashboardLayout from "../../../layouts/Dashboard";
 import React, { useState, useEffect } from "react";
 import {
@@ -36,7 +35,6 @@ import {
   AlertTitle,
   Typography,
 } from "@mui/material";
-
 import { addNewCollegeForms } from "../../../services/collegeServices";
 
 const steps = [
@@ -81,9 +79,12 @@ const AddNewCollege = () => {
     if (!isLoggedIn) {
       router.push("/auth/sign-in");
     }
+    console.log("college");
   }, [router, isLoggedIn]);
 
   const [activeStep, setActiveStep] = useState(0);
+
+  console.log("college 1");
 
   const handleNext = async () => {
     let response, obj;

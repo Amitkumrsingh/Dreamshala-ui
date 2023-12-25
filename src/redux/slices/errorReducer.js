@@ -11,7 +11,8 @@ export const errorSlice = createSlice({
   reducers: {
     setErrorData: (state, action) => {
       const { fields, err } = action.payload;
-      state = { fields, err };
+      state.fields = fields;
+      state.err = err;
       console.log(state);
     },
   },

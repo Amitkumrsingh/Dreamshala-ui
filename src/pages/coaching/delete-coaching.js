@@ -12,6 +12,7 @@ const DeleteCoaching = () => {
       router.push("/auth/sign-in");
     }
   }, [router, isLoggedIn]);
+  console.log("delete coaching");
 
   return <div>DeleteCoaching</div>;
 };

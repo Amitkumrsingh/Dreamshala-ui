@@ -57,6 +57,8 @@ const AddNewExam = () => {
     }
   }, [router, isLoggedIn]);
 
+  console.log("exam");
+
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = async () => {

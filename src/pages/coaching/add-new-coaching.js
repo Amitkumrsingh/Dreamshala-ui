@@ -73,6 +73,8 @@ const AddNewCoaching = () => {
     }
   }, [router, isLoggedIn]);
 
+  console.log("coaching");
+
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = async () => {
