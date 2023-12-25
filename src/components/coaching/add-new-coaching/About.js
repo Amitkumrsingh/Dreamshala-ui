@@ -27,10 +27,9 @@ const About = ({ setAbout }) => {
   const primaryColor = theme.palette.text.primary;
 
   const buttonSelectedStyle = {
-    color: primaryColor,
     textAlign: "center",
     margin: "5px",
-    border: "1px solid",
+    // border: "1px solid",
     borderRadius: "4px",
   };
 

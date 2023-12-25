@@ -8,7 +8,7 @@ const EntranceExams = ({ setEntranceExams }) => {
   const primaryColor = theme.palette.text.primary;
 
   const buttonSelectedStyle = {
-    color: primaryColor,
+    // color: primaryColor,
   };
 
   const buttonNotSelectedStyle = {
@@ -43,7 +43,7 @@ const EntranceExams = ({ setEntranceExams }) => {
     ],
   });
 
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState("");
 
   // Function to handle checkbox changes
   const handleCheckboxChange = (category, index) => {
@@ -52,9 +52,9 @@ const EntranceExams = ({ setEntranceExams }) => {
       !updatedCheckboxes[category][index].selected;
 
     if (updatedCheckboxes[category][index].selected) {
-      const temp = selectedCheckboxes;
-      temp.push(updatedCheckboxes[category][index].exam);
-      setSelectedCheckboxes(temp);
+      setSelectedCheckboxes(
+        `${selectedCheckboxes}, ${updatedCheckboxes[category][index].exam}`
+      );
     }
 
     setCheckboxes(updatedCheckboxes);
@@ -101,9 +101,9 @@ const EntranceExams = ({ setEntranceExams }) => {
           <Grid container spacing={6}>
             <Grid item xs={4}>
               <Typography>Design</Typography>
-              <Grid style={{ display: "flex" }}>
+              <Grid container>
                 {checkboxes.design.map(({ exam, selected }, index) => (
-                  <Grid key={index} mr={1}>
+                  <Grid key={index} mr={1} item>
                     <Button
                       variant={selected ? "contained" : "outlined"}
                       style={
@@ -120,9 +120,9 @@ const EntranceExams = ({ setEntranceExams }) => {
 
             <Grid item xs={4}>
               <Typography>Engineering</Typography>
-              <Grid style={{ display: "flex" }}>
+              <Grid container>
                 {checkboxes.engineering.map(({ exam, selected }, index) => (
-                  <Grid key={index} mr={1}>
+                  <Grid key={index} mr={1} item>
                     <Button
                       variant={selected ? "contained" : "outlined"}
                       style={
@@ -139,9 +139,9 @@ const EntranceExams = ({ setEntranceExams }) => {
 
             <Grid item xs={4}>
               <Typography>Medical</Typography>
-              <Grid style={{ display: "flex" }}>
+              <Grid container>
                 {checkboxes.medical.map(({ exam, selected }, index) => (
-                  <Grid key={index} mr={1}>
+                  <Grid item key={index} mr={1}>
                     <Button
                       variant={selected ? "contained" : "outlined"}
                       style={
@@ -162,9 +162,9 @@ const EntranceExams = ({ setEntranceExams }) => {
         <Grid container spacing={6} mt={2}>
           <Grid item xs={4}>
             <Typography>Law</Typography>
-            <Grid style={{ display: "flex" }}>
+            <Grid container>
               {checkboxes.law.map(({ exam, selected }, index) => (
-                <Grid key={index} mr={1}>
+                <Grid key={index} mr={1} item>
                   <Button
                     variant={selected ? "contained" : "outlined"}
                     style={
@@ -181,9 +181,9 @@ const EntranceExams = ({ setEntranceExams }) => {
 
           <Grid item xs={4}>
             <Typography>Engineering</Typography>
-            <Grid style={{ display: "flex" }}>
+            <Grid container>
               {checkboxes.engineering.map(({ exam, selected }, index) => (
-                <Grid key={index} mr={1}>
+                <Grid key={index} mr={1} item>
                   <Button
                     variant={selected ? "contained" : "outlined"}
                     style={
@@ -200,9 +200,9 @@ const EntranceExams = ({ setEntranceExams }) => {
 
           <Grid item xs={4}>
             <Typography>Medical</Typography>
-            <Grid style={{ display: "flex" }}>
+            <Grid container>
               {checkboxes.medical.map(({ exam, selected }, index) => (
-                <Grid key={index} mr={1}>
+                <Grid key={index} mr={1} item>
                   <Button
                     variant={selected ? "contained" : "outlined"}
                     style={

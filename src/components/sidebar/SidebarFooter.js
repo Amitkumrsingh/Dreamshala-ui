@@ -60,8 +60,8 @@ const SidebarFooter = ({ ...rest }) => {
             {/* Demo data */}
             {!user && (
               <Avatar
-                alt="Lucy Lavender"
-                src="/static/img/avatars/avatar-1.jpg"
+                alt={userData.username}
+                src="/static/img/avatars/avatar-2.jpg"
               />
             )}
           </FooterBadge>

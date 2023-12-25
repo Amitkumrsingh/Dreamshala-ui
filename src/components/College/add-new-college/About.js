@@ -29,7 +29,6 @@ const About = ({ setAbout }) => {
   const buttonSelectedStyle = {
     textAlign: "center",
     margin: "5px",
-    border: "1px solid",
     borderRadius: "4px",
   };
 

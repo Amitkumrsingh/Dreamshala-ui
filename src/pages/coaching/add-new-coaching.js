@@ -28,6 +28,10 @@ import {
   Step,
   StepLabel,
   Grid,
+  Alert,
+  Collapse,
+  AlertTitle,
+  Typography,
 } from "@mui/material";
 
 import { useRouter } from "next/router";
@@ -58,6 +62,10 @@ const AddNewCoaching = () => {
   const [reviews, setReviews] = useState();
   const [checkList, setCheckList] = useState();
   const [faq, setFaq] = useState();
+  const [error, setError] = useState({
+    fields: {},
+    err: false,
+  });
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -68,10 +76,10 @@ const AddNewCoaching = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = async () => {
-    let data, obj;
+    let response, obj;
     switch (activeStep) {
       case 0:
-        data = await addNewCoachingForms({
+        response = await addNewCoachingForms({
           data: {
             ...about,
             ...contactDetails,
@@ -81,15 +89,10 @@ const AddNewCoaching = () => {
           },
           urlEndpoint: "/coaching/Step1/",
         });
-
-        // if (data.response === 201) console.log("form Submitted 1");
-
-        obj = await data.json();
-        console.log(obj);
         break;
 
       case 1:
-        data = await addNewCoachingForms({
+        response = await addNewCoachingForms({
           data: {
             ...entranceExams,
             ...coursesAndFees,
@@ -99,13 +102,10 @@ const AddNewCoaching = () => {
           },
           urlEndpoint: "/coaching/Step2/",
         });
-
-        obj = await data.json();
-        console.log(obj);
         break;
 
       case 2:
-        data = await addNewCoachingForms({
+        response = await addNewCoachingForms({
           data: {
             ...photos,
             ...videos,
@@ -115,12 +115,18 @@ const AddNewCoaching = () => {
           },
           urlEndpoint: "/coaching/Step3/",
         });
-
-        obj = await data.json();
-        console.log(obj);
         break;
     }
-    setActiveStep(activeStep + 1);
+
+    obj = await response.json();
+
+    if (response.status !== 201) {
+      setError({ fields: obj, err: true });
+    } else {
+      setError({ fields: {}, err: false });
+      setActiveStep(activeStep + 1);
+    }
+    console.log(obj);
   };
 
   const handleBack = () => {
@@ -129,6 +135,7 @@ const AddNewCoaching = () => {
 
   const handleToStep = (step) => {
     setActiveStep(step);
+    setError({ fields: {}, err: false });
   };
 
   return (
@@ -216,6 +223,22 @@ const AddNewCoaching = () => {
                   </Grid>
                 </Grid>
               )}
+            </Grid>
+
+            <Grid mb={4} mt={8}>
+              <Collapse in={error.err}>
+                <Alert
+                  mb={4}
+                  variant="filled"
+                  severity="warning"
+                  onClose={() => setError({ fields: "", err: false })}
+                >
+                  <AlertTitle>Required Fields</AlertTitle>
+                  {Object.keys(error.fields).map((field) => (
+                    <Typography key={field}>{field}</Typography>
+                  ))}
+                </Alert>
+              </Collapse>
             </Grid>
 
             <Grid container justifyContent={"end"} mt={20}>

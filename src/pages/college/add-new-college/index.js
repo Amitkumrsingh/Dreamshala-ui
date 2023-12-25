@@ -31,7 +31,12 @@ import {
   Step,
   StepLabel,
   Grid,
+  Alert,
+  Collapse,
+  AlertTitle,
+  Typography,
 } from "@mui/material";
+
 import { addNewCollegeForms } from "../../../services/collegeServices";
 
 const steps = [
@@ -67,6 +72,10 @@ const AddNewCollege = () => {
   const [reviews, setReviews] = useState();
   const [checkList, setCheckList] = useState();
   const [faq, setFaq] = useState();
+  const [error, setError] = useState({
+    fields: {},
+    err: false,
+  });
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -78,6 +87,7 @@ const AddNewCollege = () => {
 
   const handleNext = async () => {
     let response, obj;
+
     switch (activeStep) {
       case 0:
         response = await addNewCollegeForms({
@@ -91,9 +101,6 @@ const AddNewCollege = () => {
           urlEndpoint: "/college/step1/",
         });
 
-        console.log(response.status);
-        obj = await response.json();
-        console.log(obj);
         break;
 
       case 1:
@@ -105,9 +112,6 @@ const AddNewCollege = () => {
           urlEndpoint: "/college/step2/",
         });
 
-        console.log(response.status);
-        obj = await response.json();
-        console.log(obj);
         break;
 
       case 2:
@@ -121,9 +125,6 @@ const AddNewCollege = () => {
           urlEndpoint: "/college/step3/",
         });
 
-        console.log(response.status);
-        obj = await response.json();
-        console.log(obj);
         break;
 
       case 3:
@@ -135,9 +136,6 @@ const AddNewCollege = () => {
           urlEndpoint: "/college/step4/",
         });
 
-        console.log(response.status);
-        obj = await response.json();
-        console.log(obj);
         break;
 
       case 4:
@@ -153,13 +151,18 @@ const AddNewCollege = () => {
           urlEndpoint: "/college/step5/",
         });
 
-        console.log(response.status);
-        obj = await response.json();
-        console.log(obj);
         break;
     }
 
-    setActiveStep(activeStep + 1);
+    obj = await response.json();
+
+    if (response.status !== 201) {
+      setError({ fields: obj, err: true });
+    } else {
+      setError({ fields: {}, err: false });
+      setActiveStep(activeStep + 1);
+    }
+    console.log(obj);
   };
 
   const handleBack = () => {
@@ -168,6 +171,7 @@ const AddNewCollege = () => {
 
   const handleToStep = (step) => {
     setActiveStep(step);
+    setError({ fields: {}, err: false });
   };
 
   return (
@@ -196,6 +200,7 @@ const AddNewCollege = () => {
           >
             <Grid>
               {/* Render the current step form */}
+
               {activeStep === 0 && (
                 <Grid container flexDirection={"column"} spacing={6}>
                   <Grid item>
@@ -286,6 +291,21 @@ const AddNewCollege = () => {
               {/* Add more steps as needed */}
             </Grid>
 
+            <Grid mb={4} mt={8}>
+              <Collapse in={error.err}>
+                <Alert
+                  mb={4}
+                  variant="filled"
+                  severity="warning"
+                  onClose={() => setError({ fields: "", err: false })}
+                >
+                  <AlertTitle>Required Fields</AlertTitle>
+                  {Object.keys(error.fields).map((field) => (
+                    <Typography key={field}>{field}</Typography>
+                  ))}
+                </Alert>
+              </Collapse>
+            </Grid>
             <Grid container justifyContent={"end"} mt={20}>
               <Button disabled={activeStep === 0} onClick={handleBack}>
                 Back

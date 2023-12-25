@@ -93,9 +93,9 @@ const EntranceExams = ({ setEntranceExams }) => {
           <Grid container spacing={6}>
             <Grid item xs={4}>
               <Typography>Design</Typography>
-              <Grid style={{ display: "flex" }}>
+              <Grid container>
                 {checkboxes.design.map(({ exam, selected }, index) => (
-                  <Grid key={index} mr={1}>
+                  <Grid key={index} mr={1} item>
                     <Button
                       variant={selected ? "contained" : "outlined"}
                       style={
@@ -112,9 +112,9 @@ const EntranceExams = ({ setEntranceExams }) => {
 
             <Grid item xs={4}>
               <Typography>Engineering</Typography>
-              <Grid style={{ display: "flex" }}>
+              <Grid container>
                 {checkboxes.engineering.map(({ exam, selected }, index) => (
-                  <Grid key={index} mr={1}>
+                  <Grid key={index} mr={1} item>
                     <Button
                       variant={selected ? "contained" : "outlined"}
                       style={
@@ -131,9 +131,9 @@ const EntranceExams = ({ setEntranceExams }) => {
 
             <Grid item xs={4}>
               <Typography>Medical</Typography>
-              <Grid style={{ display: "flex" }}>
+              <Grid container>
                 {checkboxes.medical.map(({ exam, selected }, index) => (
-                  <Grid key={index} mr={1}>
+                  <Grid key={index} mr={1} item>
                     <Button
                       variant={selected ? "contained" : "outlined"}
                       style={
@@ -154,9 +154,9 @@ const EntranceExams = ({ setEntranceExams }) => {
         <Grid container spacing={6} mt={2}>
           <Grid item xs={4}>
             <Typography>Law</Typography>
-            <Grid style={{ display: "flex" }}>
+            <Grid container>
               {checkboxes.law.map(({ exam, selected }, index) => (
-                <Grid key={index} mr={1}>
+                <Grid key={index} mr={1} item>
                   <Button
                     variant={selected ? "contained" : "outlined"}
                     style={
@@ -173,9 +173,9 @@ const EntranceExams = ({ setEntranceExams }) => {
 
           <Grid item xs={4}>
             <Typography>Engineering</Typography>
-            <Grid style={{ display: "flex" }}>
+            <Grid container>
               {checkboxes.engineering.map(({ exam, selected }, index) => (
-                <Grid key={index} mr={1}>
+                <Grid key={index} mr={1} item>
                   <Button
                     variant={selected ? "contained" : "outlined"}
                     style={
@@ -192,9 +192,9 @@ const EntranceExams = ({ setEntranceExams }) => {
 
           <Grid item xs={4}>
             <Typography>Medical</Typography>
-            <Grid style={{ display: "flex" }}>
+            <Grid container>
               {checkboxes.medical.map(({ exam, selected }, index) => (
-                <Grid key={index} mr={1}>
+                <Grid key={index} mr={1} item>
                   <Button
                     variant={selected ? "contained" : "outlined"}
                     style={

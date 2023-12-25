@@ -335,7 +335,7 @@ const CheckList = ({ setCheckList }) => {
                   type="text"
                   size="small"
                   value={students_in_batch.numbers}
-                  disabled={students_in_batch.index !== -1}
+                  // disabled={students_in_batch.index !== -1}
                   onChange={(e) =>
                     setStudents_in_batch({ index: -1, numbers: e.target.value })
                   }
@@ -381,7 +381,7 @@ const CheckList = ({ setCheckList }) => {
                   type="text"
                   size="small"
                   value={total_students.numbers}
-                  disabled={total_students.index !== -1}
+                  // disabled={total_students.index !== -1}
                   onChange={(e) =>
                     setTotal_students({
                       index: -1,
@@ -432,7 +432,7 @@ const CheckList = ({ setCheckList }) => {
                   type="text"
                   size="small"
                   value={number_of_faculty.numbers}
-                  disabled={number_of_faculty.index !== -1}
+                  // disabled={number_of_faculty.index !== -1}
                   onChange={(e) =>
                     setNumber_of_faculty({ index: -1, numbers: e.target.value })
                   }

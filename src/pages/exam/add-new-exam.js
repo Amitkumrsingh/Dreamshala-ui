@@ -22,6 +22,10 @@ import {
   Step,
   StepLabel,
   Grid,
+  Alert,
+  Collapse,
+  AlertTitle,
+  Typography,
 } from "@mui/material";
 
 import { useRouter } from "next/router";
@@ -42,6 +46,10 @@ const AddNewExam = () => {
   const [examPattern, setExamPattern] = useState();
   const [studyMaterial, setStudyMaterial] = useState();
   const [previousYearQuestionPaper, setPreviousYearQuestionPaper] = useState();
+  const [error, setError] = useState({
+    fields: {},
+    err: false,
+  });
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -52,10 +60,10 @@ const AddNewExam = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = async () => {
-    let data, obj;
+    let response, obj;
     switch (activeStep) {
       case 0:
-        data = await addNewExamForms({
+        response = await addNewExamForms({
           data: {
             ...about,
             ...contactDetails,
@@ -64,26 +72,20 @@ const AddNewExam = () => {
           },
           urlEndpoint: "/exam/step1/",
         });
-
-        obj = await data.json();
-        console.log(obj);
         break;
 
       case 1:
-        data = await addNewExamForms({
+        response = await addNewExamForms({
           data: {
             ...importantNews,
             ...importantDates,
           },
           urlEndpoint: "/exam/step2/",
         });
-
-        obj = await data.json();
-        console.log(obj);
         break;
 
       case 2:
-        data = await addNewExamForms({
+        response = await addNewExamForms({
           data: {
             ...examPattern,
             ...studyMaterial,
@@ -92,13 +94,18 @@ const AddNewExam = () => {
           },
           urlEndpoint: "/exam/step3/",
         });
-
-        obj = await data.json();
-        console.log(obj);
         break;
     }
 
-    setActiveStep(activeStep + 1);
+    obj = await response.json();
+
+    if (response.status !== 201) {
+      setError({ fields: obj, err: true });
+    } else {
+      setError({ fields: {}, err: false });
+      setActiveStep(activeStep + 1);
+    }
+    console.log(obj);
   };
 
   const handleBack = () => {
@@ -107,6 +114,7 @@ const AddNewExam = () => {
 
   const handleToStep = (step) => {
     setActiveStep(step);
+    setError({ fields: {}, err: false });
   };
 
   return (
@@ -185,6 +193,25 @@ const AddNewExam = () => {
               )}
               {/* Add more steps as needed */}
             </Grid>
+            <Grid mb={4} mt={8}>
+              <Collapse in={error.err}>
+                <Alert
+                  mb={4}
+                  variant="filled"
+                  severity="warning"
+                  onClose={() => setError({ fields: "", err: false })}
+                >
+                  <AlertTitle>Required Fields</AlertTitle>
+                  {Object.keys(error.fields).map((field) => (
+                    <Typography key={field}>
+                      {field}
+                      {/* {field}: {error.fields[field][0]} */}
+                    </Typography>
+                  ))}
+                </Alert>
+              </Collapse>
+            </Grid>
+
             <Grid container justifyContent={"end"} mt={20}>
               <Button disabled={activeStep === 0} onClick={handleBack}>
                 Back
