@@ -73,8 +73,6 @@ const AddNewCoaching = () => {
     }
   }, [router, isLoggedIn]);
 
-  console.log("coaching");
-
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = async () => {
@@ -238,8 +236,8 @@ const AddNewCoaching = () => {
                   {/* <AlertTitle>Required Fields</AlertTitle> */}
                   {Object.keys(error.fields).map((field) => (
                     <Typography key={field}>
-                      {/* {field} */}
-                      {field}: {error.fields[field][0]}
+                      {field}
+                      {/* {field}: {error.fields[field][0]} */}
                     </Typography>
                   ))}
                 </Alert>

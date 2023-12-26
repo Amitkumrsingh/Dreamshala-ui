@@ -14,7 +14,10 @@ import {
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import StarRating from "../../other/StarRating";
 import { useTheme } from "@mui/material/styles";
-import { checkUrl } from "../../../services/componentsFunctions";
+import {
+  checkUrl,
+  generateYearsArray,
+} from "../../../services/componentsFunctions";
 
 const Reviews = ({ setReviews }) => {
   const theme = useTheme();
@@ -120,13 +123,11 @@ const Reviews = ({ setReviews }) => {
                     <MenuItem value={""} disabled>
                       Select/ Type Here
                     </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                    <MenuItem value="3">3</MenuItem>
-                    <MenuItem value="4">4</MenuItem>
-                    <MenuItem value="5">5</MenuItem>
-                    <MenuItem value="6">6</MenuItem>
-                    {/* Add more exam options as needed */}
+                    {generateYearsArray(1980, 2023).map((year) => (
+                      <MenuItem key={year} value={year}>
+                        {year}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               </Grid>

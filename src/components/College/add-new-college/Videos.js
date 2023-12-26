@@ -20,7 +20,7 @@ const Videos = ({ parentName, setVideos }) => {
   const [addMoreVideos, setAddMoreVideos] = useState([" "]);
   const [formData, setFormData] = useState({
     video_link: "",
-    // video_file: null,
+    video_file: null,
     video_description: "",
     video_keywords_meta_tags: "",
     video_thumbnail: null,
@@ -71,7 +71,7 @@ const Videos = ({ parentName, setVideos }) => {
                     size="small"
                     value={formData.video_link}
                     onChange={handleInputChange("video_link")}
-                    // disabled={formData.video_file !== null}
+                    disabled={formData.video_file !== null}
                     error={
                       formData.video_link === ""
                         ? false

@@ -79,12 +79,9 @@ const AddNewCollege = () => {
     if (!isLoggedIn) {
       router.push("/auth/sign-in");
     }
-    console.log("college");
   }, [router, isLoggedIn]);
 
   const [activeStep, setActiveStep] = useState(0);
-
-  console.log("college 1");
 
   const handleNext = async () => {
     let response, obj;
