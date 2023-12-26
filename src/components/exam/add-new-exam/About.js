@@ -177,9 +177,9 @@ const About = ({ setAbout }) => {
                   <MenuItem value={""} disabled>
                     Number/Yearly
                   </MenuItem>
-                  <MenuItem value="Yearly"> Yearly</MenuItem>
-                  <MenuItem value="Quaterly"> Quaterly</MenuItem>
-                  <MenuItem value="Biannual"> Biannual</MenuItem>
+                  <MenuItem value="yearly"> Yearly</MenuItem>
+                  <MenuItem value="quaterly"> Quaterly</MenuItem>
+                  <MenuItem value="biannual"> Biannual</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
