@@ -17,15 +17,15 @@ const Location = ({ setLocation }) => {
   const placeholderColor = theme.palette.text.secondary;
   const [addMoreLocation, setAddMoreLocation] = useState([" "]);
   const [formData, setFormData] = useState({
-    state: "",
-    city: "",
+    state_loc: "",
+    city_loc: "",
     address_line_1: "",
     address_line_2: "",
-    landmark_locality: "",
-    pincode: "",
+    landmark_loc: "",
+    pincode_loc: "",
     branch_name: "",
-    latitude: "",
-    longitude: "",
+    latitude_loc: "",
+    longitude_loc: "",
   });
 
   const handleInputChange = (field) => (event) => {
@@ -107,12 +107,12 @@ const Location = ({ setLocation }) => {
                   <FormControl fullWidth size="small">
                     {/* <InputLabel>Select/ Type Here</InputLabel> */}
                     <Select
-                      value={formData.state}
-                      onChange={handleInputChange("state")}
+                      value={formData.state_loc}
+                      onChange={handleInputChange("state_loc")}
                       displayEmpty
                       name="state"
                       style={{
-                        color: formData.state === "" && placeholderColor,
+                        color: formData.state_loc === "" && placeholderColor,
                       }}
                     >
                       <MenuItem value={""} disabled>
@@ -136,8 +136,8 @@ const Location = ({ setLocation }) => {
                     placeholder="Type here"
                     variant="outlined"
                     size="small"
-                    value={formData.city}
-                    onChange={handleInputChange("city")}
+                    value={formData.city_loc}
+                    onChange={handleInputChange("city_loc")}
                   />
                 </Grid>
               </Grid>
@@ -178,9 +178,9 @@ const Location = ({ setLocation }) => {
                     placeholder="Type Here"
                     variant="outlined"
                     size="small"
-                    name="landmark_locality"
-                    value={formData.landmark_locality}
-                    onChange={handleInputChange("landmark_locality")}
+                    name="landmark_loc"
+                    value={formData.landmark_loc}
+                    onChange={handleInputChange("landmark_loc")}
                   />
                 </Grid>
                 <Grid item xs={3.5}>
@@ -195,12 +195,12 @@ const Location = ({ setLocation }) => {
                     inputProps={{
                       maxLength: 6,
                     }}
-                    value={formData.pincode}
-                    onChange={handleInputChange("pincode")}
+                    value={formData.pincode_loc}
+                    onChange={handleInputChange("pincode_loc")}
                     error={
-                      formData.pincode === ""
+                      formData.pincode_loc === ""
                         ? false
-                        : !checkPincode(formData.pincode)
+                        : !checkPincode(formData.pincode_loc)
                     }
                   />
                 </Grid>

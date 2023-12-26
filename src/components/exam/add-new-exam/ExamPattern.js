@@ -140,8 +140,8 @@ const ExamPattern = ({ setExamPattern }) => {
                   <MenuItem value={""} disabled>
                     Select/ Type Here
                   </MenuItem>
-                  <MenuItem value="online">Online</MenuItem>
-                  <MenuItem value="offline">Offline</MenuItem>
+                  <MenuItem value="Online">Online</MenuItem>
+                  <MenuItem value="Offline">Offline</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

@@ -153,8 +153,8 @@ const CoursesAndFees = ({ setCoursesAndFees }) => {
                     <MenuItem value={""} disabled>
                       Select/ Type Here
                     </MenuItem>
-                    <MenuItem value="criteria1">Yes</MenuItem>
-                    <MenuItem value="criteria2">No</MenuItem>
+                    <MenuItem value="yes">Yes</MenuItem>
+                    <MenuItem value="no">No</MenuItem>
                     {/* Add more eligibility criteria options as needed */}
                   </Select>
                 </FormControl>

@@ -233,7 +233,7 @@ const AddNewCoaching = () => {
                   severity="warning"
                   onClose={() => setError({ fields: "", err: false })}
                 >
-                  {/* <AlertTitle>Required Fields</AlertTitle> */}
+                  <AlertTitle>Required Fields</AlertTitle>
                   {Object.keys(error.fields).map((field) => (
                     <Typography key={field}>
                       {field}

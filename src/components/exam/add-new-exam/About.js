@@ -177,9 +177,9 @@ const About = ({ setAbout }) => {
                   <MenuItem value={""} disabled>
                     Number/Yearly
                   </MenuItem>
-                  <MenuItem value="yearly"> Yearly</MenuItem>
-                  <MenuItem value="quaterly"> Quaterly</MenuItem>
-                  <MenuItem value="biannual"> Biannual</MenuItem>
+                  <MenuItem value="Yearly"> Yearly</MenuItem>
+                  <MenuItem value="Quaterly"> Quaterly</MenuItem>
+                  <MenuItem value="Biannual"> Biannual</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -197,8 +197,8 @@ const About = ({ setAbout }) => {
                   <MenuItem value={""} disabled>
                     Select/ Type Here
                   </MenuItem>
-                  <MenuItem value="online"> Online</MenuItem>
-                  <MenuItem value="offline"> Offline</MenuItem>
+                  <MenuItem value="Online"> Online</MenuItem>
+                  <MenuItem value="Offline"> Offline</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
