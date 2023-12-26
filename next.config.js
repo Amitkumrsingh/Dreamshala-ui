@@ -42,4 +42,5 @@ module.exports = {
 
     return config;
   },
+  profiler: true,
 };

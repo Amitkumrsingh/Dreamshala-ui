@@ -1,11 +1,11 @@
 import {
   Faculties,
   Videos,
-  Location,
   FAQ,
 } from "../../components/College/add-new-college";
 
 import {
+  Location,
   CheckList,
   Photos,
   ManagementContact,
@@ -74,6 +74,7 @@ const AddNewCoaching = () => {
   }, [router, isLoggedIn]);
 
   const [activeStep, setActiveStep] = useState(0);
+  console.log(`Coaching step ${activeStep + 1}`);
 
   const handleNext = async () => {
     let response, obj;

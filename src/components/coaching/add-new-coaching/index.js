@@ -9,3 +9,4 @@ export { default as CoachingDetails } from "./CoachingDetails";
 export { default as ManagementContact } from "./ManagementContact";
 export { default as Photos } from "./Photos";
 export { default as CheckList } from "./CheckList";
+export { default as Location } from "./Location";

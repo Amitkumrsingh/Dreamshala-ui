@@ -83,6 +83,8 @@ const AddNewCollege = () => {
 
   const [activeStep, setActiveStep] = useState(0);
 
+  console.log(`College step ${activeStep + 1}`);
+
   const handleNext = async () => {
     let response, obj;
 
