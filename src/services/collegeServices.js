@@ -7,7 +7,7 @@ export const addNewCollegeForms = async ({ data, urlEndpoint }) => {
     // Loop through the object and append each key-value pair to the formData
     for (const key in data) {
       if (data.hasOwnProperty(key)) {
-        formData.append(key, data[key]);
+        if (data[key] !== null) formData.append(key, data[key]);
       }
     }
 

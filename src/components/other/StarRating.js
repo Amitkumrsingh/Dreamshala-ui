@@ -9,7 +9,7 @@ const StarRating = ({ title, setRating }) => {
   };
 
   useEffect(() => {
-    setRating(value);
+    setRating(value === 0 ? 1 : value);
   }, [setRating, value]);
 
   return (

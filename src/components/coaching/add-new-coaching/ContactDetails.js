@@ -132,7 +132,7 @@ const ContactDetails = ({ setContactDetails }) => {
                 <Grid key={index} mb={index + 1 !== linkInputs.length ? 2 : 0}>
                   <TextField
                     key={index}
-                    label={`Link ${index + 1}`}
+                    placeholder={`Link ${index + 1}`}
                     size="small"
                     margin="none"
                     fullWidth

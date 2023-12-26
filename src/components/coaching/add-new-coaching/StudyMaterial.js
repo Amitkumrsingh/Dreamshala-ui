@@ -26,7 +26,6 @@ const StudyMaterial = ({ setStudyMaterial }) => {
   };
 
   const [addMoreStudyMaterial, setAddMoreStudyMaterial] = useState([""]);
-  const [examsWhoCanRefer, setExamsWhoCanRefer] = useState("");
   const [linkInputs, setLinkInputs] = useState([""]);
   const [formData, setFormData] = useState({
     material_file: null,

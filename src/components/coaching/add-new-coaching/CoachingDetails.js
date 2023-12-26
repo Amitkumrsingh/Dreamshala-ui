@@ -16,6 +16,7 @@ import {
   checkGSTIN,
   checkPancard,
   checkPincode,
+  generateYearsArray,
 } from "../../../services/componentsFunctions";
 
 const CoachingDetails = ({ setCoachingDetails }) => {
@@ -154,9 +155,12 @@ const CoachingDetails = ({ setCoachingDetails }) => {
                 <MenuItem value={""} disabled>
                   Select/ Type Here
                 </MenuItem>
-                <MenuItem value="1">1</MenuItem>
-                <MenuItem value="2">2</MenuItem>
-                <MenuItem value="3">3</MenuItem>
+                {generateYearsArray(1900, 2023).map((year) => (
+                  <MenuItem key={year} value={year}>
+                    {year}
+                  </MenuItem>
+                ))}
+
                 {/* Add more exam options as needed */}
               </Select>
             </FormControl>

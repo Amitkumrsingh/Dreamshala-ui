@@ -167,7 +167,7 @@ const CoursesAndFees = ({ setCoursesAndFees }) => {
                       <MenuItem value={""} disabled>
                         Select/ Type Here
                       </MenuItem>
-                      <MenuItem value="onlin">Online</MenuItem>
+                      <MenuItem value="online">Online</MenuItem>
                       <MenuItem value="offline">Offline</MenuItem>
                       {/* Add more fees options as needed */}
                     </Select>

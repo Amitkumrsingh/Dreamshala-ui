@@ -31,7 +31,7 @@ const Alumni = ({ setAlumni }) => {
     latest_position_achievement: "",
     links: "",
     name: "",
-    experience: "",
+    almuni_experience: "",
   });
 
   const handleInputChange = (field) => (event) => {
@@ -140,8 +140,8 @@ const Alumni = ({ setAlumni }) => {
                     size="small"
                     type="number"
                     InputProps={{ inputProps: { min: 0 } }}
-                    value={formData.experience}
-                    onChange={handleInputChange("experience")}
+                    value={formData.almuni_experience}
+                    onChange={handleInputChange("almuni_experience")}
                   />
                 </Grid>
               </Grid>

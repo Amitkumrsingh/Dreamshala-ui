@@ -104,10 +104,10 @@ const PreviousCutoffs = ({ setPreviousCutoffs }) => {
                               <MenuItem value={""} disabled>
                                 Select/ Type Here
                               </MenuItem>
-                              <MenuItem value="general">General</MenuItem>
-                              <MenuItem value="obc">OBC</MenuItem>
-                              <MenuItem value="sc">SC</MenuItem>
-                              <MenuItem value="st">ST</MenuItem>
+                              <MenuItem value="General">General</MenuItem>
+                              <MenuItem value="OBC">OBC</MenuItem>
+                              <MenuItem value="SC">SC</MenuItem>
+                              <MenuItem value="ST">ST</MenuItem>
                             </Select>
                           </FormControl>
                         </Grid>
@@ -139,10 +139,10 @@ const PreviousCutoffs = ({ setPreviousCutoffs }) => {
                           <MenuItem value={""} disabled>
                             Select/ Type Here
                           </MenuItem>
-                          <MenuItem value="general">General</MenuItem>
-                          <MenuItem value="obc">OBC</MenuItem>
-                          <MenuItem value="sc">SC</MenuItem>
-                          <MenuItem value="st">ST</MenuItem>
+                          <MenuItem value="General">General</MenuItem>
+                          <MenuItem value="OBC">OBC</MenuItem>
+                          <MenuItem value="SC">SC</MenuItem>
+                          <MenuItem value="ST">ST</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
@@ -214,10 +214,10 @@ const PreviousCutoffs = ({ setPreviousCutoffs }) => {
                             <MenuItem value={""} disabled>
                               Select/ Type Here
                             </MenuItem>
-                            <MenuItem value="general">General</MenuItem>
-                            <MenuItem value="obc">OBC</MenuItem>
-                            <MenuItem value="sc">SC</MenuItem>
-                            <MenuItem value="st">ST</MenuItem>
+                            <MenuItem value="General">General</MenuItem>
+                            <MenuItem value="OBC">OBC</MenuItem>
+                            <MenuItem value="SC">SC</MenuItem>
+                            <MenuItem value="ST">ST</MenuItem>
                           </Select>
                         </FormControl>
                       </Grid>
@@ -261,10 +261,10 @@ const PreviousCutoffs = ({ setPreviousCutoffs }) => {
                         <MenuItem value={""} disabled>
                           Select/ Type Here
                         </MenuItem>
-                        <MenuItem value="general">General</MenuItem>
-                        <MenuItem value="obc">OBC</MenuItem>
-                        <MenuItem value="sc">SC</MenuItem>
-                        <MenuItem value="st">ST</MenuItem>
+                        <MenuItem value="General">General</MenuItem>
+                        <MenuItem value="OBC">OBC</MenuItem>
+                        <MenuItem value="SC">SC</MenuItem>
+                        <MenuItem value="ST">ST</MenuItem>
                       </Select>
                     </FormControl>
                   </Grid>

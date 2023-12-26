@@ -22,13 +22,13 @@ import {
 const Reviews = ({ setReviews }) => {
   const theme = useTheme();
   const placeholderColor = theme.palette.text.secondary;
-  const [overall_rating, setOverall_rating] = useState(null);
-  const [academics_rating, setAcademics_rating] = useState(null);
-  const [faculty_rating, setFaculty_rating] = useState(null);
-  const [infrastructure_rating, setInfrastructure_rating] = useState(null);
-  const [accommodation_rating, setAccommodation_rating] = useState(null);
-  const [placement_rating, setPlacement_rating] = useState(null);
-  const [social_life_rating, setSocial_life_rating] = useState(null);
+  const [overall_rating, setOverall_rating] = useState(1);
+  const [academics_rating, setAcademics_rating] = useState(1);
+  const [faculty_rating, setFaculty_rating] = useState(1);
+  const [infrastructure_rating, setInfrastructure_rating] = useState(1);
+  const [accommodation_rating, setAccommodation_rating] = useState(1);
+  const [placement_rating, setPlacement_rating] = useState(1);
+  const [social_life_rating, setSocial_life_rating] = useState(1);
   const [addMoreReviews, setAddMoreReviews] = useState([""]);
   const [formData, setFormData] = useState({
     name: "",

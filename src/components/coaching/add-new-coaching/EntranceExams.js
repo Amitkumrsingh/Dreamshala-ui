@@ -9,7 +9,7 @@ const EntranceExams = ({ setEntranceExams }) => {
   // const dd = theme.palette.button.primary;
 
   const buttonSelectedStyle = {
-    color: primaryColor,
+    // color: primaryColor,
   };
 
   const buttonNotSelectedStyle = {
