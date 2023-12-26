@@ -90,6 +90,9 @@ const AddNewCoaching = () => {
           },
           urlEndpoint: "/coaching/Step1/",
         });
+
+        // console.log(about);
+
         break;
 
       case 1:
@@ -116,6 +119,7 @@ const AddNewCoaching = () => {
           },
           urlEndpoint: "/coaching/Step3/",
         });
+
         break;
     }
 

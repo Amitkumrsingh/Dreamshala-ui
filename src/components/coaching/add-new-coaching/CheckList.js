@@ -90,10 +90,17 @@ const CheckList = ({ setCheckList }) => {
     setFacilities([...preArray]);
 
     if (preArray[index].selected) {
-      setFormData({
-        ...formData,
-        available_facilities: `${formData.available_facilities}, ${facilities[index].text}`,
-      });
+      if (formData.available_facilities === "") {
+        setFormData({
+          ...formData,
+          available_facilities: `${facilities[index].text}`,
+        });
+      } else {
+        setFormData({
+          ...formData,
+          available_facilities: `${formData.available_facilities}, ${facilities[index].text}`,
+        });
+      }
     }
   };
 
@@ -202,7 +209,7 @@ const CheckList = ({ setCheckList }) => {
       });
     }
 
-    setFormData({ ...formData, students_in_batch: students_in_batch.numbers });
+    setFormData({ ...formData, students_in_batch: text });
   };
 
   const handleTotalStudentsInCoaching = (text, index) => {
@@ -219,7 +226,7 @@ const CheckList = ({ setCheckList }) => {
     }
     setFormData({
       ...formData,
-      total_students_in_coaching: total_students_in_coaching.numbers,
+      total_students_in_coaching: text,
     });
   };
 
@@ -235,24 +242,16 @@ const CheckList = ({ setCheckList }) => {
         index: index,
       });
     }
-    setFormData({ ...formData, number_of_faculty: number_of_faculty.numbers });
+    setFormData({ ...formData, number_of_faculty: text });
+  };
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
   };
 
   useEffect(() => {
-    setFormData({
-      ...formData,
-      number_of_faculty: number_of_faculty.numbers,
-      total_students_in_coaching: total_students_in_coaching.numbers,
-      students_in_batch: students_in_batch.numbers,
-    });
     setCheckList(formData);
-  }, [
-    setCheckList,
-    formData,
-    number_of_faculty.numbers,
-    total_students_in_coaching.numbers,
-    students_in_batch.numbers,
-  ]);
+  }, [setCheckList, formData]);
 
   return (
     <>
@@ -334,11 +333,8 @@ const CheckList = ({ setCheckList }) => {
                   placeholder="Type Here"
                   type="text"
                   size="small"
-                  value={students_in_batch.numbers}
-                  disabled={students_in_batch.index !== -1}
-                  onChange={(e) =>
-                    setStudents_in_batch({ index: -1, numbers: e.target.value })
-                  }
+                  value={formData.students_in_batch}
+                  onChange={handleInputChange("students_in_batch")}
                 />
               </Grid>
             </Grid>
@@ -382,14 +378,8 @@ const CheckList = ({ setCheckList }) => {
                   placeholder="Type Here"
                   type="text"
                   size="small"
-                  value={total_students_in_coaching.numbers}
-                  disabled={total_students_in_coaching.index !== -1}
-                  onChange={(e) =>
-                    setTotal_students_in_coaching({
-                      index: -1,
-                      numbers: e.target.value,
-                    })
-                  }
+                  value={formData.total_students_in_coaching}
+                  onChange={handleInputChange("total_students_in_coaching")}
                 />
               </Grid>
             </Grid>
@@ -433,11 +423,8 @@ const CheckList = ({ setCheckList }) => {
                   placeholder="Type Here"
                   type="text"
                   size="small"
-                  value={number_of_faculty.numbers}
-                  disabled={number_of_faculty.index !== -1}
-                  onChange={(e) =>
-                    setNumber_of_faculty({ index: -1, numbers: e.target.value })
-                  }
+                  value={formData.number_of_faculty}
+                  onChange={handleInputChange("number_of_faculty")}
                 />
               </Grid>
             </Grid>

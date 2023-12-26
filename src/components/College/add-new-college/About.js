@@ -24,7 +24,6 @@ const daysOfWeek = [
 const About = ({ setAbout }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
-  const primaryColor = theme.palette.text.primary;
 
   const buttonSelectedStyle = {
     textAlign: "center",
@@ -71,19 +70,20 @@ const About = ({ setAbout }) => {
       setSelectedDays([...selectedDays, day]);
     }
 
-    setFormData({ ...formData, days_of_operation: selectedDays.join(", ") });
+    if (selectedDays.length === 0)
+      setFormData({ ...formData, days_of_operation: "" });
+    else
+      setFormData({ ...formData, days_of_operation: selectedDays.join(", ") });
   };
 
   const selectAllDays = () => {
     setSelectedDays(daysOfWeek);
-    setFormData({ ...formData, days_of_operation: selectedDays.join(", ") });
+    setFormData({ ...formData, days_of_operation: daysOfWeek.join(", ") });
   };
 
   useEffect(() => {
-    setFormData({ ...formData, days_of_operation: selectedDays.join(", ") });
-
     setAbout(formData);
-  }, [formData, setAbout, selectedDays]);
+  }, [formData, setAbout]);
 
   return (
     <Container>

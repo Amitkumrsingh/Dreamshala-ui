@@ -34,13 +34,13 @@ const Reviews = ({ setReviews }) => {
     name: "",
     year_of_study: "",
     course_taken: "",
-    overall_rating: overall_rating,
-    academics_rating: academics_rating,
-    faculty_rating: faculty_rating,
-    infrastructure_rating: infrastructure_rating,
-    accommodation_rating: accommodation_rating,
-    placement_rating: placement_rating,
-    social_life_rating: social_life_rating,
+    overall_rating: 1,
+    academics_rating: 1,
+    faculty_rating: 1,
+    infrastructure_rating: 1,
+    accommodation_rating: 1,
+    placement_rating: 1,
+    social_life_rating: 1,
     detailed_description: "",
     links: "",
     photo_video: null,
@@ -55,29 +55,8 @@ const Reviews = ({ setReviews }) => {
   };
 
   useEffect(() => {
-    setFormData({
-      ...formData,
-      overall_rating: overall_rating,
-      academics_rating: academics_rating,
-      faculty_rating: faculty_rating,
-      infrastructure_rating: infrastructure_rating,
-      accommodation_rating: accommodation_rating,
-      placement_rating: placement_rating,
-      social_life_rating: social_life_rating,
-    });
-
     setReviews(formData);
-  }, [
-    formData,
-    overall_rating,
-    academics_rating,
-    faculty_rating,
-    infrastructure_rating,
-    accommodation_rating,
-    placement_rating,
-    social_life_rating,
-    setReviews,
-  ]);
+  }, [formData, setReviews]);
 
   return (
     <>
@@ -157,32 +136,49 @@ const Reviews = ({ setReviews }) => {
               <Grid item xs={4}>
                 <StarRating
                   title={"Overall Rating"}
-                  setRating={setOverall_rating}
+                  fieldName="overall_rating"
+                  formData={formData}
+                  setFormData={setFormData}
                 />
                 <StarRating
                   title={"Infrastructure"}
-                  setRating={setInfrastructure_rating}
+                  fieldName="infrastructure_rating"
+                  formData={formData}
+                  setFormData={setFormData}
                 />
                 <StarRating
                   title={"Social Life"}
-                  setRating={setSocial_life_rating}
+                  fieldName="social_life_rating"
+                  formData={formData}
+                  setFormData={setFormData}
                 />
               </Grid>
               <Grid item xs={4}>
                 <StarRating
                   title={"Academics"}
-                  setRating={setAcademics_rating}
+                  fieldName="academics_rating"
+                  formData={formData}
+                  setFormData={setFormData}
                 />
                 <StarRating
                   title={"Accommodation"}
-                  setRating={setAccommodation_rating}
+                  fieldName="accommodation_rating"
+                  formData={formData}
+                  setFormData={setFormData}
                 />
               </Grid>
               <Grid item xs={4}>
-                <StarRating title={"Faculty"} setRating={setFaculty_rating} />
+                <StarRating
+                  title={"Faculty"}
+                  fieldName="faculty_rating"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
                 <StarRating
                   title={"Placement"}
-                  setRating={setPlacement_rating}
+                  fieldName="placement_rating"
+                  formData={formData}
+                  setFormData={setFormData}
                 />
               </Grid>
             </Grid>

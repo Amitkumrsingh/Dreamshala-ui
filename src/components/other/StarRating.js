@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Rating, Typography } from "@mui/material";
 
-const StarRating = ({ title, setRating }) => {
+const StarRating = (prop) => {
+  const { title, formData, fieldName, setFormData } = prop;
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    setFormData({ ...formData, [fieldName]: newValue });
   };
-
-  useEffect(() => {
-    setRating(value === 0 ? 1 : value);
-  }, [setRating, value]);
 
   return (
     <div>

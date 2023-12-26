@@ -24,12 +24,10 @@ const daysOfWeek = [
 const About = ({ setAbout }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
-  const primaryColor = theme.palette.text.primary;
 
   const buttonSelectedStyle = {
     textAlign: "center",
     margin: "5px",
-    // border: "1px solid",
     borderRadius: "4px",
   };
 
@@ -70,23 +68,22 @@ const About = ({ setAbout }) => {
       );
     } else {
       setSelectedDays([...selectedDays, day]);
-      setFormData({
-        ...formData,
-        days_of_operation: `${formData.days_of_operation}, ${day}`,
-      });
     }
+
+    if (selectedDays.length === 0)
+      setFormData({ ...formData, days_of_operation: "" });
+    else
+      setFormData({ ...formData, days_of_operation: selectedDays.join(", ") });
   };
 
   const selectAllDays = () => {
     setSelectedDays(daysOfWeek);
-    setFormData({ ...formData, days_of_operation: selectedDays.join(", ") });
+    setFormData({ ...formData, days_of_operation: daysOfWeek.join(", ") });
   };
 
   useEffect(() => {
-    setFormData({ ...formData, days_of_operation: selectedDays.join(", ") });
-
     setAbout(formData);
-  }, [formData, setAbout, selectedDays]);
+  }, [formData, setAbout]);
 
   return (
     <Container>
@@ -217,7 +214,7 @@ const About = ({ setAbout }) => {
           <Typography>Hours of Operation</Typography>
           <Grid container spacing={4}>
             {/* <Typography>Open</Typography> */}
-            <Grid item xs={2.5} mt={2}>
+            <Grid item xs={3} mt={2}>
               <Typography>Opens</Typography>
               <TextField
                 fullWidth
@@ -231,7 +228,7 @@ const About = ({ setAbout }) => {
                 }}
               />
             </Grid>
-            <Grid item xs={2.5} mt={2}>
+            <Grid item xs={3} mt={2}>
               <Typography>Closes</Typography>
               <TextField
                 fullWidth

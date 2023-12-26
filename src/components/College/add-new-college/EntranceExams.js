@@ -5,7 +5,6 @@ import { useTheme } from "@mui/material/styles";
 const EntranceExams = ({ setEntranceExams }) => {
   const theme = useTheme();
   const secondaryColor = theme.palette.text.secondary;
-  const primaryColor = theme.palette.text.primary;
 
   const buttonSelectedStyle = {
     // color: primaryColor,
@@ -52,9 +51,17 @@ const EntranceExams = ({ setEntranceExams }) => {
       !updatedCheckboxes[category][index].selected;
 
     if (updatedCheckboxes[category][index].selected) {
-      setSelectedCheckboxes(
-        `${selectedCheckboxes}, ${updatedCheckboxes[category][index].exam}`
-      );
+      if (formData.entrance_exams === "") {
+        setFormData({
+          ...formData,
+          entrance_exams: `${updatedCheckboxes[category][index].exam}`,
+        });
+      } else {
+        setFormData({
+          ...formData,
+          entrance_exams: `${formData.entrance_exams}, ${updatedCheckboxes[category][index].exam}`,
+        });
+      }
     }
 
     setCheckboxes(updatedCheckboxes);
@@ -65,14 +72,13 @@ const EntranceExams = ({ setEntranceExams }) => {
   };
 
   const [formData, setFormData] = useState({
-    entrance_exams: [],
+    entrance_exams: "",
     other_criteria: "",
   });
 
   useEffect(() => {
-    setFormData({ ...formData, entrance_exams: selectedCheckboxes });
     setEntranceExams(formData);
-  }, [formData, selectedCheckboxes, setEntranceExams]);
+  }, [formData, setEntranceExams]);
 
   return (
     <Container>

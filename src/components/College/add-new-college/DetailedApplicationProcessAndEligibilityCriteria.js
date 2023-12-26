@@ -45,7 +45,7 @@ const DetailedApplicationProcessAndEligibilityCriteria = ({
         {addMoreDegrees.map((data, index) => (
           <Grid key={index} mb={6}>
             <Grid container>
-              <Grid xs={4}>
+              <Grid xs={4} item>
                 <Typography>Degree/ Branch</Typography>
                 <TextField
                   fullWidth

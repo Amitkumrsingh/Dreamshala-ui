@@ -24,23 +24,17 @@ const Reviews = ({ setReviews }) => {
   const placeholderColor = theme.palette.text.secondary;
 
   const [addMoreReviews, setAddMoreReviews] = useState([""]);
-  const [overall_rating, setOverall_rating] = useState(0);
-  const [competitive_environment, setCompetitive_environment] = useState(0);
-  const [faculty_rating, setFaculty_rating] = useState(0);
-  const [infrastructure_rating, setInfrastructure_rating] = useState(0);
-  const [peer_learning_rating, setPeer_learning_rating] = useState(0);
-  const [study_material_rating, setStudy_material_rating] = useState(0);
 
   const [formData, setFormData] = useState({
     review_name: "",
     year_of_study: "",
     course_taken: "",
-    competitive_environment: competitive_environment,
-    faculty_rating: faculty_rating,
-    infrastructure_rating: infrastructure_rating,
-    overall_rating: overall_rating,
-    peer_learning_rating: peer_learning_rating,
-    study_material_rating: study_material_rating,
+    competitive_environment: 1,
+    faculty_rating: 1,
+    infrastructure_rating: 1,
+    overall_rating: 1,
+    peer_learning_rating: 1,
+    study_material_rating: 1,
     review_description: "",
     review_links: "",
     review_photo_or_video: null,
@@ -55,27 +49,8 @@ const Reviews = ({ setReviews }) => {
   };
 
   useEffect(() => {
-    setFormData({
-      ...formData,
-      competitive_environment: competitive_environment,
-      faculty_rating: faculty_rating,
-      infrastructure_rating: infrastructure_rating,
-      overall_rating: overall_rating,
-      peer_learning_rating: peer_learning_rating,
-      study_material_rating: study_material_rating,
-    });
-
     setReviews(formData);
-  }, [
-    competitive_environment,
-    faculty_rating,
-    formData,
-    infrastructure_rating,
-    overall_rating,
-    peer_learning_rating,
-    setReviews,
-    study_material_rating,
-  ]);
+  }, [formData, setReviews]);
 
   return (
     <>
@@ -156,13 +131,17 @@ const Reviews = ({ setReviews }) => {
                 <Grid item>
                   <StarRating
                     title={"Overall Rating"}
-                    setRating={setOverall_rating}
+                    fieldName="overall_rating"
+                    formData={formData}
+                    setFormData={setFormData}
                   />
                 </Grid>
                 <Grid item>
                   <StarRating
                     title={"Infrastructure"}
-                    setRating={setInfrastructure_rating}
+                    fieldName="infrastructure_rating"
+                    formData={formData}
+                    setFormData={setFormData}
                   />
                 </Grid>
               </Grid>
@@ -170,24 +149,35 @@ const Reviews = ({ setReviews }) => {
                 <Grid item>
                   <StarRating
                     title={"Competitive Environment"}
-                    setRating={setCompetitive_environment}
+                    fieldName="competitive_environment"
+                    formData={formData}
+                    setFormData={setFormData}
                   />
                 </Grid>
                 <Grid item>
                   <StarRating
                     title={"Study Material"}
-                    setRating={setStudy_material_rating}
+                    fieldName="study_material_rating"
+                    formData={formData}
+                    setFormData={setFormData}
                   />
                 </Grid>
               </Grid>
               <Grid item xs={4} container flexDirection={"column"} spacing={6}>
                 <Grid item>
-                  <StarRating title={"Faculty"} setRating={setFaculty_rating} />
+                  <StarRating
+                    title={"Faculty"}
+                    fieldName="faculty_rating"
+                    formData={formData}
+                    setFormData={setFormData}
+                  />
                 </Grid>
                 <Grid item>
                   <StarRating
                     title={"Peer Learning"}
-                    setRating={setPeer_learning_rating}
+                    fieldName="peer_learning_rating"
+                    formData={formData}
+                    setFormData={setFormData}
                   />
                 </Grid>
               </Grid>

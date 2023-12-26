@@ -83,7 +83,7 @@ const AddNewCollege = () => {
 
   const [activeStep, setActiveStep] = useState(0);
 
-  console.log(`College step ${activeStep + 1}`);
+  // console.log(`College step ${activeStep + 1}`);
 
   const handleNext = async () => {
     let response, obj;
@@ -124,7 +124,6 @@ const AddNewCollege = () => {
           },
           urlEndpoint: "/college/step3/",
         });
-
         break;
 
       case 3:
@@ -288,7 +287,6 @@ const AddNewCollege = () => {
                   </Grid>
                 </Grid>
               )}
-              {/* Add more steps as needed */}
             </Grid>
 
             <Grid mb={4} mt={8}>
