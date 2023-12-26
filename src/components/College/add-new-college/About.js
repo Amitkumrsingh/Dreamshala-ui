@@ -49,7 +49,7 @@ const About = ({ setAbout }) => {
     logo: null,
     short_description: "",
     detailed_description: "",
-    days_of_operation: [],
+    days_of_operation: "",
     opens: "08:00",
     closes: "14:00",
   });
@@ -71,16 +71,16 @@ const About = ({ setAbout }) => {
       setSelectedDays([...selectedDays, day]);
     }
 
-    setFormData({ ...formData, days_of_operation: selectedDays });
+    setFormData({ ...formData, days_of_operation: selectedDays.join(", ") });
   };
 
   const selectAllDays = () => {
     setSelectedDays(daysOfWeek);
-    setFormData({ ...formData, days_of_operation: selectedDays });
+    setFormData({ ...formData, days_of_operation: selectedDays.join(", ") });
   };
 
   useEffect(() => {
-    setFormData({ ...formData, days_of_operation: selectedDays });
+    setFormData({ ...formData, days_of_operation: selectedDays.join(", ") });
 
     setAbout(formData);
   }, [formData, setAbout, selectedDays]);
@@ -212,7 +212,7 @@ const About = ({ setAbout }) => {
           <Typography>Hours of Operation</Typography>
           <Grid container spacing={4}>
             {/* <Typography>Open</Typography> */}
-            <Grid item xs={2.5} mt={2}>
+            <Grid item xs={3} mt={2}>
               <Typography>Opens</Typography>
               <TextField
                 fullWidth
@@ -226,7 +226,7 @@ const About = ({ setAbout }) => {
                 }}
               />
             </Grid>
-            <Grid item xs={2.5} mt={2}>
+            <Grid item xs={3} mt={2}>
               <Typography>Closes</Typography>
               <TextField
                 fullWidth

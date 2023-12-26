@@ -19,9 +19,9 @@ const Location = ({ setLocation }) => {
   const [formData, setFormData] = useState({
     state: "",
     city: "",
-    address_line_1_loc: "",
-    address_line_2_loc: "",
-    landmark: "",
+    address_line_1: "",
+    address_line_2: "",
+    landmark_locality: "",
     pincode: "",
     branch_name: "",
     latitude: "",
@@ -151,8 +151,8 @@ const Location = ({ setLocation }) => {
                     variant="outlined"
                     size="small"
                     name="address"
-                    value={formData.address_line_1_loc}
-                    onChange={handleInputChange("address_line_1_loc")}
+                    value={formData.address_line_1}
+                    onChange={handleInputChange("address_line_1")}
                   />
                 </Grid>
                 <Grid xs={6} item>
@@ -163,8 +163,8 @@ const Location = ({ setLocation }) => {
                     placeholder="Type Here"
                     variant="outlined"
                     size="small"
-                    value={formData.address_line_2_loc}
-                    onChange={handleInputChange("address_line_2_loc")}
+                    value={formData.address_line_2}
+                    onChange={handleInputChange("address_line_2")}
                   />
                 </Grid>
               </Grid>
@@ -178,9 +178,9 @@ const Location = ({ setLocation }) => {
                     placeholder="Type Here"
                     variant="outlined"
                     size="small"
-                    name="landmark"
-                    value={formData.landmark}
-                    onChange={handleInputChange("landmark")}
+                    name="landmark_locality"
+                    value={formData.landmark_locality}
+                    onChange={handleInputChange("landmark_locality")}
                   />
                 </Grid>
                 <Grid item xs={3.5}>

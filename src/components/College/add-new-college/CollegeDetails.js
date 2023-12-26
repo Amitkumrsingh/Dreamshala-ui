@@ -17,6 +17,7 @@ import {
   checkGSTIN,
   checkPancard,
   checkPincode,
+  generateYearsArray,
 } from "../../../services/componentsFunctions";
 // import UploadFileIcon from "@mui/icons-material/UploadFile";
 
@@ -61,23 +62,26 @@ const CollegeDetails = ({ setCollegeDetails }) => {
   ];
 
   const [formData, setFormData] = useState({
+    college_name: "",
     GSTIN: "",
     establishment_year: "",
-    pan_card_number: "",
-    pan_card_upload: null,
-    address_line_1: "",
-    address_line_2: "",
-    landmark_locality: "",
-    pincode: "",
-    state: "",
-    city: "",
-    latitude: "0",
-    longitude: "0",
-    name: "",
+    college_address_line_1: "",
+    college_address_line_2: "",
+    college_landmark_locality: "",
+    college_pincode: "",
+    college_pan_card_number: "",
+    college_pan_card_upload: null,
+    college_state: "",
+    college_city: "",
+    college_latitude: "0",
+    college_longitude: "0",
   });
 
   const handleFileChange = (event) => {
-    setFormData({ ...formData, pan_card_upload: event.target.files[0] });
+    setFormData({
+      ...formData,
+      college_pan_card_upload: event.target.files[0],
+    });
   };
 
   const handleInputChange = (field) => (event) => {
@@ -114,8 +118,8 @@ const CollegeDetails = ({ setCollegeDetails }) => {
               placeholder="Type here"
               variant="outlined"
               size="small"
-              value={formData.name}
-              onChange={handleInputChange("name")}
+              value={formData.college_name}
+              onChange={handleInputChange("college_name")}
             />
           </Grid>
           <Grid item xs={4}>
@@ -149,9 +153,12 @@ const CollegeDetails = ({ setCollegeDetails }) => {
                 <MenuItem value={""} disabled>
                   Select/ Type Here
                 </MenuItem>
-                <MenuItem value="1">1</MenuItem>
-                <MenuItem value="2">2</MenuItem>
-                <MenuItem value="3">3</MenuItem>
+                {generateYearsArray(1900, 2023).map((year) => (
+                  <MenuItem key={year} value={year}>
+                    {year}
+                  </MenuItem>
+                ))}
+
                 {/* Add more exam options as needed */}
               </Select>
             </FormControl>
@@ -173,8 +180,8 @@ const CollegeDetails = ({ setCollegeDetails }) => {
                   placeholder="Type here"
                   variant="outlined"
                   size="small"
-                  value={formData.address_line_1}
-                  onChange={handleInputChange("address_line_1")}
+                  value={formData.college_address_line_1}
+                  onChange={handleInputChange("college_address_line_1")}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -185,8 +192,8 @@ const CollegeDetails = ({ setCollegeDetails }) => {
                   placeholder="Type here"
                   variant="outlined"
                   size="small"
-                  value={formData.address_line_2}
-                  onChange={handleInputChange("address_line_2")}
+                  value={formData.college_address_line_2}
+                  onChange={handleInputChange("college_address_line_2")}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -197,8 +204,8 @@ const CollegeDetails = ({ setCollegeDetails }) => {
                   placeholder="Type here"
                   variant="outlined"
                   size="small"
-                  value={formData.landmark_locality}
-                  onChange={handleInputChange("landmark_locality")}
+                  value={formData.college_landmark_locality}
+                  onChange={handleInputChange("college_landmark_locality")}
                 />
               </Grid>
             </Grid>
@@ -212,14 +219,14 @@ const CollegeDetails = ({ setCollegeDetails }) => {
                   placeholder="Type here"
                   variant="outlined"
                   size="small"
-                  type="number"
+                  // type="number"
                   pattern="\d+"
-                  value={formData.pincode}
-                  onChange={handleInputChange("pincode")}
+                  value={formData.college_pincode}
+                  onChange={handleInputChange("college_pincode")}
                   error={
-                    formData.pincode === ""
+                    formData.college_pincode === ""
                       ? false
-                      : !checkPincode(formData.pincode)
+                      : !checkPincode(formData.college_pincode)
                   }
                 />
               </Grid>
@@ -228,11 +235,11 @@ const CollegeDetails = ({ setCollegeDetails }) => {
                 <FormControl fullWidth size="small">
                   {/* <InputLabel>Select/ Type Here</InputLabel> */}
                   <Select
-                    value={formData.state}
-                    onChange={handleInputChange("state")}
+                    value={formData.college_state}
+                    onChange={handleInputChange("college_state")}
                     displayEmpty
                     style={{
-                      color: formData.state === "" && placeholderColor,
+                      color: formData.college_state === "" && placeholderColor,
                     }}
                   >
                     <MenuItem value={""} disabled>
@@ -256,8 +263,8 @@ const CollegeDetails = ({ setCollegeDetails }) => {
                   placeholder="Type here"
                   variant="outlined"
                   size="small"
-                  value={formData.city}
-                  onChange={handleInputChange("city")}
+                  value={formData.college_city}
+                  onChange={handleInputChange("college_city")}
                 />
               </Grid>
             </Grid>
@@ -287,12 +294,12 @@ const CollegeDetails = ({ setCollegeDetails }) => {
               placeholder="Type here"
               variant="outlined"
               size="small"
-              value={formData.pan_card_number}
-              onChange={handleInputChange("pan_card_number")}
+              value={formData.college_pan_card_number}
+              onChange={handleInputChange("college_pan_card_number")}
               error={
-                formData.pan_card_number === ""
+                formData.college_pan_card_number === ""
                   ? false
-                  : !checkPancard(formData.pan_card_number)
+                  : !checkPancard(formData.college_pan_card_number)
               }
             />
           </Grid>
@@ -315,8 +322,10 @@ const CollegeDetails = ({ setCollegeDetails }) => {
                   style={{ display: "none" }}
                   id="image-input"
                 />
-                {formData.pan_card_upload ? (
-                  <Button disabled>{formData.pan_card_upload.name}</Button>
+                {formData.college_pan_card_upload ? (
+                  <Button disabled>
+                    {formData.college_pan_card_upload.name}
+                  </Button>
                 ) : (
                   <>
                     <IconButton component="span">

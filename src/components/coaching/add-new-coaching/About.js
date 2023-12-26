@@ -50,7 +50,7 @@ const About = ({ setAbout }) => {
     logo: null,
     short_description: "",
     detailed_description: "",
-    days_of_operation: [],
+    days_of_operation: "",
     opens: "08:00",
     closes: "14:00",
   });
@@ -70,18 +70,20 @@ const About = ({ setAbout }) => {
       );
     } else {
       setSelectedDays([...selectedDays, day]);
+      setFormData({
+        ...formData,
+        days_of_operation: `${formData.days_of_operation}, ${day}`,
+      });
     }
-
-    setFormData({ ...formData, days_of_operation: selectedDays });
   };
 
   const selectAllDays = () => {
     setSelectedDays(daysOfWeek);
-    setFormData({ ...formData, days_of_operation: selectedDays });
+    setFormData({ ...formData, days_of_operation: selectedDays.join(", ") });
   };
 
   useEffect(() => {
-    setFormData({ ...formData, days_of_operation: selectedDays });
+    setFormData({ ...formData, days_of_operation: selectedDays.join(", ") });
 
     setAbout(formData);
   }, [formData, setAbout, selectedDays]);

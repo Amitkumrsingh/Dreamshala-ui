@@ -81,8 +81,8 @@ const CoursesAndFees = ({ setCoursesAndFees }) => {
                     <MenuItem value={""} disabled>
                       Select/ Type Here
                     </MenuItem>
-                    <MenuItem value="1">1 Year</MenuItem>
-                    <MenuItem value="2">2 Years</MenuItem>
+                    {/* <MenuItem value="1">1 Year</MenuItem>
+                    <MenuItem value="2">2 Years</MenuItem> */}
                     {/* Add more duration options as needed */}
                   </Select>
                 </FormControl>
@@ -105,7 +105,7 @@ const CoursesAndFees = ({ setCoursesAndFees }) => {
                 <Typography>Course Description</Typography>
                 <TextField
                   fullWidth
-                  label="Course Description"
+                  placeholder="Describe Here"
                   multiline
                   minRows={4.4}
                   maxRows={4.4}

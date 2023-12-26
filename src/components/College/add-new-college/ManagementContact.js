@@ -47,6 +47,7 @@ const ManagementContact = ({ setManagementContact }) => {
             size="small"
             name="name"
             fullWidth
+            inputProps={{ maxlength: 15 }}
             value={formData.management_name}
             onChange={handleInputChange("management_name")}
           />

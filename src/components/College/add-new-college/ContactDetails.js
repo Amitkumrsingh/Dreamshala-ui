@@ -133,13 +133,16 @@ const ContactDetails = ({ setContactDetails }) => {
                 <Grid key={index} mb={index + 1 !== linkInputs.length ? 2 : 0}>
                   <TextField
                     key={index}
-                    label={`Link ${index + 1}`}
+                    placeholder={`Link ${index + 1}`}
                     size="small"
                     margin="none"
                     fullWidth
-                    value={link}
-                    onChange={(e) =>
-                      handleLinkInputChange(index, e.target.value)
+                    value={formData.other_links}
+                    onChange={handleInputChange("other_links")}
+                    error={
+                      formData.other_links === ""
+                        ? false
+                        : !checkUrl(formData.other_links)
                     }
                   />
                 </Grid>

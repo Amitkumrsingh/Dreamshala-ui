@@ -79,11 +79,11 @@ const ImportantNews = ({ setImportantNews }) => {
                         variant="outlined"
                         fullWidth
                         style={
-                          formData.news_category === "Very Important"
+                          formData.news_category === "very_imp"
                             ? {}
                             : buttonNotSelectedStyle
                         }
-                        onClick={() => handleButtonClick("Very Important")}
+                        onClick={() => handleButtonClick("very_imp")}
                       >
                         Very Important
                       </Button>
@@ -93,11 +93,11 @@ const ImportantNews = ({ setImportantNews }) => {
                         variant="outlined"
                         fullWidth
                         style={
-                          formData.news_category === "Medium Important"
+                          formData.news_category === "medium_imp"
                             ? {}
                             : buttonNotSelectedStyle
                         }
-                        onClick={() => handleButtonClick("Medium Important")}
+                        onClick={() => handleButtonClick("medium_imp")}
                       >
                         Medium Important
                       </Button>
@@ -110,11 +110,11 @@ const ImportantNews = ({ setImportantNews }) => {
                         variant="outlined"
                         fullWidth
                         style={
-                          formData.news_category === "Important"
+                          formData.news_category === "imp"
                             ? {}
                             : buttonNotSelectedStyle
                         }
-                        onClick={() => handleButtonClick("Important")}
+                        onClick={() => handleButtonClick("imp")}
                       >
                         Impotant
                       </Button>
@@ -125,11 +125,11 @@ const ImportantNews = ({ setImportantNews }) => {
                         variant="outlined"
                         fullWidth
                         style={
-                          formData.news_category === "Less Important"
+                          formData.news_category === "less_imp"
                             ? {}
                             : buttonNotSelectedStyle
                         }
-                        onClick={() => handleButtonClick("Less Important")}
+                        onClick={() => handleButtonClick("less_imp")}
                       >
                         Less Impotant
                       </Button>

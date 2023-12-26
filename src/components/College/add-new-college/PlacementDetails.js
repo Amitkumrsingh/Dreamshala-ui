@@ -206,43 +206,27 @@ const PlacementDetails = ({ setPlacementDetails }) => {
             <Grid container spacing={6} item>
               <Grid item xs={4}>
                 <Typography>Highest Package</Typography>
-                <FormControl fullWidth size="small">
-                  <Select
-                    value={formData.highest_package}
-                    onChange={handleInputChange("highest_package")}
-                    displayEmpty
-                    style={{
-                      color:
-                        formData.highest_package === "" && placeholderColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                  </Select>
-                </FormControl>
+                <TextField
+                  placeholder="Type here"
+                  value={formData.highest_package}
+                  onChange={handleInputChange("highest_package")}
+                  type="number"
+                  InputProps={{ inputProps: { min: 0 } }}
+                  size="small"
+                  fullWidth
+                />
               </Grid>
               <Grid item xs={4}>
                 <Typography>Average Package</Typography>
-                <FormControl fullWidth size="small">
-                  <Select
-                    value={formData.average_package}
-                    onChange={handleInputChange("average_package")}
-                    displayEmpty
-                    style={{
-                      color:
-                        formData.average_package === "" && placeholderColor,
-                    }}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select/ Type Here
-                    </MenuItem>
-                    <MenuItem value="1">1</MenuItem>
-                    <MenuItem value="2">2</MenuItem>
-                  </Select>
-                </FormControl>
+                <TextField
+                  placeholder="Type here"
+                  value={formData.average_package}
+                  onChange={handleInputChange("average_package")}
+                  type="number"
+                  InputProps={{ inputProps: { min: 0 } }}
+                  size="small"
+                  fullWidth
+                />
               </Grid>
 
               {addMoreFields.map((data, index) => (
